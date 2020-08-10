@@ -45,6 +45,18 @@ label {
     font-size: 1.2em;
 }
 
+pre {
+    background-color: rgb(230, 230, 230);
+    margin-left: 20px;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+b {
+    background-color: rgb(230, 230, 230);
+    padding: 2px; 
+}
+
 a {
     color: #00c5ad;
     font-weight: bolder;
@@ -54,7 +66,7 @@ a {
 .thumb {
     max-height: 240px;
     max-width: 600px;
-    margin-bottom: 20px;
+    margin: 0 20px 20px 20px;
 }
 
 #tabs {

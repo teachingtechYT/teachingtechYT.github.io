@@ -54,12 +54,24 @@
 
     <div id="pid">
         <h2>PID Autotune</h2>
-        <p></p>
+        <p>A PID autotune is a process that sets the correct parameters for heating the hot end and/or bed.</p>
+        <p>This procedure is covered in this video: <a href="https://youtu.be/qCtL0Yd_w0I" target="_blank">Two easy fixes for 3D printer temperature swings</a></p>
+        <div class="videoThumb" data-youtube="https://youtu.be/qCtL0Yd_w0I"></div>
+        <p>In Marlin, this is a very straightforward process using <a href="https://marlinfw.org/docs/gcode/M303.html" target="_blank">M303</a>.</p>
+        <p>Using a terminal such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>, enter the following for the hot end:</p>
+        <pre>M303 E1 S200 U1</pre>
+        <p>This will tune the hot end at 200 degrees. The S value can be altered to suit your most common printing temperature. The <pi>U1</i> means the result is stored to RAM and we can save it immediately to EEPROM by sending:</p>
+        <pre>M500</pre>
+        <p>For the bed, <b>PIDTEMPBED</b> must be enabled in the firmware, then the command is quite similar:</p>
+        <pre>M303 E-1 S60 U1</pre>
+        <p>The bed is selected with <i>E-1</i>, and the temp set to 60 degrees. Substiture as necessary for your normal printing temperature. Once again save to EEPROM afterwards with:</p>
+        <pre>M500</pre>
+        <p>It may be preferable to have the printer as close to printing conditions as possible during these tuning prodecures. That means having filament loaded and the part cooling fan on for PLA temperatures.</p>
     </div>
 
     <div id="baseline">
         <h2>Baseline Print</h2>
-        <p>The aim of this print is to establish a baseline for comparison with later tests.</p>
+        <p>The aim of this print is to establish a baseline for comparison with later tests. The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <form name="baselineForm" id="baselineForm" onsubmit="return:false;">
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed.</p>
