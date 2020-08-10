@@ -1,7 +1,147 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Teaching Tech 3D Printer Calibration</title>
+        <link  type="text/css" rel="stylesheet" href="css/styles.css">
+        <link  type="text/css" rel="stylesheet" href="css/responsive-tabs.css">
+        <link  type="text/css" rel="stylesheet" href="css/featherlight.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery.responsiveTabs.js"></script>
+        <script src="js/videobox.js"></script>
+        <script src="js/featherlight.js"></script>
+        <script src="js/baseline.js"></script>
+        <script src="js/encoding-indexes.js"></script>
+        <script src="js/encoding.js"></script>
+        <script src="js/gcodeprocessing.js"></script>
+    </head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+<h1>Teaching Tech 3D Printer Calibration</h1>
+<p>This page serves as a companion for the following video: <a href="https://www.youtube.com/watch?v=" target="_blank"></a></p>
+<p>It aims to make calibrating your 3D printer as easy as possible. If you find it helps you and you would like to say thank you, here is a donation link: <a href="paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
+<p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for suggesting this video and helping define the contents.</p>
+<p>Watch the video and then work through each tab. I have created a custom gcode generator to assist in testing towers. Every attempt has been made to ensure this is safe but ultimately there always is risk in running presliced gcode from the internet. Preview the gcode in your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> and <span class="warning">print at your own risk.</span></p>
+<div id="tabs">
+    <ul>
+        <li><a href="#frame">Frame Check</a></li>
+        <li><a href="#pid">PID Autotune</a></li>
+        <li><a href="#baseline">Baseline Print</a></li>
+        <li><a href="#esteps">E-steps Calibration</a></li>
+        <li><a href="#steppers">Driver Current</a></li>
+        <li><a href="#retraction">Retraction Tuning</a></li>
+        <li><a href="#temp">Temperature Tuning</a></li>
+        <li><a href="#accel">Acceleration Tuning</a></li>
+        <li><a href="#linadv">Linear Advance</a></li>
+    </ul>
+
+    <div id="frame">
+        <h2>Frame Check</h2>
+        <p>Before we do anything else, we need to ensure there are no underlying problems with the frame. It would be easy to use the techniques elsewhere on this page to try and fix problems that were actually caused by a problem with the physical components, so we will eliminate this first.</p>
+        <p>Many of these procedures are covered in this video: <a href="https://youtu.be/T-Z3GmM20JM" target="_blank">Complete beginner's guide to 3D printing - Assembly, tour, slicing, levelling and first prints</a></p>
+        <div class="videoThumb" data-youtube="https://youtu.be/T-Z3GmM20JM"></div>
+        <h4>Loose nuts and bolts</h4>
+        <p>Move around the machine and check all fasteners. Crucial ones include those on the print head gantry such as those that hold the hot end on.</p>
+        <h4>V-roller tension</h4>
+        <p>If your printer has a motion system based on V-roller wheels riding on V-slot extrusions, check they are properly tensioned. Each location will have one eccentric nut. This can be twisted to either add or remove tension on the wheels.</p>
+        <p><b>If the wheels are too loose:</b> Wobble will be present in the assembly, which will show in the print as surface artefacts.</p>
+        <p><b>If the wheels are too tight:</b> The assembly is will be too tense, which will wear the V-rollers prematurely.</p>
+        <h4>Bed Levelling</h4>
+        <p>Probably the most essential part of setting up your 3D printer. Most new users will trip up on this. My method is included in the above video and this diagram is a handy reference:</p>
+        <a href="#" data-featherlight="img/_bed-levelling-guide.jpg"><img class="thumb" src="img/_bed-levelling-guide.jpg" /></a>
+        <h4>PTFE Tube</h4>
+        <p>If your printer has PTFE tube, such as a bowden tube setup for the extruder/hot end, it is essential to make the tube is fully inserted and seated in the coupler. Also ensure the coupler is properly tightened. You may wish to use a small retaining clip on the coupler to prevent the tube working loose: <a href="https://www.thingiverse.com/thing:4268489" target="_blank">Creality PTFE clip by morfidesign</a>.</p>
+    </div>
+
+    <div id="pid">
+        <h2>PID Autotune</h2>
+        <p></p>
+    </div>
+
+    <div id="baseline">
+        <h2>Baseline Print</h2>
+        <p>The aim of this print is to establish a baseline for comparison with later tests.</p>
+        <form name="baselineForm" id="baselineForm" onsubmit="return:false;">
+            <h4>Bed dimensions</h4>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed.</p>
+            <label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
+            <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br />
+            <h4>Temperatures</h4>
+            <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
+            <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
+            <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+            <h4>Retraction</h4>
+            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
+            <h4>Auto Bed Levelling</h4>
+            <label for="abl">Select which method of ABL is in place.</label>
+            <select name="abl" id="abl">
+                <option value="0">No ABL</option>
+                <option value="1">Probe new mesh at the start of print - G29</option>
+                <option value="2">Restore saved mesh - M420 S1</option>
+            </select>
+            <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
+        </form>
+    </div>
+
+    <div id="esteps">
+        <h2>E-steps Calibration</h2>
+        <p></p>
+    </div>
+
+    <div id="steppers">
+        <h2>Stepper Motor Driver Current Tuning</h2>
+        <p></p>
+    </div>
+
+    <div id="retraction">
+        <h2>Retraction Tuning</h2>
+        <p></p>
+    </div>
+
+    <div id="temp">
+        <h2>Temperature Tuning</h2>
+        <p></p>
+    </div>
+
+    <div id="accel">
+        <h2>Acceleration Tuning</h2>
+        <p></p>
+    </div>
+
+    <div id="linadv">
+        <h2>Linear Advance</h2>
+        <p></p>
+    </div>
+
+</div>
+<div id="footer">
+    <h3>This page was created using:</h3>
+    <ul>
+        <li><a href="https://jquery.com/" target="_blank">jQuery</a></li>
+        <li><a href="https://github.com/jellekralt/Responsive-Tabs" target="_blank">Responsive Tabs by jellekraut</a></li>
+        <li><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto font</a></li>
+        <li><a href="https://github.com/tedktedk/videobox" target="_blank">Videobox by tedktedk</a></li>
+        <li><a href="https://github.com/noelboss/featherlight" target="_blank">Featherlight by noelboss</a></li>
+    </ul>
+</div>
 </body>
+<script>
+    $('#tabs').responsiveTabs({
+        startCollapsed: 'accordion'
+    });
+    $(".videoThumb").videoBox({
+        width: '480',
+        height: '360',
+        loop: false,
+        autoplay: false,
+        byline: false,
+        color: "00adef",
+        maxheight: '',
+        maxwidth: '',
+        portrait: true,
+        title: '',
+        controls: 1
+  });
+</script>
 </html>
