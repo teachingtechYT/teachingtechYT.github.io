@@ -16,13 +16,12 @@
         <script src="js/gcodeprocessing.js"></script>
     </head>
 <body>
-<h1>Teaching Tech 3D Printer Calibration</h1>
-<p>This page serves as a companion for the following video: <a href="https://www.youtube.com/watch?v=" target="_blank"></a></p>
-<p>It aims to make calibrating your 3D printer as easy as possible. If you find it helps you and you would like to say thank you, here is a donation link: <a href="paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
-<p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for suggesting this video and helping define the contents.</p>
-<p>Watch the video and then work through each tab. I have created a custom gcode generator to assist in testing towers. Every attempt has been made to ensure this is safe but ultimately there always is risk in running presliced gcode from the internet. Preview the gcode in your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> and <span class="warning">print at your own risk.</span></p>
+<div id="header">
+    <h1>Teaching Tech 3D Printer Calibration</h1><span id="donate">Useful? Considering supporting me: <a href="https://paypal.me/testlawgicau" target="blank"><img class="icon" src="img/paypal.png" /></a><a href="http://www.patreon.com/teachingtech" target="blank"><img class="icon" src="img/patreon.png" /></a></span>
+</div>
 <div id="tabs">
     <ul>
+        <li><a href="#intro">Introduction</a></li>
         <li><a href="#frame">Frame Check</a></li>
         <li><a href="#pid">PID Autotune</a></li>
         <li><a href="#baseline">Baseline Print</a></li>
@@ -33,6 +32,14 @@
         <li><a href="#accel">Acceleration Tuning</a></li>
         <li><a href="#linadv">Linear Advance</a></li>
     </ul>
+
+    <div id="intro">
+        <h2>Introduction</h2>
+        <p>This page serves as a companion for the following video: <a href="https://www.youtube.com/watch?v=" target="_blank"></a></p>
+        <p>It aims to make calibrating your 3D printer as easy as possible. If you find it helps you and you would like to say thank you, here is a donation link: <a href="https://paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
+        <p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for suggesting this video and helping define the contents.</p>
+        <p>Watch the video and then work through each tab. I have created a custom gcode generator to assist in testing towers. Every attempt has been made to ensure this is safe but ultimately there always is risk in running presliced gcode from the internet. Preview the gcode in your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> and <span class="warning">print at your own risk.</span></p>
+    </div>
 
     <div id="frame">
         <h2>Frame Check</h2>
@@ -50,6 +57,8 @@
         <a href="#" data-featherlight="img/_bed-levelling-guide.jpg"><img class="thumb" src="img/_bed-levelling-guide.jpg" /></a>
         <h4>PTFE Tube</h4>
         <p>If your printer has PTFE tube, such as a bowden tube setup for the extruder/hot end, it is essential to make the tube is fully inserted and seated in the coupler. Also ensure the coupler is properly tightened. You may wish to use a small retaining clip on the coupler to prevent the tube working loose: <a href="https://www.thingiverse.com/thing:4268489" target="_blank">Creality PTFE clip by morfidesign</a>.</p>
+        <h4>Nozzle</h4>
+        <p>It is worth heating up te nozzle and pushing some filament through to see if it is exiting the nozzle properly. If the diameter is inconsistent or the extruded plastic shoots to one side, it may indicate a partial blockage in the nozzle that will be a pain in the future.</p>
     </div>
 
     <div id="pid">
@@ -74,9 +83,10 @@
         <p>The aim of this print is to establish a baseline for comparison with later tests. The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <form name="baselineForm" id="baselineForm" onsubmit="return:false;">
             <h4>Bed dimensions</h4>
-            <p>Inputting the correct number will attempt to move the print into the centre of the bed.</p>
-            <label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
-            <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br />
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
+            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#baselineXY')" value="centre"></label>
+            <span id="baselineXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
+            <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br /></span>
             <h4>Temperatures</h4>
             <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>

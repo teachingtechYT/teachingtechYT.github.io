@@ -13,9 +13,18 @@ function downloadFile(filename, contents) {
     }
 }
 
+function toggle(ticked, target){
+    if(ticked == true){
+        $(target).hide();
+    } else {
+        $(target).show();
+    }
+}
+
 function processBaseline(){
     var hotendTemp = document.baselineForm.hotendtemp.value;
     var bedTemp = document.baselineForm.bedtemp.value;
+    var centre = document.baselineForm.centre.checked;
     var bedX = Math.round((document.baselineForm.bedx.value-100)/2);
     var bedY = Math.round((document.baselineForm.bedy.value-100)/2);
     var retDist = document.baselineForm.retdist.value;
@@ -35,26 +44,47 @@ function processBaseline(){
     baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
     baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
 
-    if(bedX > 0){
+    if(centre == true){
         var baselineArray = baseline.split(/\n/g);
+        var regexp = /X\d+/;
         baselineArray.forEach(function(index, item){
             if(baselineArray[item].search(/X/) > -1){
-                var value = parseInt(baselineArray[item].match(/X\d+/)[0].substring(1)) + bedX
-                baselineArray[item] = baselineArray[item].replace(/X\d+/, "X"+String(value));
+                var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) - 50;
+                baselineArray[item] = baselineArray[item].replace(regexp, "X"+String(value));
             }
         });
-        baseline = baselineArray.join("\n");
-    }
-    if(bedY > 0){  
-        var baselineArray = baseline.split(/\n/g);
+        var regexp = /Y\d+/;
         baselineArray.forEach(function(index, item){
             if(baselineArray[item].search(/Y/) > -1){
-                var value = parseInt(baselineArray[item].match(/Y\d+/)[0].substring(1)) + bedY
-                baselineArray[item] = baselineArray[item].replace(/Y\d+/, "Y"+String(value))
+                var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) - 50;
+                baselineArray[item] = baselineArray[item].replace(regexp, "Y"+String(value))
             }
         });
         baseline = baselineArray.join("\n");
-    }
+    } else {
+        if(bedX > 0){
+            var baselineArray = baseline.split(/\n/g);
+            var regexp = /X\d+/;
+            baselineArray.forEach(function(index, item){
+                if(baselineArray[item].search(/X/) > -1){
+                    var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) + bedX;
+                    baselineArray[item] = baselineArray[item].replace(regexp, "X"+String(value));
+                }
+            });
+            baseline = baselineArray.join("\n");
+        }
+        if(bedY > 0){  
+            var baselineArray = baseline.split(/\n/g);
+            var regexp = /Y\d+/;
+            baselineArray.forEach(function(index, item){
+                if(baselineArray[item].search(/Y/) > -1){
+                    var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) + bedY;
+                    baselineArray[item] = baselineArray[item].replace(regexp, "Y"+String(value))
+                }
+            });
+            baseline = baselineArray.join("\n");
+        }   
+    } 
     downloadFile('baseline.gcode', baseline);
 }
 
