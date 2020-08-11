@@ -12,6 +12,7 @@ h1 {
 }
 
 h2 {
+    font-size: 1.8em;
     margin: 10px 20px;
 }
 
@@ -26,6 +27,12 @@ h4 {
     padding: 5px 10px;
     color:white;
     background-color: #00c5ad;
+}
+
+h5 {
+    margin: 20px;
+    font-weight: bolder;
+    font-size: 1.4em;
 }
 
 p {
@@ -75,6 +82,32 @@ a {
     text-decoration: none;;
 }
 
+li {
+    line-height: 1.5em;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    background-color: rgb(230, 230, 230);
+    padding: 20px;
+    border: 1px solid grey;
+}
+
+td {
+    padding: 20px;
+    border: 1px solid grey;
+}
+
+.exp {
+    background-color: rgb(230, 230, 230);
+    padding: 1px 0;
+    border-radius: 15px;
+    border: 1px solid #00c5ad;
+}
+
 .thumb {
     max-height: 240px;
     max-width: 600px;
@@ -83,6 +116,25 @@ a {
 
 #header {
     height: 4.0em;
+}
+
+#estepsresult {
+    display: none;
+    border: 5px solid #00c5ad;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
+
+#flow1result, #flow2result {
+    display: none;
+    border: 5px solid #00c5ad;
+    border-radius: 15px;
+    font-size: 1.2em;
+}
+
+.result {
+    color: #00c5ad;
+    font-weight: bolder;
 }
 
 #donate {

@@ -25,7 +25,8 @@
         <li><a href="#frame">Frame Check</a></li>
         <li><a href="#pid">PID Autotune</a></li>
         <li><a href="#baseline">Baseline Print</a></li>
-        <li><a href="#esteps">E-steps Calibration</a></li>
+        <li><a href="#esteps">Extruder E-steps Calibration</a></li>
+        <li><a href="#flow">Extruder Flow Calibration</a></li>
         <li><a href="#steppers">Driver Current</a></li>
         <li><a href="#retraction">Retraction Tuning</a></li>
         <li><a href="#temp">Temperature Tuning</a></li>
@@ -42,8 +43,14 @@
     </div>
 
     <div id="frame">
-        <h2>Frame Check</h2>
-        <p>Before we do anything else, we need to ensure there are no underlying problems with the frame. It would be easy to use the techniques elsewhere on this page to try and fix problems that were actually caused by a problem with the physical components, so we will eliminate this first.</p>
+        <div class="exp">
+            <h2>Frame Check</h2>
+            <h5>Aim:</h5>
+            <p>To ensure there are no underlying problems with the frame or mechanical components.</p>
+            <h5>Required:</h5>
+            <p>Any time the frame or mechnical components have been disassembled or replaced.</p>
+        </div>
+        <p>It would be easy to use the techniques elsewhere on this page to try and fix problems that were actually caused by a problem with the physical components, so we will eliminate this first.</p>
         <p>Many of these procedures are covered in this video: <a href="https://youtu.be/T-Z3GmM20JM" target="_blank">Complete beginner's guide to 3D printing - Assembly, tour, slicing, levelling and first prints</a></p>
         <div class="videoThumb" data-youtube="https://youtu.be/T-Z3GmM20JM"></div>
         <h4>Loose nuts and bolts</h4>
@@ -58,13 +65,23 @@
         <h4>PTFE Tube</h4>
         <p>If your printer has PTFE tube, such as a bowden tube setup for the extruder/hot end, it is essential to make the tube is fully inserted and seated in the coupler. Also ensure the coupler is properly tightened. You may wish to use a small retaining clip on the coupler to prevent the tube working loose: <a href="https://www.thingiverse.com/thing:4268489" target="_blank">Creality PTFE clip by morfidesign</a>.</p>
         <h4>Nozzle</h4>
-        <p>It is worth heating up te nozzle and pushing some filament through to see if it is exiting the nozzle properly. If the diameter is inconsistent or the extruded plastic shoots to one side, it may indicate a partial blockage in the nozzle that will be a pain in the future.</p>
+        <p>It is worth heating up te nozzle and pushing some filament through to see if it is exiting the nozzle properly. If the diameter is inconsistent or the extruded plastic shoots to one side, it may indicate a partial blockage in the nozzle that will be a pain in the future. It is also worth checking if the nozzle is properly tightened. Only do this when it is hot or you mau break it.</p>
+        <h4>Belt tension</h4>
+        <p>Ensure all belts are properly alinged and tensioned sufficiently.</p>
+        <h4>Fans</h4>
+        <p>Check all fans are spinning freely. This includes but is not limited to: mainboard cooling fan, heat sink fan, part cooling fan, PSU fan. It can be hard to diagose if a fan is performing at less than full capacity. It may be easier to simply replace than repair if you suspect a fan is failing.</p>
     </div>
 
     <div id="pid">
-        <h2>PID Autotune</h2>
-        <p>A PID autotune is a process that sets the correct parameters for heating the hot end and/or bed.</p>
+        <div class="exp">
+            <h2>PID Autotune</h2>
+            <h5>Aim:</h5>
+            <p>To ensure the heating of the 3D printer nozzle and bed are safe, stable and consistent.</p>
+            <h5>Required:</h5>
+            <p>Any time the hot end is changed, including addng/removing a silicone sock or altering part cooling fan/ducts. Any time the bed is changed, such as adding a glass/mirror plate, magnetic spring steel sheet and/or under bed insulation.</p>
+        </div>
         <p>This procedure is covered in this video: <a href="https://youtu.be/qCtL0Yd_w0I" target="_blank">Two easy fixes for 3D printer temperature swings</a></p>
+        
         <div class="videoThumb" data-youtube="https://youtu.be/qCtL0Yd_w0I"></div>
         <p>In Marlin, this is a very straightforward process using <a href="https://marlinfw.org/docs/gcode/M303.html" target="_blank">M303</a>.</p>
         <p>Using a terminal such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>, enter the following for the hot end:</p>
@@ -79,8 +96,14 @@
     </div>
 
     <div id="baseline">
-        <h2>Baseline Print</h2>
-        <p>The aim of this print is to establish a baseline for comparison with later tests. The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
+        <div class="exp">
+            <h2>Baseline Print</h2>
+            <h5>Aim:</h5>
+            <p>To establish a baseline for comparison with later tests or before modifications.</p>
+            <h5>Required:</h5>
+            <p>Before general calibration or before a significant modification is to be fitted.</p>
+        </div>
+        <p>The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <form name="baselineForm" id="baselineForm" onsubmit="return:false;">
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
@@ -91,13 +114,21 @@
             <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+            <h4>Part Cooling Fan</h4>
+            <p>PLA typically has the part cooling fan come o n from layer 2. Alter thi default bahaviour here:</p>
+            <label for="pc">Select which method of ABL is in place.</label>
+            <select name="pc">
+                <option value="0">100% fan from layer 2</option>
+                <option value="1">50% fan from layer 2</option>
+                <option value="2">No constant fan</option>
+            </select>
             <h4>Retraction</h4>
             <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>
-            <select name="abl" id="abl">
+            <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29</option>
                 <option value="2">Restore saved mesh - M420 S1</option>
@@ -107,8 +138,150 @@
     </div>
 
     <div id="esteps">
-        <h2>E-steps Calibration</h2>
-        <p></p>
+        <div class="exp">
+            <h2>Extruder E-steps Calibration</h2>
+            <h5>Aim:</h5>
+            <p>To determine the correct amount of steps Marlin firmware needs to send to the stepper motor for a desired movement.
+            <h5>Required:</h5>
+            <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
+        </div>
+        <p>For the X, Y, and Z axes, the steper per mm is usually consistent between printers and rarely changes with modifications.</p>
+        <p>For the extruder however, variations in extruder hardware and filament means it is worth properly calibrating the extruder steps per mm, or E-steps.</p>
+        <p>This can be achieved using a terminal such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a> by sending a series of gcode commands.</p>
+        <p>Firstly, we need to know the existing E-steps value. To find this, enter:</p>
+        <pre>M92</pre>
+        <p><a href="https://marlinfw.org/docs/gcode/M092.html" target="_blank">M92</a> is used to report or set the steps per mm for each axis. M92 by itself will report the currents parameters. We want to make note of the number after <b>E</b>:</p>
+        <img src="img/esteps1.jpg" />
+        <p>Now heat up your hot end to whatever temperature you usually print with. Once the temperature is stable, enter:</p>
+        <pre>G91</pre>
+        <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. Which means asking for 100mm adds 100mm to the current position, instead of moving to the exact position of 100mm.</p>
+        <p>Now we take a permanent marker and put a mark 120mm from the entry to the extruder.</p>
+        <a href="#" data-featherlight="img/mark.jpg"><img class="thumb" src="img/mark.jpg" /></a>
+        <pre>G1 E100 F100</pre>
+        <p><a href="https://marlinfw.org/docs/gcode/G000-G001.html" target="_blank">G91</a> sends a move command to the printer, in this case asking the extruder to advance 100mm at a speed of 100mm/sec.</p>
+        <p>The filament will then slowly go through the extruder and hot end. Once the extrusion finishes, we masure the distance between the mark and the entry to the extruder.</p>
+        <img src="img/mark2.jpg" />
+        <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other that this, complete the form below to calculate the correct E-steps:</p>
+        <form name="estepsForm" onsubmit="return: false;">
+            <label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93"></label><br />
+            <label>Measurement between extruder entry and mark on filament: <input type="number" name="remainingFil" value="20"></label><br />
+            <input type="button" onclick="esteps();" value="Calculate">
+            <div id="estepsresult">
+                <p>There was <span class="result" id="e1"></span> mm of filament remaining, which means you extruded <span class="result" id="e2"></span> mm of filament. Your new E-steps should be <span class="result" id="e3"></span><br />
+                Enter the following in the terminal:</p>
+                <pre>M92 E<span id="e4"></span></pre>
+                <p>Followed by M500 to save to EEPROM.</p>
+                <pre>M500</pre>
+                <p>You may wish to repeat this test with the new E-steps value to verify.</p>
+            </div>
+        </form>
+    </div>
+
+    <div id="flow">
+        <div class="exp">
+            <h2>Extruder Flow Calibration</h2>
+            <h5>Aim:</h5>
+            <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.
+            <h5>Required:</h5>
+            <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
+        </div>
+        <p>Our E-steps are now correct so we will move on to calibrating the slicer. Each slicer has setting to control the overall amount of filament extruded by the printer. If the flow rate is increased, more filament will be extruded. If the flow rate is descreased, less filament will be extruded.</p>
+        <p>In Simplify3D and PrusaSlicer, this is called <b>Extrusion Multiplier</b>. Cura calls it <b>Flow</b>.</p>
+        <p>My method of determining the correct flow rate is to print a single wall thick hollow cube, measure the actual thickness of the wall and then adjust the flow ratre to suit.</p>
+        <p>Unfortunately, I can't provide gcode for this process. It is vital to use gcode generated by <i>YOUR</i> slicer. The basic steps are covered in the video, and are repeated here.</p> 
+        <table>
+            <head>
+                <tr>
+                    <th>Step</th>
+                    <th>Cura</th>
+                    <th>Simplify3D</th>
+                    <th>PrusaSlicer</th>
+                </tr>
+            </head>
+            <tbody>
+                <tr>
+                    <td>1. Import STL</td>
+                    <td colspan="3" style="text-align: center;"><a href="files/cube.STL">cube STL</a></td>
+                </tr>
+                <tr>
+                    <td>2. Turn off infill</td>
+                    <td>Infill > Infill density: 0%</td>
+                    <td>General settings > Infill percentage: 0%</td>
+                    <td>Print settings > Infill > Fill density: 0%</td>
+                </tr>
+                <tr>
+                    <td>3. Turn off top layers</td>
+                    <td>Shell > Top thickness: 0</td>
+                    <td>Layer > Top solid layers: 0</td>
+                    <td>Print settings > Layers and perimeters > Horizontal layers > Top: 0</td>
+                </tr>
+                <tr>
+                    <td>4. Ensure wall thickness is a known value<br />Substitute whatver values you like here</td>
+                    <td>Shell > Wall thickness: 0.4</td>
+                    <td>Extruder > Extrusion width > manual > 0.4</td>
+                    <td>Print settings > Advanced > Extrusion width > Default extrusion width: 0.4<br />
+                        Print settings > Advanced > Extrusion width > Perimeters: 0.4</td>
+                </tr>
+                <tr>
+                    <td>5. Set outer wall thickness to single extrusion</td>
+                    <td>Shell > Wall line count: 1</td>
+                    <td>Layer > Outline/Perimeter shells: 1</td>
+                    <td>Print settings > Vertical shells > Perimeters: 1</td>
+                </tr>
+
+                <tr>
+                    <td>6. Set flow rate to default 1.0 / 100%</td>
+                    <td>Material > Flow: 100</td>
+                    <td>Extruder > Extrusion multiplier: 1.0</td>
+                    <td>Filament settings > Filament > Extrusion multiplier: 1</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <p>Now slice and print!</p>
+        <p>Use vernier calipers to measure the outer wall thickness of the hollow cube. Take measurements in multiple places/sides.</p>
+        <p>The following calculator can then be used to calculate the new flow rate:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Cura</th>
+                    <th>Simplify3D / PrusaSlicer</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <form name="flow1" onsubmit="return: false;">
+                            <label>Previous flow rate: <input type="number" name="oldFlow" value="100"></label><br />
+                            <label>Target wall thickness: <input type="number" name="targetWall" value="0.4"></label><br />
+                            <label>Measured wall thickness: <input type="number" name="measuredWall" value="0.4"></label><br />
+                            <input type="button" onclick="flowCalc1()" value="Calculate">
+                            <div id="flow1result">
+                                <p>Your new flow rate should be <span class="result" id="f1"></span></p>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form name="flow2" onsubmit="return: false;">
+                            <label>Previous flow rate: <input type="number" name="oldFlow" value="1.0"></label><br />
+                            <label>Target wall thickness: <input type="number" name="targetWall" value="0.4"></label><br />
+                            <label>Measured wall thickness: <input type="number" name="measuredWall" value="0.4"></label><br />
+                            <input type="button" onclick="flowCalc2();" value="Calculate">
+                            <div id="flow2result">
+                                <p>Your new flow rate should be <span class="result" id="f2"></span></p>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="exp">
+            <h2>Important note!</h2>
+            <p>What you see with your eyes is more important tha a theoretical calculation. After you have performed this calibration, please adjust the flow rate higher or lower based on what you actually see.</p>
+            <p>For example, take the cube shown in the thumbnail of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>:</p>
+            <a href="#" data-featherlight="img/xyzcube.jpg"><img class="thumb" src="img/xyzcube.jpg" /></a>
+            <p>This print shows clear signs of under extrusion. Despite what any calibration procedure determined, the flow rate for this slicer/printer combination needs to be increased.</p>
+        </div>
     </div>
 
     <div id="steppers">

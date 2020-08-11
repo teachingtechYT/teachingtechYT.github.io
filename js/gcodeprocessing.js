@@ -21,6 +21,36 @@ function toggle(ticked, target){
     }
 }
 
+function esteps(){
+    var oldSteps = document.estepsForm.oldSteps.value;
+    var remainingFil = document.estepsForm.remainingFil.value;
+    var actualExtrusion = 120 - remainingFil;
+    var newSteps = (oldSteps/actualExtrusion*100).toFixed(2);
+    $("#e1").html(remainingFil);
+    $("#e2").html(actualExtrusion);
+    $("#e3").html(newSteps);
+    $("#e4").html(newSteps);
+    $("#estepsresult").show();
+}
+
+function flowCalc1(){
+    var oldflow = document.flow1.oldFlow.value;
+    var targetwall = document.flow1.targetWall.value;
+    var measuredwall = document.flow1.measuredWall.value;
+    var newsteps = (oldflow/measuredwall*targetwall).toFixed(2);
+    $("#f1").html(newsteps);
+    $("#flow1result").show();
+}
+
+function flowCalc2(){
+    var oldflow = document.flow2.oldFlow.value;
+    var targetwall = document.flow2.targetWall.value;
+    var measuredwall = document.flow2.measuredWall.value;
+    var newsteps = (oldflow/measuredwall*targetwall).toFixed(2);
+    $("#f2").html(newsteps);
+    $("#flow2result").show();
+}
+
 function processBaseline(){
     var hotendTemp = document.baselineForm.hotendtemp.value;
     var bedTemp = document.baselineForm.bedtemp.value;
@@ -30,7 +60,14 @@ function processBaseline(){
     var retDist = document.baselineForm.retdist.value;
     var retSpeed = document.baselineForm.retspeed.value*60;
     var abl = document.baselineForm.abl.value;
+    var pc = document.baselineForm.pc.value;
     var baseline = originalBaseline;
+    if(apc == 1){
+        baseline = baseline.replace(/M106 S255/, "M106 S130");
+    }
+    if(pc == 2){
+        baseline =  baseline.replace(/M106 S255/, ";M106 S255");
+    }
     if(abl == 1){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
