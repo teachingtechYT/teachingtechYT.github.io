@@ -138,7 +138,6 @@ td {
 }
 
 #donate {
-    display: inline-block;
     vertical-align: middle;
     float: right;
     padding: 20px;
@@ -169,7 +168,6 @@ td {
 
 #footer li {
     margin: 10px 30px;
-    display:inline-block;
     float: left;
 }
 

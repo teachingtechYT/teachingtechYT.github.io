@@ -117,7 +117,7 @@
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
             <p>PLA typically has the part cooling fan come o n from layer 2. Alter thi default bahaviour here:</p>
-            <label for="pc">Select which method of ABL is in place.</label>
+            <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
                 <option value="1">50% fan from layer 2</option>
@@ -166,7 +166,7 @@
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other that this, complete the form below to calculate the correct E-steps:</p>
         <form name="estepsForm" onsubmit="return: false;">
             <label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93"></label><br />
-            <label>Measurement between extruder entry and mark on filament: <input type="number" name="remainingFil" value="20"></label><br />
+            <label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20"></label><br />
             <input type="button" onclick="esteps();" value="Calculate">
             <div id="estepsresult">
                 <p>There was <span class="result" id="e1"></span> mm of filament remaining, which means you extruded <span class="result" id="e2"></span> mm of filament. Your new E-steps should be <span class="result" id="e3"></span><br />
@@ -255,8 +255,8 @@
                     <td>
                         <form name="flow1" onsubmit="return: false;">
                             <label>Previous flow rate: <input type="number" name="oldFlow" value="100"></label><br />
-                            <label>Target wall thickness: <input type="number" name="targetWall" value="0.4"></label><br />
-                            <label>Measured wall thickness: <input type="number" name="measuredWall" value="0.4"></label><br />
+                            <label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4"></label><br />
+                            <label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4"></label><br />
                             <input type="button" onclick="flowCalc1()" value="Calculate">
                             <div id="flow1result">
                                 <p>Your new flow rate should be <span class="result" id="f1"></span></p>
@@ -266,8 +266,8 @@
                     <td>
                         <form name="flow2" onsubmit="return: false;">
                             <label>Previous flow rate: <input type="number" name="oldFlow" value="1.0"></label><br />
-                            <label>Target wall thickness: <input type="number" name="targetWall" value="0.4"></label><br />
-                            <label>Measured wall thickness: <input type="number" name="measuredWall" value="0.4"></label><br />
+                            <label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4"></label><br />
+                            <label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4"></label><br />
                             <input type="button" onclick="flowCalc2();" value="Calculate">
                             <div id="flow2result">
                                 <p>Your new flow rate should be <span class="result" id="f2"></span></p>
