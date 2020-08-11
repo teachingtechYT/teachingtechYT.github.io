@@ -100,7 +100,6 @@ a {
 .icon {
     max-width: 50px;
     max-height: 50px;
-    margin: 0 5px;
 }
 
 #tabs {
@@ -116,8 +115,10 @@ a {
     font-weight: bolder;
 }
 
-li {
-    margin: 10px 0;
+#footer li {
+    margin: 10px 30px;
+    display:inline-block;
+    float: left;
 }
 
 /* Tabs container */
