@@ -12,6 +12,8 @@
         <script src="js/featherlight.js"></script>
         <script src="js/baseline.js"></script>
         <script src="js/retraction.js"></script>
+        <script src="js/temperature.js"></script>
+        <script src="js/acceleration.js"></script>
         <script src="js/encoding-indexes.js"></script>
         <script src="js/encoding.js"></script>
         <script src="js/gcodeprocessing.js"></script>
@@ -159,7 +161,7 @@
         <img src="img/esteps1.jpg" />
         <p>Now heat up your hot end to whatever temperature you usually print with. Once the temperature is stable, enter:</p>
         <pre>G91</pre>
-        <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. Which means asking for 100mm adds 100mm to the current position, instead of moving to the exact position of 100mm.</p>
+        <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. Which means asking for 100mm adds 100mm to the current position, instead of moving to the specific position of 100mm.</p>
         <p>Now we take a permanent marker and put a mark 120mm from the entry to the extruder.</p>
         <a href="#" data-featherlight="img/mark.jpg"><img class="thumb" src="img/mark.jpg" /></a>
         <pre>G1 E100 F100</pre>
@@ -386,7 +388,7 @@
             <h5>Special note:</h5>
             <p>Temperature tuning and retraction tuning are related to each other. You could do them in either order, and it may be necessary to tune back and forth to reach an ideal result. A higher nozzle temperature will promote more oozing and stringing, whereas a lower temperature will reduce oozing and stringing.</p>
         </div>
-        <p>Besides hot end temperature, there are four parameters we will be tuning relating to retraction. In the table is a description of each as well as where the setting is found n the most popular slicers.</p>
+        <p>Besides hot end temperature, there are three parameters we will be tuning relating to retraction. In the table is a description of each as well as where the setting is found in the most popular slicers.</p>
         <table>
             <head>
                 <tr>
@@ -427,7 +429,7 @@
                 <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For ijstance, Cura measures extra restart distance in volume rather than length.</li>
             </ul>
         </div> 
-        <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the four available parameters, it is best to change only one per test print. For example, keep the retraction speed, z hop and exta restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
+        <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and exta restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
@@ -517,8 +519,91 @@
     </div>
 
     <div id="temp">
-        <h2>Temperature Tuning</h2>
-        <p></p>
+        <div class="exp">
+            <h2>Temperature Tuning</h2>
+            <h5>Aim:</h5>
+            <p>To set the ideal printing temperature for the hot end for a given filament.</p>
+            <h5>Required:</h5>
+            <p>Initial calibration, any time the hot end is changed, when trying a new type/brand of filament.</p>
+        </div>
+        <p>For this calibration, we are only concerned with the temperature of the hot end, not the bed. The bed temperature will need to be matched to any given filament, and once a good value is found, you will generally stick with it.</p>
+        <p>Instead here we are tuning the temperature at which the filament is extruded.</p>
+        <div class="exp">
+            <h5>Rule of thumb and special note:</h5>
+            <p>A higher nozzle temperature should result in stronger parts, particularly interlayer adhesion. Part surface may be shinier. The filament will be softer so ooze and stringing may be increased, and some surface detail potentially lost. A hot end temperature too high may damage parts of the assembly such as internal PTFE tube.</p>
+            <p>A lower nozzle temperature shiould result in weaker parts, particularly interlayer adhesion. Part surface may be duller. The filament will be firmer so ooze and stringing may be reduced, with good surface detail. A hot end temperature too low can cause the hot end to jam.</p>
+            <p>Temperature tuning and retraction tuning are related to each other. You could do them in either order, and it may be necessary to tune back and forth to reach an ideal result.</p>
+        </div>
+        <p>The following form will create a temperature tower to conveniently test back to back parameters in the same print. There are five segments to vary the temperature. Generally the lowest temperatures would be at the start of the print (segment A) and the increase up to the highest by the top of the print (segment E).</p>
+        <p>Your 3D printer firmware will have a minimum extrusion temperature and a maximum hot end temperature. Make sure to keep within these boundaries to avoid errors.</p>
+        <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/temperaturetower.stl">temperaturetower.stl</a></p>
+        <form name="temperatureForm" id="temperatureForm" onsubmit="return false;">
+            <h4>Bed dimensions</h4>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
+            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#tempXY')" value="centre"></label>
+            <span id="tempXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
+            <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br /></span>
+            <h4>Bed Temperature</h4>
+            <p>For the bed, typical PLA temperature is 60, PETG 80, ABS 100, and TPU 5 (effectively off).</p>
+            <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+            <h4>Part Cooling Fan</h4>
+            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default bahaviour here:</p>
+            <label for="pc">Select part cooling fan behaviour:</label>
+            <select name="pc">
+                <option value="0">100% fan from layer 2</option>
+                <option value="1">50% fan from layer 2</option>
+                <option value="2">No constant fan</option>
+            </select>
+            <h4>Auto Bed Levelling</h4>
+            <label for="abl">Select which method of ABL is in place.</label>
+            <select name="abl">
+                <option value="0">No ABL</option>
+                <option value="1">Probe new mesh at the start of print - G29</option>
+                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="3">Prusa MK3 - G28 W followed by M80</option>
+            </select>
+            <h4>Retraction</h4>
+            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
+            <h4>Hot end temperature</h4>
+            <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reference Diagram</th>
+                        <th>Segment</th>
+                        <th>Hot end temperature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="5" style="text-align: center;">
+                            <img src="img/temperaturediagram.jpg" />
+                        </td>
+                        <td style="text-align: center;">E</td>
+                        <td><input type="number" min="150" max="450" name="e1" value="210"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">D</td>
+                        <td><input type="number" min="150" max="450" name="d1" value="205"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">C</td>
+                        <td><input type="number" min="150" max="450" name="c1" value="200"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">B</td>
+                        <td><input type="number" min="150" max="450" name="b1" value="195"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">A</td>
+                        <td><input type="number" min="150" max="450" name="a1" value="190"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
+        </form>
     </div>
 
     <div id="accel">

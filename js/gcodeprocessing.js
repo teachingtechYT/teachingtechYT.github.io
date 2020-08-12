@@ -238,3 +238,90 @@ function processRetraction(){
     downloadFile('retraction.gcode', retraction);
 }
 
+function processTemperature(){
+    var bedTemp = document.temperatureForm.bedtemp.value;
+    var centre = document.temperatureForm.centre.checked;
+    var bedX = Math.round((document.temperatureForm.bedx.value-100)/2);
+    var bedY = Math.round((document.temperatureForm.bedy.value-100)/2);
+    var retDist = document.temperatureForm.retdist.value;
+    var retSpeed = document.temperatureForm.retspeed.value*60;
+    var abl = document.temperatureForm.abl.value;
+    var pc = document.temperatureForm.pc.value;
+    var a1 = document.temperatureForm.a1.value;
+    var b1 = document.temperatureForm.b1.value;
+    var c1 = document.temperatureForm.c1.value;
+    var d1 = document.temperatureForm.d1.value;
+    var e1 = document.temperatureForm.e1.value;
+    var temperature = originalTemperature;
+    if(pc == 1){
+        temperature = temperature.replace(/M106 S255/, "M106 S130");
+    }
+    if(pc == 2){
+        temperature =  temperature.replace(/M106 S255/, ";M106 S255");
+    }
+    if(abl == 1){
+        temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+    }
+    if(abl == 2){
+        temperature =  temperature.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+    }
+    if(abl == 3){
+        temperature = temperature.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
+        temperature = temperature.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
+    }
+    temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
+    temperature = temperature.replace(/M190 S60/g, "M140 S"+bedTemp);
+    temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
+    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+
+    if(centre == true){
+        var temperatureArray = temperature.split(/\n/g);
+        var regexp = /X\d+/;
+        temperatureArray.forEach(function(index, item){
+            if(temperatureArray[item].search(/X/) > -1){
+                var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
+                temperatureArray[item] = temperatureArray[item].replace(regexp, "X"+String(value));
+            }
+        });
+        var regexp = /Y\d+/;
+        temperatureArray.forEach(function(index, item){
+            if(temperatureArray[item].search(/Y/) > -1){
+                var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
+                temperatureArray[item] = temperatureArray[item].replace(regexp, "Y"+String(value))
+            }
+        });
+        temperature = temperatureArray.join("\n");
+    } else {
+        if(bedX > 0){
+            var temperatureArray = temperature.split(/\n/g);
+            var regexp = /X\d+/;
+            temperatureArray.forEach(function(index, item){
+                if(temperatureArray[item].search(/X/) > -1){
+                    var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) + bedX;
+                    temperatureArray[item] = temperatureArray[item].replace(regexp, "X"+String(value));
+                }
+            });
+            temperature = temperatureArray.join("\n");
+        }
+        if(bedY > 0){  
+            var temperatureArray = temperature.split(/\n/g);
+            var regexp = /Y\d+/;
+            temperatureArray.forEach(function(index, item){
+                if(temperatureArray[item].search(/Y/) > -1){
+                    var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) + bedY;
+                    temperatureArray[item] = temperatureArray[item].replace(regexp, "Y"+String(value))
+                }
+            });
+            temperature = temperatureArray.join("\n");
+        }   
+    } 
+    temperature = temperature.replace(/M104 S190/g, "M104 S"+a1);
+    temperature = temperature.replace(/M109 S190/g, "M109 S"+a1);
+    temperature = temperature.replace(/M109 S195/g, "M109 S"+b1);
+    temperature = temperature.replace(/M109 S200/g, "M109 S"+c1);
+    temperature = temperature.replace(/M109 S205/g, "M109 S"+d1);
+    temperature = temperature.replace(/M109 S210/g, "M109 S"+e1);
+    downloadFile('temperature.gcode', temperature);
+}
+
+
