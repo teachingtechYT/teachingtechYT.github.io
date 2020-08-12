@@ -88,6 +88,10 @@ li {
 
 table {
     width: 100%;
+    margin-bottom: 20px;
+}
+table input {
+    margin:0;
 }
 
 th {
