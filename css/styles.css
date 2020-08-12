@@ -101,6 +101,10 @@ td {
     border: 1px solid grey;
 }
 
+iframe {
+    margin: 0 20px;
+}
+
 .exp {
     background-color: rgb(230, 230, 230);
     padding: 1px 0;

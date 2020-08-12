@@ -105,7 +105,7 @@
         </div>
         <p>The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <a href="#" data-featherlight="img/cube.jpg"><img class="thumb" src="img/cube.jpg" /></a>
-        <form name="baselineForm" id="baselineForm" onsubmit="return:false;">
+        <form name="baselineForm" id="baselineForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
             <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#baselineXY')" value="centre"></label>
@@ -164,7 +164,7 @@
         <p>The filament will then slowly go through the extruder and hot end. Once the extrusion finishes, we masure the distance between the mark and the entry to the extruder.</p>
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other that this, complete the form below to calculate the correct E-steps:</p>
-        <form name="estepsForm" onsubmit="return: false;">
+        <form name="estepsForm" onsubmit="return false;">
             <label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93"></label><br />
             <label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20"></label><br />
             <input type="button" onclick="esteps();" value="Calculate">
@@ -253,7 +253,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <form name="flow1" onsubmit="return: false;">
+                        <form name="flow1" onsubmit="return false;">
                             <label>Previous flow rate: <input type="number" name="oldFlow" value="100"></label><br />
                             <label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4"></label><br />
                             <label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4"></label><br />
@@ -264,7 +264,7 @@
                         </form>
                     </td>
                     <td>
-                        <form name="flow2" onsubmit="return: false;">
+                        <form name="flow2" onsubmit="return false;">
                             <label>Previous flow rate: <input type="number" name="oldFlow" value="1.0"></label><br />
                             <label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4"></label><br />
                             <label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4"></label><br />
@@ -287,8 +287,88 @@
     </div>
 
     <div id="steppers">
-        <h2>Stepper Motor Driver Current Tuning</h2>
-        <p></p>
+        <div class="exp">
+            <h2>Stepper Motor Current Tuning</h2>
+            <h5>Aim:</h5>
+            <p>To set the correct amount of current supplied to the stepper motors of the printer. This is set with the stepper motor driver.</p>
+            <h5>Required:</h5>
+            <p>If steps are being skipped/missed. If the stepper motors are too hot to touch. When significant changes are made to the motion system (eg. heavier bed, conversion to direct drive from bowden tube).</p>
+        </div>
+        <p>Setting the stepper driver current is an important step in calibrating a 3D printer, although typically the value does not need to be exact. There is a window within which the printer will operate without issue. Although some exact methods are shown, the following rule of thumb is the most important factor:</p>
+        <div class="exp">
+            <h5>Rule of thumb:</h5>
+            <p>If the stepper motor is missing steps or you are experiencing layer shifts, the stepper current needs to be increased. This will supply more torque to the motor but also make it run hotter.</p>
+            <p>If the stepper motor is too hot to touch, the stepper current needs to be decreased. This will remove torque and make the motor run cooling.</p>
+        </div>
+        <p>Unfortunately, some times a stepper motor may be running hot and still missing steps. The following may apply in these cases:</p>
+        <ul>
+            <li>In the case of the extruder steppper, there may be an obstruction such as a partially blocked nozzle, PTFE tube unseated, hot end temprature too low (increased resistance to melting/flow) and/or first layer too close (nozzle jammed against bed, no where for plastic to exit).</li>
+            <li>For X, Y and Z, the stepper motor may be undersized for the mass it is pushing. This can occur when increasing the size of the printer (eg. Ender Extender kit), adding something heavier to the bed (glass/mirror plate), and/or converting from bowden tube to a heavy direct drive extruder.</li>
+            <li>If there is some sort of mechanical misalignmen that makes movement a lot harder. This may be a V-roller that is far too tight or a misaligned Z axis leadscrew causing the Z axis to bind.</li>
+            <li>The acceleration/jerk and printing speeds are too aggressive for the stepper motors.</li>
+            <li>Each stepper motor driver has a rated current, if this is too high it will run very hot and potentially cause missed steps. Active cooling can help this but the current should still be still within the safe specifications.</li>
+        </ul>
+        <p>If tuning the stepper driver current is unable to find a sweet spot, the good news is you can upgrade to a larger stepper motor easily in most cases. Nema17 steppers have the same mounting pattern and output shaft diameter, however you should still check your machine to ensure there is enough room for a longer stepper before any purchase. With all else being equal, a longer stepper motor will be capable of more torque and handling higher current.</p>
+        
+        <div class="exp">
+            <p>Depending on the stepper motor driver, there are two ways of setting the current:</p>
+            <h5>Physical:</h5>
+            <p>For older stepper motor driver or TMC drivers running in legacy mode, the current is set by turning a trim pot screw on the top of the driver to raise or lower VREF, which in turns sets the driver current.</p>
+            <h5>Gcode:</h5>
+            <p>On TMC drivers, the current is set directly with gcode commands. This can be set in the firmware or via a terminal or the printer's LCD. This value should be saved to EEPROM to stay persistent.</p>
+            <p>We will cover these one at a time below.</p>
+        </div>
+        <p>Setting stepper driver current accurately relies on knowing two values: the peak current of the stepper motor and the sense resistor value. Methods for determining these are seen in the following snippet:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>Physical</h2>
+        <p>I have covered this in detail before, so please use the embedded videos below, queued to the correct time, to set the VREF. The VREF is just a reference voltage to assist us in setting the driver current. It is used because it is much simpler to measure voltage rather than current with a multimeter. Typically these drivers have the peak/max current set.</p>
+        <p>The general steps for setting current via VREF are the same between drivers, only the VREF formula changes:</p>
+        <ol>
+            <li>Power up mainboard via 12/24V normal power supply, <i>NOT</i>> just USB 5V.</li>
+            <li>Set multimeter to DC voltage, max 2V range.</li>
+            <li>Connect black/negative multimeter probe to ground. This can be a negative terminal or the top of the USB connector.</li>
+            <li>Connect the red/positive probe to the trim pot on top of the driver to measure VREF.</li>
+            <li>Turn the trim pot <i>SLOWLY</i> with a screw driver, then remeasure.</li>
+            <li>Repeat for each stepper motor driver.</li>
+        </ol>
+        <p>Alternatively, you can use an aligator clip wire between the red probe and the metal shaft of the screwdriver, so that a VREF reading is available as you turn the screwdriver. This procedure is shown in this snippet:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=389&end=438" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>A4988</h4>
+        <p>The typical sense resistor value is 0.1. Please check your drivers to be sure.</p>
+        <pre>VREF = 8 x max current x sense resistor value</pre>
+        <p>Then use the video above as a guide to the process.</p>
+        <h4>DRV8825</h4>
+        <p>The sense resistor value should be 0.1. If it is:</p>
+        <pre>VREF = max current / 2</pre>
+        <p>The process is then the same as for A4988s as shown in the video above.</p>
+        <h4>TMC2100</h4>
+        <p>Like the TMC drivers covered in the gcode section, the current for the TMC2100 is set not as a peak, but instead as RMS. To determine this, divide the peak current by <b>1.41</b>.</p>
+        <pre>VREF = (RMS current * 2.5) / 1.77</pre>
+        <p>The process is then the same as for A4988s as shown in the video above.</p>
+        <h4>TMC2208 - Legacy/standalone mode (as found in Creality silent boards)</h4>
+        <p>Like the TMC drivers covered in the gcode section, the current for the TMC2208 (legacy mode) is set not as a peak, but instead as RMS. To determine this, divide the peak current by <b>1.41</b>.</p>
+        <pre>VREF = (RMS current * 2.5) / 1.77</pre>
+        <p>The process is then the same as for A4988s as shown in the video above.</p>
+        <h4>LV8729</h4>
+        <p>When I tested these, there was no mention of a sense resistor. Therefore the VREF formular is simple:</p>
+        <p>The process is then the same as for A4988s as shown in the video above.</p>
+        <pre>VREF = max current / 2</pre>
+        <h2>Gcode</h2>
+        <p>TMC drivers connected via UART or SPI serial can have their current set via gcode. This is not peak current, but rather RMS (root mean square current. Rather than the max, think of this as more a typical current, where the driver will be operating mostly. To convert a peak current from stepper motor specs to RMC, divide it by <b>1.41</b>.</p>
+        <p>The gcode command to set current is </p>
+        <h4>TMC2208, TMC2209, TMC2130, etc</h4>
+        <p>These drivers should have a sense resistor value of <b>0.11</b>. This is the default in Marlin, so when compiling it should already be set:</p>
+        <img src="img/tmc1.jpg" />
+        <p>Therefore you can set your RMS current directly in the firmware when compiling. After flashing firmware, remember that the previous value may still be stored in the EEPROM. Check your values by entering <b>M503</b> in a terminal.</p>
+        <p>You can also set the RMS current via terminal with the <a href="https://marlinfw.org/docs/gcode/M906.html" target="_blank">M906</a>. Please follow the link to see the reference. Don't forget to save the value afterwards with <b>M500</b>.</p>
+        <p>Finally, the LCD configuration menu can be used to set the RMS current. Don't forget to save afterwards by clicking on <b>Store Settings</b>.</p>
+        <h4>TMC5160</h4>
+        <p>The TMC5160 is the same as the other TMC drivers apart from one important difference: the sense resistor value needs to be changed from <b>0.11</b> to <b>0.075</b> when compiling the firmware.</p>
+        <img src="img/tmc2.jpg" />
+        <p>After this change is made, the same procedures apply:</p>
+        <p>You can set your RMS current directly in the firmware when compiling. After flashing firmware, remember that the previous value may still be stored in the EEPROM. Check your values by entering <b>M503</b> in a terminal.</p>
+        <p>You can also set the RMS current via terminal with the <a href="https://marlinfw.org/docs/gcode/M906.html" target="_blank">M906</a>. Please follow the link to see the reference. Don't forget to save the value afterwards with <b>M500</b>.</p>
+        <p>Finally, the LCD configuration menu can be used to set the RMS current. Don't forget to save afterwards by clicking on <b>Store Settings</b>.</p>
     </div>
 
     <div id="retraction">
