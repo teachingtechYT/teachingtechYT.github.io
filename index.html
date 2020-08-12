@@ -163,7 +163,7 @@
         <p>Now we take a permanent marker and put a mark 120mm from the entry to the extruder.</p>
         <a href="#" data-featherlight="img/mark.jpg"><img class="thumb" src="img/mark.jpg" /></a>
         <pre>G1 E100 F100</pre>
-        <p><a href="https://marlinfw.org/docs/gcode/G000-G001.html" target="_blank">G91</a> sends a move command to the printer, in this case asking the extruder to advance 100mm at a speed of 100mm/sec.</p>
+        <p><a href="https://marlinfw.org/docs/gcode/G000-G001.html" target="_blank">G1</a> sends a move command to the printer, in this case asking the extruder to advance 100mm at a speed of 100mm/sec.</p>
         <p>The filament will then slowly go through the extruder and hot end. Once the extrusion finishes, we masure the distance between the mark and the entry to the extruder.</p>
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other that this, complete the form below to calculate the correct E-steps:</p>
@@ -206,7 +206,7 @@
             <tbody>
                 <tr>
                     <td>1. Import STL</td>
-                    <td colspan="3" style="text-align: center;"><a href="files/cube.STL">cube STL</a></td>
+                    <td colspan="3" style="text-align: center;"><a href="files/cube.stl">cube STL</a></td>
                 </tr>
                 <tr>
                     <td>2. Turn off infill</td>
@@ -428,6 +428,7 @@
             </ul>
         </div> 
         <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the four available parameters, it is best to change only one per test print. For example, keep the retraction speed, z hop and exta restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
+        <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
@@ -509,7 +510,10 @@
                 </tbody>
             </table>
             <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
-        </form>  
+        </form>
+        <h2>Interpreting Results:</h2>
+        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in.</p>
+        <a href="#" data-featherlight="img/retractionresults.jpg"><img class="thumb" src="img/retractionresults.jpg" /></a>
     </div>
 
     <div id="temp">
