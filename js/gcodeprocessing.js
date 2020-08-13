@@ -69,6 +69,16 @@ function maxFee(){
     $('#maxFee').html(maxFeedRate);
 }
 
+function toggleJ() {
+    var value = document.accelerationForm.selector.value;
+    if(value == "jerk"){
+        $(".jdtd").hide();
+        $(".jerktd").show();
+    } else {
+        $(".jdtd").show();
+        $(".jerktd").hide();
+    }
+}
 
 function processBaseline(){
     var hotendTemp = document.baselineForm.hotendtemp.value;
@@ -343,4 +353,134 @@ function processTemperature(){
     downloadFile('temperature.gcode', temperature);
 }
 
+function processAcceleration(){
+    var hotendTemp = document.accelerationForm.hotendtemp.value;
+    var bedTemp = document.accelerationForm.bedtemp.value;
+    var centre = document.accelerationForm.centre.checked;
+    var bedX = Math.round((document.accelerationForm.bedx.value-100)/2);
+    var bedY = Math.round((document.accelerationForm.bedy.value-100)/2);
+    var retDist = document.accelerationForm.retdist.value;
+    var retSpeed = document.accelerationForm.retspeed.value*60;
+    var abl = document.accelerationForm.abl.value;
+    var pc = document.accelerationForm.pc.value;
+    var feed = document.accelerationForm.feedrate.value*60;
+    var selector = document.accelerationForm.selector.value;
+    var a1 = document.accelerationForm.a1.value;
+    var a2 = document.accelerationForm.a2.value;
+    var a3 = document.accelerationForm.a3.value;
+    var a4 = document.accelerationForm.a4.value;
+    var b1 = document.accelerationForm.b1.value;
+    var b2 = document.accelerationForm.b2.value;
+    var b3 = document.accelerationForm.b3.value;
+    var b4 = document.accelerationForm.b4.value;
+    var c1 = document.accelerationForm.c1.value;
+    var c2 = document.accelerationForm.c2.value;
+    var c3 = document.accelerationForm.c3.value;
+    var c4 = document.accelerationForm.c4.value;
+    var d1 = document.accelerationForm.d1.value;
+    var d2 = document.accelerationForm.d2.value;
+    var d3 = document.accelerationForm.d3.value;
+    var d4 = document.accelerationForm.d4.value;
+    var e1 = document.accelerationForm.e1.value;
+    var e2 = document.accelerationForm.e2.value;
+    var e3 = document.accelerationForm.e3.value;
+    var e4 = document.accelerationForm.e4.value;
+    var f1 = document.accelerationForm.f1.value;
+    var f2 = document.accelerationForm.f2.value;
+    var f3 = document.accelerationForm.f3.value;
+    var f4 = document.accelerationForm.f4.value;
+    var acceleration = originalAcceleration;
+    if(pc == 1){
+        acceleration = acceleration.replace(/M106 S255/, "M106 S130");
+    }
+    if(pc == 2){
+        acceleration =  acceleration.replace(/M106 S255/, ";M106 S255");
+    }
+    if(abl == 1){
+        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+    }
+    if(abl == 2){
+        acceleration =  acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+    }
+    if(abl == 3){
+        acceleration = acceleration.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
+        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
+    }
+    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp);
+    acceleration = acceleration.replace(/M190 S60/g, "M140 S"+bedTemp);
+    acceleration = acceleration.replace(/M104 S210/g, "M104 S"+hotendTemp);
+    acceleration = acceleration.replace(/M109 S210/g, "M109 S"+hotendTemp);
+    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
+    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
 
+    if(centre == true){
+        var accelerationArray = acceleration.split(/\n/g);
+        var regexp = /X\d+/;
+        accelerationArray.forEach(function(index, item){
+            if(accelerationArray[item].search(/X/) > -1){
+                var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
+                accelerationArray[item] = accelerationArray[item].replace(regexp, "X"+String(value));
+            }
+        });
+        var regexp = /Y\d+/;
+        accelerationArray.forEach(function(index, item){
+            if(accelerationArray[item].search(/Y/) > -1){
+                var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
+                accelerationArray[item] = accelerationArray[item].replace(regexp, "Y"+String(value))
+            }
+        });
+        acceleration = accelerationArray.join("\n");
+    } else {
+        if(bedX > 0){
+            var accelerationArray = acceleration.split(/\n/g);
+            var regexp = /X\d+/;
+            accelerationArray.forEach(function(index, item){
+                if(accelerationArray[item].search(/X/) > -1){
+                    var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) + bedX;
+                    accelerationArray[item] = accelerationArray[item].replace(regexp, "X"+String(value));
+                }
+            });
+            acceleration = accelerationArray.join("\n");
+        }
+        if(bedY > 0){  
+            var accelerationArray = acceleration.split(/\n/g);
+            var regexp = /Y\d+/;
+            accelerationArray.forEach(function(index, item){
+                if(accelerationArray[item].search(/Y/) > -1){
+                    var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) + bedY;
+                    accelerationArray[item] = accelerationArray[item].replace(regexp, "Y"+String(value))
+                }
+            });
+            acceleration = accelerationArray.join("\n");
+        }   
+    }
+
+    acceleration = acceleration.replace(/F3720/g, "F"+feed);
+    acceleration = acceleration.replace(/F2790/g, "F"+feed);
+    acceleration = acceleration.replace(/F1860/g, "F"+feed/2);
+
+    acceleration = acceleration.replace(/raise/g, "M201 X5000 Y5000");
+    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1);
+    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1);
+    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1);
+    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1);
+    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1);
+    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1);
+
+    if(selector == "jerk"){
+        acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3);
+        acceleration = acceleration.replace(/j2/g, "M205 J"+b2+" Y"+b3);
+        acceleration = acceleration.replace(/j3/g, "M205 J"+c2+" Y"+c3);
+        acceleration = acceleration.replace(/j4/g, "M205 J"+d2+" Y"+d3);
+        acceleration = acceleration.replace(/j5/g, "M205 J"+e2+" Y"+e3);
+        acceleration = acceleration.replace(/j6/g, "M205 J"+f2+" Y"+f3);
+    } else {
+        acceleration = acceleration.replace(/j1/g, "M205 J"+a4);
+        acceleration = acceleration.replace(/j2/g, "M205 J"+b4);
+        acceleration = acceleration.replace(/j3/g, "M205 J"+c4);
+        acceleration = acceleration.replace(/j4/g, "M205 J"+d4);
+        acceleration = acceleration.replace(/j5/g, "M205 J"+e4);
+        acceleration = acceleration.replace(/j6/g, "M205 J"+f4);
+    }
+    downloadFile('acceleration.gcode', acceleration);
+}

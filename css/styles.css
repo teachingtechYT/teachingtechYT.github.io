@@ -41,12 +41,19 @@ p {
 }
 
 input {
-    margin: 20px 0;
     font-size: 1.2em;
 }
 
 input[type="checkbox" i] {
-    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    margin: 20px;
+}
+
+input[type="radio" i] {
     -ms-transform: scale(2); /* IE */
     -moz-transform: scale(2); /* FF */
     -webkit-transform: scale(2); /* Safari and Chrome */
@@ -109,10 +116,11 @@ iframe {
     margin: 0 20px;
 }
 
-#warning {
+.warning {
     background-color: #ffcccc;
     border: 1px solid red;
     border-radius: 15px;
+    padding: 20px;
 }
 
 .exp {
@@ -120,6 +128,10 @@ iframe {
     padding: 1px 0;
     border-radius: 15px;
     border: 1px solid #00c5ad;
+}
+
+.jdtd {
+    display:none;
 }
 
 .thumb {
@@ -180,11 +192,6 @@ iframe {
 
 .videoThumb {
     margin: 0 20px 20px;
-}
-
-.warning {
-    color: red;
-    font-weight: bolder;
 }
 
 #footer li {
