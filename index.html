@@ -808,12 +808,12 @@
             <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments"</p>
+        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
         <a href="#" data-featherlight="img/accelerationresults.jpg"><img class="thumb" src="img/accelerationresults.jpg" /></a>
         <p></p>
         <p>One you have a value you are happy with, you can update with:</p>
-        <pre>M204 P600</pre>
-        <p>where <b>600</b> is a value of the acceleration with the best compromise based on the tower test print. We can store the value to EEPROM by sending:</p>
+        <pre>M204 P400</pre>
+        <p>where <b>400</b> is a value of the acceleration with the best compromise based on the tower test print. We can store the value to EEPROM by sending:</p>
         <pre>M500</pre>
         <p>You would then repeat the test with all of the acceleration values locked at 600 for each segment, but this time varying jerk/junction deviation.</p>
         <p>To save for a printer with jerk (with a determined best compromise of <b>8</b>), we would enter:</p>
@@ -822,17 +822,56 @@
         <pre>M205 J0.05</pre>
         <p>Either way, we save to EEPROM afterwards with:</p>
         <pre>M500</pre>
+        <p>Each of these parameters can also be entered and stored from the <b>configuration</b> menu of the Marlin LCD.</p>
     </div>
 
     <div id="linadv">
-        <h2>Linear Advance</h2>
-        <p></p>
+        <div class="exp">
+            <h2>Linear Advance Tuning</h2>
+            <h5>Aim:</h5>
+            <p>To tune the timing of the extrusion with the aim of reducing swolen corners and thinner walls. This results in amore consistent extrusion and a reduction in surface artefacts.</p>
+            <h5>Required:</h5>
+            <p>Initial calibration, when changing the extruder/hot end (especially if changing from bowden tube to direct drive), when trying new filaments.</p>
+        </div>
+    <p>In a 3D printer, due to the pressure required to push the molten filament through the small opening of the nozzle, there is a small time delay from when the extruder pushes the filament to when it actually comes out the nozzle. Traditionally the movement of the extruder is matched to XY movements of the printer, so this means the start of a line will be unded extruded and the end of the line will be overextruded. Linear advances unsynchronises the extruder movements from the XY movements, changing the timing of the extruder so the thin and thick sections are largely removed.</p>
+    <p>The process and how to tune it is explained in much more detail here:</p>
+    <div class="videoThumb" data-youtube="https://youtu.be/n3yK0lJ8TWM"></div>
+    <div class="exp">
+        <h5>Special notes:</h5>
+        <p>Linear advance is often not enabled by default in Marlin firmware. Therefore, the firmware must be recompiled with linear advance included. This is covered in th video above.</p>
+        <p>Linear advance is incompatible with certain stepper motor drivers. A prominent one is the TMC2208 when connected in legacy mode (as found on Creality silent boards). When connected in 'smart' mode via UART, this is not a problem.</p>
+        <p>Linear advance is not currently compatible with S curve acceleration (another Marlin feature), although it is possible to uncomment <b>#define EXPERIMENTAL_SCURVE</b> when adding linear advance as a work around.</p>
+        <p>Linear advance requires aggressive acceleration for the extruder and will work the motor harder. Higher current maybe required for the E driver, which will make it run hotter.</p>
+        <p>Linear advance is filament dependent. A different value is required for each filament to get the best results.</p>
+        <p>Testing for linear advance relies on the visual inspection of a single layer, therefore it is important to have your bed levelling/first layer reliable and repeatable.</p>
     </div>
-
+    <h2>Linear Advance Pattern Generator</h2>
+    <p>Marlin has excellent <a href="https://marlinfw.org/docs/features/lin_advance.html" target="_blank">linear advance documentation</a> and a test gcode generator already made, so there is no point recreating a competitor here. An example of how to use it is shown in the video above, and it can be found here: <a href="https://marlinfw.org/tools/lin_advance/k-factor.html" target="_blank">Marlin Linear Advance Pattern Generator</a></p>
+    <p>The parameter we tune for linear advance is called the <b>K factor</b>. The K factor relates to the amount of flex or compression in the filament and the length of the path between the extruder and hot end.</p>
+    <p>A higher K value suits a bowden tube and/or flexible filaments. This is because there filament can flex sideways in the tube in between the extruder and hot end, adding to the extrusion time delay. A good starting point for a bowden extruder is a K value of <b>1.0</b>.</p>
+    <p>A lower K value suits a direct drive extruder and more rigid filaments. With these characteristics, the transfer of filament between extruder and hot end is more direct with less time delay. A good starting point for a direct drive extruder is <b>0.2</b>.</p> 
+    <p>The above video takes you through how to use the pattern generator, which basically involves inputting printer and slicer parameters.</p>
+    <p>Using the suggested starting K values above, you would then pick an upper and lower limit either side of this for a preliminary test.</p>
+    <a href="#" data-featherlight="img/patterngenerator.jpg"><img class="thumb" src="img/patterngenerator.jpg" /></a>
+    <p>Printing the gcode generated by the pattern generator with yield aresult like this:</p>
+    <a href="#" data-featherlight="img/linearadvanceresults.jpg"><img class="thumb" src="img/linearadvanceresults.jpg" /></a>
+    <h2>Interpreting results</h2>
+    <p>Some of the lines should have obvious thick and thin portions, and some may even have large gaps. You are looking for the line with the most consistent extrusion width. The K value for this line will be printed to the right of the line. At this point, as shown in the video, you may wish to repeat the test with a narrower range of values either side of this K value.</p>
+    <h2>Saving the K Factor</h2>
+    <p>With many of the parameters we have tuned so far, we permanently save them to either the firmware EEPROM or slicer profile. As the linear advanceK factor is filament dependent, this may not be the best solution if you print with varied filaments.</p>
+    <p>The K factor can be set by using the <a href="https://marlinfw.org/docs/gcode/M900.html" target="_blank">M901</a> gcode:</p>
+    <pre>M900 K0.11</pre>
+    <p>It can be permanently stored EEPROM by following up with:</p>
+    <pre>M500</pre>
+    <p>Both the setting and saving of the K factor can also be achieved using the LCD menu.</p>
+    <p>You may prefer to use the <b>M900</b> gcode command in your start gcode instead, particularly if your slicer supports different start gcodes for different materials. In the event that you use start gcode, unless an <b>M500</b> follows, the setting of the K factor will be temporary. When the printer is next restarted the value stored in the EEPROM will be restored. When new print starts the value given it its start gcode will oberwrite the previously set value.</p>
+    <p>Linear advance can be temporarily be disabled by setting the K factor to 0:</p>
+    <pre>M900 K0</pre>
+    </div>
 </div>
 <div id="footer">
     <p style="text-align: center;">This page was created using:</p>
-    <ul>
+    <ul style="margin-top:-20px;">
         <li><a href="https://jquery.com/" target="_blank">jQuery</a></li>
         <li><a href="https://github.com/jellekralt/Responsive-Tabs" target="_blank">Responsive Tabs by jellekraut</a></li>
         <li><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto font</a></li>
