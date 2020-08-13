@@ -109,6 +109,12 @@ iframe {
     margin: 0 20px;
 }
 
+#warning {
+    background-color: #ffcccc;
+    border: 1px solid red;
+    border-radius: 15px;
+}
+
 .exp {
     background-color: rgb(230, 230, 230);
     padding: 1px 0;
@@ -131,6 +137,13 @@ iframe {
     border: 5px solid #00c5ad;
     border-radius: 15px;
     font-size: 1.2em;
+}
+
+.result {
+    border: 5px solid #00c5ad;
+    border-radius: 15px;
+    font-size: 1.2em;
+    padding: 20px;
 }
 
 #flow1result, #flow2result {

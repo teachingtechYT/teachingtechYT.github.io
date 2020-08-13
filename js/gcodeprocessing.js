@@ -51,6 +51,25 @@ function flowCalc2(){
     $("#flow2result").show();
 }
 
+var maxExtVol = 7.22;
+var maxFeedRate = 100;
+function maxExt(){
+    var dia = document.maxExtrusion.filDia.value;
+    var max = document.maxExtrusion.maxFeed.value;
+    var result = ((Math.pow(dia/2, 2))*Math.PI)*(max/60);
+    var str = result.toFixed(2);
+    maxExtVol = parseFloat(str);
+    $('#maxExt').html(maxExtVol);
+}
+
+function maxFee(){
+    var layH = document.maxExtrusion.layerH.value;
+    var layW = document.maxExtrusion.layerW.value;
+    var maxFeedRate = Math.floor(maxExtVol/(layH*layW));
+    $('#maxFee').html(maxFeedRate);
+}
+
+
 function processBaseline(){
     var hotendTemp = document.baselineForm.hotendtemp.value;
     var bedTemp = document.baselineForm.bedtemp.value;
