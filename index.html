@@ -55,7 +55,7 @@
                 <li>Base feedrate of 60mm/sec</li>
                 <li>0.2 - 0.4mm of Z hop</li>
                 <li>Nozzle priming has been turned off to avoid bed clips or problems with deltas</li>
-                <li>A single layer skirt</li>
+                <li>A single layer skirt (except on the acceleration test)</li>
             </ul>
             <p>To be compatible, your printer should have a miniumum bed size of 100 x 100mm. The largest print is 85x 95 x 30mm</p>
         </div>
@@ -89,6 +89,8 @@
         <p>Ensure all belts are properly alinged and tensioned sufficiently.</p>
         <h4>Fans</h4>
         <p>Check all fans are spinning freely. This includes but is not limited to: mainboard cooling fan, heat sink fan, part cooling fan, PSU fan. It can be hard to diagose if a fan is performing at less than full capacity. It may be easier to simply replace than repair if you suspect a fan is failing.</p>
+        Another suitable video for seeing some of these procedures is here:
+        <div class="videoThumb" data-youtube="https://youtu.be/kAafiApJs9A"></div>
     </div>
 
     <div id="pid">
@@ -149,6 +151,7 @@
                 <option value="1">Probe new mesh at the start of print - G29</option>
                 <option value="2">Restore saved mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by M80</option>
+                <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
             </select>
             <h4>Retraction</h4>
             <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
@@ -472,6 +475,7 @@
                 <option value="1">Probe new mesh at the start of print - G29</option>
                 <option value="2">Restore saved mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by M80</option>
+                <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
             </select>
             <h4>Retraction</h4>
             <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
@@ -577,6 +581,7 @@
                 <option value="1">Probe new mesh at the start of print - G29</option>
                 <option value="2">Restore saved mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by M80</option>
+                <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
             </select>
             <h4>Retraction</h4>
             <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
@@ -733,9 +738,10 @@
                 <option value="1">Probe new mesh at the start of print - G29</option>
                 <option value="2">Restore saved mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by M80</option>
+                <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
             </select>
             <h4>Retraction</h4>
-            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you shuld already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
             <h4>Base feedrate/speed</h4>

@@ -97,6 +97,17 @@ function processBaseline(){
     if(pc == 2){
         baseline =  baseline.replace(/M106 S255/, ";M106 S255");
     }
+    baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp);
+    baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp);
+    if(abl != 4){
+        baseline = baseline.replace(/M104 S210/g, "M104 S"+hotendTemp);
+        baseline = baseline.replace(/M109 S210/g, "M109 S"+hotendTemp);
+    } else {
+        baseline = baseline.replace(/M104 S210/g, "; Prusa Mini");
+        baseline = baseline.replace(/M109 S210/g, "; Prusa Mini");
+    }
+    baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
+    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
     if(abl == 1){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -104,15 +115,14 @@ function processBaseline(){
         baseline =  baseline.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
     }
     if(abl == 3){
-        baseline = baseline.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
-        baseline = baseline.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
+        baseline = baseline.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level");
+        baseline = baseline.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling");
     }
-    baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp);
-    baseline = baseline.replace(/M190 S60/g, "M140 S"+bedTemp);
-    baseline = baseline.replace(/M104 S210/g, "M104 S"+hotendTemp);
-    baseline = baseline.replace(/M109 S210/g, "M109 S"+hotendTemp);
-    baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
-    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+    if(abl == 4){
+        baseline = baseline.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        baseline = baseline.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+    }
 
     if(centre == true){
         var baselineArray = baseline.split(/\n/g);
@@ -191,6 +201,15 @@ function processRetraction(){
     if(pc == 2){
         retraction =  retraction.replace(/M106 S255/, ";M106 S255");
     }
+    retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp);
+    retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp);
+    if(abl != 4){
+        retraction = retraction.replace(/M104 S210/g, "M104 S"+hotendTemp);
+        retraction = retraction.replace(/M109 S210/g, "M109 S"+hotendTemp);
+    } else {
+        retraction = retraction.replace(/M104 S210/g, "; Prusa Mini");
+        retraction = retraction.replace(/M109 S210/g, "; Prusa Mini");
+    }
     if(abl == 1){
         retraction = retraction.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -201,10 +220,12 @@ function processRetraction(){
         retraction = retraction.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
         retraction = retraction.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
     }
-    retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp);
-    retraction = retraction.replace(/M190 S60/g, "M140 S"+bedTemp);
-    retraction = retraction.replace(/M104 S210/g, "M104 S"+hotendTemp);
-    retraction = retraction.replace(/M109 S210/g, "M109 S"+hotendTemp);
+    if(abl == 4){
+        retraction = retraction.replace(/G28 ; home all axes/, "M109 S170 ; probing temperature\nG28 ; home all");
+        retraction = retraction.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+    }
+
     if(centre == true){
         var retractionArray = retraction.split(/\n/g);
         var regexp = /X\d+/;
@@ -298,8 +319,13 @@ function processTemperature(){
         temperature = temperature.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
         temperature = temperature.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
     }
+    if(abl == 4){
+        temperature = temperature.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 S500 T0");
+    }
     temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
-    temperature = temperature.replace(/M190 S60/g, "M140 S"+bedTemp);
+    temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp);
     temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
     temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
 
@@ -343,13 +369,19 @@ function processTemperature(){
             });
             temperature = temperatureArray.join("\n");
         }   
-    } 
-    temperature = temperature.replace(/M104 S190/g, "M104 S"+a1);
-    temperature = temperature.replace(/M109 S190/g, "M109 S"+a1);
-    temperature = temperature.replace(/M109 S195/g, "M109 S"+b1);
-    temperature = temperature.replace(/M109 S200/g, "M109 S"+c1);
-    temperature = temperature.replace(/M109 S205/g, "M109 S"+d1);
-    temperature = temperature.replace(/M109 S210/g, "M109 S"+e1);
+    }
+    if(abl != 4){
+        temperature = temperature.replace(/M104 S190/g, "M104 S"+a1);
+        temperature = temperature.replace(/M109 S190/g, "M109 S"+a1);
+    } else {
+        temperature = temperature.replace(/M104 S190/g, "; Prusa Mini");
+        temperature = temperature.replace(/M109 S190/g, "; Prusa Mini");
+        temperature = temperature.replace(/M109 S500/g, "M109 S"+a1);
+    }
+    temperature = temperature.replace(/M104 S195/g, "M104 S"+b1);
+    temperature = temperature.replace(/M104 S200/g, "M104 S"+c1);
+    temperature = temperature.replace(/M104 S205/g, "M104 S"+d1);
+    temperature = temperature.replace(/M104 S210/g, "M104 S"+e1);
     downloadFile('temperature.gcode', temperature);
 }
 
@@ -396,6 +428,17 @@ function processAcceleration(){
     if(pc == 2){
         acceleration =  acceleration.replace(/M106 S255/, ";M106 S255");
     }
+    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp);
+    acceleration = acceleration.replace(/M190 S60/g, "M140 S"+bedTemp);
+    if(abl != 4){
+        acceleration = acceleration.replace(/M104 S210/g, "M104 S"+hotendTemp);
+        acceleration = acceleration.replace(/M109 S210/g, "M109 S"+hotendTemp);
+    } else {
+        acceleration = acceleration.replace(/M104 S210/g, "; Prusa Mini");
+        acceleration = acceleration.replace(/M109 S210/g, "; Prusa Mini");
+    }
+    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
+    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
     if(abl == 1){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -406,12 +449,11 @@ function processAcceleration(){
         acceleration = acceleration.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level")
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
     }
-    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp);
-    acceleration = acceleration.replace(/M190 S60/g, "M140 S"+bedTemp);
-    acceleration = acceleration.replace(/M104 S210/g, "M104 S"+hotendTemp);
-    acceleration = acceleration.replace(/M109 S210/g, "M109 S"+hotendTemp);
-    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
-    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+    if(abl == 4){
+        acceleration = acceleration.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        acceleration = acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+    }
 
     if(centre == true){
         var accelerationArray = acceleration.split(/\n/g);
