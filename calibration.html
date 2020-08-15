@@ -492,7 +492,7 @@
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
-            <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
             <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#retractionXY')" value="centre"></label>
             <span id="retractionXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br /></span>
@@ -602,7 +602,7 @@
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/temperaturetower.stl">temperaturetower.stl</a></p>
         <form name="temperatureForm" id="temperatureForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
-            <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
             <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#tempXY')" value="centre"></label>
             <span id="tempXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br /></span>
@@ -762,7 +762,7 @@
         <p>Use the following form to customise the gcode to you liking:</p>
         <form name="accelerationForm" id="accelerationForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
-            <p>Inputting the correct number will attempt to move the print into the centre of the bed. In the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
             <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#accelerationXY')" value="centre"></label>
             <span id="accelerationXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="2"></label><br /></span>
