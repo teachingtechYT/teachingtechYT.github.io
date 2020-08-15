@@ -707,13 +707,13 @@
             <li>Clear debris from hobbed gear, bring nozzle up to normal printing temp and load filament.</li>
             <li>Enter the following into pronterface. This will set movement to relative and then extrude 50mm of filament at a feedrate of 2mm/sec:</li>
             <pre>G91</pre>
-            <pre>G1 F50 F120</pre>
+            <pre>G1 E50 F120</pre>
             <li>Inspect extuded filament for consistency. If all is well, keep repeating with higher feedrate F, until extrusion is inconsistent, extruder stepper skips steps and/or hobbed gear starts eating into filament.<br />
             The following are examples of increasing the extruder feed rate by 1mm/sec each time, although you should stop when the extrusion becomes problematic. You may have more or less steps than this:</li>
-            <pre>G1 F50 F180</pre>
-            <pre>G1 F50 F240</pre>
-            <pre>G1 F50 F300</pre>
-            <pre>G1 F50 F360</pre>
+            <pre>G1 E50 F180</pre>
+            <pre>G1 E50 F240</pre>
+            <pre>G1 E50 F300</pre>
+            <pre>G1 E50 F360</pre>
             <pre>...</pre>
             <li>After you find the limiting speed, back off and repeat the test at a lower feedrate several times in a row until you are confident of reliable and repeatable extrusion.</li>
             <li>Enter your reliable feerate and filament diameter below:</li>
