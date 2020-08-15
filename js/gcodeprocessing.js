@@ -123,6 +123,9 @@ function processBaseline(){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
         baseline = baseline.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
+    if(abl == 5){
+        baseline = baseline.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
 
     if(centre == true){
         var baselineArray = baseline.split(/\n/g);
@@ -225,6 +228,9 @@ function processRetraction(){
         retraction = retraction.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
         retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
+    if(abl == 5){
+        retraction = retraction.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
 
     if(centre == true){
         var retractionArray = retraction.split(/\n/g);
@@ -323,6 +329,9 @@ function processTemperature(){
         temperature = temperature.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
         temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 S500 T0");
+    }
+    if(abl == 5){
+        temperature = temperature.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
     temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
     temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp);
@@ -453,6 +462,9 @@ function processAcceleration(){
         acceleration = acceleration.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
         acceleration = acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+    }
+    if(abl == 5){
+        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
 
     if(centre == true){
