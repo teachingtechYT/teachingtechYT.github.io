@@ -124,7 +124,7 @@ function processBaseline(){
         baseline = baseline.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
     if(abl == 5){
-        baseline = baseline.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+        baseline = baseline.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
 
     if(centre == true){
@@ -229,7 +229,7 @@ function processRetraction(){
         retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
     if(abl == 5){
-        retraction = retraction.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+        retraction = retraction.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
 
     if(centre == true){
@@ -331,7 +331,7 @@ function processTemperature(){
         temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 S500 T0");
     }
     if(abl == 5){
-        temperature = temperature.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+        temperature = temperature.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
     temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
     temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp);
@@ -464,7 +464,7 @@ function processAcceleration(){
         acceleration = acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
     if(abl == 5){
-        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 L1 Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+        acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
 
     if(centre == true){
