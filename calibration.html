@@ -374,7 +374,7 @@
         </div>
         <h2>Peak Current and Sense Resistor Value</h2>
         <p>Setting stepper driver current accurately relies on knowing two values: the peak current that the stepper motor is rated for and the sense resistor value on the stepper motor driver.</p>
-        <p>For newer TMC drivers, the sense resistor value is already known. For older drivers, methods for determining this are seen in the following snippet. Methods for determing the stepper motor peak current are shown too:</p>
+        <p>For newer TMC drivers, the sense resistor value is already known. For older drivers, methods for determining this are seen in the following snippet. Methods for determining the stepper motor peak current are shown too:</p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h2>1. Physical</h2>
         <p>I have covered this in detail before, so please use the embedded video below (queued to the correct time) to see how to set the VREF. The process is essentially the same for any driver.</p>
@@ -447,7 +447,7 @@
             <h5>Tools:</h5>
             <p>Gcode generator on this page.</p>
         </div>
-        <p>FDM works by melting plastic filament and extruding it accurately one layer at a time to build up 3D geometry. By its nature, the plastic will continue to ooze and drip out of the nozzle even when not pushed by the extruder. To combat this, our slicers use retraction, where the filament is withdrawn from the hot end, aleviating pressure and minimising ooze. When properly tuned, this has the effect of removing stringing, the unwanted oozing of plastic between two points of the model.</p>
+        <p>FDM works by melting plastic filament and extruding it accurately one layer at a time to build up 3D geometry. By its nature, the plastic will continue to ooze and drip out of the nozzle even when not pushed by the extruder. To combat this, our slicers use retraction, where the filament is withdrawn from the hot end, alleviating pressure and minimising ooze. When properly tuned, this has the effect of removing stringing, the unwanted oozing of plastic between two points of the model.</p>
         <p>An example of fine stringing can be seen in the following image. It appears like cobwebs:</p>
         <a href="#" data-featherlight="img/stringing.jpg"><img class="thumb" src="img/stringing.jpg" /></a>
         <div class="exp">
@@ -478,7 +478,7 @@
                     <td>Printer settings > Extruder 1 > Retraction > Retraction Speed</td>
                 </tr>
                 <tr>
-                    <td>Extra restart distance: The retraction distance will be reveresed when the travel (non-extruding) movement is over. This is typicaly zero, but you can opt for extra filament to be extruded (a positive value) or less than than what was retracted (a negative value). Also measured in mm.</td>
+                    <td>Extra restart distance: The retraction distance will be reversed when the travel (non-extruding) movement is over. This is typically zero, but you can opt for extra filament to be extruded (a positive value) or less than what was retracted (a negative value). Also measured in mm.</td>
                     <td>Travel > Retraction extra prime amount</td>
                     <td>Extruder > Extra restart distance</td>
                     <td>Printer settings > Extruder 1 > Retraction > Extra length on restart</td>
@@ -495,7 +495,7 @@
                 <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For instance, Cura measures extra restart distance in volume rather than length.</li>
             </ul>
         </div> 
-        <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and exta restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
+        <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and extra restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
@@ -508,7 +508,7 @@
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default bahaviour here:</p>
+            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
@@ -526,7 +526,7 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
+            <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
             <table>
                 <thead>
                     <tr>
@@ -582,7 +582,7 @@
             <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistant with linear advance being enabled.</p>
+        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistent with linear advance being enabled.</p>
         <p>I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in. A third test could then take place to test extra restart distance.</p>
         <a href="#" data-featherlight="img/retractionresults.jpg"><img class="thumb" src="img/retractionresults.jpg" /></a>
     </div>
@@ -618,7 +618,7 @@
             <p>For the bed, typical PLA temperature is 60, PETG 80, ABS 100, and TPU 5 (effectively off).</p>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default bahaviour here:</p>
+            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
@@ -636,7 +636,7 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
+            <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
             <h4>Hot end temperature</h4>
@@ -678,10 +678,10 @@
             <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 185 to 225 in 10 degree increments"</p>
+        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 185 to 225 in 10 degree increments"</p>
         <a href="#" data-featherlight="img/temperatureresults.jpg"><img class="thumb" src="img/temperatureresults.jpg" /></a>
         <p>For the first layer, there was some extruder clicking as the extruder struggled to push the filament through the cooler nozzle. As expected, surface becomes more glossy as the temperature increases. What was unexpected, was surface rippling either being more prominent or at least more obvious as the temperature went up. Underhangs and bridges all look good on this test.</p> 
-        <p>My previous hot end temperature was 200 degrees for this printer, but I will consider lowring it to 190 degrees after this test.</p>
+        <p>My previous hot end temperature was 200 degrees for this printer, but I will consider lowering it to 190 degrees after this test.</p>
         <p>You may also wish to conduct some destructive testing to evaluate part strength. In many cases this is more important than the appearance of the part.</p>
     </div>
 
@@ -697,18 +697,18 @@
             <p>Gcode generator on this page.</p>
         </div>
         <p>We set a feedrate or movement speed in our slicer, but the printer does not instantly reach these speeds. Like a motor vehicle, it needs time to accelerate. If the distance of the movement is short, it may not even have time to reach the specified speed. This can determined with the handy <a href="https://blog.prusaprinters.org/calculator/" target="_blank">acceleration calculator</a>, available on the Prusa website.</p>
-        <p>Complementary to acceleration we have jerk, replaced by junction deviation in newer versions of Marlin. These settings have differences, but both are essentially reponsible for making sure the printer does not come to a complete stop between each movement, but rather decelerates an appropriate amount deending on the angle of the next 'corner'.</p>
+        <p>Complementary to acceleration we have jerk, replaced by junction deviation in newer versions of Marlin. These settings have differences, but both are essentially responsible for making sure the printer does not come to a complete stop between each movement, but rather decelerates an appropriate amount depending on the angle of the next 'corner'.</p>
         <p>We will be tuning both of these parameters with another tower. The aim is to have a reasonably fast print time without inducing excessive ringing/ghosting. An example of bad ghosting is seen below. The features of the model are repeated across the surfaces due to vibration of the printer components:</p>
         <a href="#" data-featherlight="img/ghosting.jpg"><img class="thumb" src="img/ghosting.jpg" /></a>
         <p>I have previously made a detailed video guide on this subject, complete with many diagrams explaining the concepts. The tuning process depicted will be improved upon here with an easier to use calculator and custom gcode generator below.</p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/Mnvj6xCzikM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="exp">
             <h5>Rule of thumb:</h5>
-            <p>Higher acceleration and jerk wil result in a faster print time, as the printer reaches top speed faster and maintains a higher speed when corning. This is harder on the printer, and may result in reduced lifespan of components and the need for more regular maintenance. It also introduces more surface defects such as ringing/ghosting.</p>
+            <p>Higher acceleration and jerk will result in a faster print time, as the printer reaches top speed faster and maintains a higher speed when corning. This is harder on the printer, and may result in reduced lifespan of components and the need for more regular maintenance. It also introduces more surface defects such as ringing/ghosting.</p>
             <p>Lower acceleration and jerk will result in a slower print time, as the printer reaches top speed more gradually and corners at a lower velocity. This is easier on the printer, with potentially increased component lifespan and less need for regular maintenance. It reduces surface artefacts such as ringing/ghosting, unless it is far too conservative, in which case it may introduce bulging in corners.</p>
         </div>
-        <h2>Calculating maxmimum feedrate - optional</h2>
-        <p>One strategy is to calculate the fastest your 3D printer can move while while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
+        <h2>Calculating maximum feedrate - optional</h2>
+        <p>One strategy is to calculate the fastest your 3D printer can move while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
         <p><i>This part of the guide and calculator is adapted from <a href="https://grabcad.com/tutorials/dialing-in-a-filament-and-specifying-the-max-volumetric-e-xtrusion-value"target="_blank">Martin Pirringer's tutorial</a>. Please consider supporting him and his robotics team through <a href="paypal.me/DudeWithaPulse" target="_blank">paypal</a> or you can also donate to team 1989 through their <a href="www.vernonrobotics.com" target="_blank">Team 1989 Web Site</a></i></p>
         <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>
         <form id="maxExtrusion" name="maxExtrusion">
@@ -717,7 +717,7 @@
             <li>Enter the following into pronterface. This will set movement to relative and then extrude 50mm of filament at a feedrate of 2mm/sec:</li>
             <pre>G91</pre>
             <pre>G1 E50 F120</pre>
-            <li>Inspect extuded filament for consistency. If all is well, keep repeating with higher feedrate F, until extrusion is inconsistent, extruder stepper skips steps and/or hobbed gear starts eating into filament.<br />
+            <li>Inspect extruded filament for consistency. If all is well, keep repeating with higher feedrate F, until extrusion is inconsistent, extruder stepper skips steps and/or hobbed gear starts eating into filament.<br />
             The following are examples of increasing the extruder feed rate by 1mm/sec each time, although you should stop when the extrusion becomes problematic. You may have more or less steps than this:</li>
             <pre>G1 E50 F180</pre>
             <pre>G1 E50 F240</pre>
@@ -764,11 +764,11 @@
         <p>The only thing you need to know before this test is whether your firmware is set up for jerk (older) or junction deviation (newer). Entering <b>M503</b> via terminal will give a list of printer variables:</p>
         <ul>
             <li>If the <b>M205</b> line contains the letters <b>X, Y & Z</b>, your printer is running jerk. The numbers after the X,Y & Z are your current jerk values for each axis.</li>
-            <li>If the <b>M205</b> contains the letter <b>J</b>, your printer is running junction deviation. The number after the J is your current junction devation value.</li>
+            <li>If the <b>M205</b> contains the letter <b>J</b>, your printer is running junction deviation. The number after the J is your current junction deviation value.</li>
         </ul>
         <p>The image below shows an example of each of these scenarios:</p>
         <a href="#" data-featherlight="img/m205.jpg"><img class="thumb" src="img/m205.jpg" /></a>
-        <p>Use the following form to customise the gcode to you liking:</p>
+        <p>Use the following form to customise the gcode to your liking:</p>
         <form name="accelerationForm" id="accelerationForm" onsubmit="return false;">
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
@@ -780,7 +780,7 @@
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>PLA typically has the part cooling fan come on from layer 2. Alter thi default bahaviour here:</p>
+            <p>PLA typically has the part cooling fan come on from layer 2. Alter the default behaviour here:</p>
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
@@ -798,7 +798,7 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
+            <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
             <h4>Base feedrate/speed</h4>
@@ -809,7 +809,7 @@
             <label>Jerk: <input type="radio" value="jerk" name="selector" checked="checked" onchange="toggleJ()"></label>
             <label>Junction deviation: <input type="radio" value="jd" name="selector" onchange="toggleJ()"></label>
             <p>Based on the values you saw from <b>M503</b>, enter variables around this below.</p>
-            <p>Junction deviation requires a single value, where as jerk has separate values for X and Y. You can leave them the same or enter independent values.</p>
+            <p>Junction deviation requires a single value, whereas jerk has separate values for X and Y. You can leave them the same or enter independent values.</p>
             <p>You should only change either acceleration or jerk/junction deviation for each test print, otherwise it will be impossible to know which parameter is responsible for any changes.</p>
             <table>
                 <thead>
@@ -871,10 +871,10 @@
             <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
+        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
         <a href="#" data-featherlight="img/accelerationresults.jpg"><img class="thumb" src="img/accelerationresults.jpg" /></a>
         <p></p>
-        <p>One you have a value you are happy with, you can update with:</p>
+        <p>Once you have a value you are happy with, you can update with:</p>
         <pre>M204 P400</pre>
         <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print. We can store the value to EEPROM by sending:</p>
         <pre>M500</pre>
