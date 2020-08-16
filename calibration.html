@@ -340,7 +340,7 @@
             <h5>Aim:</h5>
             <p>To set the correct amount of current supplied to the stepper motors of the printer. This is set with the stepper motor drivers, located on the mainboard.</p>
             <h5>When required:</h5>
-            <p>If steps are being skipped/missed. If the stepper motors are too hot to touch. When significant changes are made to the motion system (eg. heavier bed, conversion to direct drive from bowden tube).</p>
+            <p>If steps are being skipped/missed. If the stepper motors are too hot to touch. When significant changes are made to the motion system (e.g. heavier bed, conversion to direct drive from bowden tube).</p>
             <p>If your 3D printer is running fine without hot stepper motors, you may skip this step.</p>
             <h5>Tools:</h5>
             <p>For newer, 'smart' stepper motor drivers: terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
@@ -356,11 +356,11 @@
         </div>
         <p>Unfortunately, sometimes a stepper motor may be running hot and still missing steps. The following may apply in these cases:</p>
         <ul>
-            <li>In the case of the extruder stepper motor, there may be an obstruction such as a partially blocked nozzle, PTFE tube unseated, hot end temprature too low (increased resistance to melting/flow) and/or first layer too close (nozzle jammed against bed, no where for plastic to exit).</li>
-            <li>For X, Y and Z, the stepper motor may be undersized for the mass it is pushing. This can occur when increasing the size of the printer (eg. Ender Extender kit), adding something heavier to the bed (eg. glass/mirror plate), and/or converting from bowden tube to a heavy direct drive extruder.</li>
+            <li>In the case of the extruder stepper motor, there may be an obstruction such as a partially blocked nozzle, PTFE tube unseated, hot end temperature too low (increased resistance to melting/flow) and/or first layer too close (nozzle jammed against bed, nowhere for plastic to exit).</li>
+            <li>For X, Y and Z, the stepper motor may be undersized for the mass it is pushing. This can occur when increasing the size of the printer (e.g. Ender Extender kit), adding something heavier to the bed (e.g. glass/mirror plate), and/or converting from bowden tube to a heavy direct drive extruder.</li>
             <li>If there is some sort of mechanical misalignment that makes movement a lot harder. This may be a V-roller that is far too tight or a misaligned Z axis leadscrew causing the Z axis to bind.</li>
             <li>The acceleration/jerk and printing speeds are too aggressive for the stepper motors.</li>
-            <li>Each stepper motor driver has a rated current, if this is too high it will run very hot and potentially cause missed steps. Active cooling can help this but the current should still be still within the safe specifications for that driver.</li>
+            <li>Each stepper motor driver has a rated current, if this is too high it will run very hot and potentially cause missed steps. Active cooling can help this, but the current should still be still within the safe specifications for that driver.</li>
         </ul>
         <p>If tuning the stepper driver current is unable to find a sweet spot, the good news is you can upgrade to a larger stepper motor easily in most cases. Nema17 steppers have the same mounting pattern and output shaft diameter, however you should still check your machine to ensure there is enough room for a longer stepper before any purchase. With all else being equal, a longer stepper motor will be capable of more torque and handling higher current.</p>
         
@@ -385,10 +385,10 @@
             <li>Set multimeter to DC voltage, max 2V range.</li>
             <li>Connect black/negative multimeter probe to ground. This can be a negative terminal or the top of the USB connector.</li>
             <li>Connect the red/positive probe to the trim pot on top of the driver to measure VREF.</li>
-            <li>Turn the trim pot <i>SLOWLY</i> with a screw driver, then remeasure.</li>
+            <li>Turn the trim pot <i>SLOWLY</i> with a screwdriver, then remeasure.</li>
             <li>Repeat for each stepper motor driver.</li>
         </ol>
-        <p>Alternatively, you can use an aligator clip wire between the red probe and the metal shaft of the screwdriver, so that a VREF reading is available as you turn the screwdriver. This procedure is shown in this snippet:</p>
+        <p>Alternatively, you can use an alligator clip wire between the red probe and the metal shaft of the screwdriver, so that a VREF reading is available as you turn the screwdriver. This procedure is shown in this snippet:</p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=389&end=438" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>The VREF formulas for drivers I have tested are as follows:</p>
         <h4>A4988</h4>
@@ -409,7 +409,7 @@
         <p>The process is then the same as for A4988s as shown in the video above.</p>
         <h4>LV8729</h4>
         <p>There are mainly two kinds of stepper driver boards with this driver.</p>
-        <p>One has a resistor labeled R100 on the bottom, and on the other the resistor is labeled R220. Which formula you use is based off of this resistor</p>
+        <p>One has a resistor labelled R100 on the bottom, and on the other the resistor is labelled R220. Which formula you use is based off of this resistor</p>
         <p>The process is then mostly the same as for A4988s as shown in the video above, but with the correct formula for your driver board.</p>
         <p>R100:</p>
         <pre>VREF = max current / 2</pre>
@@ -691,7 +691,7 @@
             <h5>Aim:</h5>
             <p>To find the right compromise between printing speed and quality, specifically related to surface artefacts such as ghosting.</p>
             <h5>When required:</h5>
-            <p>Initial calibration, when significant changes are made to the motion system (eg. heavier bed, conversion to direct drive from bowden tube).</p>
+            <p>Initial calibration, when significant changes are made to the motion system (e.g. heavier bed, conversion to direct drive from bowden tube).</p>
             <h5>Tools:</h5>
             <p>Terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>Gcode generator on this page.</p>
@@ -710,7 +710,7 @@
         <h2>Calculating maxmimum feedrate - optional</h2>
         <p>One strategy is to calculate the fastest your 3D printer can move while while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
         <p><i>This part of the guide and calculator is adapted from <a href="https://grabcad.com/tutorials/dialing-in-a-filament-and-specifying-the-max-volumetric-e-xtrusion-value"target="_blank">Martin Pirringer's tutorial</a>. Please consider supporting him and his robotics team through <a href="paypal.me/DudeWithaPulse" target="_blank">paypal</a> or you can also donate to team 1989 through their <a href="www.vernonrobotics.com" target="_blank">Team 1989 Web Site</a></i></p>
-        <p>The following calculator will assist you in determing the maximum feedrate your printer/extruder/hot end is capable of.</p>
+        <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>
         <form id="maxExtrusion" name="maxExtrusion">
         <ol>
             <li>Clear debris from hobbed gear, bring nozzle up to normal printing temp and load filament.</li>
