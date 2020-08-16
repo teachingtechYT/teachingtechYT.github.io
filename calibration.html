@@ -186,6 +186,8 @@
         <p>This can be done by sending simple gcode commands via terminal to extrude a set amount of filament, then measuring how much filament actually went through the system.</p>
         <p>Firstly, we need to know the existing E-steps value. To find this, enter:</p>
         <pre>M92</pre>
+		<p>If you only receive an <i>ok</i> message from this, alternatively you can look for the <b>M92</b> line after entering:</p>
+		<pre>M503</pre>
         <p><a href="https://marlinfw.org/docs/gcode/M092.html" target="_blank">M92</a> is used to report or set the steps per mm for each axis. M92 by itself will report the current parameters. We want to make note of the number after <b>E</b>, in the example below, <b>93.00</b>:</p>
         <img src="img/esteps1.jpg" />
         <p>Now heat up your hot end to whatever temperature you usually print with. Once the temperature is stable, enter:</p>
