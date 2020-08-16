@@ -892,13 +892,13 @@
         <div class="exp">
             <h2>Linear Advance Tuning</h2>
             <h5>Aim:</h5>
-            <p>To tune the timing of the extrusion with the aim of reducing swolen corners and thinner walls. This results in a more consistent extrusion and a reduction in surface artefacts.</p>
+            <p>To tune the timing of the extrusion with the aim of reducing swollen corners and thinner walls. This results in a more consistent extrusion and a reduction in surface artefacts.</p>
             <h5>When required:</h5>
             <p>Initial calibration, when changing the extruder/hot end (especially if changing from bowden tube to direct drive), when trying new filaments.</p>
             <h5>Tools:</h5>
             <p><a href="https://marlinfw.org/tools/lin_advance/k-factor.html" target="_blank">Marlin Linear Advance Pattern Generator</a></p>
         </div>
-    <p>In a 3D printer, due to the pressure required to push the molten filament through the small opening of the nozzle, there is a small time delay from when the extruder pushes the filament to when it actually comes out the nozzle. Traditionally the movement of the extruder is matched to XY movements of the printer, so this means the start of a line will be undedextruded and the end of the line will be overextruded. Linear advance unsynchronises the extruder movements from the XY movements, changing the timing of the extruder so the thin and thick sections are significantly reduced.</p>
+    <p>In a 3D printer, due to the pressure required to push the molten filament through the small opening of the nozzle, there is a small time delay from when the extruder pushes the filament to when it actually comes out the nozzle. Traditionally the movement of the extruder is matched to XY movements of the printer, so this means the start of a line will be under-extruded and the end of the line will be over-extruded. Linear advance unsynchronises the extruder movements from the XY movements, changing the timing of the extruder so the thin and thick sections are significantly reduced.</p>
     <p>The concept and how to tune linear advance is explained in much more detail here:</p>
     <iframe width="480" height="360" src="https://www.youtube.com/embed/n3yK0lJ8TWM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <div class="exp">
@@ -914,7 +914,7 @@
     <h2>Linear Advance Pattern Generator</h2>
     <p>Marlin has excellent <a href="https://marlinfw.org/docs/features/lin_advance.html" target="_blank">linear advance documentation</a> and a test gcode generator already made, so there is no point recreating a competitor here. An example of how to use it is shown in the video above, and it can be found here: <a href="https://marlinfw.org/tools/lin_advance/k-factor.html" target="_blank">Marlin Linear Advance Pattern Generator</a></p>
     <p>The parameter we tune for linear advance is called the <b>K factor</b>. The K factor relates to the amount of flex or compression in the filament and the length of the path between the extruder and hot end.</p>
-    <p>A higher K value suits a bowden tube and/or flexible filaments. This is because the filament can flex sideways in the tube inbetween the extruder and hot end, adding to the extrusion time delay. A good starting point for a bowden extruder is a K value of <b>1.0</b>.</p>
+    <p>A higher K value suits a bowden tube and/or flexible filaments. This is because the filament can flex sideways in the tube in between the extruder and hot end, adding to the extrusion time delay. A good starting point for a bowden extruder is a K value of <b>1.0</b>.</p>
     <p>A lower K value suits a direct drive extruder and more rigid filaments. With these characteristics, the transfer of filament between extruder and hot end is more direct with less time delay. A good starting point for a direct drive extruder is <b>0.2</b>.</p> 
     <p>The above video takes you through how to use the pattern generator, which basically involves inputting printer and slicer parameters, before clicking to download the gcode file.</p>
     <p>Using the suggested starting K values above, you would then pick an upper and lower limit either side of this for a preliminary test.</p>
@@ -924,13 +924,13 @@
     <a href="#" data-featherlight="img/linearadvanceresults.jpg"><img class="thumb" src="img/linearadvanceresults.jpg" /></a>
     <p>Some of the horizontal lines should have obvious thick and thin portions, and some may even have large gaps. You are looking for the line with the most consistent extrusion width from left to right. The K value for this line will be printed to the right of the line. At this point, as shown in the video, you may wish to repeat the test with a narrower range of values either side of this best K value. This will help determine the best value by using a 'higher resolution'.</p>
     <h2>Saving the K Factor</h2>
-    <p>With many of the parameters we have tuned so far, we can permanently save them to either the firmware and EEPROM. As the linear advance K factor is filament dependent, this may not be the best solution if you print with varied filaments, and instead you may prefer to save using your slicer profile. All methods are covered below.</p>
+    <p>With many of the parameters we have tuned so far, we can permanently save them to either the firmware or EEPROM. As the linear advance K factor is filament dependent, this may not be the best solution if you print with varied filaments, and instead you may prefer to save using your slicer profile. All methods are covered below.</p>
     <p>The K factor can be set by using the <a href="https://marlinfw.org/docs/gcode/M900.html" target="_blank">M900</a> gcode:</p>
     <pre>M900 K0.11</pre>
     <p>It can be permanently stored EEPROM by following up with:</p>
     <pre>M500</pre>
     <p>Both the setting and saving of the K factor can also be achieved using the LCD menu.</p>
-    <p>You may prefer to use the <b>M900</b> gcode command in your start gcode instead, particularly if your slicer supports different start gcodes for different materials. In the event that you use start gcode, unless an <b>M500</b> follows, the setting of the K factor will be temporary. When the printer is next restarted the value stored in the EEPROM will be restored. When new print starts the value given it its start gcode will oberwrite the previously set value.</p>
+    <p>You may prefer to use the <b>M900</b> gcode command in your start gcode instead, particularly if your slicer supports different start gcodes for different materials. In the event that you use start gcode, unless an <b>M500</b> follows, the setting of the K factor will be temporary. When the printer is next restarted the value stored in the EEPROM will be restored. When new print starts the value given it its start gcode will overwrite the previously set value.</p>
     <p>Linear advance can be temporarily be disabled by setting the K factor to 0:</p>
     <pre>M900 K0</pre>
     </div>
