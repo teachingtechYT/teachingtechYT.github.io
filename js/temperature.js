@@ -4,8 +4,8 @@ M82
 M106 S0
 M140 S60
 M190 S60
-M104 S190 T0
-M109 S190 T0
+temp1a
+temp1b
 G28 ; home all axes
 ;G29 ; probe ABL
 ;M420 S1 ; restore ABL mesh 
@@ -8154,7 +8154,7 @@ G92 E0.0000
 G1 E-5.0000 F2400
 ; process Color1-6-2
 ; layer 51, Z = 10.200
-M104 S195 T0
+temp2
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z10.400 F1200
@@ -12148,7 +12148,7 @@ G92 E0.0000
 G1 E-5.0000 F2400
 ; process Color1-6-3
 ; layer 91, Z = 18.200
-M104 S200 T0
+temp3
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z18.400 F1200
@@ -16142,7 +16142,7 @@ G92 E0.0000
 G1 E-5.0000 F2400
 ; process Color1-6-4
 ; layer 131, Z = 26.200
-M104 S205 T0
+temp4
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z26.400 F1200
@@ -20136,7 +20136,7 @@ G92 E0.0000
 G1 E-5.0000 F2400
 ; process Color1-6-5
 ; layer 171, Z = 34.200
-M104 S210 T0
+temp5
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z34.400 F1200

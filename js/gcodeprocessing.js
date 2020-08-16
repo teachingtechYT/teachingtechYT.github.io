@@ -322,10 +322,10 @@ function processTemperature(){
     if(abl == 4){
         temperature = temperature.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-        temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 S500 T0");
+        temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "tempmini");
     }
-    temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
-    temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp);
+    temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp);
+    temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp);
     temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
     temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
 
@@ -371,17 +371,17 @@ function processTemperature(){
         }   
     }
     if(abl != 4){
-        temperature = temperature.replace(/M104 S190/g, "M104 S"+a1);
-        temperature = temperature.replace(/M109 S190/g, "M109 S"+a1);
+        temperature = temperature.replace(/temp1a/, "M104 S"+a1+" T0");
+        temperature = temperature.replace(/temp1b/, "M109 S"+a1+" T0");
     } else {
-        temperature = temperature.replace(/M104 S190/g, "; Prusa Mini");
-        temperature = temperature.replace(/M109 S190/g, "; Prusa Mini");
-        temperature = temperature.replace(/M109 S500/g, "M109 S"+a1);
+        temperature = temperature.replace(/temp1a/, "; Prusa Mini");
+        temperature = temperature.replace(/temp1b/, "; Prusa Mini");
+        temperature = temperature.replace(/tempmini/, "M109 S"+a1+" T0");
     }
-    temperature = temperature.replace(/M104 S195/g, "M104 S"+b1);
-    temperature = temperature.replace(/M104 S200/g, "M104 S"+c1);
-    temperature = temperature.replace(/M104 S205/g, "M104 S"+d1);
-    temperature = temperature.replace(/M104 S210/g, "M104 S"+e1);
+    temperature = temperature.replace(/temp2/, "M104 S"+b1+" T0");
+    temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0");
+    temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0");
+    temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0");
     downloadFile('temperature.gcode', temperature);
 }
 
