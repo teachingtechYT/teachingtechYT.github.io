@@ -511,11 +511,11 @@ function processAcceleration(){
 
     if(selector == "jerk"){
         acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3);
-        acceleration = acceleration.replace(/j2/g, "M205 J"+b2+" Y"+b3);
-        acceleration = acceleration.replace(/j3/g, "M205 J"+c2+" Y"+c3);
-        acceleration = acceleration.replace(/j4/g, "M205 J"+d2+" Y"+d3);
-        acceleration = acceleration.replace(/j5/g, "M205 J"+e2+" Y"+e3);
-        acceleration = acceleration.replace(/j6/g, "M205 J"+f2+" Y"+f3);
+        acceleration = acceleration.replace(/j2/g, "M205 X"+b2+" Y"+b3);
+        acceleration = acceleration.replace(/j3/g, "M205 X"+c2+" Y"+c3);
+        acceleration = acceleration.replace(/j4/g, "M205 X"+d2+" Y"+d3);
+        acceleration = acceleration.replace(/j5/g, "M205 X"+e2+" Y"+e3);
+        acceleration = acceleration.replace(/j6/g, "M205 X"+f2+" Y"+f3);
     } else {
         acceleration = acceleration.replace(/j1/g, "M205 J"+a4);
         acceleration = acceleration.replace(/j2/g, "M205 J"+b4);
