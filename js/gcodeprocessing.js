@@ -178,6 +178,7 @@ function processRetraction(){
     var bedX = Math.round((document.retractionForm.bedx.value-100)/2);
     var bedY = Math.round((document.retractionForm.bedy.value-100)/2);
     var abl = document.retractionForm.abl.value;
+    var zhop = document.retractionForm.zhop.value;
     var pc = document.retractionForm.pc.value;
     var a1 = document.retractionForm.a1.value;
     var a2 = document.retractionForm.a2.value*60;
@@ -273,6 +274,8 @@ function processRetraction(){
             retraction = retractionArray.join("\n");
         }   
     }
+    // Z-hop
+    retraction = retraction.replace(/ZHOP/g, "Z"+zhop);
     // A section
     retraction = retraction.replace(/G1 E-6.0000 F900/g, "G1 E-"+a1+" F"+a2);
     retraction = retraction.replace(/G1 E0.4000 F900/g, "G1 E"+a3+" F"+a2);

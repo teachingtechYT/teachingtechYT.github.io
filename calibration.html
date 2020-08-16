@@ -175,7 +175,7 @@
         <div class="exp">
             <h2>Extruder E-steps Calibration</h2>
             <h5>Aim:</h5>
-            <p>To determine the correct amount of steps Marlin firmware needs to send to the extruder stepper motor for accurate  movement.
+            <p>To determine the correct amount of steps Marlin firmware needs to send to the extruder stepper motor for accurate  movement.</p>
             <h5>When required:</h5>
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
             <h5>Tools:</h5>
@@ -222,7 +222,7 @@
         <div class="exp">
             <h2>Slicer Flow Calibration</h2>
             <h5>Aim:</h5>
-            <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.
+            <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.</p>
             <h5>When required:</h5>
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
             <h5>Tools:</h5>
@@ -527,6 +527,10 @@
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
+            <h4>Z-Hop</h4>
+            <p>Use this to modify or disable z-hop behavior: </p>
+            <label>Z-hop value: <input type="number" name="zhop" value="0.2" min="0" max="2" step="0.01"></label>
+
             <h4>Retraction</h4>
             <p>For intial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
             <table>
