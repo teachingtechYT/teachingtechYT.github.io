@@ -234,17 +234,17 @@ function processRetraction(){
 
     if(centre == true){
         var retractionArray = retraction.split(/\n/g);
-        var regexp = /X\d+/;
+        var regexp = /X[0-9\.]+/;
         retractionArray.forEach(function(index, item){
             if(retractionArray[item].search(/X/) > -1){
-                var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) - 50;
                 retractionArray[item] = retractionArray[item].replace(regexp, "X"+String(value));
             }
         });
-        var regexp = /Y\d+/;
+        var regexp = /Y[0-9\.]+/;
         retractionArray.forEach(function(index, item){
             if(retractionArray[item].search(/Y/) > -1){
-                var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) - 50;
                 retractionArray[item] = retractionArray[item].replace(regexp, "Y"+String(value))
             }
         });
