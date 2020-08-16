@@ -322,7 +322,7 @@ function processTemperature(){
     if(abl == 4){
         temperature = temperature.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-        temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 S500 T0");
+        temperature = temperature.replace(/;M420 S1 ; restore ABL mesh/, "M109 TEMP1 T0");
     }
     temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp);
     temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp);
@@ -370,18 +370,11 @@ function processTemperature(){
             temperature = temperatureArray.join("\n");
         }   
     }
-    if(abl != 4){
-        temperature = temperature.replace(/M104 S190/g, "M104 S"+a1);
-        temperature = temperature.replace(/M109 S190/g, "M109 S"+a1);
-    } else {
-        temperature = temperature.replace(/M104 S190/g, "; Prusa Mini");
-        temperature = temperature.replace(/M109 S190/g, "; Prusa Mini");
-        temperature = temperature.replace(/M109 S500/g, "M109 S"+a1);
-    }
-    temperature = temperature.replace(/M104 S195/g, "M104 S"+b1);
-    temperature = temperature.replace(/M104 S200/g, "M104 S"+c1);
-    temperature = temperature.replace(/M104 S205/g, "M104 S"+d1);
-    temperature = temperature.replace(/M104 S210/g, "M104 S"+e1);
+    temperature = temperature.replace(/TEMP1/g, "S"+a1);
+    temperature = temperature.replace(/TEMP2/g, "S"+b1);
+    temperature = temperature.replace(/TEMP3/g, "S"+c1);
+    temperature = temperature.replace(/TEMP4/g, "S"+d1);
+    temperature = temperature.replace(/TEMP5/g, "S"+e1);
     downloadFile('temperature.gcode', temperature);
 }
 
