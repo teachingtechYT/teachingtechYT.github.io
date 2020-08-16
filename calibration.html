@@ -200,8 +200,8 @@
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other that this, complete the form below to calculate the correct E-steps:</p>
         <form name="estepsForm" onsubmit="return false;">
-            <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93"></label></p>
-            <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20"></label></p>
+            <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93" step="0.01"></label></p>
+            <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20" step="0.01"></label></p>
             <input type="button" onclick="esteps();" value="Calculate">
             <div id="estepsresult">
                 <p>There was <b id="e1"></b> mm of filament remaining, which means you extruded <b id="e2"></b> mm of filament. Your new E-steps should be <b id="e3"></b><br />
