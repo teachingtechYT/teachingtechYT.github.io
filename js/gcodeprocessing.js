@@ -438,7 +438,7 @@ function processAcceleration(){
         acceleration =  acceleration.replace(/M106 S255/, ";M106 S255");
     }
     acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp);
-    acceleration = acceleration.replace(/M190 S60/g, "M140 S"+bedTemp);
+    acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp);
     if(abl != 4){
         acceleration = acceleration.replace(/M104 S210/g, "M104 S"+hotendTemp);
         acceleration = acceleration.replace(/M109 S210/g, "M109 S"+hotendTemp);
