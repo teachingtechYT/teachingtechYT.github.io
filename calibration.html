@@ -186,21 +186,25 @@
         <p>For the X, Y, and Z axes, the steps per mm is usually consistent between printers and rarely changes with modifications. As long as belts are tight and true, it rarely needs to be tuned.</p>
         <p>For the extruder however, variations in extruder hardware and filament means it is worth properly calibrating the extruder steps per mm, or E-steps.</p>
         <p>This can be done by sending simple gcode commands via terminal to extrude a set amount of filament, then measuring how much filament actually went through the system.</p>
+        <div class="exp">
+            <h5>Special Note:</h5>
+            <p>This calibration is best done with the extruder detached from the hot end, so no restriction is present on the movement. If it is convenient, you can partially disassemble the printer so the output of the extruder is open and the filament exits in free air. If this is inconvenient, the process below aims to minimise restrictions by extruding very slowly and with a slightly higher temperature. The results from this should still be reliable.</p>
+        </div>
         <p>Firstly, we need to know the existing E-steps value. To find this, enter:</p>
         <pre>M92</pre>
 		<p>If you only receive an <i>ok</i> message from this, alternatively you can look for the <b>M92</b> line after entering:</p>
 		<pre>M503</pre>
         <p><a href="https://marlinfw.org/docs/gcode/M092.html" target="_blank">M92</a> is used to report or set the steps per mm for each axis. M92 by itself will report the current parameters. We want to make note of the number after <b>E</b>, in the example below, <b>93.00</b>:</p>
         <img src="img/esteps1.jpg" />
-        <p>Now heat up your hot end to whatever temperature you usually print with. Once the temperature is stable, enter:</p>
+        <p>Now heat up your hot end to whatever temperature you usually print with plus 10 degrees. Once the temperature is stable, enter:</p>
         <pre>G91</pre>
         <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. This means requesting 100mm of filament adds 100mm to the current position, instead of moving to the specific position of 100mm.</p>
         <p>Now we take a permanent marker and put a mark 120mm from the entry to the extruder:</p>
         <a href="#" data-featherlight="img/mark.jpg"><img class="thumb" src="img/mark.jpg" /></a>
         <p>Next, we enter:</p>
-        <pre>G1 E100 F100</pre>
-        <p><a href="https://marlinfw.org/docs/gcode/G000-G001.html" target="_blank">G1</a> sends a move command to the printer, in this case asking the extruder to advance 100mm at a speed of 100mm/min.</p>
-        <p>The filament will then slowly go through the extruder and hot end. Once the extrusion finishes, we measure the distance between the mark and the entry to the extruder.</p>
+        <pre>G1 E100 F50</pre>
+        <p><a href="https://marlinfw.org/docs/gcode/G000-G001.html" target="_blank">G1</a> sends a move command to the printer, in this case asking the extruder to advance 100mm at a speed of 50mm/min.</p>
+        <p>The filament will then very slowly go through the extruder (and hot end). Once the extrusion finishes, we measure the distance between the mark and the entry to the extruder.</p>
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other than this, complete the form below to calculate the correct E-steps:</p>
         <form name="estepsForm" onsubmit="return false;">
