@@ -224,7 +224,7 @@ function processRetraction(){
         retraction = retraction.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling")
     }
     if(abl == 4){
-        retraction = retraction.replace(/G28 ; home all axes/, "M109 S170 ; probing temperature\nG28 ; home all");
+        retraction = retraction.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         retraction = retraction.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
         retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
     }
