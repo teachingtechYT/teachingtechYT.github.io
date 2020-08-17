@@ -8,7 +8,7 @@
         collapsible: 'accordion',
         startCollapsed: false,
         rotate: false,
-        setHash: false,
+        setHash: true,
         animation: 'default',
         animationQueue: false,
         duration: 500,
