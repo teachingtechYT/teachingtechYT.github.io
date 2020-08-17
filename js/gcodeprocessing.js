@@ -34,7 +34,7 @@ function esteps(){
 }
 
 function flowCalc1(){
-    var oldflow = document.flow1.oldFlow.value;
+    var oldflow = document.flow1.oldFlow1.value;
     var targetwall = document.flow1.targetWall.value;
     var measuredwall = document.flow1.measuredWall.value;
     var newsteps = (oldflow/measuredwall*targetwall).toFixed(2);
@@ -43,7 +43,7 @@ function flowCalc1(){
 }
 
 function flowCalc2(){
-    var oldflow = document.flow2.oldFlow.value;
+    var oldflow = document.flow2.oldFlow2.value;
     var targetwall = document.flow2.targetWall.value;
     var measuredwall = document.flow2.measuredWall.value;
     var newsteps = (oldflow/measuredwall*targetwall).toFixed(2);
@@ -70,7 +70,7 @@ function maxFee(){
 }
 
 function toggleJ() {
-    var value = document.accelerationForm.selector.value;
+    var value = document.accelerationForm.jerk_or_jd.value;
     if(value == "jerk"){
         $(".jdtd").hide();
         $(".jerktd").show();
@@ -179,24 +179,24 @@ function processRetraction(){
     var bedY = Math.round((document.retractionForm.bedy.value-100)/2);
     var abl = document.retractionForm.abl.value;
     var pc = document.retractionForm.pc.value;
-    var a1 = document.retractionForm.a1.value;
-    var a2 = document.retractionForm.a2.value*60;
-    var a3 = document.retractionForm.a3.value;
-    var b1 = document.retractionForm.b1.value;
-    var b2 = document.retractionForm.b2.value*60;
-    var b3 = document.retractionForm.b3.value;
-    var c1 = document.retractionForm.c1.value;
-    var c2 = document.retractionForm.c2.value*60;
-    var c3 = document.retractionForm.c3.value;
-    var d1 = document.retractionForm.d1.value;
-    var d2 = document.retractionForm.d2.value*60;
-    var d3 = document.retractionForm.d3.value;
-    var e1 = document.retractionForm.e1.value;
-    var e2 = document.retractionForm.e2.value*60;
-    var e3 = document.retractionForm.e3.value;
-    var f1 = document.retractionForm.f1.value;
-    var f2 = document.retractionForm.f2.value*60;
-    var f3 = document.retractionForm.f3.value;
+    var a1 = document.retractionForm.ret_a1.value;
+    var a2 = document.retractionForm.ret_a2.value*60;
+    var a3 = document.retractionForm.ret_a3.value;
+    var b1 = document.retractionForm.ret_b1.value;
+    var b2 = document.retractionForm.ret_b2.value*60;
+    var b3 = document.retractionForm.ret_b3.value;
+    var c1 = document.retractionForm.ret_c1.value;
+    var c2 = document.retractionForm.ret_c2.value*60;
+    var c3 = document.retractionForm.ret_c3.value;
+    var d1 = document.retractionForm.ret_d1.value;
+    var d2 = document.retractionForm.ret_d2.value*60;
+    var d3 = document.retractionForm.ret_d3.value;
+    var e1 = document.retractionForm.ret_e1.value;
+    var e2 = document.retractionForm.ret_e2.value*60;
+    var e3 = document.retractionForm.ret_e3.value;
+    var f1 = document.retractionForm.ret_f1.value;
+    var f2 = document.retractionForm.ret_f2.value*60;
+    var f3 = document.retractionForm.ret_f3.value;
     var retraction = originalRetraction;
     if(pc == 1){
         retraction = retraction.replace(/M106 S255/, "M106 S130");
@@ -303,11 +303,11 @@ function processTemperature(){
     var retSpeed = document.temperatureForm.retspeed.value*60;
     var abl = document.temperatureForm.abl.value;
     var pc = document.temperatureForm.pc.value;
-    var a1 = document.temperatureForm.a1.value;
-    var b1 = document.temperatureForm.b1.value;
-    var c1 = document.temperatureForm.c1.value;
-    var d1 = document.temperatureForm.d1.value;
-    var e1 = document.temperatureForm.e1.value;
+    var a1 = document.temperatureForm.temp_a1.value;
+    var b1 = document.temperatureForm.temp_b1.value;
+    var c1 = document.temperatureForm.temp_c1.value;
+    var d1 = document.temperatureForm.temp_d1.value;
+    var e1 = document.temperatureForm.temp_e1.value;
     var temperature = originalTemperature;
     if(pc == 1){
         temperature = temperature.replace(/M106 S255/, "M106 S130");
@@ -405,31 +405,31 @@ function processAcceleration(){
     var abl = document.accelerationForm.abl.value;
     var pc = document.accelerationForm.pc.value;
     var feed = document.accelerationForm.feedrate.value*60;
-    var selector = document.accelerationForm.selector.value;
-    var a1 = document.accelerationForm.a1.value;
-    var a2 = document.accelerationForm.a2.value;
-    var a3 = document.accelerationForm.a3.value;
-    var a4 = document.accelerationForm.a4.value;
-    var b1 = document.accelerationForm.b1.value;
-    var b2 = document.accelerationForm.b2.value;
-    var b3 = document.accelerationForm.b3.value;
-    var b4 = document.accelerationForm.b4.value;
-    var c1 = document.accelerationForm.c1.value;
-    var c2 = document.accelerationForm.c2.value;
-    var c3 = document.accelerationForm.c3.value;
-    var c4 = document.accelerationForm.c4.value;
-    var d1 = document.accelerationForm.d1.value;
-    var d2 = document.accelerationForm.d2.value;
-    var d3 = document.accelerationForm.d3.value;
-    var d4 = document.accelerationForm.d4.value;
-    var e1 = document.accelerationForm.e1.value;
-    var e2 = document.accelerationForm.e2.value;
-    var e3 = document.accelerationForm.e3.value;
-    var e4 = document.accelerationForm.e4.value;
-    var f1 = document.accelerationForm.f1.value;
-    var f2 = document.accelerationForm.f2.value;
-    var f3 = document.accelerationForm.f3.value;
-    var f4 = document.accelerationForm.f4.value;
+    var jerk_or_jd = document.accelerationForm.jerk_or_jd.value;
+    var a1 = document.accelerationForm.accel_a1.value;
+    var a2 = document.accelerationForm.accel_a2.value;
+    var a3 = document.accelerationForm.accel_a3.value;
+    var a4 = document.accelerationForm.accel_a4.value;
+    var b1 = document.accelerationForm.accel_b1.value;
+    var b2 = document.accelerationForm.accel_b2.value;
+    var b3 = document.accelerationForm.accel_b3.value;
+    var b4 = document.accelerationForm.accel_b4.value;
+    var c1 = document.accelerationForm.accel_c1.value;
+    var c2 = document.accelerationForm.accel_c2.value;
+    var c3 = document.accelerationForm.accel_c3.value;
+    var c4 = document.accelerationForm.accel_c4.value;
+    var d1 = document.accelerationForm.accel_d1.value;
+    var d2 = document.accelerationForm.accel_d2.value;
+    var d3 = document.accelerationForm.accel_d3.value;
+    var d4 = document.accelerationForm.accel_d4.value;
+    var e1 = document.accelerationForm.accel_e1.value;
+    var e2 = document.accelerationForm.accel_e2.value;
+    var e3 = document.accelerationForm.accel_e3.value;
+    var e4 = document.accelerationForm.accel_e4.value;
+    var f1 = document.accelerationForm.accel_f1.value;
+    var f2 = document.accelerationForm.accel_f2.value;
+    var f3 = document.accelerationForm.accel_f3.value;
+    var f4 = document.accelerationForm.accel_f4.value;
     var acceleration = originalAcceleration;
     if(pc == 1){
         acceleration = acceleration.replace(/M106 S255/, "M106 S130");
@@ -521,7 +521,7 @@ function processAcceleration(){
     acceleration = acceleration.replace(/accel5/g, "M204 P"+e1);
     acceleration = acceleration.replace(/accel6/g, "M204 P"+f1);
 
-    if(selector == "jerk"){
+    if(jerk_or_jd == "jerk"){
         acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3);
         acceleration = acceleration.replace(/j2/g, "M205 X"+b2+" Y"+b3);
         acceleration = acceleration.replace(/j3/g, "M205 X"+c2+" Y"+c3);
