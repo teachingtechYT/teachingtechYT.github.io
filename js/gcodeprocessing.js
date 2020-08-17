@@ -129,17 +129,17 @@ function processBaseline(){
 
     if(centre == true){
         var baselineArray = baseline.split(/\n/g);
-        var regexp = /X\d+/;
+        var regexp = /X[0-9\.]+/;
         baselineArray.forEach(function(index, item){
             if(baselineArray[item].search(/X/) > -1){
-                var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(baselineArray[item].match(regexp)[0].substring(1)) - 50;
                 baselineArray[item] = baselineArray[item].replace(regexp, "X"+String(value));
             }
         });
-        var regexp = /Y\d+/;
+        var regexp = /Y[0-9\.]+/;
         baselineArray.forEach(function(index, item){
             if(baselineArray[item].search(/Y/) > -1){
-                var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(baselineArray[item].match(regexp)[0].substring(1)) - 50;
                 baselineArray[item] = baselineArray[item].replace(regexp, "Y"+String(value))
             }
         });
@@ -147,10 +147,10 @@ function processBaseline(){
     } else {
         if(bedX > 0){
             var baselineArray = baseline.split(/\n/g);
-            var regexp = /X\d+/;
+            var regexp = /X[0-9\.]+/;
             baselineArray.forEach(function(index, item){
                 if(baselineArray[item].search(/X/) > -1){
-                    var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) + bedX;
+                    var value = parseFloat(baselineArray[item].match(regexp)[0].substring(1)) + bedX;
                     baselineArray[item] = baselineArray[item].replace(regexp, "X"+String(value));
                 }
             });
@@ -158,10 +158,10 @@ function processBaseline(){
         }
         if(bedY > 0){  
             var baselineArray = baseline.split(/\n/g);
-            var regexp = /Y\d+/;
+            var regexp = /Y[0-9\.]+/;
             baselineArray.forEach(function(index, item){
                 if(baselineArray[item].search(/Y/) > -1){
-                    var value = parseInt(baselineArray[item].match(regexp)[0].substring(1)) + bedY;
+                    var value = parseFloat(baselineArray[item].match(regexp)[0].substring(1)) + bedY;
                     baselineArray[item] = baselineArray[item].replace(regexp, "Y"+String(value))
                 }
             });
@@ -234,17 +234,17 @@ function processRetraction(){
 
     if(centre == true){
         var retractionArray = retraction.split(/\n/g);
-        var regexp = /X\d+/;
+        var regexp = /X[0-9\.]+/;
         retractionArray.forEach(function(index, item){
             if(retractionArray[item].search(/X/) > -1){
-                var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) - 50;
                 retractionArray[item] = retractionArray[item].replace(regexp, "X"+String(value));
             }
         });
-        var regexp = /Y\d+/;
+        var regexp = /Y[0-9\.]+/;
         retractionArray.forEach(function(index, item){
             if(retractionArray[item].search(/Y/) > -1){
-                var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) - 50;
                 retractionArray[item] = retractionArray[item].replace(regexp, "Y"+String(value))
             }
         });
@@ -252,10 +252,10 @@ function processRetraction(){
     } else {
         if(bedX > 0){
             var retractionArray = retraction.split(/\n/g);
-            var regexp = /X\d+/;
+            var regexp = /X[0-9\.]+/;
             retractionArray.forEach(function(index, item){
                 if(retractionArray[item].search(/X/) > -1){
-                    var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) + bedX;
+                    var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) + bedX;
                     retractionArray[item] = retractionArray[item].replace(regexp, "X"+String(value));
                 }
             });
@@ -263,10 +263,10 @@ function processRetraction(){
         }
         if(bedY > 0){  
             var retractionArray = retraction.split(/\n/g);
-            var regexp = /Y\d+/;
+            var regexp = /Y[0-9\.]+/;
             retractionArray.forEach(function(index, item){
                 if(retractionArray[item].search(/Y/) > -1){
-                    var value = parseInt(retractionArray[item].match(regexp)[0].substring(1)) + bedY;
+                    var value = parseFloat(retractionArray[item].match(regexp)[0].substring(1)) + bedY;
                     retractionArray[item] = retractionArray[item].replace(regexp, "Y"+String(value))
                 }
             });
@@ -340,17 +340,17 @@ function processTemperature(){
 
     if(centre == true){
         var temperatureArray = temperature.split(/\n/g);
-        var regexp = /X\d+/;
+        var regexp = /X[0-9\.]+/;
         temperatureArray.forEach(function(index, item){
             if(temperatureArray[item].search(/X/) > -1){
-                var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
                 temperatureArray[item] = temperatureArray[item].replace(regexp, "X"+String(value));
             }
         });
-        var regexp = /Y\d+/;
+        var regexp = /Y[0-9\.]+/;
         temperatureArray.forEach(function(index, item){
             if(temperatureArray[item].search(/Y/) > -1){
-                var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(temperatureArray[item].match(regexp)[0].substring(1)) - 50;
                 temperatureArray[item] = temperatureArray[item].replace(regexp, "Y"+String(value))
             }
         });
@@ -358,10 +358,10 @@ function processTemperature(){
     } else {
         if(bedX > 0){
             var temperatureArray = temperature.split(/\n/g);
-            var regexp = /X\d+/;
+            var regexp = /X[0-9\.]+/;
             temperatureArray.forEach(function(index, item){
                 if(temperatureArray[item].search(/X/) > -1){
-                    var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) + bedX;
+                    var value = parseFloat(temperatureArray[item].match(regexp)[0].substring(1)) + bedX;
                     temperatureArray[item] = temperatureArray[item].replace(regexp, "X"+String(value));
                 }
             });
@@ -369,10 +369,10 @@ function processTemperature(){
         }
         if(bedY > 0){  
             var temperatureArray = temperature.split(/\n/g);
-            var regexp = /Y\d+/;
+            var regexp = /Y[0-9\.]+/;
             temperatureArray.forEach(function(index, item){
                 if(temperatureArray[item].search(/Y/) > -1){
-                    var value = parseInt(temperatureArray[item].match(regexp)[0].substring(1)) + bedY;
+                    var value = parseFloat(temperatureArray[item].match(regexp)[0].substring(1)) + bedY;
                     temperatureArray[item] = temperatureArray[item].replace(regexp, "Y"+String(value))
                 }
             });
@@ -469,17 +469,17 @@ function processAcceleration(){
 
     if(centre == true){
         var accelerationArray = acceleration.split(/\n/g);
-        var regexp = /X\d+/;
+        var regexp = /X[0-9\.]+/;
         accelerationArray.forEach(function(index, item){
             if(accelerationArray[item].search(/X/) > -1){
-                var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
                 accelerationArray[item] = accelerationArray[item].replace(regexp, "X"+String(value));
             }
         });
-        var regexp = /Y\d+/;
+        var regexp = /Y[0-9\.]+/;
         accelerationArray.forEach(function(index, item){
             if(accelerationArray[item].search(/Y/) > -1){
-                var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
+                var value = parseFloat(accelerationArray[item].match(regexp)[0].substring(1)) - 50;
                 accelerationArray[item] = accelerationArray[item].replace(regexp, "Y"+String(value))
             }
         });
@@ -487,10 +487,10 @@ function processAcceleration(){
     } else {
         if(bedX > 0){
             var accelerationArray = acceleration.split(/\n/g);
-            var regexp = /X\d+/;
+            var regexp = /X[0-9\.]+/;
             accelerationArray.forEach(function(index, item){
                 if(accelerationArray[item].search(/X/) > -1){
-                    var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) + bedX;
+                    var value = parseFloat(accelerationArray[item].match(regexp)[0].substring(1)) + bedX;
                     accelerationArray[item] = accelerationArray[item].replace(regexp, "X"+String(value));
                 }
             });
@@ -498,10 +498,10 @@ function processAcceleration(){
         }
         if(bedY > 0){  
             var accelerationArray = acceleration.split(/\n/g);
-            var regexp = /Y\d+/;
+            var regexp = /Y[0-9\.]+/;
             accelerationArray.forEach(function(index, item){
                 if(accelerationArray[item].search(/Y/) > -1){
-                    var value = parseInt(accelerationArray[item].match(regexp)[0].substring(1)) + bedY;
+                    var value = parseFloat(accelerationArray[item].match(regexp)[0].substring(1)) + bedY;
                     accelerationArray[item] = accelerationArray[item].replace(regexp, "Y"+String(value))
                 }
             });
