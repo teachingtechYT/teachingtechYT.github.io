@@ -17,8 +17,9 @@
         <script src="js/encoding-indexes.js"></script>
         <script src="js/encoding.js"></script>
         <script src="js/gcodeprocessing.js"></script>
+        <script src="js/persist.js"></script>
     </head>
-<body>
+<body onload="loadAllFormData()">
 <div id="header">
     <img src="img/tt.png" class="icon" style="vertical-align:middle;" /><h1>Teaching Tech 3D Printer Calibration</h1><span id="donate">Useful? Considering supporting me: <a href="https://paypal.me/testlawgicau" target="blank"><img class="icon" src="img/paypal.png" /></a><a href="http://www.patreon.com/teachingtech" target="blank"><img class="icon" src="img/patreon.png" /></a></span>
 </div>
@@ -166,6 +167,7 @@
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150"></label><br />
 
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>The cube should look similar to those at the top of this page. If there are no major issues, please continue to the next step. If there is a significant defect, the culprit will likely be found by working through the frame page.</p>
@@ -205,6 +207,7 @@
             <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93" step="0.01"></label></p>
             <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20" step="0.01"></label></p>
             <input type="button" onclick="esteps();" value="Calculate">
+            <input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
             <div id="estepsresult">
                 <p>There was <b id="e1"></b> mm of filament remaining, which means you extruded <b id="e2"></b> mm of filament. Your new E-steps should be <b id="e3"></b><br />
                 Enter the following in the terminal:</p>
@@ -303,10 +306,11 @@
                 <tr>
                     <td>
                         <form name="flow1" onsubmit="return false;">
-                            <p><label>Previous flow rate: <input type="number" name="oldFlow" value="100" min="0" max="200" step="1"></label></p>
+                            <p><label>Previous flow rate: <input type="number" name="oldFlow1" value="100" min="0" max="200" step="1"></label></p>
                             <p><label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <p><label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <input type="button" onclick="flowCalc1()" value="Calculate">
+                            <input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
                             <div id="flow1result">
                                 <p>Your new flow rate should be <b id="f1"></b></p>
                             </div>
@@ -314,10 +318,11 @@
                     </td>
                     <td>
                         <form name="flow2" onsubmit="return false;">
-                            <p><label>Previous flow rate: <input type="number" name="oldFlow" value="1.0" step="0.1" min="0.1" max="2"></label></p>
+                            <p><label>Previous flow rate: <input type="number" name="oldFlow2" value="1.0" step="0.1" min="0.1" max="2"></label></p>
                             <p><label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <p><label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <input type="button" onclick="flowCalc2();" value="Calculate">
+                            <input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
                             <div id="flow2result">
                                 <p>Your new flow rate should be <b id="f2"></b></p>
                             </div>
@@ -545,43 +550,44 @@
                             <img src="img/retractiondiagram.jpg" />
                         </td>
                         <td style="text-align: center;">F</td>
-                        <td><input type="number" min="0" max="20" name="f1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="f2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="f3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_f1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_f2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_f3" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">E</td>
-                        <td><input type="number" min="0" max="20" name="e1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="e2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="e3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_e1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_e2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_e3" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">D</td>
-                        <td><input type="number" min="0" max="20" name="d1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="d2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="d3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_d1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_d2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_d3" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">C</td>
-                        <td><input type="number" min="0" max="20" name="c1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="c2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="c3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_c1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_c2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_c3" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">B</td>
-                        <td><input type="number" min="0" max="20" name="b1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="b2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="b3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_b1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_b2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_b3" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">A</td>
-                        <td><input type="number" min="0" max="20" name="a1" value="6" step="0.1"></td>
-                        <td><input type="number" min="5" max="200" name="a2" value="40" step="1"></td>
-                        <td><input type="number" min="-10" max="10" name="a3" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="20" name="ret_a1" value="6" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_a2" value="40" step="1"></td>
+                        <td><input type="number" min="-10" max="10" name="ret_a3" value="0" step="0.1"></td>
                     </tr>
                 </tbody>
             </table>
             <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistent with linear advance being enabled.</p>
@@ -658,27 +664,28 @@
                             <img src="img/temperaturediagram.jpg" />
                         </td>
                         <td style="text-align: center;">E</td>
-                        <td><input type="number" min="150" max="450" name="e1" value="210"></td>
+                        <td><input type="number" min="150" max="450" name="temp_e1" value="210"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">D</td>
-                        <td><input type="number" min="150" max="450" name="d1" value="205"></td>
+                        <td><input type="number" min="150" max="450" name="temp_d1" value="205"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">C</td>
-                        <td><input type="number" min="150" max="450" name="c1" value="200"></td>
+                        <td><input type="number" min="150" max="450" name="temp_c1" value="200"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">B</td>
-                        <td><input type="number" min="150" max="450" name="b1" value="195"></td>
+                        <td><input type="number" min="150" max="450" name="temp_b1" value="195"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">A</td>
-                        <td><input type="number" min="150" max="450" name="a1" value="190"></td>
+                        <td><input type="number" min="150" max="450" name="temp_a1" value="190"></td>
                     </tr>
                 </tbody>
             </table>
             <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 185 to 225 in 10 degree increments"</p>
@@ -809,8 +816,8 @@
             <label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>
             <h4>Acceleration and jerk/junction deviation</h4>
             <p>After entering <b>M503</b>, I have determined my 3D printer firmware uses:</p>
-            <label>Jerk: <input type="radio" value="jerk" name="selector" checked="checked" onchange="toggleJ()"></label>
-            <label>Junction deviation: <input type="radio" value="jd" name="selector" onchange="toggleJ()"></label>
+            <label>Jerk: <input type="radio" value="jerk" name="jerk_or_jd" checked="checked" onchange="toggleJ()"></label>
+            <label>Junction deviation: <input type="radio" value="jd" name="jerk_or_jd" onchange="toggleJ()"></label>
             <p>Based on the values you saw from <b>M503</b>, enter variables around this below.</p>
             <p>Junction deviation requires a single value, whereas jerk has separate values for X and Y. You can leave them the same or enter independent values.</p>
             <p>You should only change either acceleration or jerk/junction deviation for each test print, otherwise it will be impossible to know which parameter is responsible for any changes.</p>
@@ -829,49 +836,50 @@
                     <tr>
                         <td rowspan="6" style="text-align: center;"><img src="img/accelerationdiagram.jpg" /></td>
                         <td style="text-align: center;">F</td>
-                        <td><input type="number" name="f1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="f2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="f3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="f4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td><input type="number" name="accel_f1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_f2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_f3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_f4" value="0.05" min="0.01" max="20" step="0.01"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">E</td>
-                        <td><input type="number" name="e1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="e2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="e3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="e4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td><input type="number" name="accel_e1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_e2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_e3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_e4" value="0.05" min="0.01" max="20" step="0.01"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">D</td>
-                        <td><input type="number" name="d1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="d2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="d3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="d4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td><input type="number" name="accel_d1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_d2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_d3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_d4" value="0.05" min="0.01" max="20" step="0.01"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">C</td>
-                        <td><input type="number" name="c1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="c2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="c3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="c4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td><input type="number" name="accel_c1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_c2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_c3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_c4" value="0.05" min="0.01" max="20" step="0.01"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">B</td>
-                        <td><input type="number" name="b1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="b2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="b3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="b4" value="0.05" min="0.01" max="20" step="0.01"></td>>
+                        <td><input type="number" name="accel_b1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_b2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_b3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_b4" value="0.05" min="0.01" max="20" step="0.01"></td>>
                     </tr>
                     <tr>
                         <td style="text-align: center;">A</td>
-                        <td><input type="number" name="a1" value="500" min="10" max="5000" step="100"></td>
-                        <td class="jerktd"><input type="number" name="a2" value="8" min="1" max="30" step="1"></td>
-                        <td class="jerktd"><input type="number" name="a3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="a4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td><input type="number" name="accel_a1" value="500" min="10" max="5000" step="100"></td>
+                        <td class="jerktd"><input type="number" name="accel_a2" value="8" min="1" max="30" step="1"></td>
+                        <td class="jerktd"><input type="number" name="accel_a3" value="8" min="1" max="30" step="1"></td>
+                        <td class="jdtd"><input type="number" name="accel_a4" value="0.05" min="0.01" max="20" step="0.01"></td>
                     </tr>
                 </tbody>
             </table>
             <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
