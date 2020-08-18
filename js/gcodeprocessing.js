@@ -204,16 +204,16 @@ function processRetraction(){
     var customStart = document.retractionForm.startgcode.value;
     var retraction = originalRetraction;
     if(pc == 1){
-        retraction = retraction.replace(/M106 S255/, "M106 S130");
+        retraction = retraction.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
     }
     if(pc == 2){
-        retraction =  retraction.replace(/M106 S255/, ";M106 S255");
+        retraction =  retraction.replace(/M106 S255/, ";M106 S255 ; custom fan off");
     }
-    retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp);
-    retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp);
+    retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+    retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
     if(abl != 4){
-        retraction = retraction.replace(/M104 S210/g, "M104 S"+hotendTemp);
-        retraction = retraction.replace(/M109 S210/g, "M109 S"+hotendTemp);
+        retraction = retraction.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        retraction = retraction.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     } else {
         retraction = retraction.replace(/M104 S210/g, "; Prusa Mini");
         retraction = retraction.replace(/M109 S210/g, "; Prusa Mini");
@@ -231,7 +231,7 @@ function processRetraction(){
     if(abl == 4){
         retraction = retraction.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         retraction = retraction.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-        retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+        retraction = retraction.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     }
     if(abl == 5){
         retraction = retraction.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
@@ -279,25 +279,25 @@ function processRetraction(){
         }   
     }
     // A section
-    retraction = retraction.replace(/G1 E-6.0000 F900/g, "G1 E-"+a1+" F"+a2);
-    retraction = retraction.replace(/G1 E0.4000 F900/g, "G1 E"+a3+" F"+a2);
+    retraction = retraction.replace(/G1 E-6.0000 F900/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+    retraction = retraction.replace(/G1 E0.4000 F900/g, "G1 E"+a3+" F"+a2+" ; custom un-retraction/prime - A");
     // B section
-    retraction = retraction.replace(/G1 E-7.0000 F1200/g, "G1 E-"+b1+" F"+b2);
-    retraction = retraction.replace(/G1 E0.6000 F1200/g, "G1 E"+b3+" F"+b2);
+    retraction = retraction.replace(/G1 E-7.0000 F1200/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
+    retraction = retraction.replace(/G1 E0.6000 F1200/g, "G1 E"+b3+" F"+b2+" ; custom un-retraction/prime - B");
     // C section
-    retraction = retraction.replace(/G1 E-8.0000 F1500/g, "G1 E-"+c1+" F"+c2);
-    retraction = retraction.replace(/G1 E0.8000 F1500/g, "G1 E"+c3+" F"+c2);
+    retraction = retraction.replace(/G1 E-8.0000 F1500/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
+    retraction = retraction.replace(/G1 E0.8000 F1500/g, "G1 E"+c3+" F"+c2+" ; custom un-retraction/prime - C");
     // D section
-    retraction = retraction.replace(/G1 E-9.0000 F1800/g, "G1 E-"+d1+" F"+d2);
-    retraction = retraction.replace(/G1 E1.0000 F1800/g, "G1 E"+d3+" F"+d2);
+    retraction = retraction.replace(/G1 E-9.0000 F1800/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
+    retraction = retraction.replace(/G1 E1.0000 F1800/g, "G1 E"+d3+" F"+d2+" ; custom un-retraction/prime - D");
     // E section
-    retraction = retraction.replace(/G1 E-10.0000 F2100/g, "G1 E-"+e1+" F"+e2);
-    retraction = retraction.replace(/G1 E1.2000 F2100/g, "G1 E"+e3+" F"+e2);
+    retraction = retraction.replace(/G1 E-10.0000 F2100/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
+    retraction = retraction.replace(/G1 E1.2000 F2100/g, "G1 E"+e3+" F"+e2+" ; custom un-retraction/prime - E");
     // F section
-    retraction = retraction.replace(/G1 E-11.0000 F2400/g, "G1 E-"+f1+" F"+f2);
-    retraction = retraction.replace(/G1 E1.4000 F2400/g, "G1 E"+f3+" F"+f2);
+    retraction = retraction.replace(/G1 E-11.0000 F2400/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
+    retraction = retraction.replace(/G1 E1.4000 F2400/g, "G1 E"+f3+" F"+f2+" ; custom un-retraction/prime - F");
     if(document.retractionForm.start.checked == true) {
-        retraction = retraction.replace(/;customstart/, customStart);
+        retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
     downloadFile('retraction.gcode', retraction);
 }
@@ -319,10 +319,10 @@ function processTemperature(){
     var customStart = document.temperatureForm.startgcode.value;
     var temperature = originalTemperature;
     if(pc == 1){
-        temperature = temperature.replace(/M106 S255/, "M106 S130");
+        temperature = temperature.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
     }
     if(pc == 2){
-        temperature =  temperature.replace(/M106 S255/, ";M106 S255");
+        temperature =  temperature.replace(/M106 S255/, ";M106 S255 ; custom fan off");
     }
     if(abl == 1){
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
@@ -342,10 +342,10 @@ function processTemperature(){
     if(abl == 5){
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
-    temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp);
-    temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp);
-    temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
-    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+    temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp+" ; custom bed temp");
+    temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp+" ; custom bed temp");
+    temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom unretraction/prime");
 
     if(centre == true){
         var temperatureArray = temperature.split(/\n/g);
@@ -389,19 +389,19 @@ function processTemperature(){
         }   
     }
     if(abl != 4){
-        temperature = temperature.replace(/temp1a/, "M104 S"+a1+" T0");
-        temperature = temperature.replace(/temp1b/, "M109 S"+a1+" T0");
+        temperature = temperature.replace(/temp1a/, "M104 S"+a1+" T0 ; custom hot end temp - A");
+        temperature = temperature.replace(/temp1b/, "M109 S"+a1+" T0 ; custom hot end temp - A");
     } else {
         temperature = temperature.replace(/temp1a/, "; Prusa Mini");
         temperature = temperature.replace(/temp1b/, "; Prusa Mini");
-        temperature = temperature.replace(/tempmini/, "M109 S"+a1+" T0");
+        temperature = temperature.replace(/tempmini/, "M109 S"+a1+" T0 ; custom hot end temp - A");
     }
-    temperature = temperature.replace(/temp2/, "M104 S"+b1+" T0");
-    temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0");
-    temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0");
-    temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0");
+    temperature = temperature.replace(/temp2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
+    temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
+    temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
+    temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
     if(document.temperatureForm.start.checked == true) {
-        temperature = temperature.replace(/;customstart/, customStart);
+        temperature = temperature.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
     downloadFile('temperature.gcode', temperature);
 }
@@ -445,22 +445,22 @@ function processAcceleration(){
     var customStart = document.accelerationForm.startgcode.value;
     var acceleration = originalAcceleration;
     if(pc == 1){
-        acceleration = acceleration.replace(/M106 S255/, "M106 S130");
+        acceleration = acceleration.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
     }
     if(pc == 2){
-        acceleration =  acceleration.replace(/M106 S255/, ";M106 S255");
+        acceleration =  acceleration.replace(/M106 S255/, ";M106 S255 ; custom fan off");
     }
-    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp);
-    acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp);
+    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+    acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
     if(abl != 4){
-        acceleration = acceleration.replace(/M104 S210/g, "M104 S"+hotendTemp);
-        acceleration = acceleration.replace(/M109 S210/g, "M109 S"+hotendTemp);
+        acceleration = acceleration.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        acceleration = acceleration.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     } else {
         acceleration = acceleration.replace(/M104 S210/g, "; Prusa Mini");
         acceleration = acceleration.replace(/M109 S210/g, "; Prusa Mini");
     }
-    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
-    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -474,7 +474,7 @@ function processAcceleration(){
     if(abl == 4){
         acceleration = acceleration.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-        acceleration = acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+        acceleration = acceleration.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     }
     if(abl == 5){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
@@ -522,35 +522,35 @@ function processAcceleration(){
         }   
     }
 
-    acceleration = acceleration.replace(/F3720/g, "F"+feed);
-    acceleration = acceleration.replace(/F2790/g, "F"+feed);
-    acceleration = acceleration.replace(/F1860/g, "F"+feed/2);
+    acceleration = acceleration.replace(/F3720/g, "F"+feed+" ; custom feedrate - full");
+    acceleration = acceleration.replace(/F2790/g, "F"+feed+" ; custom feedrate - full");
+    acceleration = acceleration.replace(/F1860/g, "F"+feed/2+" ; custom feedrate - half");
 
-    acceleration = acceleration.replace(/raise/g, "M201 X5000 Y5000");
-    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1);
-    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1);
-    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1);
-    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1);
-    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1);
-    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1);
+    acceleration = acceleration.replace(/raise/g, "M201 X5000 Y5000 ; custom raise acceleration limits");
+    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1+" ; custom acceleration - A");
+    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1+" ; custom acceleration - B");
+    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1+" ; custom acceleration - C");
+    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1+" ; custom acceleration - D");
+    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1+" ; custom acceleration - E");
+    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1+" ; custom acceleration - F");
 
     if(jerk_or_jd == "jerk"){
-        acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3);
-        acceleration = acceleration.replace(/j2/g, "M205 X"+b2+" Y"+b3);
-        acceleration = acceleration.replace(/j3/g, "M205 X"+c2+" Y"+c3);
-        acceleration = acceleration.replace(/j4/g, "M205 X"+d2+" Y"+d3);
-        acceleration = acceleration.replace(/j5/g, "M205 X"+e2+" Y"+e3);
-        acceleration = acceleration.replace(/j6/g, "M205 X"+f2+" Y"+f3);
+        acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
+        acceleration = acceleration.replace(/j2/g, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
+        acceleration = acceleration.replace(/j3/g, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
+        acceleration = acceleration.replace(/j4/g, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
+        acceleration = acceleration.replace(/j5/g, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
+        acceleration = acceleration.replace(/j6/g, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
     } else {
-        acceleration = acceleration.replace(/j1/g, "M205 J"+a4);
-        acceleration = acceleration.replace(/j2/g, "M205 J"+b4);
-        acceleration = acceleration.replace(/j3/g, "M205 J"+c4);
-        acceleration = acceleration.replace(/j4/g, "M205 J"+d4);
-        acceleration = acceleration.replace(/j5/g, "M205 J"+e4);
-        acceleration = acceleration.replace(/j6/g, "M205 J"+f4);
+        acceleration = acceleration.replace(/j1/g, "M205 J"+a4+" ; custom junction deviation - A");
+        acceleration = acceleration.replace(/j2/g, "M205 J"+b4+" ; custom junction deviation - B");
+        acceleration = acceleration.replace(/j3/g, "M205 J"+c4+" ; custom junction deviation - C");
+        acceleration = acceleration.replace(/j4/g, "M205 J"+d4+" ; custom junction deviation - D");
+        acceleration = acceleration.replace(/j5/g, "M205 J"+e4+" ; custom junction deviation - E");
+        acceleration = acceleration.replace(/j6/g, "M205 J"+f4+" ; custom junction deviation - F");
     }
     if(document.accelerationForm.start.checked == true) {
-        acceleration = acceleration.replace(/;customstart/, customStart);
+        acceleration = acceleration.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
     downloadFile('acceleration.gcode', acceleration);
 }
