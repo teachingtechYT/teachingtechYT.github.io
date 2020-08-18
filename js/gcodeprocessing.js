@@ -92,9 +92,6 @@ function processBaseline(){
     var pc = document.baselineForm.pc.value;
     var customStart = document.baselineForm.startgcode.value;
     var baseline = originalBaseline;
-    if(document.baselineForm.start.checked == true) {
-        baseline = baseline.replace(/;customstart/, customStart);
-    }
     if(pc == 1){
         baseline = baseline.replace(/M106 S255/, "M106 S130");
     }
@@ -171,7 +168,10 @@ function processBaseline(){
             });
             baseline = baselineArray.join("\n");
         }   
-    } 
+    }
+    if(document.baselineForm.start.checked == true) {
+        baseline = baseline.replace(/;customstart/, customStart);
+    }
     downloadFile('baseline.gcode', baseline);
 }
 
@@ -203,9 +203,6 @@ function processRetraction(){
     var f3 = document.retractionForm.ret_f3.value;
     var customStart = document.retractionForm.startgcode.value;
     var retraction = originalRetraction;
-    if(document.retractionForm.start.checked == true) {
-        retraction = retraction.replace(/;customstart/, customStart);
-    }
     if(pc == 1){
         retraction = retraction.replace(/M106 S255/, "M106 S130");
     }
@@ -299,6 +296,9 @@ function processRetraction(){
     // F section
     retraction = retraction.replace(/G1 E-11.0000 F2400/g, "G1 E-"+f1+" F"+f2);
     retraction = retraction.replace(/G1 E1.4000 F2400/g, "G1 E"+f3+" F"+f2);
+    if(document.retractionForm.start.checked == true) {
+        retraction = retraction.replace(/;customstart/, customStart);
+    }
     downloadFile('retraction.gcode', retraction);
 }
 
@@ -318,9 +318,6 @@ function processTemperature(){
     var e1 = document.temperatureForm.temp_e1.value;
     var customStart = document.temperatureForm.startgcode.value;
     var temperature = originalTemperature;
-    if(document.temperatureForm.start.checked == true) {
-        temperature = temperature.replace(/;customstart/, customStart);
-    }
     if(pc == 1){
         temperature = temperature.replace(/M106 S255/, "M106 S130");
     }
@@ -403,6 +400,9 @@ function processTemperature(){
     temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0");
     temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0");
     temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0");
+    if(document.temperatureForm.start.checked == true) {
+        temperature = temperature.replace(/;customstart/, customStart);
+    }
     downloadFile('temperature.gcode', temperature);
 }
 
@@ -444,9 +444,6 @@ function processAcceleration(){
     var f4 = document.accelerationForm.accel_f4.value;
     var customStart = document.accelerationForm.startgcode.value;
     var acceleration = originalAcceleration;
-    if(document.accelerationForm.start.checked == true) {
-        acceleration = acceleration.replace(/;customstart/, customStart);
-    }
     if(pc == 1){
         acceleration = acceleration.replace(/M106 S255/, "M106 S130");
     }
@@ -551,6 +548,9 @@ function processAcceleration(){
         acceleration = acceleration.replace(/j4/g, "M205 J"+d4);
         acceleration = acceleration.replace(/j5/g, "M205 J"+e4);
         acceleration = acceleration.replace(/j6/g, "M205 J"+f4);
+    }
+    if(document.accelerationForm.start.checked == true) {
+        acceleration = acceleration.replace(/;customstart/, customStart);
     }
     downloadFile('acceleration.gcode', acceleration);
 }
