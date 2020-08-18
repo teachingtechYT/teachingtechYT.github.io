@@ -90,7 +90,11 @@ function processBaseline(){
     var retSpeed = document.baselineForm.retspeed.value*60;
     var abl = document.baselineForm.abl.value;
     var pc = document.baselineForm.pc.value;
+    var customStart = document.baselineForm.startgcode.value;
     var baseline = originalBaseline;
+    if(document.baselineForm.start.checked == true) {
+        baseline = baseline.replace(/;customstart/, customStart);
+    }
     if(pc == 1){
         baseline = baseline.replace(/M106 S255/, "M106 S130");
     }
@@ -197,7 +201,11 @@ function processRetraction(){
     var f1 = document.retractionForm.ret_f1.value;
     var f2 = document.retractionForm.ret_f2.value*60;
     var f3 = document.retractionForm.ret_f3.value;
+    var customStart = document.retractionForm.startgcode.value;
     var retraction = originalRetraction;
+    if(document.retractionForm.start.checked == true) {
+        retraction = retraction.replace(/;customstart/, customStart);
+    }
     if(pc == 1){
         retraction = retraction.replace(/M106 S255/, "M106 S130");
     }
@@ -308,7 +316,11 @@ function processTemperature(){
     var c1 = document.temperatureForm.temp_c1.value;
     var d1 = document.temperatureForm.temp_d1.value;
     var e1 = document.temperatureForm.temp_e1.value;
+    var customStart = document.temperatureForm.startgcode.value;
     var temperature = originalTemperature;
+    if(document.temperatureForm.start.checked == true) {
+        temperature = temperature.replace(/;customstart/, customStart);
+    }
     if(pc == 1){
         temperature = temperature.replace(/M106 S255/, "M106 S130");
     }
@@ -430,7 +442,11 @@ function processAcceleration(){
     var f2 = document.accelerationForm.accel_f2.value;
     var f3 = document.accelerationForm.accel_f3.value;
     var f4 = document.accelerationForm.accel_f4.value;
+    var customStart = document.accelerationForm.startgcode.value;
     var acceleration = originalAcceleration;
+    if(document.accelerationForm.start.checked == true) {
+        acceleration = acceleration.replace(/;customstart/, customStart);
+    }
     if(pc == 1){
         acceleration = acceleration.replace(/M106 S255/, "M106 S130");
     }

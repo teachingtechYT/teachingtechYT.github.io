@@ -9,6 +9,7 @@ temp1b
 G28 ; home all axes
 ;G29 ; probe ABL
 ;M420 S1 ; restore ABL mesh 
+;customstart
 ; process Color1-6-1
 ; layer 1, Z = 0.200
 T0
