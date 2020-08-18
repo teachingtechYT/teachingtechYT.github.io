@@ -93,22 +93,22 @@ function processBaseline(){
     var customStart = document.baselineForm.startgcode.value;
     var baseline = originalBaseline;
     if(pc == 1){
-        baseline = baseline.replace(/M106 S255/, "M106 S130");
+        baseline = baseline.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
     }
     if(pc == 2){
-        baseline =  baseline.replace(/M106 S255/, ";M106 S255");
+        baseline =  baseline.replace(/M106 S255/, ";M106 S255 ; custom fan off");
     }
-    baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp);
-    baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp);
+    baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+    baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
     if(abl != 4){
-        baseline = baseline.replace(/M104 S210/g, "M104 S"+hotendTemp);
-        baseline = baseline.replace(/M109 S210/g, "M109 S"+hotendTemp);
+        baseline = baseline.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        baseline = baseline.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     } else {
-        baseline = baseline.replace(/M104 S210/g, "; Prusa Mini");
-        baseline = baseline.replace(/M109 S210/g, "; Prusa Mini");
+        baseline = baseline.replace(/M104 S210 T0/g, "; Prusa Mini");
+        baseline = baseline.replace(/M109 S210 T0/g, "; Prusa Mini");
     }
-    baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed);
-    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed);
+    baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -122,7 +122,7 @@ function processBaseline(){
     if(abl == 4){
         baseline = baseline.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-        baseline = baseline.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0");
+        baseline = baseline.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     }
     if(abl == 5){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
@@ -170,7 +170,7 @@ function processBaseline(){
         }   
     }
     if(document.baselineForm.start.checked == true) {
-        baseline = baseline.replace(/;customstart/, customStart);
+        baseline = baseline.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
     downloadFile('baseline.gcode', baseline);
 }
