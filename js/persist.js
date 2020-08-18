@@ -16,6 +16,8 @@ function loadFormData(form) {
       element.tagName == "INPUT" && element.type == "number" ||
       element.tagName == "INPUT" && element.type == "checkbox" ||
       element.tagName == "INPUT" && element.type == "radio" ||
+      element.tagName == "INPUT" && element.type == "text" ||
+      element.tagName == "TEXTAREA" ||
       element.tagName == "SELECT"
     ) {
       var newValue = getPeristedValue(element);
