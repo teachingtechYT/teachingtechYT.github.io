@@ -80,6 +80,113 @@ function toggleJ() {
     }
 }
 
+function processLeveling(){
+    var hotendTemp = document.levelingForm.hotendtemp.value;
+    var bedTemp = document.levelingForm.bedtemp.value;
+    var centre = document.levelingForm.centre.checked;
+    var bedX_actual = document.levelingForm.bedx.value;
+    var bedY_actual = document.levelingForm.bedy.value;
+    var abl = document.levelingForm.abl.value;
+    var customStart = document.levelingForm.startgcode.value;
+    var leveling = originalLeveling;
+
+    var pad_size = 40;  // pads including skirt are just less than 35 mm square.  overstated here to add a bit of room
+    // Pad coordinates in original gcode.  Verbose but easier to modify
+    var in_pad_x1 = 60;
+    var in_pad_x2 = 110;
+    var in_pad_x3 = 160;
+    var in_pad_y1 = 60;
+    var in_pad_y2 = 110;
+    var in_pad_y3 = 160;
+    // xy thresholds (applied to input) to decide which offsets to apply
+    var in_x_thresh12 = (in_pad_x1 + in_pad_x2)/2;
+    var in_x_thresh23 = (in_pad_x2 + in_pad_x3)/2;
+    var in_y_thresh12 = (in_pad_y1 + in_pad_y2)/2;
+    var in_y_thresh23 = (in_pad_y2 + in_pad_y3)/2;
+    
+    var out_pad_x1 = pad_size/2;
+    var out_pad_x2 = bedX_actual/2;
+    var out_pad_x3 = bedX_actual-pad_size/2;
+    var out_pad_y1 = pad_size/2;
+    var out_pad_y2 = bedY_actual/2;
+    var out_pad_y3 = bedY_actual-pad_size/2;
+    
+    if(centre == true){
+      out_pad_x1 = -bedX_actual/2 + pad_size/2;
+      out_pad_x2 = 0;
+      out_pad_x3 = bedX_actual/2 - pad_size/2;
+      out_pad_y1 = -bedY_actual/2 + pad_size/2;
+      out_pad_y2 = 0;
+      out_pad_y3 = bedY_actual/2 - pad_size/2;
+    }
+    
+    leveling = leveling.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+    leveling = leveling.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(abl != 4){
+        leveling = leveling.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        leveling = leveling.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    } else {
+        leveling = leveling.replace(/M104 S210 T0/g, "; Prusa Mini");
+        leveling = leveling.replace(/M109 S210 T0/g, "; Prusa Mini");
+    }
+    
+    if(abl == 1){
+        leveling = leveling.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+    }
+    if(abl == 2){
+        leveling =  leveling.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+    }
+    if(abl == 3){
+        leveling = leveling.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level");
+        leveling = leveling.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling");
+    }
+    if(abl == 4){
+        leveling = leveling.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        leveling = leveling.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        leveling = leveling.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    }
+    if(abl == 5){
+        leveling = leveling.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
+
+    var levelingArray = leveling.split(/\n/g);
+    var xregexp = /X[0-9\.]+/;
+    var yregexp = /Y[0-9\.]+/;
+    levelingArray.forEach(function(index, item){
+      // Only process movement commands that specify X and Y
+      if(levelingArray[item].search(/G1 X.+Y/) > -1){
+        if(levelingArray[item].search(xregexp) > -1){
+          var value = parseFloat(levelingArray[item].match(xregexp)[0].substring(1));
+          if (value < in_x_thresh12) {
+            value = value - in_pad_x1 + out_pad_x1;
+          } else if (value > in_x_thresh23) {
+            value = value - in_pad_x3 + out_pad_x3;
+          } else {
+            value = value - in_pad_x2 + out_pad_x2;
+          }
+          levelingArray[item] = levelingArray[item].replace(xregexp, "X"+String(value));
+        }
+        if(levelingArray[item].search(yregexp) > -1){
+          var value = parseFloat(levelingArray[item].match(yregexp)[0].substring(1));
+          if (value < in_y_thresh12) {
+            value = value - in_pad_y1 + out_pad_y1;
+          } else if (value > in_y_thresh23) {
+            value = value - in_pad_y3 + out_pad_y3;
+          } else {
+            value = value - in_pad_y2 + out_pad_y2;
+          }
+          levelingArray[item] = levelingArray[item].replace(yregexp, "Y"+String(value));
+        }
+      }
+    });
+    leveling = levelingArray.join("\n");
+
+    if(document.levelingForm.start.checked == true) {
+        leveling = leveling.replace(/;customstart/, "; custom start gcode\n"+customStart);
+    }
+    downloadFile('leveling.gcode', leveling);
+}
+
 function processBaseline(){
     var hotendTemp = document.baselineForm.hotendtemp.value;
     var bedTemp = document.baselineForm.bedtemp.value;

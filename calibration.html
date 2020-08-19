@@ -11,6 +11,7 @@
         <script src="js/videobox.js"></script>
         <script src="js/featherlight.js"></script>
         <script src="js/baseline.js"></script>
+        <script src="js/leveling.js"></script>
         <script src="js/retraction.js"></script>
         <script src="js/temperature.js"></script>
         <script src="js/acceleration.js"></script>
@@ -85,6 +86,36 @@
         <h4>Bed Levelling</h4>
         <p>Probably the most essential part of setting up your 3D printer. Most new users will trip up on this. If you have ABL, this includes making sure your Z offset has been set and saved. My method is included in the above video and this diagram is a handy reference:</p>
         <a href="#" data-featherlight="img/firstlayer.jpg"><img class="thumb" src="img/firstlayer.jpg" /></a>
+        <form name="levelingForm" id="levelingForm" onsubmit="return false;">
+            <h3>Additional start gcode</h3>
+            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#levelingStart')" value="extraStart"></label>
+            <textarea id="levelingStart" name="startgcode"></textarea>
+            <script>
+                if(document.levelingForm.start.checked == false){
+                    $("#levelingStart").hide();
+                }
+              </script>
+            <h3>Bed dimensions</h3>
+            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" value="centre"></label>
+            <span id="levelingXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
+            <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
+            <h5>Temperatures</h5>
+            <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
+            <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
+            <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+            <h5>Auto Bed Levelling</h5>
+            <label for="abl">Select which method of ABL is in place.</label>
+            <select name="abl">
+                <option value="0">No ABL</option>
+                <option value="1">Probe new mesh at the start of print - G29</option>
+                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="3">Prusa MK3 - G28 W followed by M80</option>
+                <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
+                <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
+            </select>
+            <p><input type="button" onclick="processLeveling()" value="Download Gcode"></p>
+        </form>
         <h4>PTFE Tube</h4>
         <p>If your printer has PTFE tube, such as a bowden tube setup for the extruder/hot end, it is essential to make the tube is fully inserted and seated in the coupler. Also ensure the coupler is properly tightened. You may wish to use a small retaining clip on the coupler to prevent the tube working loose: <a href="https://www.thingiverse.com/thing:4268489" target="_blank">Creality PTFE clip by morfidesign</a>.</p>
         <h4>Nozzle</h4>
