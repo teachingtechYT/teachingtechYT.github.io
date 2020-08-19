@@ -335,6 +335,7 @@ function processTemperature(){
     var retSpeed = document.temperatureForm.retspeed.value*60;
     var abl = document.temperatureForm.abl.value;
     var pc = document.temperatureForm.pc.value;
+    var a0 = document.temperatureForm.temp_a0.value;
     var a1 = document.temperatureForm.temp_a1.value;
     var b1 = document.temperatureForm.temp_b1.value;
     var c1 = document.temperatureForm.temp_c1.value;
@@ -413,13 +414,14 @@ function processTemperature(){
         }   
     }
     if(abl != 4){
-        temperature = temperature.replace(/temp1a/, "M104 S"+a1+" T0 ; custom hot end temp - A");
-        temperature = temperature.replace(/temp1b/, "M109 S"+a1+" T0 ; custom hot end temp - A");
+        temperature = temperature.replace(/temp0a/, "M104 S"+a0+" T0 ; custom hot end temp - first layer");
+        temperature = temperature.replace(/temp0b/, "M109 S"+a0+" T0 ; custom hot end temp - first layer");
     } else {
-        temperature = temperature.replace(/temp1a/, "; Prusa Mini");
-        temperature = temperature.replace(/temp1b/, "; Prusa Mini");
-        temperature = temperature.replace(/tempmini/, "M109 S"+a1+" T0 ; custom hot end temp - A");
+        temperature = temperature.replace(/temp0a/, "; Prusa Mini");
+        temperature = temperature.replace(/temp0b/, "; Prusa Mini");
+        temperature = temperature.replace(/tempmini/, "M109 S"+a0+" T0 ; custom hot end temp - first layer");
     }
+    temperature = temperature.replace(/temp1/, "M104 S"+a1+" T0 ; custom hot end temp - A");
     temperature = temperature.replace(/temp2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
     temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
     temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0 ; custom hot end temp - D");

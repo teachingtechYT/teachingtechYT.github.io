@@ -4,8 +4,8 @@ M82
 M106 S0
 M140 S60
 M190 S60
-temp1a
-temp1b
+temp0a
+temp0b
 G28 ; home all axes
 ;G29 ; probe ABL
 ;M420 S1 ; restore ABL mesh 
@@ -667,6 +667,7 @@ G1 X72.014 Y43.503 E51.9155
 G92 E0.0000
 G1 E-5.0000 F2400
 ; layer 2, Z = 0.400
+temp1
 M106 S255
 ; feature inner perimeter
 ; tool H0.200 W0.480
