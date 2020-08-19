@@ -955,6 +955,11 @@
         <p>Either way, we save to EEPROM afterwards with:</p>
         <pre>M500</pre>
         <p>Each of these parameters can also be entered and stored from the <b>configuration</b> menu of the Marlin LCD.</p>
+        <div class="exp">
+            <h5>Special note for Cura and PrusaSlicer:</h5>
+            <p>Cura and PrusaSlicer both have the capability to control these parameters from the slicer by inserting appropriate gcode. If you are finding that your new acceleration values are not taking effect, you may need to also set them in the slicer. This is actually a desirable feature, as it allows more aggressive settings for infill and features that can't be seen in the final print, yet be more conservative for outer walls where aesthetics are paramount.</p>
+            <a href="#" data-featherlight="img/acceloverride.jpg"><img class="thumb" src="img/acceloverride.jpg" /></a>
+        </div>
     </div>
 
     <div id="linadv">
