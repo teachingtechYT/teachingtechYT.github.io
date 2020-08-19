@@ -186,21 +186,27 @@ function processRetraction(){
     var a1 = document.retractionForm.ret_a1.value;
     var a2 = document.retractionForm.ret_a2.value*60;
     var a3 = document.retractionForm.ret_a3.value;
+    var a5 = document.retractionForm.ret_a5.value;
     var b1 = document.retractionForm.ret_b1.value;
     var b2 = document.retractionForm.ret_b2.value*60;
     var b3 = document.retractionForm.ret_b3.value;
+    var b5 = document.retractionForm.ret_b5.value;
     var c1 = document.retractionForm.ret_c1.value;
     var c2 = document.retractionForm.ret_c2.value*60;
     var c3 = document.retractionForm.ret_c3.value;
+    var c5 = document.retractionForm.ret_c5.value;
     var d1 = document.retractionForm.ret_d1.value;
     var d2 = document.retractionForm.ret_d2.value*60;
     var d3 = document.retractionForm.ret_d3.value;
+    var d5 = document.retractionForm.ret_d5.value;
     var e1 = document.retractionForm.ret_e1.value;
     var e2 = document.retractionForm.ret_e2.value*60;
     var e3 = document.retractionForm.ret_e3.value;
+    var e5 = document.retractionForm.ret_e5.value;
     var f1 = document.retractionForm.ret_f1.value;
     var f2 = document.retractionForm.ret_f2.value*60;
     var f3 = document.retractionForm.ret_f3.value;
+    var f5 = document.retractionForm.ret_f5.value;
     var customStart = document.retractionForm.startgcode.value;
     var retraction = originalRetraction;
     if(pc == 1){
@@ -281,23 +287,41 @@ function processRetraction(){
     // A section
     retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
     retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a2+" ; custom un-retraction/prime - A");
+    if(a5 > 0){
+        retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
+    }
     // B section
     retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
     retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b2+" ; custom un-retraction/prime - B");
+    if(b5 > 0){
+        retraction = retraction.replace(/;zhopupB/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
+    }
     // C section
     retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
     retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c2+" ; custom un-retraction/prime - C");
+    if(c5 > 0){
+        retraction = retraction.replace(/;zhopupC/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
+    }
     // D section
     retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
     retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d2+" ; custom un-retraction/prime - D");
+    if(d5 > 0){
+        retraction = retraction.replace(/;zhopupD/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
+    }
     // E section
     retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
     retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e2+" ; custom un-retraction/prime - E");
+    if(e5 > 0){
+        retraction = retraction.replace(/;zhopupE/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
+    }
     // F section
     retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
     retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f2+" ; custom un-retraction/prime - F");
     if(document.retractionForm.start.checked == true) {
         retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart);
+        if(f5 > 0){
+            retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+        }
     }
     downloadFile('retraction.gcode', retraction);
 }
