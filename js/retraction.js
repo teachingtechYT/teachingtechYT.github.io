@@ -17,7 +17,7 @@ G92 E0.0000
 ;retractionA
 ; feature skirt
 ; tool H0.200 W0.576
-G1 Z0.400 F1200
+;zhopup
 G1 X18.872 Y37.041 F6000
 G1 Z0.200 F1200
 ;unretractionA
@@ -152,7 +152,7 @@ G1 X18.178 Y37.394 E7.9827
 G1 X18.872 Y37.041 E8.0162
 G92 E0.0000
 ;retractionA
-G1 Z0.600 F1200
+;zhopup
 G1 X19.120 Y37.561 F6000
 G1 Z0.200 F1200
 ;unretractionA
@@ -288,7 +288,7 @@ G1 X19.120 Y37.561 E7.8602
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z0.600 F1200
+;zhopup
 G1 X21.084 Y41.696 F6000
 G1 X21.063 Y41.706
 G1 X21.553 Y42.750
@@ -696,7 +696,7 @@ G92 E0.0000
 M106 S255
 ; feature inner perimeter
 ; tool H0.200 W0.480
-G1 Z0.600 F1200
+;zhopup
 G1 X78.174 Y42.388 F6000
 G1 Z0.400 F1200
 ;unretractionA
@@ -1133,7 +1133,7 @@ G92 E0.0000
 ;retractionA
 ; layer 3, Z = 0.600
 ; feature inner perimeter
-G1 Z0.800 F1200
+;zhopup
 G1 X19.388 Y44.826 F6000
 G1 Z0.600 F1200
 ;unretractionA
@@ -1576,7 +1576,7 @@ G92 E0.0000
 ;retractionA
 ; layer 4, Z = 0.800
 ; feature inner perimeter
-G1 Z1.000 F1200
+;zhopup
 G1 X78.174 Y42.388 F6000
 G1 Z0.800 F1200
 ;unretractionA
@@ -1830,7 +1830,7 @@ G92 E0.0000
 ; layer 5, Z = 1.000
 ; feature inner perimeter
 ; tool H0.200 W0.480
-G1 Z1.200 F1200
+;zhopup
 G1 X19.200 Y46.031 F6000
 G1 Z1.000 F1200
 ;unretractionA
@@ -2064,7 +2064,7 @@ G92 E0.0000
 ; layer 6, Z = 1.200
 ; feature inner perimeter
 ; tool H0.200 W0.480
-G1 Z1.400 F1200
+;zhopup
 G1 X76.969 Y42.200 F6000
 G1 Z1.200 F1200
 ;unretractionA
@@ -2318,7 +2318,7 @@ G92 E0.0000
 ; layer 7, Z = 1.400
 ; feature inner perimeter
 ; tool H0.200 W0.480
-G1 Z1.600 F1200
+;zhopup
 G1 X19.200 Y46.031 F6000
 G1 Z1.400 F1200
 ;unretractionA
@@ -2851,7 +2851,7 @@ G92 E0.0000
 ;retractionA
 ; layer 8, Z = 1.600
 ; feature inner perimeter
-G1 Z1.800 F1200
+;zhopup
 G1 X76.969 Y57.800 F6000
 G1 Z1.600 F1200
 ;unretractionA
@@ -3381,7 +3381,7 @@ G92 E0.0000
 ;retractionA
 ; layer 9, Z = 1.800
 ; feature inner perimeter
-G1 Z2.000 F1200
+;zhopup
 G1 X80.800 Y53.969 F6000
 G1 Z1.800 F1200
 ;unretractionA
@@ -3914,7 +3914,7 @@ G92 E0.0000
 ;retractionA
 ; layer 10, Z = 2.000
 ; feature inner perimeter
-G1 Z2.200 F1200
+;zhopup
 G1 X23.031 Y42.200 F6000
 G1 Z2.000 F1200
 ;unretractionA
@@ -4443,7 +4443,7 @@ G92 E0.0000
 ;retractionA
 ; layer 11, Z = 2.200
 ; feature inner perimeter
-G1 Z2.400 F1200
+;zhopup
 G1 X74.251 Y46.298 F6000
 G1 Z2.200 F1200
 ;unretractionA
@@ -4630,7 +4630,7 @@ G1 X73.994 Y45.372 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z2.600 F1200
+;zhopup
 G1 X73.608 Y45.502 F6000
 G1 X73.239 Y45.672
 G1 X72.890 Y45.882
@@ -4832,7 +4832,7 @@ G92 E0.0000
 ;retractionA
 ; layer 12, Z = 2.400
 ; feature inner perimeter
-G1 Z2.600 F1200
+;zhopup
 G1 X27.782 Y48.692 F6000
 G1 Z2.400 F1200
 ;unretractionA
@@ -5019,7 +5019,7 @@ G1 X28.738 Y48.588 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z2.800 F1200
+;zhopup
 G1 X28.760 Y48.994 F6000
 G1 X71.240 Y48.994
 G1 X71.241 Y48.985
@@ -5210,7 +5210,7 @@ G92 E0.0000
 ;retractionA
 ; layer 13, Z = 2.600
 ; feature inner perimeter
-G1 Z2.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z2.600 F1200
 ;unretractionA
@@ -5397,7 +5397,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z3.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z2.600 F1200
 ;unretractionA
@@ -5585,7 +5585,7 @@ G92 E0.0000
 ;retractionA
 ; layer 14, Z = 2.800
 ; feature inner perimeter
-G1 Z3.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z2.800 F1200
 ;unretractionA
@@ -5772,7 +5772,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z3.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z2.800 F1200
 ;unretractionA
@@ -5960,7 +5960,7 @@ G92 E0.0000
 ;retractionA
 ; layer 15, Z = 3.000
 ; feature inner perimeter
-G1 Z3.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z3.000 F1200
 ;unretractionA
@@ -6147,7 +6147,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z3.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z3.000 F1200
 ;unretractionA
@@ -6335,7 +6335,7 @@ G92 E0.0000
 ;retractionA
 ; layer 16, Z = 3.200
 ; feature inner perimeter
-G1 Z3.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z3.200 F1200
 ;unretractionA
@@ -6522,7 +6522,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z3.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z3.200 F1200
 ;unretractionA
@@ -6710,7 +6710,7 @@ G92 E0.0000
 ;retractionA
 ; layer 17, Z = 3.400
 ; feature inner perimeter
-G1 Z3.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z3.400 F1200
 ;unretractionA
@@ -6897,7 +6897,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z3.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z3.400 F1200
 ;unretractionA
@@ -7085,7 +7085,7 @@ G92 E0.0000
 ;retractionA
 ; layer 18, Z = 3.600
 ; feature inner perimeter
-G1 Z3.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z3.600 F1200
 ;unretractionA
@@ -7272,7 +7272,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z4.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z3.600 F1200
 ;unretractionA
@@ -7460,7 +7460,7 @@ G92 E0.0000
 ;retractionA
 ; layer 19, Z = 3.800
 ; feature inner perimeter
-G1 Z4.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z3.800 F1200
 ;unretractionA
@@ -7647,7 +7647,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z4.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z3.800 F1200
 ;unretractionA
@@ -7835,7 +7835,7 @@ G92 E0.0000
 ;retractionA
 ; layer 20, Z = 4.000
 ; feature inner perimeter
-G1 Z4.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z4.000 F1200
 ;unretractionA
@@ -8022,7 +8022,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z4.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z4.000 F1200
 ;unretractionA
@@ -8210,7 +8210,7 @@ G92 E0.0000
 ;retractionA
 ; layer 21, Z = 4.200
 ; feature inner perimeter
-G1 Z4.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z4.200 F1200
 ;unretractionA
@@ -8397,7 +8397,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z4.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z4.200 F1200
 ;unretractionA
@@ -8585,7 +8585,7 @@ G92 E0.0000
 ;retractionA
 ; layer 22, Z = 4.400
 ; feature inner perimeter
-G1 Z4.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z4.400 F1200
 ;unretractionA
@@ -8772,7 +8772,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z4.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z4.400 F1200
 ;unretractionA
@@ -8960,7 +8960,7 @@ G92 E0.0000
 ;retractionA
 ; layer 23, Z = 4.600
 ; feature inner perimeter
-G1 Z4.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z4.600 F1200
 ;unretractionA
@@ -9147,7 +9147,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z5.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z4.600 F1200
 ;unretractionA
@@ -9335,7 +9335,7 @@ G92 E0.0000
 ;retractionA
 ; layer 24, Z = 4.800
 ; feature inner perimeter
-G1 Z5.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z4.800 F1200
 ;unretractionA
@@ -9522,7 +9522,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z5.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z4.800 F1200
 ;unretractionA
@@ -9710,7 +9710,7 @@ G92 E0.0000
 ;retractionA
 ; layer 25, Z = 5.000
 ; feature inner perimeter
-G1 Z5.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z5.000 F1200
 ;unretractionA
@@ -9897,7 +9897,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z5.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z5.000 F1200
 ;unretractionA
@@ -10085,7 +10085,7 @@ G92 E0.0000
 ;retractionA
 ; layer 26, Z = 5.200
 ; feature inner perimeter
-G1 Z5.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z5.200 F1200
 ;unretractionA
@@ -10272,7 +10272,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z5.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z5.200 F1200
 ;unretractionA
@@ -10460,7 +10460,7 @@ G92 E0.0000
 ;retractionA
 ; layer 27, Z = 5.400
 ; feature inner perimeter
-G1 Z5.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z5.400 F1200
 ;unretractionA
@@ -10647,7 +10647,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z5.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z5.400 F1200
 ;unretractionA
@@ -10835,7 +10835,7 @@ G92 E0.0000
 ;retractionA
 ; layer 28, Z = 5.600
 ; feature inner perimeter
-G1 Z5.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z5.600 F1200
 ;unretractionA
@@ -11022,7 +11022,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z6.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z5.600 F1200
 ;unretractionA
@@ -11210,7 +11210,7 @@ G92 E0.0000
 ;retractionA
 ; layer 29, Z = 5.800
 ; feature inner perimeter
-G1 Z6.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z5.800 F1200
 ;unretractionA
@@ -11397,7 +11397,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z6.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z5.800 F1200
 ;unretractionA
@@ -11585,7 +11585,7 @@ G92 E0.0000
 ;retractionA
 ; layer 30, Z = 6.000
 ; feature inner perimeter
-G1 Z6.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z6.000 F1200
 ;unretractionA
@@ -11772,7 +11772,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z6.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z6.000 F1200
 ;unretractionA
@@ -11960,7 +11960,7 @@ G92 E0.0000
 ;retractionA
 ; layer 31, Z = 6.200
 ; feature inner perimeter
-G1 Z6.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z6.200 F1200
 ;unretractionA
@@ -12147,7 +12147,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z6.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z6.200 F1200
 ;unretractionA
@@ -12335,7 +12335,7 @@ G92 E0.0000
 ;retractionA
 ; layer 32, Z = 6.400
 ; feature inner perimeter
-G1 Z6.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z6.400 F1200
 ;unretractionA
@@ -12522,7 +12522,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z6.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z6.400 F1200
 ;unretractionA
@@ -12710,7 +12710,7 @@ G92 E0.0000
 ;retractionA
 ; layer 33, Z = 6.600
 ; feature inner perimeter
-G1 Z6.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z6.600 F1200
 ;unretractionA
@@ -12897,7 +12897,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z7.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z6.600 F1200
 ;unretractionA
@@ -13085,7 +13085,7 @@ G92 E0.0000
 ;retractionA
 ; layer 34, Z = 6.800
 ; feature inner perimeter
-G1 Z7.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z6.800 F1200
 ;unretractionA
@@ -13272,7 +13272,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z7.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z6.800 F1200
 ;unretractionA
@@ -13460,7 +13460,7 @@ G92 E0.0000
 ;retractionA
 ; layer 35, Z = 7.000
 ; feature inner perimeter
-G1 Z7.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z7.000 F1200
 ;unretractionA
@@ -13647,7 +13647,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z7.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z7.000 F1200
 ;unretractionA
@@ -13835,7 +13835,7 @@ G92 E0.0000
 ;retractionA
 ; layer 36, Z = 7.200
 ; feature inner perimeter
-G1 Z7.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z7.200 F1200
 ;unretractionA
@@ -14022,7 +14022,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z7.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z7.200 F1200
 ;unretractionA
@@ -14210,7 +14210,7 @@ G92 E0.0000
 ;retractionA
 ; layer 37, Z = 7.400
 ; feature inner perimeter
-G1 Z7.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z7.400 F1200
 ;unretractionA
@@ -14397,7 +14397,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z7.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z7.400 F1200
 ;unretractionA
@@ -14585,7 +14585,7 @@ G92 E0.0000
 ;retractionA
 ; layer 38, Z = 7.600
 ; feature inner perimeter
-G1 Z7.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z7.600 F1200
 ;unretractionA
@@ -14772,7 +14772,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z8.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z7.600 F1200
 ;unretractionA
@@ -14960,7 +14960,7 @@ G92 E0.0000
 ;retractionA
 ; layer 39, Z = 7.800
 ; feature inner perimeter
-G1 Z8.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z7.800 F1200
 ;unretractionA
@@ -15147,7 +15147,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z8.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z7.800 F1200
 ;unretractionA
@@ -15335,7 +15335,7 @@ G92 E0.0000
 ;retractionA
 ; layer 40, Z = 8.000
 ; feature inner perimeter
-G1 Z8.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z8.000 F1200
 ;unretractionA
@@ -15522,7 +15522,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionA
 ; feature inner perimeter
-G1 Z8.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z8.000 F1200
 ;unretractionA
@@ -15711,7 +15711,7 @@ G92 E0.0000
 ; process Color1-3
 ; layer 41, Z = 8.200
 ; feature inner perimeter
-G1 Z8.400 F1200
+;zhopup
 G1 X72.602 Y48.994 F6000
 G1 Z8.200 F1200
 ;unretractionA
@@ -15898,7 +15898,7 @@ G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z8.600 F1200
+;zhopup
 G1 X27.398 Y48.994 F6000
 G1 Z8.200 F1200
 ;unretractionB
@@ -16086,7 +16086,7 @@ G92 E0.0000
 ;retractionB
 ; layer 42, Z = 8.400
 ; feature inner perimeter
-G1 Z8.600 F1200
+;zhopup
 G1 X27.598 Y48.994 F6000
 G1 Z8.400 F1200
 ;unretractionB
@@ -16282,7 +16282,7 @@ G1 X28.560 Y48.994 E0.8030
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z8.800 F1200
+;zhopup
 G1 X72.402 Y48.994 F6000
 G1 Z8.400 F1200
 ;unretractionB
@@ -16476,7 +16476,7 @@ G92 E0.0000
 ;retractionB
 ; layer 43, Z = 8.600
 ; feature inner perimeter
-G1 Z8.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z8.600 F1200
 ;unretractionB
@@ -16663,7 +16663,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z9.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z8.600 F1200
 ;unretractionB
@@ -16851,7 +16851,7 @@ G92 E0.0000
 ;retractionB
 ; layer 44, Z = 8.800
 ; feature inner perimeter
-G1 Z9.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z8.800 F1200
 ;unretractionB
@@ -17038,7 +17038,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z9.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z8.800 F1200
 ;unretractionB
@@ -17226,7 +17226,7 @@ G92 E0.0000
 ;retractionB
 ; layer 45, Z = 9.000
 ; feature inner perimeter
-G1 Z9.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z9.000 F1200
 ;unretractionB
@@ -17413,7 +17413,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z9.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z9.000 F1200
 ;unretractionB
@@ -17601,7 +17601,7 @@ G92 E0.0000
 ;retractionB
 ; layer 46, Z = 9.200
 ; feature inner perimeter
-G1 Z9.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z9.200 F1200
 ;unretractionB
@@ -17788,7 +17788,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z9.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z9.200 F1200
 ;unretractionB
@@ -17976,7 +17976,7 @@ G92 E0.0000
 ;retractionB
 ; layer 47, Z = 9.400
 ; feature inner perimeter
-G1 Z9.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z9.400 F1200
 ;unretractionB
@@ -18163,7 +18163,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z9.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z9.400 F1200
 ;unretractionB
@@ -18351,7 +18351,7 @@ G92 E0.0000
 ;retractionB
 ; layer 48, Z = 9.600
 ; feature inner perimeter
-G1 Z9.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z9.600 F1200
 ;unretractionB
@@ -18538,7 +18538,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z10.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z9.600 F1200
 ;unretractionB
@@ -18726,7 +18726,7 @@ G92 E0.0000
 ;retractionB
 ; layer 49, Z = 9.800
 ; feature inner perimeter
-G1 Z10.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z9.800 F1200
 ;unretractionB
@@ -18913,7 +18913,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z10.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z9.800 F1200
 ;unretractionB
@@ -19101,7 +19101,7 @@ G92 E0.0000
 ;retractionB
 ; layer 50, Z = 10.000
 ; feature inner perimeter
-G1 Z10.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z10.000 F1200
 ;unretractionB
@@ -19288,7 +19288,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z10.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z10.000 F1200
 ;unretractionB
@@ -19476,7 +19476,7 @@ G92 E0.0000
 ;retractionB
 ; layer 51, Z = 10.200
 ; feature inner perimeter
-G1 Z10.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z10.200 F1200
 ;unretractionB
@@ -19663,7 +19663,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z10.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z10.200 F1200
 ;unretractionB
@@ -19851,7 +19851,7 @@ G92 E0.0000
 ;retractionB
 ; layer 52, Z = 10.400
 ; feature inner perimeter
-G1 Z10.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z10.400 F1200
 ;unretractionB
@@ -20038,7 +20038,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z10.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z10.400 F1200
 ;unretractionB
@@ -20226,7 +20226,7 @@ G92 E0.0000
 ;retractionB
 ; layer 53, Z = 10.600
 ; feature inner perimeter
-G1 Z10.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z10.600 F1200
 ;unretractionB
@@ -20413,7 +20413,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z11.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z10.600 F1200
 ;unretractionB
@@ -20601,7 +20601,7 @@ G92 E0.0000
 ;retractionB
 ; layer 54, Z = 10.800
 ; feature inner perimeter
-G1 Z11.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z10.800 F1200
 ;unretractionB
@@ -20788,7 +20788,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z11.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z10.800 F1200
 ;unretractionB
@@ -20976,7 +20976,7 @@ G92 E0.0000
 ;retractionB
 ; layer 55, Z = 11.000
 ; feature inner perimeter
-G1 Z11.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z11.000 F1200
 ;unretractionB
@@ -21163,7 +21163,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z11.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z11.000 F1200
 ;unretractionB
@@ -21351,7 +21351,7 @@ G92 E0.0000
 ;retractionB
 ; layer 56, Z = 11.200
 ; feature inner perimeter
-G1 Z11.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z11.200 F1200
 ;unretractionB
@@ -21538,7 +21538,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z11.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z11.200 F1200
 ;unretractionB
@@ -21726,7 +21726,7 @@ G92 E0.0000
 ;retractionB
 ; layer 57, Z = 11.400
 ; feature inner perimeter
-G1 Z11.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z11.400 F1200
 ;unretractionB
@@ -21913,7 +21913,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z11.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z11.400 F1200
 ;unretractionB
@@ -22101,7 +22101,7 @@ G92 E0.0000
 ;retractionB
 ; layer 58, Z = 11.600
 ; feature inner perimeter
-G1 Z11.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z11.600 F1200
 ;unretractionB
@@ -22288,7 +22288,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z12.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z11.600 F1200
 ;unretractionB
@@ -22476,7 +22476,7 @@ G92 E0.0000
 ;retractionB
 ; layer 59, Z = 11.800
 ; feature inner perimeter
-G1 Z12.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z11.800 F1200
 ;unretractionB
@@ -22663,7 +22663,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z12.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z11.800 F1200
 ;unretractionB
@@ -22851,7 +22851,7 @@ G92 E0.0000
 ;retractionB
 ; layer 60, Z = 12.000
 ; feature inner perimeter
-G1 Z12.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z12.000 F1200
 ;unretractionB
@@ -23038,7 +23038,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z12.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z12.000 F1200
 ;unretractionB
@@ -23226,7 +23226,7 @@ G92 E0.0000
 ;retractionB
 ; layer 61, Z = 12.200
 ; feature inner perimeter
-G1 Z12.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z12.200 F1200
 ;unretractionB
@@ -23413,7 +23413,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z12.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z12.200 F1200
 ;unretractionB
@@ -23601,7 +23601,7 @@ G92 E0.0000
 ;retractionB
 ; layer 62, Z = 12.400
 ; feature inner perimeter
-G1 Z12.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z12.400 F1200
 ;unretractionB
@@ -23788,7 +23788,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z12.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z12.400 F1200
 ;unretractionB
@@ -23976,7 +23976,7 @@ G92 E0.0000
 ;retractionB
 ; layer 63, Z = 12.600
 ; feature inner perimeter
-G1 Z12.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z12.600 F1200
 ;unretractionB
@@ -24163,7 +24163,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z13.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z12.600 F1200
 ;unretractionB
@@ -24351,7 +24351,7 @@ G92 E0.0000
 ;retractionB
 ; layer 64, Z = 12.800
 ; feature inner perimeter
-G1 Z13.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z12.800 F1200
 ;unretractionB
@@ -24538,7 +24538,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z13.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z12.800 F1200
 ;unretractionB
@@ -24726,7 +24726,7 @@ G92 E0.0000
 ;retractionB
 ; layer 65, Z = 13.000
 ; feature inner perimeter
-G1 Z13.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z13.000 F1200
 ;unretractionB
@@ -24913,7 +24913,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z13.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z13.000 F1200
 ;unretractionB
@@ -25101,7 +25101,7 @@ G92 E0.0000
 ;retractionB
 ; layer 66, Z = 13.200
 ; feature inner perimeter
-G1 Z13.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z13.200 F1200
 ;unretractionB
@@ -25288,7 +25288,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z13.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z13.200 F1200
 ;unretractionB
@@ -25476,7 +25476,7 @@ G92 E0.0000
 ;retractionB
 ; layer 67, Z = 13.400
 ; feature inner perimeter
-G1 Z13.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z13.400 F1200
 ;unretractionB
@@ -25663,7 +25663,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z13.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z13.400 F1200
 ;unretractionB
@@ -25851,7 +25851,7 @@ G92 E0.0000
 ;retractionB
 ; layer 68, Z = 13.600
 ; feature inner perimeter
-G1 Z13.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z13.600 F1200
 ;unretractionB
@@ -26038,7 +26038,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z14.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z13.600 F1200
 ;unretractionB
@@ -26226,7 +26226,7 @@ G92 E0.0000
 ;retractionB
 ; layer 69, Z = 13.800
 ; feature inner perimeter
-G1 Z14.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z13.800 F1200
 ;unretractionB
@@ -26413,7 +26413,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z14.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z13.800 F1200
 ;unretractionB
@@ -26601,7 +26601,7 @@ G92 E0.0000
 ;retractionB
 ; layer 70, Z = 14.000
 ; feature inner perimeter
-G1 Z14.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z14.000 F1200
 ;unretractionB
@@ -26788,7 +26788,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionB
 ; feature inner perimeter
-G1 Z14.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z14.000 F1200
 ;unretractionB
@@ -26977,7 +26977,7 @@ G92 E0.0000
 ; process Color1-4
 ; layer 71, Z = 14.200
 ; feature inner perimeter
-G1 Z14.400 F1200
+;zhopup
 G1 X72.602 Y48.994 F6000
 G1 Z14.200 F1200
 ;unretractionB
@@ -27164,7 +27164,7 @@ G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z14.600 F1200
+;zhopup
 G1 X27.398 Y48.994 F6000
 G1 Z14.200 F1200
 ;unretractionC
@@ -27352,7 +27352,7 @@ G92 E0.0000
 ;retractionC
 ; layer 72, Z = 14.400
 ; feature inner perimeter
-G1 Z14.600 F1200
+;zhopup
 G1 X27.598 Y48.994 F6000
 G1 Z14.400 F1200
 ;unretractionC
@@ -27548,7 +27548,7 @@ G1 X28.560 Y48.994 E0.8030
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z14.800 F1200
+;zhopup
 G1 X72.402 Y48.994 F6000
 G1 Z14.400 F1200
 ;unretractionC
@@ -27742,7 +27742,7 @@ G92 E0.0000
 ;retractionC
 ; layer 73, Z = 14.600
 ; feature inner perimeter
-G1 Z14.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z14.600 F1200
 ;unretractionC
@@ -27929,7 +27929,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z15.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z14.600 F1200
 ;unretractionC
@@ -28117,7 +28117,7 @@ G92 E0.0000
 ;retractionC
 ; layer 74, Z = 14.800
 ; feature inner perimeter
-G1 Z15.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z14.800 F1200
 ;unretractionC
@@ -28304,7 +28304,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z15.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z14.800 F1200
 ;unretractionC
@@ -28492,7 +28492,7 @@ G92 E0.0000
 ;retractionC
 ; layer 75, Z = 15.000
 ; feature inner perimeter
-G1 Z15.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z15.000 F1200
 ;unretractionC
@@ -28679,7 +28679,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z15.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z15.000 F1200
 ;unretractionC
@@ -28867,7 +28867,7 @@ G92 E0.0000
 ;retractionC
 ; layer 76, Z = 15.200
 ; feature inner perimeter
-G1 Z15.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z15.200 F1200
 ;unretractionC
@@ -29054,7 +29054,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z15.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z15.200 F1200
 ;unretractionC
@@ -29242,7 +29242,7 @@ G92 E0.0000
 ;retractionC
 ; layer 77, Z = 15.400
 ; feature inner perimeter
-G1 Z15.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z15.400 F1200
 ;unretractionC
@@ -29429,7 +29429,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z15.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z15.400 F1200
 ;unretractionC
@@ -29617,7 +29617,7 @@ G92 E0.0000
 ;retractionC
 ; layer 78, Z = 15.600
 ; feature inner perimeter
-G1 Z15.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z15.600 F1200
 ;unretractionC
@@ -29804,7 +29804,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z16.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z15.600 F1200
 ;unretractionC
@@ -29992,7 +29992,7 @@ G92 E0.0000
 ;retractionC
 ; layer 79, Z = 15.800
 ; feature inner perimeter
-G1 Z16.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z15.800 F1200
 ;unretractionC
@@ -30179,7 +30179,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z16.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z15.800 F1200
 ;unretractionC
@@ -30367,7 +30367,7 @@ G92 E0.0000
 ;retractionC
 ; layer 80, Z = 16.000
 ; feature inner perimeter
-G1 Z16.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z16.000 F1200
 ;unretractionC
@@ -30554,7 +30554,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z16.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z16.000 F1200
 ;unretractionC
@@ -30742,7 +30742,7 @@ G92 E0.0000
 ;retractionC
 ; layer 81, Z = 16.200
 ; feature inner perimeter
-G1 Z16.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z16.200 F1200
 ;unretractionC
@@ -30929,7 +30929,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z16.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z16.200 F1200
 ;unretractionC
@@ -31117,7 +31117,7 @@ G92 E0.0000
 ;retractionC
 ; layer 82, Z = 16.400
 ; feature inner perimeter
-G1 Z16.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z16.400 F1200
 ;unretractionC
@@ -31304,7 +31304,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z16.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z16.400 F1200
 ;unretractionC
@@ -31492,7 +31492,7 @@ G92 E0.0000
 ;retractionC
 ; layer 83, Z = 16.600
 ; feature inner perimeter
-G1 Z16.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z16.600 F1200
 ;unretractionC
@@ -31679,7 +31679,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z17.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z16.600 F1200
 ;unretractionC
@@ -31867,7 +31867,7 @@ G92 E0.0000
 ;retractionC
 ; layer 84, Z = 16.800
 ; feature inner perimeter
-G1 Z17.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z16.800 F1200
 ;unretractionC
@@ -32054,7 +32054,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z17.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z16.800 F1200
 ;unretractionC
@@ -32242,7 +32242,7 @@ G92 E0.0000
 ;retractionC
 ; layer 85, Z = 17.000
 ; feature inner perimeter
-G1 Z17.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z17.000 F1200
 ;unretractionC
@@ -32429,7 +32429,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z17.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z17.000 F1200
 ;unretractionC
@@ -32617,7 +32617,7 @@ G92 E0.0000
 ;retractionC
 ; layer 86, Z = 17.200
 ; feature inner perimeter
-G1 Z17.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z17.200 F1200
 ;unretractionC
@@ -32804,7 +32804,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z17.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z17.200 F1200
 ;unretractionC
@@ -32992,7 +32992,7 @@ G92 E0.0000
 ;retractionC
 ; layer 87, Z = 17.400
 ; feature inner perimeter
-G1 Z17.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z17.400 F1200
 ;unretractionC
@@ -33179,7 +33179,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z17.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z17.400 F1200
 ;unretractionC
@@ -33367,7 +33367,7 @@ G92 E0.0000
 ;retractionC
 ; layer 88, Z = 17.600
 ; feature inner perimeter
-G1 Z17.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z17.600 F1200
 ;unretractionC
@@ -33554,7 +33554,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z18.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z17.600 F1200
 ;unretractionC
@@ -33742,7 +33742,7 @@ G92 E0.0000
 ;retractionC
 ; layer 89, Z = 17.800
 ; feature inner perimeter
-G1 Z18.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z17.800 F1200
 ;unretractionC
@@ -33929,7 +33929,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z18.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z17.800 F1200
 ;unretractionC
@@ -34117,7 +34117,7 @@ G92 E0.0000
 ;retractionC
 ; layer 90, Z = 18.000
 ; feature inner perimeter
-G1 Z18.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z18.000 F1200
 ;unretractionC
@@ -34304,7 +34304,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z18.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z18.000 F1200
 ;unretractionC
@@ -34492,7 +34492,7 @@ G92 E0.0000
 ;retractionC
 ; layer 91, Z = 18.200
 ; feature inner perimeter
-G1 Z18.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z18.200 F1200
 ;unretractionC
@@ -34679,7 +34679,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z18.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z18.200 F1200
 ;unretractionC
@@ -34867,7 +34867,7 @@ G92 E0.0000
 ;retractionC
 ; layer 92, Z = 18.400
 ; feature inner perimeter
-G1 Z18.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z18.400 F1200
 ;unretractionC
@@ -35054,7 +35054,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z18.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z18.400 F1200
 ;unretractionC
@@ -35242,7 +35242,7 @@ G92 E0.0000
 ;retractionC
 ; layer 93, Z = 18.600
 ; feature inner perimeter
-G1 Z18.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z18.600 F1200
 ;unretractionC
@@ -35429,7 +35429,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z19.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z18.600 F1200
 ;unretractionC
@@ -35617,7 +35617,7 @@ G92 E0.0000
 ;retractionC
 ; layer 94, Z = 18.800
 ; feature inner perimeter
-G1 Z19.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z18.800 F1200
 ;unretractionC
@@ -35804,7 +35804,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z19.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z18.800 F1200
 ;unretractionC
@@ -35992,7 +35992,7 @@ G92 E0.0000
 ;retractionC
 ; layer 95, Z = 19.000
 ; feature inner perimeter
-G1 Z19.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z19.000 F1200
 ;unretractionC
@@ -36179,7 +36179,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z19.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z19.000 F1200
 ;unretractionC
@@ -36367,7 +36367,7 @@ G92 E0.0000
 ;retractionC
 ; layer 96, Z = 19.200
 ; feature inner perimeter
-G1 Z19.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z19.200 F1200
 ;unretractionC
@@ -36554,7 +36554,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z19.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z19.200 F1200
 ;unretractionC
@@ -36742,7 +36742,7 @@ G92 E0.0000
 ;retractionC
 ; layer 97, Z = 19.400
 ; feature inner perimeter
-G1 Z19.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z19.400 F1200
 ;unretractionC
@@ -36929,7 +36929,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z19.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z19.400 F1200
 ;unretractionC
@@ -37117,7 +37117,7 @@ G92 E0.0000
 ;retractionC
 ; layer 98, Z = 19.600
 ; feature inner perimeter
-G1 Z19.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z19.600 F1200
 ;unretractionC
@@ -37304,7 +37304,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z20.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z19.600 F1200
 ;unretractionC
@@ -37492,7 +37492,7 @@ G92 E0.0000
 ;retractionC
 ; layer 99, Z = 19.800
 ; feature inner perimeter
-G1 Z20.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z19.800 F1200
 ;unretractionC
@@ -37679,7 +37679,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z20.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z19.800 F1200
 ;unretractionC
@@ -37867,7 +37867,7 @@ G92 E0.0000
 ;retractionC
 ; layer 100, Z = 20.000
 ; feature inner perimeter
-G1 Z20.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z20.000 F1200
 ;unretractionC
@@ -38054,7 +38054,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionC
 ; feature inner perimeter
-G1 Z20.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z20.000 F1200
 ;unretractionC
@@ -38243,7 +38243,7 @@ G92 E0.0000
 ; process Color1-5
 ; layer 101, Z = 20.200
 ; feature inner perimeter
-G1 Z20.400 F1200
+;zhopup
 G1 X72.602 Y48.994 F6000
 G1 Z20.200 F1200
 ;unretractionC
@@ -38430,7 +38430,7 @@ G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z20.600 F1200
+;zhopup
 G1 X27.398 Y48.994 F6000
 G1 Z20.200 F1200
 ;unretractionD
@@ -38618,7 +38618,7 @@ G92 E0.0000
 ;retractionD
 ; layer 102, Z = 20.400
 ; feature inner perimeter
-G1 Z20.600 F1200
+;zhopup
 G1 X27.598 Y48.994 F6000
 G1 Z20.400 F1200
 ;unretractionD
@@ -38813,7 +38813,7 @@ G1 X28.560 Y48.994 E0.8030
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z20.800 F1200
+;zhopup
 G1 X72.402 Y48.994 F6000
 G1 Z20.400 F1200
 ;unretractionD
@@ -39005,7 +39005,7 @@ G92 E0.0000
 ;retractionD
 ; layer 103, Z = 20.600
 ; feature inner perimeter
-G1 Z20.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z20.600 F1200
 ;unretractionD
@@ -39192,7 +39192,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z21.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z20.600 F1200
 ;unretractionD
@@ -39380,7 +39380,7 @@ G92 E0.0000
 ;retractionD
 ; layer 104, Z = 20.800
 ; feature inner perimeter
-G1 Z21.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z20.800 F1200
 ;unretractionD
@@ -39567,7 +39567,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z21.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z20.800 F1200
 ;unretractionD
@@ -39755,7 +39755,7 @@ G92 E0.0000
 ;retractionD
 ; layer 105, Z = 21.000
 ; feature inner perimeter
-G1 Z21.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z21.000 F1200
 ;unretractionD
@@ -39942,7 +39942,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z21.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z21.000 F1200
 ;unretractionD
@@ -40130,7 +40130,7 @@ G92 E0.0000
 ;retractionD
 ; layer 106, Z = 21.200
 ; feature inner perimeter
-G1 Z21.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z21.200 F1200
 ;unretractionD
@@ -40317,7 +40317,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z21.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z21.200 F1200
 ;unretractionD
@@ -40505,7 +40505,7 @@ G92 E0.0000
 ;retractionD
 ; layer 107, Z = 21.400
 ; feature inner perimeter
-G1 Z21.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z21.400 F1200
 ;unretractionD
@@ -40692,7 +40692,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z21.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z21.400 F1200
 ;unretractionD
@@ -40880,7 +40880,7 @@ G92 E0.0000
 ;retractionD
 ; layer 108, Z = 21.600
 ; feature inner perimeter
-G1 Z21.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z21.600 F1200
 ;unretractionD
@@ -41067,7 +41067,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z22.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z21.600 F1200
 ;unretractionD
@@ -41255,7 +41255,7 @@ G92 E0.0000
 ;retractionD
 ; layer 109, Z = 21.800
 ; feature inner perimeter
-G1 Z22.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z21.800 F1200
 ;unretractionD
@@ -41442,7 +41442,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z22.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z21.800 F1200
 ;unretractionD
@@ -41630,7 +41630,7 @@ G92 E0.0000
 ;retractionD
 ; layer 110, Z = 22.000
 ; feature inner perimeter
-G1 Z22.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z22.000 F1200
 ;unretractionD
@@ -41817,7 +41817,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z22.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z22.000 F1200
 ;unretractionD
@@ -42005,7 +42005,7 @@ G92 E0.0000
 ;retractionD
 ; layer 111, Z = 22.200
 ; feature inner perimeter
-G1 Z22.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z22.200 F1200
 ;unretractionD
@@ -42192,7 +42192,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z22.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z22.200 F1200
 ;unretractionD
@@ -42380,7 +42380,7 @@ G92 E0.0000
 ;retractionD
 ; layer 112, Z = 22.400
 ; feature inner perimeter
-G1 Z22.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z22.400 F1200
 ;unretractionD
@@ -42567,7 +42567,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z22.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z22.400 F1200
 ;unretractionD
@@ -42755,7 +42755,7 @@ G92 E0.0000
 ;retractionD
 ; layer 113, Z = 22.600
 ; feature inner perimeter
-G1 Z22.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z22.600 F1200
 ;unretractionD
@@ -42942,7 +42942,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z23.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z22.600 F1200
 ;unretractionD
@@ -43130,7 +43130,7 @@ G92 E0.0000
 ;retractionD
 ; layer 114, Z = 22.800
 ; feature inner perimeter
-G1 Z23.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z22.800 F1200
 ;unretractionD
@@ -43317,9 +43317,9 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z23.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
-G1 Z22.800 F1200
+;zhopup
 ;unretractionD
 G92 E0.0000
 G1 X72.218 Y48.692 E0.0109 F2700
@@ -43505,7 +43505,7 @@ G92 E0.0000
 ;retractionD
 ; layer 115, Z = 23.000
 ; feature inner perimeter
-G1 Z23.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z23.000 F1200
 ;unretractionD
@@ -43692,7 +43692,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z23.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z23.000 F1200
 ;unretractionD
@@ -43880,7 +43880,7 @@ G92 E0.0000
 ;retractionD
 ; layer 116, Z = 23.200
 ; feature inner perimeter
-G1 Z23.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z23.200 F1200
 ;unretractionD
@@ -44067,7 +44067,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z23.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z23.200 F1200
 ;unretractionD
@@ -44255,7 +44255,7 @@ G92 E0.0000
 ;retractionD
 ; layer 117, Z = 23.400
 ; feature inner perimeter
-G1 Z23.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z23.400 F1200
 ;unretractionD
@@ -44442,7 +44442,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z23.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z23.400 F1200
 ;unretractionD
@@ -44630,7 +44630,7 @@ G92 E0.0000
 ;retractionD
 ; layer 118, Z = 23.600
 ; feature inner perimeter
-G1 Z23.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z23.600 F1200
 ;unretractionD
@@ -44817,7 +44817,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z24.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z23.600 F1200
 ;unretractionD
@@ -45005,7 +45005,7 @@ G92 E0.0000
 ;retractionD
 ; layer 119, Z = 23.800
 ; feature inner perimeter
-G1 Z24.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z23.800 F1200
 ;unretractionD
@@ -45192,7 +45192,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z24.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z23.800 F1200
 ;unretractionD
@@ -45380,7 +45380,7 @@ G92 E0.0000
 ;retractionD
 ; layer 120, Z = 24.000
 ; feature inner perimeter
-G1 Z24.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z24.000 F1200
 ;unretractionD
@@ -45567,7 +45567,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z24.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z24.000 F1200
 ;unretractionD
@@ -45755,7 +45755,7 @@ G92 E0.0000
 ;retractionD
 ; layer 121, Z = 24.200
 ; feature inner perimeter
-G1 Z24.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z24.200 F1200
 ;unretractionD
@@ -45942,7 +45942,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z24.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z24.200 F1200
 ;unretractionD
@@ -46130,7 +46130,7 @@ G92 E0.0000
 ;retractionD
 ; layer 122, Z = 24.400
 ; feature inner perimeter
-G1 Z24.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z24.400 F1200
 ;unretractionD
@@ -46317,7 +46317,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z24.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z24.400 F1200
 ;unretractionD
@@ -46505,7 +46505,7 @@ G92 E0.0000
 ;retractionD
 ; layer 123, Z = 24.600
 ; feature inner perimeter
-G1 Z24.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z24.600 F1200
 ;unretractionD
@@ -46692,7 +46692,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z25.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z24.600 F1200
 ;unretractionD
@@ -46880,7 +46880,7 @@ G92 E0.0000
 ;retractionD
 ; layer 124, Z = 24.800
 ; feature inner perimeter
-G1 Z25.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z24.800 F1200
 ;unretractionD
@@ -47067,7 +47067,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z25.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z24.800 F1200
 ;unretractionD
@@ -47255,7 +47255,7 @@ G92 E0.0000
 ;retractionD
 ; layer 125, Z = 25.000
 ; feature inner perimeter
-G1 Z25.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z25.000 F1200
 ;unretractionD
@@ -47442,7 +47442,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z25.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z25.000 F1200
 ;unretractionD
@@ -47630,7 +47630,7 @@ G92 E0.0000
 ;retractionD
 ; layer 126, Z = 25.200
 ; feature inner perimeter
-G1 Z25.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z25.200 F1200
 ;unretractionD
@@ -47817,7 +47817,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z25.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z25.200 F1200
 ;unretractionD
@@ -48005,7 +48005,7 @@ G92 E0.0000
 ;retractionD
 ; layer 127, Z = 25.400
 ; feature inner perimeter
-G1 Z25.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z25.400 F1200
 ;unretractionD
@@ -48192,7 +48192,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z25.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z25.400 F1200
 ;unretractionD
@@ -48380,7 +48380,7 @@ G92 E0.0000
 ;retractionD
 ; layer 128, Z = 25.600
 ; feature inner perimeter
-G1 Z25.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z25.600 F1200
 ;unretractionD
@@ -48567,7 +48567,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z26.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z25.600 F1200
 ;unretractionD
@@ -48755,7 +48755,7 @@ G92 E0.0000
 ;retractionD
 ; layer 129, Z = 25.800
 ; feature inner perimeter
-G1 Z26.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z25.800 F1200
 ;unretractionD
@@ -48942,7 +48942,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z26.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z25.800 F1200
 ;unretractionD
@@ -49130,7 +49130,7 @@ G92 E0.0000
 ;retractionD
 ; layer 130, Z = 26.000
 ; feature inner perimeter
-G1 Z26.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z26.000 F1200
 ;unretractionD
@@ -49317,7 +49317,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionD
 ; feature inner perimeter
-G1 Z26.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z26.000 F1200
 ;unretractionD
@@ -49506,7 +49506,7 @@ G92 E0.0000
 ; process Color1-6
 ; layer 131, Z = 26.200
 ; feature inner perimeter
-G1 Z26.400 F1200
+;zhopup
 G1 X72.602 Y48.994 F6000
 G1 Z26.200 F1200
 ;unretractionD
@@ -49693,7 +49693,7 @@ G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z26.600 F1200
+;zhopup
 G1 X27.398 Y48.994 F6000
 G1 Z26.200 F1200
 ;unretractionE
@@ -49881,7 +49881,7 @@ G92 E0.0000
 ;retractionE
 ; layer 132, Z = 26.400
 ; feature inner perimeter
-G1 Z26.600 F1200
+;zhopup
 G1 X27.598 Y48.994 F6000
 G1 Z26.400 F1200
 ;unretractionE
@@ -50076,7 +50076,7 @@ G1 X28.560 Y48.994 E0.8030
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z26.800 F1200
+;zhopup
 G1 X72.402 Y48.994 F6000
 G1 Z26.400 F1200
 ;unretractionE
@@ -50268,7 +50268,7 @@ G92 E0.0000
 ;retractionE
 ; layer 133, Z = 26.600
 ; feature inner perimeter
-G1 Z26.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z26.600 F1200
 ;unretractionE
@@ -50455,7 +50455,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z27.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z26.600 F1200
 ;unretractionE
@@ -50643,7 +50643,7 @@ G92 E0.0000
 ;retractionE
 ; layer 134, Z = 26.800
 ; feature inner perimeter
-G1 Z27.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z26.800 F1200
 ;unretractionE
@@ -50830,7 +50830,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z27.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z26.800 F1200
 ;unretractionE
@@ -51018,7 +51018,7 @@ G92 E0.0000
 ;retractionE
 ; layer 135, Z = 27.000
 ; feature inner perimeter
-G1 Z27.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z27.000 F1200
 ;unretractionE
@@ -51205,7 +51205,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z27.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z27.000 F1200
 ;unretractionE
@@ -51393,7 +51393,7 @@ G92 E0.0000
 ;retractionE
 ; layer 136, Z = 27.200
 ; feature inner perimeter
-G1 Z27.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z27.200 F1200
 ;unretractionE
@@ -51580,7 +51580,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z27.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z27.200 F1200
 ;unretractionE
@@ -51768,7 +51768,7 @@ G92 E0.0000
 ;retractionE
 ; layer 137, Z = 27.400
 ; feature inner perimeter
-G1 Z27.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z27.400 F1200
 ;unretractionE
@@ -51955,7 +51955,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z27.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z27.400 F1200
 ;unretractionE
@@ -52143,7 +52143,7 @@ G92 E0.0000
 ;retractionE
 ; layer 138, Z = 27.600
 ; feature inner perimeter
-G1 Z27.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z27.600 F1200
 ;unretractionE
@@ -52330,7 +52330,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z28.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z27.600 F1200
 ;unretractionE
@@ -52518,7 +52518,7 @@ G92 E0.0000
 ;retractionE
 ; layer 139, Z = 27.800
 ; feature inner perimeter
-G1 Z28.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z27.800 F1200
 ;unretractionE
@@ -52705,7 +52705,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z28.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z27.800 F1200
 ;unretractionE
@@ -52893,7 +52893,7 @@ G92 E0.0000
 ;retractionE
 ; layer 140, Z = 28.000
 ; feature inner perimeter
-G1 Z28.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z28.000 F1200
 ;unretractionE
@@ -53080,7 +53080,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z28.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z28.000 F1200
 ;unretractionE
@@ -53268,7 +53268,7 @@ G92 E0.0000
 ;retractionE
 ; layer 141, Z = 28.200
 ; feature inner perimeter
-G1 Z28.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z28.200 F1200
 ;unretractionE
@@ -53455,7 +53455,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z28.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z28.200 F1200
 ;unretractionE
@@ -53643,7 +53643,7 @@ G92 E0.0000
 ;retractionE
 ; layer 142, Z = 28.400
 ; feature inner perimeter
-G1 Z28.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z28.400 F1200
 ;unretractionE
@@ -53830,7 +53830,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z28.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z28.400 F1200
 ;unretractionE
@@ -54018,7 +54018,7 @@ G92 E0.0000
 ;retractionE
 ; layer 143, Z = 28.600
 ; feature inner perimeter
-G1 Z28.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z28.600 F1200
 ;unretractionE
@@ -54205,7 +54205,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z29.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z28.600 F1200
 ;unretractionE
@@ -54393,7 +54393,7 @@ G92 E0.0000
 ;retractionE
 ; layer 144, Z = 28.800
 ; feature inner perimeter
-G1 Z29.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z28.800 F1200
 ;unretractionE
@@ -54580,7 +54580,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z29.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z28.800 F1200
 ;unretractionE
@@ -54768,7 +54768,7 @@ G92 E0.0000
 ;retractionE
 ; layer 145, Z = 29.000
 ; feature inner perimeter
-G1 Z29.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z29.000 F1200
 ;unretractionE
@@ -54955,7 +54955,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z29.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z29.000 F1200
 ;unretractionE
@@ -55143,7 +55143,7 @@ G92 E0.0000
 ;retractionE
 ; layer 146, Z = 29.200
 ; feature inner perimeter
-G1 Z29.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z29.200 F1200
 ;unretractionE
@@ -55330,7 +55330,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z29.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z29.200 F1200
 ;unretractionE
@@ -55518,7 +55518,7 @@ G92 E0.0000
 ;retractionE
 ; layer 147, Z = 29.400
 ; feature inner perimeter
-G1 Z29.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z29.400 F1200
 ;unretractionE
@@ -55705,7 +55705,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z29.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z29.400 F1200
 ;unretractionE
@@ -55893,7 +55893,7 @@ G92 E0.0000
 ;retractionE
 ; layer 148, Z = 29.600
 ; feature inner perimeter
-G1 Z29.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z29.600 F1200
 ;unretractionE
@@ -56080,7 +56080,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z30.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z29.600 F1200
 ;unretractionE
@@ -56268,7 +56268,7 @@ G92 E0.0000
 ;retractionE
 ; layer 149, Z = 29.800
 ; feature inner perimeter
-G1 Z30.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z29.800 F1200
 ;unretractionE
@@ -56455,7 +56455,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z30.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z29.800 F1200
 ;unretractionE
@@ -56643,7 +56643,7 @@ G92 E0.0000
 ;retractionE
 ; layer 150, Z = 30.000
 ; feature inner perimeter
-G1 Z30.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z30.000 F1200
 ;unretractionE
@@ -56830,7 +56830,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z30.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z30.000 F1200
 ;unretractionE
@@ -57018,7 +57018,7 @@ G92 E0.0000
 ;retractionE
 ; layer 151, Z = 30.200
 ; feature inner perimeter
-G1 Z30.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z30.200 F1200
 ;unretractionE
@@ -57205,7 +57205,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z30.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z30.200 F1200
 ;unretractionE
@@ -57393,7 +57393,7 @@ G92 E0.0000
 ;retractionE
 ; layer 152, Z = 30.400
 ; feature inner perimeter
-G1 Z30.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z30.400 F1200
 ;unretractionE
@@ -57580,7 +57580,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z30.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z30.400 F1200
 ;unretractionE
@@ -57768,7 +57768,7 @@ G92 E0.0000
 ;retractionE
 ; layer 153, Z = 30.600
 ; feature inner perimeter
-G1 Z30.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z30.600 F1200
 ;unretractionE
@@ -57955,7 +57955,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z31.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z30.600 F1200
 ;unretractionE
@@ -58143,7 +58143,7 @@ G92 E0.0000
 ;retractionE
 ; layer 154, Z = 30.800
 ; feature inner perimeter
-G1 Z31.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z30.800 F1200
 ;unretractionE
@@ -58330,7 +58330,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z31.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z30.800 F1200
 ;unretractionE
@@ -58518,7 +58518,7 @@ G92 E0.0000
 ;retractionE
 ; layer 155, Z = 31.000
 ; feature inner perimeter
-G1 Z31.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z31.000 F1200
 ;unretractionE
@@ -58705,7 +58705,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z31.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z31.000 F1200
 ;unretractionE
@@ -58893,7 +58893,7 @@ G92 E0.0000
 ;retractionE
 ; layer 156, Z = 31.200
 ; feature inner perimeter
-G1 Z31.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z31.200 F1200
 ;unretractionE
@@ -59080,7 +59080,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z31.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z31.200 F1200
 ;unretractionE
@@ -59268,7 +59268,7 @@ G92 E0.0000
 ;retractionE
 ; layer 157, Z = 31.400
 ; feature inner perimeter
-G1 Z31.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z31.400 F1200
 ;unretractionE
@@ -59455,7 +59455,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z31.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z31.400 F1200
 ;unretractionE
@@ -59643,7 +59643,7 @@ G92 E0.0000
 ;retractionE
 ; layer 158, Z = 31.600
 ; feature inner perimeter
-G1 Z31.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z31.600 F1200
 ;unretractionE
@@ -59830,7 +59830,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z32.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z31.600 F1200
 ;unretractionE
@@ -60018,7 +60018,7 @@ G92 E0.0000
 ;retractionE
 ; layer 159, Z = 31.800
 ; feature inner perimeter
-G1 Z32.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z31.800 F1200
 ;unretractionE
@@ -60205,7 +60205,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z32.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z31.800 F1200
 ;unretractionE
@@ -60393,7 +60393,7 @@ G92 E0.0000
 ;retractionE
 ; layer 160, Z = 32.000
 ; feature inner perimeter
-G1 Z32.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z32.000 F1200
 ;unretractionE
@@ -60580,7 +60580,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionE
 ; feature inner perimeter
-G1 Z32.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z32.000 F1200
 ;unretractionE
@@ -60769,7 +60769,7 @@ G92 E0.0000
 ; process Color1-7
 ; layer 161, Z = 32.200
 ; feature inner perimeter
-G1 Z32.400 F1200
+;zhopup
 G1 X72.602 Y48.994 F6000
 G1 Z32.200 F1200
 ;unretractionE
@@ -60956,7 +60956,7 @@ G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z32.600 F1200
+;zhopup
 G1 X27.398 Y48.994 F6000
 G1 Z32.200 F1200
 ;unretractionF
@@ -61144,7 +61144,7 @@ G92 E0.0000
 ;retractionF
 ; layer 162, Z = 32.400
 ; feature inner perimeter
-G1 Z32.600 F1200
+;zhopup
 G1 X27.598 Y48.994 F6000
 G1 Z32.400 F1200
 ;unretractionF
@@ -61339,7 +61339,7 @@ G1 X28.560 Y48.994 E0.8030
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z32.800 F1200
+;zhopup
 G1 X72.402 Y48.994 F6000
 G1 Z32.400 F1200
 ;unretractionF
@@ -61531,7 +61531,7 @@ G92 E0.0000
 ;retractionF
 ; layer 163, Z = 32.600
 ; feature inner perimeter
-G1 Z32.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z32.600 F1200
 ;unretractionF
@@ -61718,7 +61718,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z33.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z32.600 F1200
 ;unretractionF
@@ -61906,7 +61906,7 @@ G92 E0.0000
 ;retractionF
 ; layer 164, Z = 32.800
 ; feature inner perimeter
-G1 Z33.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z32.800 F1200
 ;unretractionF
@@ -62093,7 +62093,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z33.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z32.800 F1200
 ;unretractionF
@@ -62281,7 +62281,7 @@ G92 E0.0000
 ;retractionF
 ; layer 165, Z = 33.000
 ; feature inner perimeter
-G1 Z33.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z33.000 F1200
 ;unretractionF
@@ -62468,7 +62468,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z33.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z33.000 F1200
 ;unretractionF
@@ -62656,7 +62656,7 @@ G92 E0.0000
 ;retractionF
 ; layer 166, Z = 33.200
 ; feature inner perimeter
-G1 Z33.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z33.200 F1200
 ;unretractionF
@@ -62843,7 +62843,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z33.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z33.200 F1200
 ;unretractionF
@@ -63031,7 +63031,7 @@ G92 E0.0000
 ;retractionF
 ; layer 167, Z = 33.400
 ; feature inner perimeter
-G1 Z33.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z33.400 F1200
 ;unretractionF
@@ -63218,7 +63218,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z33.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z33.400 F1200
 ;unretractionF
@@ -63406,7 +63406,7 @@ G92 E0.0000
 ;retractionF
 ; layer 168, Z = 33.600
 ; feature inner perimeter
-G1 Z33.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z33.600 F1200
 ;unretractionF
@@ -63593,7 +63593,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z34.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z33.600 F1200
 ;unretractionF
@@ -63781,7 +63781,7 @@ G92 E0.0000
 ;retractionF
 ; layer 169, Z = 33.800
 ; feature inner perimeter
-G1 Z34.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z33.800 F1200
 ;unretractionF
@@ -63968,7 +63968,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z34.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z33.800 F1200
 ;unretractionF
@@ -64156,7 +64156,7 @@ G92 E0.0000
 ;retractionF
 ; layer 170, Z = 34.000
 ; feature inner perimeter
-G1 Z34.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z34.000 F1200
 ;unretractionF
@@ -64343,7 +64343,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z34.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z34.000 F1200
 ;unretractionF
@@ -64531,7 +64531,7 @@ G92 E0.0000
 ;retractionF
 ; layer 171, Z = 34.200
 ; feature inner perimeter
-G1 Z34.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z34.200 F1200
 ;unretractionF
@@ -64718,7 +64718,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z34.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z34.200 F1200
 ;unretractionF
@@ -64906,7 +64906,7 @@ G92 E0.0000
 ;retractionF
 ; layer 172, Z = 34.400
 ; feature inner perimeter
-G1 Z34.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z34.400 F1200
 ;unretractionF
@@ -65093,7 +65093,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z34.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z34.400 F1200
 ;unretractionF
@@ -65281,7 +65281,7 @@ G92 E0.0000
 ;retractionF
 ; layer 173, Z = 34.600
 ; feature inner perimeter
-G1 Z34.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z34.600 F1200
 ;unretractionF
@@ -65468,7 +65468,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z35.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z34.600 F1200
 ;unretractionF
@@ -65656,7 +65656,7 @@ G92 E0.0000
 ;retractionF
 ; layer 174, Z = 34.800
 ; feature inner perimeter
-G1 Z35.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z34.800 F1200
 ;unretractionF
@@ -65843,7 +65843,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z35.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z34.800 F1200
 ;unretractionF
@@ -66031,7 +66031,7 @@ G92 E0.0000
 ;retractionF
 ; layer 175, Z = 35.000
 ; feature inner perimeter
-G1 Z35.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z35.000 F1200
 ;unretractionF
@@ -66218,7 +66218,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z35.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z35.000 F1200
 ;unretractionF
@@ -66406,7 +66406,7 @@ G92 E0.0000
 ;retractionF
 ; layer 176, Z = 35.200
 ; feature inner perimeter
-G1 Z35.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z35.200 F1200
 ;unretractionF
@@ -66593,7 +66593,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z35.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z35.200 F1200
 ;unretractionF
@@ -66781,7 +66781,7 @@ G92 E0.0000
 ;retractionF
 ; layer 177, Z = 35.400
 ; feature inner perimeter
-G1 Z35.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z35.400 F1200
 ;unretractionF
@@ -66968,7 +66968,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z35.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z35.400 F1200
 ;unretractionF
@@ -67156,7 +67156,7 @@ G92 E0.0000
 ;retractionF
 ; layer 178, Z = 35.600
 ; feature inner perimeter
-G1 Z35.800 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z35.600 F1200
 ;unretractionF
@@ -67343,7 +67343,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z36.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z35.600 F1200
 ;unretractionF
@@ -67531,7 +67531,7 @@ G92 E0.0000
 ;retractionF
 ; layer 179, Z = 35.800
 ; feature inner perimeter
-G1 Z36.000 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z35.800 F1200
 ;unretractionF
@@ -67718,7 +67718,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z36.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z35.800 F1200
 ;unretractionF
@@ -67906,7 +67906,7 @@ G92 E0.0000
 ;retractionF
 ; layer 180, Z = 36.000
 ; feature inner perimeter
-G1 Z36.200 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z36.000 F1200
 ;unretractionF
@@ -68093,7 +68093,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z36.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z36.000 F1200
 ;unretractionF
@@ -68281,7 +68281,7 @@ G92 E0.0000
 ;retractionF
 ; layer 181, Z = 36.200
 ; feature inner perimeter
-G1 Z36.400 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z36.200 F1200
 ;unretractionF
@@ -68468,7 +68468,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z36.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z36.200 F1200
 ;unretractionF
@@ -68656,7 +68656,7 @@ G92 E0.0000
 ;retractionF
 ; layer 182, Z = 36.400
 ; feature inner perimeter
-G1 Z36.600 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z36.400 F1200
 ;unretractionF
@@ -68843,7 +68843,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z36.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z36.400 F1200
 ;unretractionF
@@ -69031,7 +69031,7 @@ G92 E0.0000
 ;retractionF
 ; layer 183, Z = 36.600
 ; feature inner perimeter
-G1 Z36.800 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z36.600 F1200
 ;unretractionF
@@ -69218,7 +69218,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z37.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z36.600 F1200
 ;unretractionF
@@ -69406,7 +69406,7 @@ G92 E0.0000
 ;retractionF
 ; layer 184, Z = 36.800
 ; feature inner perimeter
-G1 Z37.000 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z36.800 F1200
 ;unretractionF
@@ -69593,7 +69593,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z37.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z36.800 F1200
 ;unretractionF
@@ -69781,7 +69781,7 @@ G92 E0.0000
 ;retractionF
 ; layer 185, Z = 37.000
 ; feature inner perimeter
-G1 Z37.200 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z37.000 F1200
 ;unretractionF
@@ -69968,7 +69968,7 @@ G1 X71.240 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z37.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z37.000 F1200
 ;unretractionF
@@ -70156,7 +70156,7 @@ G92 E0.0000
 ;retractionF
 ; layer 186, Z = 37.200
 ; feature inner perimeter
-G1 Z37.400 F1200
+;zhopup
 G1 X27.798 Y48.994 F6000
 G1 Z37.200 F1200
 ;unretractionF
@@ -70343,7 +70343,7 @@ G1 X28.760 Y48.994 E0.8481
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z37.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z37.200 F1200
 ;unretractionF
@@ -70531,7 +70531,7 @@ G92 E0.0000
 ;retractionF
 ; layer 187, Z = 37.400
 ; feature inner perimeter
-G1 Z37.600 F1200
+;zhopup
 G1 X72.202 Y48.994 F6000
 G1 Z37.400 F1200
 ;unretractionF
@@ -70760,7 +70760,7 @@ G1 X75.813 Y46.624 E1.6551
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z37.800 F1200
+;zhopup
 G1 X71.942 Y46.815 F6000
 G1 X71.779 Y47.056
 G1 X71.588 Y47.416
@@ -70998,7 +70998,7 @@ G92 E0.0000
 ;retractionF
 ; layer 188, Z = 37.600
 ; feature inner perimeter
-G1 Z37.800 F1200
+;zhopup
 G1 X22.348 Y49.888 F6000
 G1 Z37.600 F1200
 ;unretractionF
@@ -71225,7 +71225,7 @@ G1 X25.461 Y51.459 E1.6552
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z38.000 F1200
+;zhopup
 G1 X27.943 Y51.328 F6000
 G1 X27.993 Y51.269
 G1 X28.221 Y50.932
@@ -71464,7 +71464,7 @@ G92 E0.0000
 ;retractionF
 ; layer 189, Z = 37.800
 ; feature inner perimeter
-G1 Z38.000 F1200
+;zhopup
 G1 X75.749 Y51.690 F6000
 G1 Z37.800 F1200
 ;unretractionF
@@ -71693,7 +71693,7 @@ G1 X75.813 Y46.624 E1.6551
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z38.200 F1200
+;zhopup
 G1 X71.942 Y46.815 F6000
 G1 X71.779 Y47.056
 G1 X71.588 Y47.416
@@ -71931,7 +71931,7 @@ G92 E0.0000
 ;retractionF
 ; layer 190, Z = 38.000
 ; feature inner perimeter
-G1 Z38.200 F1200
+;zhopup
 G1 X22.348 Y49.888 F6000
 G1 Z38.000 F1200
 ;unretractionF
@@ -72158,7 +72158,7 @@ G1 X25.461 Y51.459 E1.6552
 G92 E0.0000
 ;retractionF
 ; feature inner perimeter
-G1 Z38.400 F1200
+;zhopup
 G1 X27.943 Y51.328 F6000
 G1 X27.993 Y51.269
 G1 X28.221 Y50.932
