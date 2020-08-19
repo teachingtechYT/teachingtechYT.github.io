@@ -279,23 +279,23 @@ function processRetraction(){
         }   
     }
     // A section
-    retraction = retraction.replace(/G1 E-6.0000 F900/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
-    retraction = retraction.replace(/G1 E0.4000 F900/g, "G1 E"+a3+" F"+a2+" ; custom un-retraction/prime - A");
+    retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+    retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a2+" ; custom un-retraction/prime - A");
     // B section
-    retraction = retraction.replace(/G1 E-7.0000 F1200/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
-    retraction = retraction.replace(/G1 E0.6000 F1200/g, "G1 E"+b3+" F"+b2+" ; custom un-retraction/prime - B");
+    retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
+    retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b2+" ; custom un-retraction/prime - B");
     // C section
-    retraction = retraction.replace(/G1 E-8.0000 F1500/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
-    retraction = retraction.replace(/G1 E0.8000 F1500/g, "G1 E"+c3+" F"+c2+" ; custom un-retraction/prime - C");
+    retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
+    retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c2+" ; custom un-retraction/prime - C");
     // D section
-    retraction = retraction.replace(/G1 E-9.0000 F1800/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
-    retraction = retraction.replace(/G1 E1.0000 F1800/g, "G1 E"+d3+" F"+d2+" ; custom un-retraction/prime - D");
+    retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
+    retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d2+" ; custom un-retraction/prime - D");
     // E section
-    retraction = retraction.replace(/G1 E-10.0000 F2100/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
-    retraction = retraction.replace(/G1 E1.2000 F2100/g, "G1 E"+e3+" F"+e2+" ; custom un-retraction/prime - E");
+    retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
+    retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e2+" ; custom un-retraction/prime - E");
     // F section
-    retraction = retraction.replace(/G1 E-11.0000 F2400/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
-    retraction = retraction.replace(/G1 E1.4000 F2400/g, "G1 E"+f3+" F"+f2+" ; custom un-retraction/prime - F");
+    retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
+    retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f2+" ; custom un-retraction/prime - F");
     if(document.retractionForm.start.checked == true) {
         retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
