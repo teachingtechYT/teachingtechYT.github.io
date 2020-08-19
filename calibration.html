@@ -517,6 +517,7 @@
             <ul>
                 <li>Retraction acceleration: This will affect whether the retraction speed can actually be reached. The gcode below does not include any changes to what is set on your printer. You can change this with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>R</b> argument.</li>
                 <li>Slicer settings such as coast: Coast stops extrusion slightly early to assist retraction. This varies from slicer to slicer and isn't always necessary to tune.</li>
+                <li>Travel feedrate: A travel move is one where the printer moves to a new location without extruding. The slower this move is, the more time filament will have to ooze from the nozzle and add to stringing.</li>
                 <li>Linear advance: Linear advance, covered later in this guide, can drastically improve the accuracy of our extrusion. It has a significant impact of retraction (reducing the need), so after configuring linear advance you may need to revisit retraction.</li>
                 <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For instance, Cura measures extra restart distance in volume rather than length.</li>
             </ul>
