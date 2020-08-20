@@ -462,7 +462,7 @@
         <div class="exp">
             <h2>Retraction Tuning</h2>
             <h5>Aim:</h5>
-            <p>To set the correct parameters concerning retraction during 3D printing, including retraction distance, speed, extra restart distance and z hop.</p>
+            <p>To set the correct parameters concerning retraction during 3D printing, including retraction distance, speed, extra restart distance, prime speed and z hop.</p>
             <h5>When required:</h5>
             <p>Initial calibration, any time the hot end or extruder is changed, when trying a new type/brand of filament.</p>
             <h5>Tools:</h5>
@@ -475,7 +475,7 @@
             <h5>Special note:</h5>
             <p>Temperature tuning and retraction tuning are related to each other. You could do them in either order, and it may be necessary to tune back and forth to reach an ideal result. A higher nozzle temperature will promote more oozing and stringing, whereas a lower temperature will reduce oozing and stringing.</p>
         </div>
-        <p>Besides hot end temperature, there are four parameters we will be tuning relating to retraction. In the table is a description of each as well as where the setting is found in the most popular slicers.</p>
+        <p>Besides hot end temperature, there are five parameters we will be tuning relating to retraction. In the table is a description of each as well as where the setting is found in the most popular slicers. By far the most important is retraction distance.</p>
         <table>
             <head>
                 <tr>
@@ -487,25 +487,31 @@
             </head>
             <tbody>
                 <tr>
-                    <td>Retraction distance: The length the filament is pulled away from the nozzle in mm.</td>
+                    <td><b>Retraction distance</b>: The length the filament is pulled away from the nozzle in mm.</td>
                     <td>Travel > Retraction distance</td>
                     <td>Extruder > Retraction distance</td>
                     <td>Printer settings > Extruder 1 > Retraction > Length</td>
                 </tr>
                 <tr>
-                    <td>Retraction speed: The speed at which this filament is withdrawn in mm/sec.</td>
+                    <td><b>Retraction speed</b>: The speed at which this filament is withdrawn in mm/sec.</td>
                     <td>Travel > Retraction speed</td>
                     <td>Extruder > Retraction speed</td>
                     <td>Printer settings > Extruder 1 > Retraction > Retraction Speed</td>
                 </tr>
                 <tr>
-                    <td>Extra restart distance: The retraction distance will be reversed when the travel (non-extruding) movement is over. This is typically zero, but you can opt for extra filament to be extruded (a positive value) or less than what was retracted (a negative value). Also measured in mm.</td>
+                    <td><b>Extra restart distance</b>: The retraction distance will be reversed when the travel (non-extruding) movement is over. This is typically zero, but you can opt for extra filament to be extruded (a positive value) or less than what was retracted (a negative value). Also measured in mm.</td>
                     <td>Travel > Retraction extra prime amount</td>
                     <td>Extruder > Extra restart distance</td>
                     <td>Printer settings > Extruder 1 > Retraction > Extra length on restart</td>
                 </tr>
                 <tr>
-                    <td>Z hop: The amount the nozzle lifts vertically in mm during a travel (non-extruding) movement. After this movement, the correct Z value is then restored before the filament is unretracted/primed again ready for printing.</td>
+                    <td><b>Prime (unretract) speed</b>: The speed at which this filament is reintroduced to the nozzle in mm/sec.</td>
+                    <td>Travel > Retraction prime speed</td>
+                    <td><i>Not supported. S3D will use retraction speed as prime speed.</i></td>
+                    <td>Printer settings > Extruder 1 > Retraction > Deretraction speed</td>
+                </tr>
+                <tr>
+                    <td><b>Z hop</b>: The amount the nozzle lifts vertically in mm during a travel (non-extruding) movement. After this movement, the correct Z value is then restored before the filament is unretracted/primed again ready for printing.</td>
                     <td>Travel > Z hop when retracted</td>
                     <td>Extruder > Retraction vertical lift</td>
                     <td>Printer settings > Extruder 1 > Retraction > Lift z</td>
@@ -516,7 +522,7 @@
             <h5>Other factors beyond the scope of this test:</h5>
             <ul>
                 <li>Retraction acceleration: This will affect whether the retraction speed can actually be reached. The gcode below does not include any changes to what is set on your printer. You can change this with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>R</b> argument.</li>
-                <li>Slicer settings such as coast: Coast stops extrusion slightly early to assist retraction. This varies from slicer to slicer and isn't always necessary to tune.</li>
+                <li>Slicer settings such as coast and wipe: Coast stops extrusion slightly early to assist retraction. This varies from slicer to slicer and isn't always necessary to tune. Wipe moves the nozzle back towards the recently printed geometry to wipe ooze off. If you are having trouble reducing stringing, it may be a good option.</li>
                 <li>Travel feedrate: A travel move is one where the printer moves to a new location without extruding. The slower this move is, the more time filament will have to ooze from the nozzle and add to stringing.</li>
                 <li>Linear advance: Linear advance, covered later in this guide, can drastically improve the accuracy of our extrusion. It has a significant impact of retraction (reducing the need), so after configuring linear advance you may need to revisit retraction.</li>
                 <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For instance, Cura measures extra restart distance in volume rather than length.</li>
@@ -569,9 +575,10 @@
                         <th>Reference Diagram</th>
                         <th>Segment</th>
                         <th>Retraction distance (mm)</th>
-                        <th>Retraction speed</th>
-                        <th>Extra restart distance</th>
-                        <th>Z hop</th>
+                        <th>Retraction speed (mm/sec)</th>
+                        <th>Extra restart distance (mm)</th>
+                        <th>Prime (unretract) speed (mm/sec)</th>
+                        <th>Z hop (mm)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -583,6 +590,7 @@
                         <td><input type="number" min="0" max="20" name="ret_f1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_f2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_f3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_f4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_f5" value="0" step="0.1"></td>
                     </tr>
                     <tr>
@@ -590,6 +598,7 @@
                         <td><input type="number" min="0" max="20" name="ret_e1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_e2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_e3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_e4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_e5" value="0" step="0.1"></td>
                     </tr>
                     <tr>
@@ -597,6 +606,7 @@
                         <td><input type="number" min="0" max="20" name="ret_d1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_d2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_d3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_d4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_d5" value="0" step="0.1"></td>
                     </tr>
                     <tr>
@@ -604,6 +614,7 @@
                         <td><input type="number" min="0" max="20" name="ret_c1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_c2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_c3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_c4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_c5" value="0" step="0.1"></td>
                     </tr>
                     <tr>
@@ -611,6 +622,7 @@
                         <td><input type="number" min="0" max="20" name="ret_b1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_b2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_b3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_b4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_b5" value="0" step="0.1"></td>
                     </tr>
                     <tr>
@@ -618,6 +630,7 @@
                         <td><input type="number" min="0" max="20" name="ret_a1" value="6" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_a2" value="40" step="1"></td>
                         <td><input type="number" min="-10" max="10" name="ret_a3" value="0" step="0.1"></td>
+                        <td><input type="number" min="5" max="200" name="ret_a4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_a5" value="0" step="0.1"></td>
                     </tr>
                 </tbody>
