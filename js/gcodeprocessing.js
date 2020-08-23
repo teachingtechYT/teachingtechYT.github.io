@@ -90,13 +90,35 @@ function processBaseline(){
     var retSpeed = document.baselineForm.retspeed.value*60;
     var abl = document.baselineForm.abl.value;
     var pc = document.baselineForm.pc.value;
+    var pcResume = 255;
     var customStart = document.baselineForm.startgcode.value;
     var baseline = originalBaseline;
-    if(pc == 1){
-        baseline = baseline.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
-    }
-    if(pc == 2){
-        baseline =  baseline.replace(/M106 S255/, ";M106 S255 ; custom fan off");
+    switch(pc){
+        case '0':
+            baseline = baseline.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+            break;
+        case '1':
+            baseline = baseline.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
+            break;
+        case '2':
+            baseline = baseline.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
+            break;
+        case '3':
+            baseline = baseline.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
+            pcResume = 130;
+            break;
+        case '4':
+            baseline = baseline.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
+            pcResume = 130;
+            break;
+        case '5':
+            baseline = baseline.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
+            pcResume = 130;
+            break;
+        case '6':
+            baseline = baseline.replace(/;fan2/, "; custom fan off");
+            pcResume = 0;
+            break;
     }
     baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
@@ -183,6 +205,7 @@ function processRetraction(){
     var bedY = Math.round((document.retractionForm.bedy.value-100)/2);
     var abl = document.retractionForm.abl.value;
     var pc = document.retractionForm.pc.value;
+    var pcResume = 255;
     var a1 = document.retractionForm.ret_a1.value;
     var a2 = document.retractionForm.ret_a2.value*60;
     var a3 = document.retractionForm.ret_a3.value;
@@ -215,11 +238,32 @@ function processRetraction(){
     var f5 = document.retractionForm.ret_f5.value;
     var customStart = document.retractionForm.startgcode.value;
     var retraction = originalRetraction;
-    if(pc == 1){
-        retraction = retraction.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
-    }
-    if(pc == 2){
-        retraction =  retraction.replace(/M106 S255/, ";M106 S255 ; custom fan off");
+    switch(pc){
+        case '0':
+            retraction = retraction.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+            break;
+        case '1':
+            retraction = retraction.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
+            break;
+        case '2':
+            retraction = retraction.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
+            break;
+        case '3':
+            retraction = retraction.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
+            pcResume = 130;
+            break;
+        case '4':
+            retraction = retraction.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
+            pcResume = 130;
+            break;
+        case '5':
+            retraction = retraction.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
+            pcResume = 130;
+            break;
+        case '6':
+            retraction = retraction.replace(/;fan2/, "; custom fan off");
+            pcResume = 0;
+            break;
     }
     retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
@@ -323,7 +367,7 @@ function processRetraction(){
     // F section
     retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
     retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
-    
+
     if(document.retractionForm.start.checked == true) {
         retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart);
         if(f5 > 0){
@@ -342,6 +386,7 @@ function processTemperature(){
     var retSpeed = document.temperatureForm.retspeed.value*60;
     var abl = document.temperatureForm.abl.value;
     var pc = document.temperatureForm.pc.value;
+    var pcResume = 255;
     var a0 = document.temperatureForm.temp_a0.value;
     var a1 = document.temperatureForm.temp_a1.value;
     var b1 = document.temperatureForm.temp_b1.value;
@@ -350,12 +395,34 @@ function processTemperature(){
     var e1 = document.temperatureForm.temp_e1.value;
     var customStart = document.temperatureForm.startgcode.value;
     var temperature = originalTemperature;
-    if(pc == 1){
-        temperature = temperature.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
+    switch(pc){
+        case '0':
+            temperature = temperature.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+            break;
+        case '1':
+            temperature = temperature.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
+            break;
+        case '2':
+            temperature = temperature.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
+            break;
+        case '3':
+            temperature = temperature.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
+            pcResume = 130;
+            break;
+        case '4':
+            temperature = temperature.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
+            pcResume = 130;
+            break;
+        case '5':
+            temperature = temperature.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
+            pcResume = 130;
+            break;
+        case '6':
+            temperature = temperature.replace(/;fan2/, "; custom fan off");
+            pcResume = 0;
+            break;
     }
-    if(pc == 2){
-        temperature =  temperature.replace(/M106 S255/, ";M106 S255 ; custom fan off");
-    }
+    temperature = temperature.replace(/;fanrestore/g, "M106 S"+pcResume+" ; restore previous fan speed");
     if(abl == 1){
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -449,6 +516,7 @@ function processAcceleration(){
     var retSpeed = document.accelerationForm.retspeed.value*60;
     var abl = document.accelerationForm.abl.value;
     var pc = document.accelerationForm.pc.value;
+    var pcResume = 255;
     var feed = document.accelerationForm.feedrate.value*60;
     var jerk_or_jd = document.accelerationForm.jerk_or_jd.value;
     var a1 = document.accelerationForm.accel_a1.value;
@@ -477,11 +545,32 @@ function processAcceleration(){
     var f4 = document.accelerationForm.accel_f4.value;
     var customStart = document.accelerationForm.startgcode.value;
     var acceleration = originalAcceleration;
-    if(pc == 1){
-        acceleration = acceleration.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
-    }
-    if(pc == 2){
-        acceleration =  acceleration.replace(/M106 S255/, ";M106 S255 ; custom fan off");
+    switch(pc){
+        case '0':
+            acceleration = acceleration.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+            break;
+        case '1':
+            acceleration = acceleration.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
+            break;
+        case '2':
+            acceleration = acceleration.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
+            break;
+        case '3':
+            acceleration = acceleration.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
+            pcResume = 130;
+            break;
+        case '4':
+            acceleration = acceleration.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
+            pcResume = 130;
+            break;
+        case '5':
+            acceleration = acceleration.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
+            pcResume = 130;
+            break;
+        case '6':
+            acceleration = acceleration.replace(/;fan2/, "; custom fan off");
+            pcResume = 0;
+            break;
     }
     acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");

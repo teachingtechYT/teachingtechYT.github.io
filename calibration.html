@@ -157,8 +157,12 @@
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
-                <option value="1">50% fan from layer 2</option>
-                <option value="2">No constant fan</option>
+                <option value="1">100% fan from layer 3</option>
+                <option value="2">100% fan from layer 5</option>
+                <option value="3">50% fan from layer 2</option>
+                <option value="4">50% fan from layer 3</option>
+                <option value="5">50% fan from layer 5</option>
+                <option value="6">No constant fan (bridging only)</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>
@@ -554,8 +558,12 @@
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
-                <option value="1">50% fan from layer 2</option>
-                <option value="2">No constant fan</option>
+                <option value="1">100% fan from layer 3</option>
+                <option value="2">100% fan from layer 5</option>
+                <option value="3">50% fan from layer 2</option>
+                <option value="4">50% fan from layer 3</option>
+                <option value="5">50% fan from layer 5</option>
+                <option value="6">No constant fan (bridging only)</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>
@@ -685,12 +693,17 @@
             <p>For the bed, typical PLA temperature is 60, PETG 80, ABS 100, and TPU 5 (effectively off).</p>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
+            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here.</p>
+            <p>Regardless of which part cooling fan behaviour you select here, the five bridge sections at the top of each segment will always print with 100% part cooling. Once the bridge is printed, the fan will then return to the speed set in the dropdown.</p>
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
-                <option value="1">50% fan from layer 2</option>
-                <option value="2">No constant fan</option>
+                <option value="1">100% fan from layer 3</option>
+                <option value="2">100% fan from layer 5</option>
+                <option value="3">50% fan from layer 2</option>
+                <option value="4">50% fan from layer 3</option>
+                <option value="5">50% fan from layer 5</option>
+                <option value="6">No constant fan (bridging only)</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>
@@ -865,8 +878,12 @@
             <label for="pc">Select part cooling fan behaviour:</label>
             <select name="pc">
                 <option value="0">100% fan from layer 2</option>
-                <option value="1">50% fan from layer 2</option>
-                <option value="2">No constant fan</option>
+                <option value="1">100% fan from layer 3</option>
+                <option value="2">100% fan from layer 5</option>
+                <option value="3">50% fan from layer 2</option>
+                <option value="4">50% fan from layer 3</option>
+                <option value="5">50% fan from layer 5</option>
+                <option value="6">No constant fan (bridging only)</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>

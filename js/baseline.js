@@ -159,7 +159,7 @@ G1 X41.923 Y58.214 E21.6099
 G92 E0.0000
 G1 E-5.0000 F2400
 ; layer 2, Z = 0.400
-M106 S255
+;fan2
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z0.600 F1200
@@ -291,6 +291,7 @@ G1 X58.512 Y58.459 E22.9102
 G92 E0.0000
 G1 E-5.0000 F2400
 ; layer 3, Z = 0.600
+;fan3
 ; feature inner perimeter
 G1 Z0.800 F1200
 G1 X58.800 Y58.800 F6000
@@ -456,6 +457,7 @@ G1 X41.548 Y49.967 E2.9046
 G92 E0.0000
 G1 E-5.0000 F2400
 ; layer 5, Z = 1.000
+;fan5
 ; feature inner perimeter
 ; tool H0.200 W0.480
 G1 Z1.200 F1200
