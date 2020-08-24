@@ -211,6 +211,9 @@ function processFirstlayer(){
     var firstlayer = firstlayerStart+skirts+squares+firstlayerEnd;
     firstlayer = firstlayer.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
     firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    if(document.firstlayerForm.psuon.checked == true) {
+        firstlayer = firstlayer.replace(/;M80/, "M80");
+    }
     if(document.firstlayerForm.start.checked == true) {
         firstlayer = firstlayer.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
@@ -327,6 +330,9 @@ function processBaseline(){
             });
             baseline = baselineArray.join("\n");
         }   
+    }
+    if(document.baselineForm.psuon.checked == true) {
+        baseline = baseline.replace(/;M80/, "M80");
     }
     if(document.baselineForm.start.checked == true) {
         baseline = baseline.replace(/;customstart/, "; custom start gcode\n"+customStart);
@@ -504,12 +510,14 @@ function processRetraction(){
     // F section
     retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
     retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
-
+    if(f5 > 0){
+        retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+    }
+    if(document.retractionForm.psuon.checked == true) {
+        retraction = retraction.replace(/;M80/, "M80");
+    }
     if(document.retractionForm.start.checked == true) {
-        retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart);
-        if(f5 > 0){
-            retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
-        }
+        retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart); 
     }
     downloadFile('retraction.gcode', retraction);
 }
@@ -637,6 +645,9 @@ function processTemperature(){
     temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
     temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
     temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
+    if(document.temperatureForm.psuon.checked == true) {
+        temperature = temperature.replace(/;M80/, "M80");
+    }
     if(document.temperatureForm.start.checked == true) {
         temperature = temperature.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
@@ -807,6 +818,9 @@ function processAcceleration(){
         acceleration = acceleration.replace(/j4/g, "M205 J"+d4+" ; custom junction deviation - D");
         acceleration = acceleration.replace(/j5/g, "M205 J"+e4+" ; custom junction deviation - E");
         acceleration = acceleration.replace(/j6/g, "M205 J"+f4+" ; custom junction deviation - F");
+    }
+    if(document.accelerationForm.psuon.checked == true) {
+        acceleration = acceleration.replace(/;M80/, "M80");
     }
     if(document.accelerationForm.start.checked == true) {
         acceleration = acceleration.replace(/;customstart/, "; custom start gcode\n"+customStart);

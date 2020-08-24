@@ -173,6 +173,7 @@
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#firstlayerStart')" value="extraStart"></label>
+            <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <textarea id="firstlayerStart" name="startgcode"></textarea>
             <script>
                 if(document.firstlayerForm.start.checked == false){
@@ -240,6 +241,7 @@
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#baselineStart')" value="extraStart"></label>
+            <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <textarea id="baselineStart" name="startgcode"></textarea>
             <script>
                 if(document.baselineForm.start.checked == false){
@@ -654,6 +656,7 @@
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#retractionStart')" value="extraStart"></label>
+            <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <textarea id="retractionStart" name="startgcode"></textarea>
             <script>
                 if(document.retractionForm.start.checked == false){
@@ -794,6 +797,7 @@
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#temperatureStart')" value="extraStart"></label>
+            <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <textarea id="temperatureStart" name="startgcode"></textarea>
             <script>
                 if(document.temperatureForm.start.checked == false){
@@ -974,6 +978,7 @@
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#accelerationStart')" value="extraStart"></label>
+            <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <textarea id="accelerationStart" name="startgcode"></textarea>
             <script>
                 if(document.accelerationForm.start.checked == false){
