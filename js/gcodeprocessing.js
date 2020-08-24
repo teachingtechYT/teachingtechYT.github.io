@@ -14,10 +14,20 @@ function downloadFile(filename, contents) {
 }
 
 function toggle(ticked, target){
-    if(ticked == true){
-        $(target).hide();
+    if(target == "first"){
+        if(ticked == false){
+            $("#firstlayerXY").show();
+            $("#firstlayerdia").hide();
+        } else {
+            $("#firstlayerXY").hide();
+            $("#firstlayerdia").show();
+        }
     } else {
-        $(target).show();
+        if(ticked == true){
+            $(target).hide();
+        } else {
+            $(target).show();
+        }
     }
 }
 
@@ -78,6 +88,133 @@ function toggleJ() {
         $(".jdtd").show();
         $(".jerktd").hide();
     }
+}
+
+function processFirstlayer(){
+    var hotendTemp = document.firstlayerForm.hotendtemp.value;
+    var bedTemp = document.firstlayerForm.bedtemp.value;
+    var centre = document.firstlayerForm.centre.checked;
+    var bedX = document.firstlayerForm.bedx.value - 50;
+    var bedY = document.firstlayerForm.bedy.value - 50;
+    var bedRad = Math.round((document.firstlayerForm.beddia.value)/2);
+    var retDist = document.firstlayerForm.retdist.value;
+    var retSpeed = document.firstlayerForm.retspeed.value*60;
+    var abl = document.firstlayerForm.abl.value;
+    var customStart = document.firstlayerForm.startgcode.value;
+    var firstlayer = "";
+    var firstlayerStart = originalFirstlayerStart;
+    var skirts = "";
+    var squares = "";
+    var firstlayerEnd = originalFirstlayerEnd;
+    var offsets = [0,0,0,0,0,0,0,0,0,0];
+    var delt = 30;
+    var xy = 30;
+    if(centre == true) {
+        // left
+        offsets[0] = bedRad*-1 - 50;
+        offsets[1] = -50;
+        // bottom
+        offsets[2] = -50;
+        offsets[3] = bedRad*-1 - 50;
+        // centre
+        offsets[4] = -50;
+        offsets[5] = -50;
+        // top
+        offsets[6] = -50;
+        offsets[7] = bedRad - 50;
+        //right
+        offsets[8] = bedRad - 50;
+        offsets[9] = -50;
+    } else {
+        // bottom left
+        offsets[0] = 0 + xy - 50;
+        offsets[1] = 0 + xy - 50;
+        // top left
+        offsets[2] = 0 + xy - 50;
+        offsets[3] = bedY - xy;
+        // centre
+        offsets[4] = bedX/2 - 25;
+        offsets[5] = bedY/2 - 25;
+        // bottom right
+        offsets[6] = bedX - xy;
+        offsets[7] = 0 + xy - 50;
+        // top right
+        offsets[8] = bedX - xy;
+        offsets[9] = bedY - xy;
+    }
+    firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+    firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(abl != 4){
+        firstlayerStart = firstlayerStart.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        firstlayerStart = firstlayerStart.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    } else {
+        firstlayerStart = firstlayerStart.replace(/M104 S210 T0/g, "; Prusa Mini");
+        firstlayerStart = firstlayerStart.replace(/M109 S210 T0/g, "; Prusa Mini");
+    }
+    if(abl == 1){
+        firstlayerStart = firstlayerStart.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+    }
+    if(abl == 2){
+        firstlayerStart =  firstlayerStart.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+    }
+    if(abl == 3){
+        firstlayerStart = firstlayerStart.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level");
+        firstlayerStart = firstlayerStart.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling");
+    }
+    if(abl == 4){
+        firstlayerStart = firstlayerStart.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        firstlayerStart = firstlayerStart.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+        firstlayerStart = firstlayerStart.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    }
+    if(abl == 5){
+        firstlayerStart = firstlayerStart.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
+
+    for(var i = 0; i <= 4; i++){
+        var skirt = "; skirt "+(i+1)+"\n"+originalskirt;
+        var firstlayerArray = skirt.split(/\n/g);
+        var regexp = /X[0-9\.]+/;
+        firstlayerArray.forEach(function(index, item){
+            if(firstlayerArray[item].search(/X/) > -1){
+                var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2];
+                firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value));
+            }
+        });
+        var regexp = /Y[0-9\.]+/;
+        firstlayerArray.forEach(function(index, item){
+            if(firstlayerArray[item].search(/Y/) > -1){
+                var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2+1];
+                firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value))
+            }
+        });
+        skirt = firstlayerArray.join("\n");
+        skirts += skirt;
+        var square = "; square "+(i+1)+"\n"+originalSquare;
+        var firstlayerArray = square.split(/\n/g);
+        var regexp = /X[0-9\.]+/;
+        firstlayerArray.forEach(function(index, item){
+            if(firstlayerArray[item].search(/X/) > -1){
+                var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2];
+                firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value));
+            }
+        });
+        var regexp = /Y[0-9\.]+/;
+        firstlayerArray.forEach(function(index, item){
+            if(firstlayerArray[item].search(/Y/) > -1){
+                var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2+1];
+                firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value))
+            }
+        });
+        square = firstlayerArray.join("\n");
+        squares += square;
+    }
+    var firstlayer = firstlayerStart+skirts+squares+firstlayerEnd;
+    firstlayer = firstlayer.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    if(document.firstlayerForm.start.checked == true) {
+        firstlayer = firstlayer.replace(/;customstart/, "; custom start gcode\n"+customStart);
+    }
+    downloadFile('firstlayer.gcode', firstlayer);
 }
 
 function processBaseline(){
