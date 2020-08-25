@@ -298,20 +298,21 @@ function processRetraction(){
     }
     // A section
     if (firmwareRetraction){
-        retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
         if (flavor == "0") {
             console.log("Marlin");
+            retraction = retraction.replace(/;retractionA/g,"M207 S"+ a1 + " F" + a2 + " ; custom firmware retraction - A" +  '\n' + "G10 ; custom firmware retraction - A");
+            var distance = Math.round( (parseFloat(a1) + parseFloat(a3))*100)/100;
+            retraction = retraction.replace(/;unretractionA/g, "M208 S"+ distance + " F" + a4 + " ; custom firmware un-retraction - A" + '\n' + "G11 ; custom firmware un-retraction - A");
         }else if (flavor == "1" ){
             console.log("RRF");
+            retraction = retraction.replace(/;retractionA/g,"M207 S"+ a1 + " R" + a3 + " F" + a2 + " T"+a4 + " ; custom firmware retraction - A" + '\n' + "G10 ; custom firmware retraction - A");
+            retraction = retraction.replace(/;unretractionA/g, "G11 ; custom firmware un-retraction/prime - A");
         }
-        //"M207 S" + a1 + " "
-
-
     }else{
         retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+        retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
     }   
-    retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
-    if(a5 > 0){
+     if(a5 > 0){
         retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
     }
     // B section
