@@ -214,6 +214,12 @@ function processRetraction(){
     var f4 = document.retractionForm.ret_f4.value*60;
     var f5 = document.retractionForm.ret_f5.value;
     var customStart = document.retractionForm.startgcode.value;
+    var firmwareRetraction = document.retractionForm.firmwareRetraction.checked;
+    if (firmwareRetraction){
+        var flavor = document.retractionForm.flavor.value;
+    }
+
+    
     var retraction = originalRetraction;
     if(pc == 1){
         retraction = retraction.replace(/M106 S255/, "M106 S130 ; custom fan 50%");
@@ -291,7 +297,19 @@ function processRetraction(){
         }   
     }
     // A section
-    retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+    if (firmwareRetraction){
+        retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+        if (flavor == "0") {
+            console.log("Marlin");
+        }else if (flavor == "1" ){
+            console.log("RRF");
+        }
+        //"M207 S" + a1 + " "
+
+
+    }else{
+        retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+    }   
     retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
     if(a5 > 0){
         retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");

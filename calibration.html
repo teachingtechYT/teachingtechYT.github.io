@@ -549,6 +549,9 @@
             <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+            <label>Additional start gcode:<input name="start" type="checkbox" ></label>
+
+
             <h4>Part Cooling Fan</h4>
             <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
             <label for="pc">Select part cooling fan behaviour:</label>
@@ -567,6 +570,16 @@
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
+
+            <h4>Firmware Retraction</h4>
+            <label>Firmware Retraction : <input type="checkbox" name="firmwareRetraction"  onchange="toggle(!this.checked, '#firmwareType')" ></label><br />
+            <span id="firmwareType" style="display:none"><label>G-code flavor:</label>
+                <select name="flavor">
+                    <option value="0">Marlin</option>
+                    <option value="1">RRF</option>
+                </select> 
+            </span> 
+
             <h4>Retraction</h4>
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
             <table>
@@ -675,6 +688,7 @@
                 if(document.temperatureForm.start.checked == false){
                     $("#temperatureStart").hide();
                 }
+            </script>
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
