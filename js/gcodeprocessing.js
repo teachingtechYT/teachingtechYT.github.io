@@ -90,6 +90,23 @@ function toggleJ() {
     }
 }
 
+function buildFirmwareRetraction(retraction , tag, flavor, v1, v2, v3, v4, v5){
+
+    var ret = new RegExp(";retraction"+tag, 'g');
+    var unret = new RegExp(";unretraction"+tag, 'g');
+
+    if (flavor == "0") {
+        retraction = retraction.replace(ret ,"M207 S"+ v1 + " F" + v2 + " Z"+ v5 +" ; custom firmware retraction - "+tag +  '\n' + "G10 ; custom firmware retraction - "+ tag);
+        var distance = Math.round( (parseFloat(v1) + parseFloat(v3))*100)/100;
+        retraction = retraction.replace(unret, "M208 S"+ distance + " F" + v4 + " ; custom firmware un-retraction - " + tag+ '\n' + "G11 ; custom firmware un-retraction - "+ tag);
+    }else if (flavor == "1" ){
+        retraction = retraction.replace(ret,"M207 S"+ v1 + " R" + v3 + " F" + v2 + " T"+v4 + " Z"+ v5 +" ; custom firmware retraction - "+tag + '\n' + "G10 ; custom firmware retraction - " + tag);
+        retraction = retraction.replace(unret, "G11 ; custom firmware un-retraction/prime - "+tag);
+    }
+    return retraction;
+
+}
+
 function processFirstlayer(){
     var hotendTemp = document.firstlayerForm.hotendtemp.value;
     var bedTemp = document.firstlayerForm.bedtemp.value;
@@ -485,48 +502,58 @@ function processRetraction(){
     }
     // A section
     if (firmwareRetraction){
-        if (flavor == "0") {
-            console.log("Marlin");
-            retraction = retraction.replace(/;retractionA/g,"M207 S"+ a1 + " F" + a2 + " ; custom firmware retraction - A" +  '\n' + "G10 ; custom firmware retraction - A");
-            var distance = Math.round( (parseFloat(a1) + parseFloat(a3))*100)/100;
-            retraction = retraction.replace(/;unretractionA/g, "M208 S"+ distance + " F" + a4 + " ; custom firmware un-retraction - A" + '\n' + "G11 ; custom firmware un-retraction - A");
-        }else if (flavor == "1" ){
-            console.log("RRF");
-            retraction = retraction.replace(/;retractionA/g,"M207 S"+ a1 + " R" + a3 + " F" + a2 + " T"+a4 + " ; custom firmware retraction - A" + '\n' + "G10 ; custom firmware retraction - A");
-            retraction = retraction.replace(/;unretractionA/g, "G11 ; custom firmware un-retraction/prime - A");
-        }
+        retraction = buildFirmwareRetraction(retraction, "A" , flavor,  a1, a2, a3, a4, a5);
     }else{
         retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
         retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
-    }   
      if(a5 > 0){
         retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
     }
+    }   
     // B section
+    if (firmwareRetraction){
+        retraction = buildFirmwareRetraction(retraction, "B" , flavor,  b1, b2, b3, b4, b5);
+    }else{
     retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
     retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
     if(b5 > 0){
         retraction = retraction.replace(/;zhopupB/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
     }
+    }
     // C section
+    if (firmwareRetraction){
+        retraction = buildFirmwareRetraction(retraction, "C" , flavor,  c1, c2, c3, c4, c5);
+    }else{
     retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
     retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
     if(c5 > 0){
         retraction = retraction.replace(/;zhopupC/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
     }
+    }
     // D section
+    if (firmwareRetraction){
+        retraction = buildFirmwareRetraction(retraction, "D" , flavor,  d1, d2, d3, d4, d5);
+    }else{
     retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
     retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
     if(d5 > 0){
         retraction = retraction.replace(/;zhopupD/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
     }
+    }
     // E section
+    if (firmwareRetraction){
+        retraction = buildFirmwareRetraction(retraction, "E" , flavor,  e1, e2, e3, e4, e5);
+    }else{
     retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
     retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
     if(e5 > 0){
         retraction = retraction.replace(/;zhopupE/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
     }
+    }
     // F section
+    if (firmwareRetraction){
+        retraction = buildFirmwareRetraction(retraction, "F" , flavor,  f1, f2, f3, f4, f5);
+    }else{
     retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
     retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
     if(f5 > 0){
