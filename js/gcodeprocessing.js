@@ -107,6 +107,18 @@ function buildFirmwareRetraction(retraction , tag, flavor, v1, v2, v3, v4, v5){
 
 }
 
+function buildLinearAdvance(retraction , tag, flavor, v6){
+
+    var linear = new RegExp(";linearAdv"+tag, 'g');
+
+    if (flavor == "0") {
+        retraction = retraction.replace(linear ,"M900 K"+ v6 +" ; custom linear advance - "+tag );
+    }else if (flavor == "1" ){
+        retraction = retraction.replace(linear,"M572 D0 S"+ v6 +" ; custom pressure advance - "+tag );
+    }
+    return retraction;
+}
+
 function processFirstlayer(){
     var hotendTemp = document.firstlayerForm.hotendtemp.value;
     var bedTemp = document.firstlayerForm.bedtemp.value;
@@ -371,37 +383,42 @@ function processRetraction(){
     var a3 = document.retractionForm.ret_a3.value;
     var a4 = document.retractionForm.ret_a4.value*60;
     var a5 = document.retractionForm.ret_a5.value;
+    var a6 = document.retractionForm.ret_a6.value;
     var b1 = document.retractionForm.ret_b1.value;
     var b2 = document.retractionForm.ret_b2.value*60;
     var b3 = document.retractionForm.ret_b3.value;
     var b4 = document.retractionForm.ret_b4.value*60;
     var b5 = document.retractionForm.ret_b5.value;
+    var b6 = document.retractionForm.ret_b6.value;
     var c1 = document.retractionForm.ret_c1.value;
     var c2 = document.retractionForm.ret_c2.value*60;
     var c3 = document.retractionForm.ret_c3.value;
     var c4 = document.retractionForm.ret_c4.value*60;
     var c5 = document.retractionForm.ret_c5.value;
+    var c6 = document.retractionForm.ret_c6.value;
     var d1 = document.retractionForm.ret_d1.value;
     var d2 = document.retractionForm.ret_d2.value*60;
     var d3 = document.retractionForm.ret_d3.value;
     var d4 = document.retractionForm.ret_d4.value*60;
     var d5 = document.retractionForm.ret_d5.value;
+    var d6 = document.retractionForm.ret_d6.value;
     var e1 = document.retractionForm.ret_e1.value;
     var e2 = document.retractionForm.ret_e2.value*60;
     var e3 = document.retractionForm.ret_e3.value;
     var e4 = document.retractionForm.ret_e4.value*60;
     var e5 = document.retractionForm.ret_e5.value;
+    var e6 = document.retractionForm.ret_e6.value;
     var f1 = document.retractionForm.ret_f1.value;
     var f2 = document.retractionForm.ret_f2.value*60;
     var f3 = document.retractionForm.ret_f3.value;
     var f4 = document.retractionForm.ret_f4.value*60;
     var f5 = document.retractionForm.ret_f5.value;
+    var f6 = document.retractionForm.ret_f6.value;
     var customStart = document.retractionForm.startgcode.value;
     var firmwareRetraction = document.retractionForm.firmwareRetraction.checked;
     if (firmwareRetraction){
         var flavor = document.retractionForm.flavor.value;
     }
-
     
     var retraction = originalRetraction;
     switch(pc){
@@ -506,59 +523,83 @@ function processRetraction(){
     }else{
         retraction = retraction.replace(/;retractionA/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
         retraction = retraction.replace(/;unretractionA/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
-     if(a5 > 0){
-        retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
+        if(a5 > 0){
+            retraction = retraction.replace(/;zhopupA/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
+        }
     }
-    }   
+    if (a6 > 0){
+        retraction = buildLinearAdvance(retraction, "A", flavor, a6)
+    }
     // B section
     if (firmwareRetraction){
         retraction = buildFirmwareRetraction(retraction, "B" , flavor,  b1, b2, b3, b4, b5);
     }else{
-    retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
-    retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
-    if(b5 > 0){
-        retraction = retraction.replace(/;zhopupB/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
+        retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
+        retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
+        if(b5 > 0){
+            retraction = retraction.replace(/;zhopupB/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
+        }
     }
+    if (b6 > 0){
+        retraction = buildLinearAdvance(retraction, "B", flavor, b6)
     }
+
     // C section
     if (firmwareRetraction){
         retraction = buildFirmwareRetraction(retraction, "C" , flavor,  c1, c2, c3, c4, c5);
     }else{
-    retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
-    retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
-    if(c5 > 0){
-        retraction = retraction.replace(/;zhopupC/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
+        retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
+        retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
+        if(c5 > 0){
+            retraction = retraction.replace(/;zhopupC/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
+        }
     }
+    if (c6 > 0){
+        retraction = buildLinearAdvance(retraction, "C", flavor, c6)
     }
+
     // D section
     if (firmwareRetraction){
         retraction = buildFirmwareRetraction(retraction, "D" , flavor,  d1, d2, d3, d4, d5);
     }else{
-    retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
-    retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
-    if(d5 > 0){
-        retraction = retraction.replace(/;zhopupD/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
+        retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
+        retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
+        if(d5 > 0){
+            retraction = retraction.replace(/;zhopupD/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
+        }
     }
+    if (d6 > 0){
+        retraction = buildLinearAdvance(retraction, "D", flavor, d6)
     }
+
     // E section
     if (firmwareRetraction){
         retraction = buildFirmwareRetraction(retraction, "E" , flavor,  e1, e2, e3, e4, e5);
     }else{
-    retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
-    retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
-    if(e5 > 0){
-        retraction = retraction.replace(/;zhopupE/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
+        retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
+        retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
+        if(e5 > 0){
+            retraction = retraction.replace(/;zhopupE/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
+        }
     }
+    if (e6 > 0){
+        retraction = buildLinearAdvance(retraction, "E", flavor, e6)
     }
+
     // F section
     if (firmwareRetraction){
         retraction = buildFirmwareRetraction(retraction, "F" , flavor,  f1, f2, f3, f4, f5);
     }else{
-    retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
-    retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
-    if(f5 > 0){
-        retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+        retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
+        retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
+        if(f5 > 0){
+            retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+        }
     }
+    if (f6 > 0){
+        retraction = buildLinearAdvance(retraction, "F", flavor, f6)
+    }
+
     if(document.retractionForm.psuon.checked == true) {
         retraction = retraction.replace(/;M80/, "M80");
     }
