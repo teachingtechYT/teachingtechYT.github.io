@@ -172,10 +172,20 @@
         <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img class="thumb" src="img/firstlayerpreview.jpg" /></a>
         <form name="firstlayerForm" id="firstlayerForm" onsubmit="return false;">
             <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#firstlayerStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
-            <textarea id="firstlayerStart" name="startgcode"></textarea>
+            <div id="firstlayerStart" class="startExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
+                <ul>
+                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
+                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Anythng else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
+                </ul>
+                <textarea name="startgcode"></textarea>
+            </div>
             <script>
                 if(document.firstlayerForm.start.checked == false){
                     $("#firstlayerStart").hide();
@@ -240,10 +250,20 @@
         <a href="#" data-featherlight="img/cube.jpg"><img class="thumb" src="img/cube.jpg" /></a>
         <form name="baselineForm" id="baselineForm" onsubmit="return false;">
             <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#baselineStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
-            <textarea id="baselineStart" name="startgcode"></textarea>
+            <div id="baselineStart" class="startExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
+                <ul>
+                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
+                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Anythng else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
+                </ul>
+                <textarea name="startgcode"></textarea>
+            </div>
             <script>
                 if(document.baselineForm.start.checked == false){
                     $("#baselineStart").hide();
@@ -476,6 +496,12 @@
             <p>This print shows clear signs of under extrusion. There are gaps in the top infill as well as gaps between the perimeters and infill. Despite what any calibration procedure determined, the flow rate for this slicer/printer combination needs to be increased.</p>
             <p><a href="https://all3dp.com/2/over-extrusion-3d-printing-tips-and-tricks-to-solve-it/" target="_blank">This article on all3DP</a> has examples of what over extrusion looks like.</p>
         </div>
+        <h2>Can I use this flow value in the other tests on this site?</h2>
+        <p>The short answer is: not really.</p>
+        <p>The gcode generators on this site work by using javacsript to modify source gcode originally created by Simplify3D. However, when you completed the calibration test above, you sliced your own gcode, making your own baseline and then making a flow adjustment relative to that. Therefore, this test is unique from the others on this site which is why the flow rate doesn't necessarily translate.</p>
+        <p>Let's say your old flow rate was 100% and you have tested and corrected this to 96%. The gcode on this site originally had a flow rate of 90% when sliced, so applying your 96% to that gives a final result of 86.4%, not 96%. Your slicer profile settings will also be different in other ways, which further complicates matters. Therefore, there is not a straightforward correlation between your slicer and my gcode generators.</p>
+        <p>The aim of the site is to discover ideal settings you can apply to your own slicer profile, not to optimise the gcode created by the generators. Keep this in mind and focus on the aim of each test, rather than the general print quality.</p>
+        <p>If you are experiencing significant over or under extrusion that prevents you from using the tests properly, by using the custom start gcode function on this site you can optionally issue an <a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> to override the values in the generatored gcode. For example, using <b>M221 S90</b> would tell the firmware to only extrude 90% of what the gcode asks for. This is an easy method for making a quick correction that will alow the tests to complete successfully.</p>        
     </div>
 
     <div id="steppers">
@@ -657,10 +683,20 @@
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#retractionStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
-            <textarea id="retractionStart" name="startgcode"></textarea>
+            <div id="retractionStart" class="startExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
+                <ul>
+                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
+                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Anythng else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
+                </ul>
+                <textarea name="startgcode"></textarea>
+            </div>
             <script>
                 if(document.retractionForm.start.checked == false){
                     $("#retractionStart").hide();
@@ -798,10 +834,20 @@
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/temperaturetower.stl">temperaturetower.stl</a></p>
         <form name="temperatureForm" id="temperatureForm" onsubmit="return false;">
             <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#temperatureStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
-            <textarea id="temperatureStart" name="startgcode"></textarea>
+            <div id="temperatureStart" class="startExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
+                <ul>
+                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
+                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Anythng else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
+                </ul>
+                <textarea name="startgcode"></textarea>
+            </div>
             <script>
                 if(document.temperatureForm.start.checked == false){
                     $("#temperatureStart").hide();
@@ -979,10 +1025,20 @@
         <p>Use the following form to customise the gcode to your liking:</p>
         <form name="accelerationForm" id="accelerationForm" onsubmit="return false;">
             <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This will be inserted after temperatures are set and homing/ABL is complete. This can be used to add a hot end purge command. For the majority of users, you can skip this section.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#accelerationStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
-            <textarea id="accelerationStart" name="startgcode"></textarea>
+            <div id="accelerationStart" class="startExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
+                <ul>
+                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
+                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Anythng else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
+                </ul>
+                <textarea name="startgcode"></textarea>
+            </div>
             <script>
                 if(document.accelerationForm.start.checked == false){
                     $("#accelerationStart").hide();
