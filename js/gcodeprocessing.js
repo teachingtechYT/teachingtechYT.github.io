@@ -127,6 +127,7 @@ function processFirstlayer(){
     var bedY = document.firstlayerForm.bedy.value - 50;
     var bedRad = Math.round((document.firstlayerForm.beddia.value)/2);
     var retDist = document.firstlayerForm.retdist.value;
+    var retDistExtra = document.firstlayerForm.retdistextra.value;
     var retSpeed = document.firstlayerForm.retspeed.value*60;
     var abl = document.firstlayerForm.abl.value;
     var customStart = document.firstlayerForm.startgcode.value;
@@ -138,38 +139,39 @@ function processFirstlayer(){
     var offsets = [0,0,0,0,0,0,0,0,0,0];
     var delt = 30;
     var xy = 30;
+    var margin = parseInt(document.firstlayerForm.margin.value);
     if(centre == true) {
         // left
-        offsets[0] = bedRad*-1 - 50;
+        offsets[0] = (bedRad*-1) - 50 + delt + margin;
         offsets[1] = -50;
         // bottom
         offsets[2] = -50;
-        offsets[3] = bedRad*-1 - 50;
+        offsets[3] = (bedRad*-1) - 50 + delt + margin;
         // centre
         offsets[4] = -50;
         offsets[5] = -50;
         // top
         offsets[6] = -50;
-        offsets[7] = bedRad - 50;
+        offsets[7] = (bedRad - 50 - delt) - margin;
         //right
-        offsets[8] = bedRad - 50;
+        offsets[8] = (bedRad - 50 - delt) - margin;
         offsets[9] = -50;
     } else {
         // bottom left
-        offsets[0] = 0 + xy - 50;
-        offsets[1] = 0 + xy - 50;
+        offsets[0] = 0 + xy - 50 + margin;
+        offsets[1] = 0 + xy - 50 + margin;
         // top left
-        offsets[2] = 0 + xy - 50;
-        offsets[3] = bedY - xy;
+        offsets[2] = 0 + xy - 50 + margin;
+        offsets[3] = bedY - xy - margin;
         // centre
         offsets[4] = bedX/2 - 25;
         offsets[5] = bedY/2 - 25;
         // bottom right
-        offsets[6] = bedX - xy;
-        offsets[7] = 0 + xy - 50;
+        offsets[6] = bedX - xy - margin;
+        offsets[7] = 0 + xy - 50 + margin;
         // top right
-        offsets[8] = bedX - xy;
-        offsets[9] = bedY - xy;
+        offsets[8] = bedX - xy - margin;
+        offsets[9] = bedY - xy - margin;
     }
     firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
@@ -239,7 +241,7 @@ function processFirstlayer(){
     }
     var firstlayer = firstlayerStart+skirts+squares+firstlayerEnd;
     firstlayer = firstlayer.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(document.firstlayerForm.psuon.checked == true) {
         firstlayer = firstlayer.replace(/;M80/, "M80");
     }
@@ -256,6 +258,7 @@ function processBaseline(){
     var bedX = Math.round((document.baselineForm.bedx.value-100)/2);
     var bedY = Math.round((document.baselineForm.bedy.value-100)/2);
     var retDist = document.baselineForm.retdist.value;
+    var retDistExtra = document.baselineForm.retdistextra.value;
     var retSpeed = document.baselineForm.retspeed.value*60;
     var abl = document.baselineForm.abl.value;
     var pc = document.baselineForm.pc.value;
@@ -299,7 +302,7 @@ function processBaseline(){
         baseline = baseline.replace(/M109 S210 T0/g, "; Prusa Mini");
     }
     baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -615,6 +618,7 @@ function processTemperature(){
     var bedX = Math.round((document.temperatureForm.bedx.value-100)/2);
     var bedY = Math.round((document.temperatureForm.bedy.value-100)/2);
     var retDist = document.temperatureForm.retdist.value;
+    var retDistExtra = document.temperatureForm.retdistextra.value;
     var retSpeed = document.temperatureForm.retspeed.value*60;
     var abl = document.temperatureForm.abl.value;
     var pc = document.temperatureForm.pc.value;
@@ -676,7 +680,7 @@ function processTemperature(){
     temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp+" ; custom bed temp");
     temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp+" ; custom bed temp");
     temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom unretraction/prime");
+    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
 
     if(centre == true){
         var temperatureArray = temperature.split(/\n/g);
@@ -748,6 +752,7 @@ function processAcceleration(){
     var bedX = Math.round((document.accelerationForm.bedx.value-100)/2);
     var bedY = Math.round((document.accelerationForm.bedy.value-100)/2);
     var retDist = document.accelerationForm.retdist.value;
+    var retDistExtra = document.accelerationForm.retdistextra.value;
     var retSpeed = document.accelerationForm.retspeed.value*60;
     var abl = document.accelerationForm.abl.value;
     var pc = document.accelerationForm.pc.value;
@@ -817,7 +822,7 @@ function processAcceleration(){
         acceleration = acceleration.replace(/M109 S210/g, "; Prusa Mini");
     }
     acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -913,4 +918,106 @@ function processAcceleration(){
         acceleration = acceleration.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
     downloadFile('acceleration.gcode', acceleration);
+}
+
+function outputSettings(formName) {
+    var fileName;
+    var string = "Settings for ";
+    switch(formName.name) {
+        case "firstlayerForm":
+            string += "first layer"
+            fileName = "firstlayersettings.txt";
+            break;
+        case "baselineForm":
+            string += "baseline print"
+            fileName = "baselinesettings.txt";
+            break;
+        case "retractionForm":
+            string += "retraction tuning"
+            fileName = "retractionsettings.txt";
+            break;
+        case "temperatureForm":
+            string += "temperature tuning"
+            fileName = "temperaturesettings.txt";
+            break;
+        case "accelerationForm":
+            string += "acceleration and jerk/junction deviation tuning"
+            fileName = "accelerationsettings.txt";
+            break;
+    }
+    string += " form\n_________________________________________________________________________\n\n";
+    string += "All changes are marked in the gcode with 'custom' at the end of each line. Open the gcode in a text editor and search for this to your inputs if needed.\n\n";
+    if(formName.psuon.checked == true) {
+        string += "Turn on PSU with M80 active\n"
+    }
+    if(formName.start.checked == true) {
+        string += "Custom start gcode:\n";
+        string += formName.startgcode.value+"\n";
+    }
+    string += "\nBed: ";
+    if(formName.centre.checked == false) {
+        string += formName.bedx.value+" x "+formName.bedy.value+" mm";
+    } else {
+        string += "0,0 at centre";
+        if(formName.name == "firstlayerForm"){
+            string += ", "+formName.beddia.value+" mm diameter";
+        }
+    }
+    if(formName.name == "firstlayerForm") {
+        string += "\nExtra margin from edge: "+formName.margin.value+" mm";
+    }
+    string += "\n\nTemperatures:\n";
+    if(formName.name == "temperatureForm") {
+        string += "Bed: "+formName.bedtemp.value+" deg C\n";
+        string += "Segement E: "+formName.temp_e1.value+" deg C\n";
+        string += "Segement D: "+formName.temp_d1.value+" deg C\n";
+        string += "Segement C: "+formName.temp_c1.value+" deg C\n";
+        string += "Segement B: "+formName.temp_b1.value+" deg C\n";
+        string += "Segement A: "+formName.temp_a1.value+" deg C\n";
+        string += "First Layer: "+formName.temp_a0.value+" deg C\n";
+    } else {
+        string += "Bed: "+formName.bedtemp.value+" deg C\n";
+        string += "Hot end: "+formName.hotendtemp.value+" deg C\n";
+    }
+    if(formName.name != "firstlayerForm") {
+        var pcSelected = formName.pc.value;
+        string += "\n\nPart Cooling: "+formName.pc[pcSelected].text;
+    }
+    var ablSelected = formName.abl.value;
+    string += "\n\nABL: "+formName.abl[ablSelected].text;
+    if(formName.name == "retractionForm") {
+        string += "\n\nSegment | Retraction distance | Retraction speed | Extra restart distance | Unretract speed | Z hop\n";
+        string += "   F    |          "+formName.ret_f1.value+" mm       |     "+formName.ret_f2.value+" mm/sec    |        "+formName.ret_f3.value+"       mm      | "+formName.ret_f4.value+" mm/sec       |  "+formName.ret_f5.value+" mm\n";
+        string += "   E    |          "+formName.ret_e1.value+" mm       |     "+formName.ret_e2.value+" mm/sec    |        "+formName.ret_e3.value+"       mm      | "+formName.ret_e4.value+" mm/sec       |  "+formName.ret_e5.value+" mm\n";
+        string += "   D    |          "+formName.ret_d1.value+" mm       |     "+formName.ret_d2.value+" mm/sec    |        "+formName.ret_d3.value+"       mm      | "+formName.ret_d4.value+" mm/sec       |  "+formName.ret_d5.value+" mm\n";
+        string += "   C    |          "+formName.ret_c1.value+" mm       |     "+formName.ret_c2.value+" mm/sec    |        "+formName.ret_c3.value+"       mm      | "+formName.ret_c4.value+" mm/sec       |  "+formName.ret_c5.value+" mm\n";
+        string += "   B    |          "+formName.ret_b1.value+" mm       |     "+formName.ret_b2.value+" mm/sec    |        "+formName.ret_b3.value+"       mm      | "+formName.ret_b4.value+" mm/sec       |  "+formName.ret_b5.value+" mm\n";
+        string += "   A    |          "+formName.ret_a1.value+" mm       |     "+formName.ret_a2.value+" mm/sec    |        "+formName.ret_a3.value+"       mm      | "+formName.ret_a4.value+" mm/sec       |  "+formName.ret_a5.value+" mm\n";
+    } else {
+        string += "\n\nRetraction distance: "+formName.retdist.value+" mm\n";
+        string += "Retraction speed: "+formName.retspeed.value+" mm/sec\n";
+        //string += "Extra restart distance: "+formName.hotendtemp.value+" mm\n";
+    }
+    if(formName.name == "accelerationForm") {
+        string += "\nBase feedrate: "+formName.feedrate.value+" mm/s\n\n";
+        var jjd = formName.jerk_or_jd.value;
+        if(jjd == "jerk") {
+            string += "Segment | M204 P Acceleration |  M205 Jerk X  |  M205 Jerk Y   (jerk Z is set the same as X to suit deltas)\n";
+            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_f2.value+" mm      |     "+formName.accel_f2.value+" mm\n";
+            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |     "+formName.accel_e2.value+" mm      |     "+formName.accel_e2.value+" mm\n";
+            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |     "+formName.accel_d2.value+" mm      |     "+formName.accel_d2.value+" mm\n";
+            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |     "+formName.accel_c2.value+" mm      |     "+formName.accel_c2.value+" mm\n";
+            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |     "+formName.accel_b2.value+" mm      |     "+formName.accel_b2.value+" mm\n";
+            string += "   A    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a2.value+" mm\n";
+        } else {
+            string += "Segment | M204 P Acceleration |  M205 Junction Deviation\n";
+            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |          "+formName.accel_f4.value+"\n";
+            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |          "+formName.accel_e4.value+"\n";
+            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |          "+formName.accel_d4.value+"\n";
+            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |          "+formName.accel_c4.value+"\n";
+            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |          "+formName.accel_b4.value+"\n";
+            string += "   A    |    "+formName.accel_a1.value+" mm/sec/sec   |          "+formName.accel_a4.value+"\n";
+        }
+    }  
+    downloadFile(fileName, string);
 }

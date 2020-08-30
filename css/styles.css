@@ -43,8 +43,8 @@ p {
 textarea {
     display: block;
     margin: 0 20px;
-    width: 80%;
-    font-size: 1.2em;
+    width: 90%;
+    font-size: 1.4em;
 }
 
 input {
@@ -104,7 +104,7 @@ a {
 }
 
 li {
-    line-height: 1.5em;
+    line-height: 1.8em;
 }
 
 ol li {
@@ -157,6 +157,12 @@ iframe {
     max-height: 240px;
     max-width: 600px;
     margin: 0 20px 20px 20px;
+}
+
+.startExp {
+    border: 1px solid #00c5ad;
+    margin: 5px 20px 20px;
+    padding: 20px; 
 }
 
 #header {
