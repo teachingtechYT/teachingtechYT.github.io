@@ -740,13 +740,13 @@
             </select>
 
             <h4>Firmware Retraction</h4>
-            <label>Firmware Retraction : <input type="checkbox" name="firmwareRetraction"  onchange="toggle(!this.checked, '#firmwareType')" ></label><br />
-            <span id="firmwareType" style="display:none"><label>G-code flavor:</label>
+            <span><label>G-code flavor:</label>
                 <select name="flavor">
                     <option value="0">Marlin</option>
                     <option value="1">RRF</option>
                 </select> 
             </span> 
+            <label>Firmware Retraction : <input type="checkbox" name="firmwareRetraction"></label><br />
 
             <h4>Retraction</h4>
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
@@ -760,7 +760,7 @@
                         <th>Extra restart distance (mm)</th>
                         <th>Prime (unretract) speed (mm/sec)</th>
                         <th>Z hop (mm)</th>
-                        <th id="linearAdvance" ></th>
+                        <th>Linear Advance</th>
                     </tr>
                 </thead>
                 <tbody>
