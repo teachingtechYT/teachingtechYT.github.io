@@ -225,10 +225,10 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
 
             <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
@@ -304,10 +304,10 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
 
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
@@ -891,8 +891,8 @@
             <h4>Retraction</h4>
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <h4>Hot end temperature</h4>
             <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A.</p>
             <table>
@@ -1084,7 +1084,7 @@
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <h4>Base feedrate/speed</h4>
             <p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed.</p>
             <label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>
