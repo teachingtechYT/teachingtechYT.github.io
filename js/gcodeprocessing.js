@@ -98,6 +98,7 @@ function processFirstlayer(){
     var bedY = document.firstlayerForm.bedy.value - 50;
     var bedRad = Math.round((document.firstlayerForm.beddia.value)/2);
     var retDist = document.firstlayerForm.retdist.value;
+    var retDistExtra = document.firstlayerForm.retdistextra.value;
     var retSpeed = document.firstlayerForm.retspeed.value*60;
     var abl = document.firstlayerForm.abl.value;
     var customStart = document.firstlayerForm.startgcode.value;
@@ -211,7 +212,7 @@ function processFirstlayer(){
     }
     var firstlayer = firstlayerStart+skirts+squares+firstlayerEnd;
     firstlayer = firstlayer.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    firstlayer = firstlayer.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(document.firstlayerForm.psuon.checked == true) {
         firstlayer = firstlayer.replace(/;M80/, "M80");
     }
@@ -228,6 +229,7 @@ function processBaseline(){
     var bedX = Math.round((document.baselineForm.bedx.value-100)/2);
     var bedY = Math.round((document.baselineForm.bedy.value-100)/2);
     var retDist = document.baselineForm.retdist.value;
+    var retDistExtra = document.baselineForm.retdistextra.value;
     var retSpeed = document.baselineForm.retspeed.value*60;
     var abl = document.baselineForm.abl.value;
     var pc = document.baselineForm.pc.value;
@@ -271,7 +273,7 @@ function processBaseline(){
         baseline = baseline.replace(/M109 S210 T0/g, "; Prusa Mini");
     }
     baseline = baseline.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    baseline = baseline.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         baseline = baseline.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -529,6 +531,7 @@ function processTemperature(){
     var bedX = Math.round((document.temperatureForm.bedx.value-100)/2);
     var bedY = Math.round((document.temperatureForm.bedy.value-100)/2);
     var retDist = document.temperatureForm.retdist.value;
+    var retDistExtra = document.temperatureForm.retdistextra.value;
     var retSpeed = document.temperatureForm.retspeed.value*60;
     var abl = document.temperatureForm.abl.value;
     var pc = document.temperatureForm.pc.value;
@@ -590,7 +593,7 @@ function processTemperature(){
     temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp+" ; custom bed temp");
     temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp+" ; custom bed temp");
     temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom unretraction/prime");
+    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
 
     if(centre == true){
         var temperatureArray = temperature.split(/\n/g);
@@ -662,6 +665,7 @@ function processAcceleration(){
     var bedX = Math.round((document.accelerationForm.bedx.value-100)/2);
     var bedY = Math.round((document.accelerationForm.bedy.value-100)/2);
     var retDist = document.accelerationForm.retdist.value;
+    var retDistExtra = document.accelerationForm.retdistextra.value;
     var retSpeed = document.accelerationForm.retspeed.value*60;
     var abl = document.accelerationForm.abl.value;
     var pc = document.accelerationForm.pc.value;
@@ -731,7 +735,7 @@ function processAcceleration(){
         acceleration = acceleration.replace(/M109 S210/g, "; Prusa Mini");
     }
     acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E0.0000 F"+retSpeed+" ; custom un-retraction/prime");
+    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
