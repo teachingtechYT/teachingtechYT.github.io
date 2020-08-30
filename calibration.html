@@ -228,7 +228,7 @@
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
 
             <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>The following diagram and reference picture can be useful in determing if your first layer is too close or too far away from the nozzle. The reference image is quite large to aid clarity, you may wish to open it in a new tab to view it at maximum size.</p>
@@ -306,7 +306,7 @@
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
 
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>The cube should look similar to those at the top of this page. If there are no major issues, please continue to the next step. If there is a significant defect, the culprit will likely be found by working through the frame page.</p>
@@ -802,7 +802,7 @@
                 </tbody>
             </table>
             <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistent with linear advance being enabled.</p>
@@ -929,7 +929,7 @@
                 </tbody>
             </table>
             <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 185 to 225 in 10 degree increments"</p>
@@ -1147,7 +1147,7 @@
                 </tbody>
             </table>
             <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"></p>
+            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>

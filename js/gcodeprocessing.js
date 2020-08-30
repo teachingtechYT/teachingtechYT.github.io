@@ -827,3 +827,102 @@ function processAcceleration(){
     }
     downloadFile('acceleration.gcode', acceleration);
 }
+
+function outputSettings(formName) {
+    var fileName;
+    var string = "Settings for ";
+    switch(formName.name) {
+        case "firstlayerForm":
+            string += "first layer"
+            fileName = "firstlayersettings.txt";
+            break;
+        case "baselineForm":
+            string += "baseline print"
+            fileName = "baselinesettings.txt";
+            break;
+        case "retractionForm":
+            string += "retraction tuning"
+            fileName = "retractionsettings.txt";
+            break;
+        case "temperatureForm":
+            string += "temperature tuning"
+            fileName = "temperaturesettings.txt";
+            break;
+        case "accelerationForm":
+            string += "acceleration and jerk/junction deviation tuning"
+            fileName = "accelerationsettings.txt";
+            break;
+    }
+    string += " form\n_________________________________________________________________________\n\n";
+    string += "All changes are marked in the gcode with 'custom' at the end of each line. Open the gcode in a text editor and search for this to your inputs if needed.\n\n";
+    if(formName.psuon.checked == true) {
+        string += "Turn on PSU with M80 active\n"
+    }
+    if(formName.start.checked == true) {
+        string += "Custom start gcode:\n";
+        string += formName.startgcode.value+"\n";
+    }
+    string += "\nBed: ";
+    if(formName.centre.checked == false) {
+        string += formName.bedx.value+" x "+formName.bedy.value+" mm";
+    } else {
+        string += "0,0 at centre";
+        if(formName.name == "firstlayerForm"){
+            string += ", "+formName.beddia.value+" mm diameter";
+        }
+    }
+    string += "\n\nTemperatures:\n";
+    if(formName.name == "temperatureForm") {
+        string += "Bed: "+formName.bedtemp.value+" deg C\n";
+        string += "Segement E: "+formName.temp_e1.value+" deg C\n";
+        string += "Segement D: "+formName.temp_d1.value+" deg C\n";
+        string += "Segement C: "+formName.temp_c1.value+" deg C\n";
+        string += "Segement B: "+formName.temp_b1.value+" deg C\n";
+        string += "Segement A: "+formName.temp_a1.value+" deg C\n";
+        string += "First Layer: "+formName.temp_a0.value+" deg C\n";
+    } else {
+        string += "Bed: "+formName.bedtemp.value+" deg C\n";
+        string += "Hot end: "+formName.hotendtemp.value+" deg C\n";
+    }
+    if(formName.name != "firstlayerForm") {
+        var pcSelected = formName.pc.value;
+        string += "\n\nPart Cooling: "+formName.pc[pcSelected].text;
+    }
+    var ablSelected = formName.abl.value;
+    string += "\n\nABL: "+formName.abl[ablSelected].text;
+    if(formName.name == "retractionForm") {
+        string += "\n\nSegment | Retraction distance | Retraction speed | Extra restart distance | Unretract speed | Z hop\n";
+        string += "   F    |          "+formName.ret_f1.value+" mm       |     "+formName.ret_f2.value+" mm/sec    |        "+formName.ret_f3.value+"       mm      | "+formName.ret_f4.value+" mm/sec       |  "+formName.ret_f5.value+" mm\n";
+        string += "   E    |          "+formName.ret_e1.value+" mm       |     "+formName.ret_e2.value+" mm/sec    |        "+formName.ret_e3.value+"       mm      | "+formName.ret_e4.value+" mm/sec       |  "+formName.ret_e5.value+" mm\n";
+        string += "   D    |          "+formName.ret_d1.value+" mm       |     "+formName.ret_d2.value+" mm/sec    |        "+formName.ret_d3.value+"       mm      | "+formName.ret_d4.value+" mm/sec       |  "+formName.ret_d5.value+" mm\n";
+        string += "   C    |          "+formName.ret_c1.value+" mm       |     "+formName.ret_c2.value+" mm/sec    |        "+formName.ret_c3.value+"       mm      | "+formName.ret_c4.value+" mm/sec       |  "+formName.ret_c5.value+" mm\n";
+        string += "   B    |          "+formName.ret_b1.value+" mm       |     "+formName.ret_b2.value+" mm/sec    |        "+formName.ret_b3.value+"       mm      | "+formName.ret_b4.value+" mm/sec       |  "+formName.ret_b5.value+" mm\n";
+        string += "   A    |          "+formName.ret_a1.value+" mm       |     "+formName.ret_a2.value+" mm/sec    |        "+formName.ret_a3.value+"       mm      | "+formName.ret_a4.value+" mm/sec       |  "+formName.ret_a5.value+" mm\n";
+    } else {
+        string += "\n\nRetraction distance: "+formName.retdist.value+" mm\n";
+        string += "Retraction speed: "+formName.retspeed.value+" mm/sec\n";
+        //string += "Extra restart distance: "+formName.hotendtemp.value+" mm\n";
+    }
+    if(formName.name == "accelerationForm") {
+        string += "\nBase feedrate: "+formName.feedrate.value+" mm/s\n\n";
+        var jjd = formName.jerk_or_jd.value;
+        if(jjd == "jerk") {
+            string += "Segment | M204 P Acceleration |  M205 Jerk X  |  M205 Jerk Y   (jerk Z is set the same as X to suit deltas)\n";
+            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_f2.value+" mm      |     "+formName.accel_f2.value+" mm\n";
+            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |     "+formName.accel_e2.value+" mm      |     "+formName.accel_e2.value+" mm\n";
+            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |     "+formName.accel_d2.value+" mm      |     "+formName.accel_d2.value+" mm\n";
+            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |     "+formName.accel_c2.value+" mm      |     "+formName.accel_c2.value+" mm\n";
+            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |     "+formName.accel_b2.value+" mm      |     "+formName.accel_b2.value+" mm\n";
+            string += "   A    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a2.value+" mm\n";
+        } else {
+            string += "Segment | M204 P Acceleration |  M205 Junction Deviation\n";
+            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |          "+formName.accel_f4.value+"\n";
+            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |          "+formName.accel_e4.value+"\n";
+            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |          "+formName.accel_d4.value+"\n";
+            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |          "+formName.accel_c4.value+"\n";
+            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |          "+formName.accel_b4.value+"\n";
+            string += "   A    |    "+formName.accel_a1.value+" mm/sec/sec   |          "+formName.accel_a4.value+"\n";
+        }
+    }  
+    downloadFile(fileName, string);
+}
