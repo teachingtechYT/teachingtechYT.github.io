@@ -109,38 +109,39 @@ function processFirstlayer(){
     var offsets = [0,0,0,0,0,0,0,0,0,0];
     var delt = 30;
     var xy = 30;
+    var margin = parseInt(document.firstlayerForm.margin.value);
     if(centre == true) {
         // left
-        offsets[0] = bedRad*-1 - 50;
+        offsets[0] = (bedRad*-1) - 50 + delt + margin;
         offsets[1] = -50;
         // bottom
         offsets[2] = -50;
-        offsets[3] = bedRad*-1 - 50;
+        offsets[3] = (bedRad*-1) - 50 + delt + margin;
         // centre
         offsets[4] = -50;
         offsets[5] = -50;
         // top
         offsets[6] = -50;
-        offsets[7] = bedRad - 50;
+        offsets[7] = (bedRad - 50 - delt) - margin;
         //right
-        offsets[8] = bedRad - 50;
+        offsets[8] = (bedRad - 50 - delt) - margin;
         offsets[9] = -50;
     } else {
         // bottom left
-        offsets[0] = 0 + xy - 50;
-        offsets[1] = 0 + xy - 50;
+        offsets[0] = 0 + xy - 50 + margin;
+        offsets[1] = 0 + xy - 50 + margin;
         // top left
-        offsets[2] = 0 + xy - 50;
-        offsets[3] = bedY - xy;
+        offsets[2] = 0 + xy - 50 + margin;
+        offsets[3] = bedY - xy - margin;
         // centre
         offsets[4] = bedX/2 - 25;
         offsets[5] = bedY/2 - 25;
         // bottom right
-        offsets[6] = bedX - xy;
-        offsets[7] = 0 + xy - 50;
+        offsets[6] = bedX - xy - margin;
+        offsets[7] = 0 + xy - 50 + margin;
         // top right
-        offsets[8] = bedX - xy;
-        offsets[9] = bedY - xy;
+        offsets[8] = bedX - xy - margin;
+        offsets[9] = bedY - xy - margin;
     }
     firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
@@ -870,6 +871,9 @@ function outputSettings(formName) {
         if(formName.name == "firstlayerForm"){
             string += ", "+formName.beddia.value+" mm diameter";
         }
+    }
+    if(formName.name == "firstlayerForm") {
+        string += "\nExtra margin from edge: "+formName.margin.value+" mm";
     }
     string += "\n\nTemperatures:\n";
     if(formName.name == "temperatureForm") {

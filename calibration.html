@@ -193,7 +193,7 @@
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the 0,0 at centre button is checked for a delta, also enter your bed diameter. Please check the gcode to ensure it will fit on your bed.</p>
-            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, 'first')" value="centre"></label>
+            <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="toggle(this.checked, 'first')" value="centre"></label>
             <span id="firstlayerXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <span id="firstlayerdia"><label>Bed diameter dimension (mm): <input type="number" name="beddia" value="100" min="100" max="600" step="1"></label></span>
@@ -206,6 +206,8 @@
                     $("#firstlayerdia").show();
                 }
             </script>
+            <p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap.</p>
+            <label>Extra margin from edge (mm): <input type="number" name="margin" value="0" min="0" max="100" step="1"></label>
             <h4>Temperatures</h4>
             <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
@@ -271,7 +273,7 @@
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the 0,0 at centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
-            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#baselineXY')" value="centre"></label>
+            <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#baselineXY')" value="centre"></label>
             <span id="baselineXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <h4>Temperatures</h4>
@@ -704,7 +706,7 @@
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
-            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#retractionXY')" value="centre"></label>
+            <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#retractionXY')" value="centre"></label>
             <span id="retractionXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <h4>Temperatures</h4>
@@ -855,7 +857,7 @@
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
-            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#tempXY')" value="centre"></label>
+            <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#tempXY')" value="centre"></label>
             <span id="tempXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <h4>Bed Temperature</h4>
@@ -1046,7 +1048,7 @@
             </script>
             <h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the centre button is checked, the bed size is irrelevant. Please check the gcode to ensure it will fit on your bed.</p>
-            <label>0,0 at centre of bed (Delta):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#accelerationXY')" value="centre"></label>
+            <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="toggle(this.checked, '#accelerationXY')" value="centre"></label>
             <span id="accelerationXY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <h4>Temperatures</h4>
