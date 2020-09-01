@@ -176,6 +176,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#firstlayerStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="firstlayerStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -257,6 +258,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#baselineStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="baselineStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -700,6 +702,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#retractionStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="retractionStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -851,6 +854,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#temperatureStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="temperatureStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -1043,6 +1047,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#accelerationStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="accelerationStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
