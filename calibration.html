@@ -154,6 +154,7 @@
         <a href="#" data-featherlight="img/ablmesh.jpg"><img class="thumb" src="img/ablmesh.jpg" /></a>
         <p>During printing, the firmware will reference the mesh and compensate for an angled and/or warped bed by raising and lowering the nozzle using Z axis movement. This means the nozzle can travel up and down to match the contours of the bed, ensuring a good first layer.</p>
         <p>In the printer's bed is perfectly flat, it is reasonable to claim ABL is not needed. Some users may still prefer it for the added convenience. In the event that the bed is warped (very common), it can be impossible to get a good first layer without ABL or manual mesh bed levelling. An example of this situation is shown in the video above.</p>
+        <p>It's worth noting that you can compensate for a warped bed in other ways, such as shimming the lower portions with a thin and flexible material. You can also use a glass/mirror plate over the top, which are typically quite flat. The downside of this is a longer time required to reach printing tempratures and additional load on the Y stepper (on an i3/'bed slinger' style printer) that may require lower print speed/acceleration.</p>
         <p>The bed can be probed at the start of the print with a <b>G29</b> command, with the resulting mesh immediately used to compensate as the initial layers are produced. Alternatively, the bed can also be probed some other time (while not printing), the mesh stored in the EEPROM and then restored with <b>M420 S1</b> at the start of a print. In this case the print will start sooner, since we do not need to wait for a new mesh to be probed, although it may not be as accurate if anything has changed since probing. Either of these gcode commands should come after the <b>G28</b> home command in the start gcode.</p>
         <p>Although ABL can compensate for a crooked/non-levelled bed, it is still better to attempt to level manually first and get everything in the  ballpark.</p>
         <p>Probing the bed and building a mesh only accounts for an uneven or warped bed. Like manual levelling, we still need to set the distance between the nozzle and bed to get a good first layer. This is where the Z offset comes in, which is simply the vertical distance between where the probe triggers vs the nozzle tip. Here are some examples:</p>
@@ -175,6 +176,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#firstlayerStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="firstlayerStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -225,10 +227,10 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
 
             <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
@@ -256,6 +258,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#baselineStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="baselineStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -304,10 +307,10 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable.</p>
+            <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
 
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
@@ -422,7 +425,10 @@
                     <td>Extruder > Extrusion width > tick manual > <b>0.4</b></td>
                     <td>Print settings > Advanced > Extrusion width > Default extrusion width: <b>0.4</b><br />
                         <i>and</i><br />
-                        Print settings > Advanced > Extrusion width > Perimeters: <b>0.4</b></td>
+                        Print settings > Advanced > Extrusion width > Perimeters: <b>0.4</b>
+                        <i>and</i><br />
+                        Print settings > Advanced > Extrusion width > External perimeters: <b>0.4</b>
+                    </td>
                 </tr>
                 <tr>
                     <td>5. Set outer wall thickness to single extrusion</td>
@@ -438,7 +444,13 @@
                     <td>Filament settings > Filament > Extrusion multiplier: 1</td>
                 </tr>
                 <tr>
-                    <td>7. Expected result:</td>
+                    <td>7. Enable vase/spiral mode (optional)</td>
+                    <td>Special modes > Spiralize outer contour</td>
+                    <td>Layer > Single outline corkscrew printing mode (vase mode)</td>
+                    <td>Print settings > Layers and perimeters > Vertical shells > Spiral vase</td>
+                </tr>
+                <tr>
+                    <td>8. Expected result:</td>
                     <td><img src="img/curacube.jpg" /></td>
                     <td><img src="img/simplify3dcube.jpg" /></td>
                     <td><img src="img/prusaslicercube.jpg" /></td>
@@ -690,6 +702,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#retractionStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="retractionStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -812,7 +825,7 @@
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistent with linear advance being enabled.</p>
         <p>I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in. A third test could then take place to test extra restart distance.</p>
         <a href="#" data-featherlight="img/retractionresults.jpg"><img class="thumb" src="img/retractionresults.jpg" /></a>
-        <p>If you would like to be able to customise additional parameters for a retraction test, Prahjister has made a great tool: <a href="http://prahjister.duckdns.org" target="_blank">Retraction Calibration Tool</a>. It has a higher degree of difficulty due to needing more parameters but is ultimately more powerful.</p>
+        <p>If you would like to be able to customise additional parameters for a retraction test, Prahjister has made a great tool: <a href="http://prahjister.duckdns.org" target="_blank">Retraction Calibration Tool</a>. It has a higher degree of difficulty due to needing more parameters but is ultimately more powerful. Warning! This is an external website and beyond my control. Some users have reported success and others have had  issues with the gcode generated. As with the gcode made by this website, monitor your printer during printing with a view to cutting the power if needed.</p>
     </div>
 
     <div id="temp">
@@ -841,6 +854,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#temperatureStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="temperatureStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -891,8 +905,8 @@
             <h4>Retraction</h4>
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <h4>Hot end temperature</h4>
             <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A.</p>
             <table>
@@ -1033,6 +1047,7 @@
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#accelerationStart')" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
+            <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div id="accelerationStart" class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
@@ -1084,7 +1099,7 @@
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are following this guide in order, you should already know your ideal retraction values.</p>
             <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label><br />
-            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" value="0" step="0.1"></label></p><br />
+            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <h4>Base feedrate/speed</h4>
             <p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed.</p>
             <label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>

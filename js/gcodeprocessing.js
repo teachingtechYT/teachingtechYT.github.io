@@ -216,6 +216,9 @@ function processFirstlayer(){
     if(document.firstlayerForm.psuon.checked == true) {
         firstlayer = firstlayer.replace(/;M80/, "M80");
     }
+    if(document.firstlayerForm.removet0.checked == true) {
+        firstlayer = firstlayer.replace(/T0\n/, ";T0\n");
+    }
     if(document.firstlayerForm.start.checked == true) {
         firstlayer = firstlayer.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
@@ -336,6 +339,9 @@ function processBaseline(){
     }
     if(document.baselineForm.psuon.checked == true) {
         baseline = baseline.replace(/;M80/, "M80");
+    }
+    if(document.baselineForm.removet0.checked == true) {
+        baseline = baseline.replace(/T0\n/, ";T0\n");
     }
     if(document.baselineForm.start.checked == true) {
         baseline = baseline.replace(/;customstart/, "; custom start gcode\n"+customStart);
@@ -519,6 +525,9 @@ function processRetraction(){
     if(document.retractionForm.psuon.checked == true) {
         retraction = retraction.replace(/;M80/, "M80");
     }
+    if(document.retractionForm.removet0.checked == true) {
+        retraction = retraction.replace(/T0\n/, ";T0\n");
+    }
     if(document.retractionForm.start.checked == true) {
         retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart); 
     }
@@ -651,6 +660,9 @@ function processTemperature(){
     temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
     if(document.temperatureForm.psuon.checked == true) {
         temperature = temperature.replace(/;M80/, "M80");
+    }
+    if(document.temperatureForm.removet0.checked == true) {
+        temperature = temperature.replace(/T0\n/, ";T0\n");
     }
     if(document.temperatureForm.start.checked == true) {
         temperature = temperature.replace(/;customstart/, "; custom start gcode\n"+customStart);
@@ -827,6 +839,9 @@ function processAcceleration(){
     if(document.accelerationForm.psuon.checked == true) {
         acceleration = acceleration.replace(/;M80/, "M80");
     }
+    if(document.accelerationForm.removet0.checked == true) {
+        acceleration = acceleration.replace(/T0\n/, ";T0\n");
+    }
     if(document.accelerationForm.start.checked == true) {
         acceleration = acceleration.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
@@ -862,6 +877,9 @@ function outputSettings(formName) {
     string += "All changes are marked in the gcode with 'custom' at the end of each line. Open the gcode in a text editor and search for this to your inputs if needed.\n\n";
     if(formName.psuon.checked == true) {
         string += "Turn on PSU with M80 active\n"
+    }
+    if(formName.removet0.checked == true) {
+        string += "T0 command removed\n"
     }
     if(formName.start.checked == true) {
         string += "Custom start gcode:\n";
