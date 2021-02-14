@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Teaching Tech 3D Printer Troubleshooting</title>
+        <link  type="text/css" rel="stylesheet" href="css/styles.css">
+        <link  type="text/css" rel="stylesheet" href="css/responsive-tabs.css">
+        <link  type="text/css" rel="stylesheet" href="css/featherlight.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="js/jquery.responsiveTabs.js"></script>
+        <script src="js/videobox.js"></script>
+        <script src="js/featherlight.js"></script>
+        <script src="js/firstlayer.js"></script>
+        <script src="js/baseline.js"></script>
+        <script src="js/retraction.js"></script>
+        <script src="js/temperature.js"></script>
+        <script src="js/acceleration.js"></script>
+        <script src="js/encoding-indexes.js"></script>
+        <script src="js/encoding.js"></script>
+        <script src="js/gcodeprocessing.js"></script>
+        <script src="js/minimumlength.js"></script>
+        <script src="js/persist.js"></script>
+    </head>
+<body onload="loadAllFormData()">
+<div id="header">
+    <img src="img/tt.png" class="icon" style="vertical-align:middle;" /><h1>Teaching Tech 3D Printer Troubleshooting</h1><span id="donate">Useful? Considering supporting me: <a href="https://paypal.me/testlawgicau" target="blank"><img class="icon" src="img/paypal.png" /></a><a href="http://www.patreon.com/teachingtech" target="blank"><img class="icon" src="img/patreon.png" /></a></span>
+</div>
+<div id="tabs">
+    <ul>
+        <li><a href="#general">General Principals</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#terminal">Connecting via Terminal</a></li>
+        <li><a href="#firstlayer">First Layer</a></li>
+        <li><a href="#direction">Motor Direction</a></li>
+        <li><a href="#endstops">Endstops/Filament Runout</a></li>
+        <li><a href="#pid">BLtouch</a></li>
+        <li><a href="#pid">Connecting via Terminal</a></li>
+    </ul>
+
+    <div id="general">
+        <h2>General Principals</h2>
+        <p>This page serves as a companion for this video: <a href="" target="_blank">3D printer troubleshooting - Identify and solve problems</a></p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>It aims to provide a methodology for identifying and solving common problems that occur with hobby 3D printers. If you find it helps you and you would like to say thank you, here is a donation link: <a href="https://paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
+        <p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for helping define the contents.</p>
+        <p>Watch the video, read this tab, prepare yourself with the appropriate tools and then work through relevant tabs.</p>
+        <h4>Understand your machine before attempting modification</h4>
+        <p>Perhaps you have arrived at this page with a standard printer that has brokn down. In this case, ignore this heading. Many people, however, will arrive at this page after performing modifications to their machine. When they turn it back on, something doesn't work as expected.</p>
+        <p>Often people fall into the trap of modifying a 3D printer as a beginner immediately after purchase. This can be quite risky. Firstly, they do not have a good working knowlegde of how their printer functions. They have not seen it in action long enough to how what purpose of each component is, which increases the chance of the component being reinstalled incorrectly.</p>
+        <p>Another potential problem is that the user will not appreciate the benefits of the upgrade because they have not worked with the printer in its 'inferior' standard state. In some cases something like an ABL probe will be fitted immediately before the user understands how to manually level the bed. The rush to upgrade deprives the user of learning the fundamentals necessary for efficient and effective long term operation. I am a fan of usng ABL for the added convenience and ability to compensate for a warped bed, but this is because I spent many years without ABL on a less than precise printer.</p>
+        <h4>Be methodical: only test/change/modify one aspect at a time</h4>
+        <p>Beginners often tear down a printer and upgrade multiple things at once, which means when it goes back together and doesn't work they have no idea which new component is the problem.</p>
+        <p>Therefore it is smartest to upgrade one component at a time when the printer is working, or if it has broken down, change one aspect at a time. If we change two aspects and the problem goes away, which of the two changes was responsible? Maybe only one was needed the the uneccessary change will cause problems down the line.</p>
+        <p>This guide works on the methodology of a scientific test, where only one variable is tested to ensure accuratre results and conclusions are forthcoming.</p>
+        <h4>When asking for help, be specific</h4>
+        <p>If all else fails and you approach a community group for assistance, try to help them help you. Specify your printer, mainboard, stepper drivers, firmware, modifications, slicer, etc. Anything that is relevant to the situation. Tuning the current delivered to the stepper motors differs significantly depending on these variables. </p>
+        <p>Use free services like:</p>
+        <ul>
+            <li><a href="https://filebin.net/" target="_blank">Filebin</a> to upload gcode files for others to examine and preview.</li>
+            <li><a href="https://pastebin.com/" target="_blank">Pastebin</a> to dislay firmware configuration information or other relevant data. Forums will often garble sensitive data that needs to be read accurately.</li>
+            <li><a href="https://imgur.com/" target="_blank">Imgur</a> to upload images of your problem. A picture paints a thousand words and is quite often the most effivient way to communicate a problem.</li>
+            <li><a href="https://streamable.com/" target="_blank">Streamable</a> to upload a video of the problem. This again can be incredibly useful in helping others diagnose your problem.</li>
+        </ul>
+        <p>All of the sites above are free to use and do not require an account.</p>
+        <h4>Use the search feature</h4>
+        <p>On the internet, with something as popular as 3D printing, there is a fair chance someone has had your particular problem before. Sometimes everything feels overwhelmning and you really want a human to advise you but you should always start by searching. This can be in community groups or the <a href="https://github.com/MarlinFirmware/Marlin/issues" target="_blank">GitHub issue section (eg. Marlin)</a> for youre hardware or firmware. People understandably get annoyed if you don't undertake this basic step. Why should you expect them to invest time in helping you when you can't even be bothered to type a few words in a search box?</p>
+        <h4>Be patient and appreciative</h4>
+        <p>Unless you are accessing paid technical support, everyone involved is assisting for free in their spare time. It may take them a long time to get back to you if at all. Even paid technical support may not have quick answers. Their efficacy depends a lot on your ability to accurately convey the problem.</p>
+        <h4>Pay it forward</h4>
+        <p>Once you do find the solution to your problem, make it public so it may benefit future searchers. If using a community group message board, mark the issue as solved, post the solution and thank those who helped you. In time, as you become more experienced and confident, consider helping the beginners who are in the same situation you were in at one stage.</p>
+    </div>
+
+    <div id="tools">
+        <h2>Tools</h2>
+        <p>I have a video on useful tools for 3D printing: <a href="https://youtu.be/XBoXp31PCo8" target="_blank">Essential (and obscure) 3D printing tools and spares</a></p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/XBoXp31PCo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>However here we are focused on specific tools to collect information, because when troubleshooting a 3D printer: knowledge is power.</p>
+        <h4>Calipers</h4>
+        <p>Digital calipers are a cheap and easy to use tools for measuring various things,. This may include printed objects, probe offsets, and measuring the movement of the machine. A ruler is a useful second choice but will not be as accurate as digital calipers. Calipers are also excellent for measuring objects when 3D modelling.</p>
+        <p><a href="https://amzn.to/3h62loN" target="_blank">Digital calipers on Amazon</a></p>
+        <h4>Multimeter</h4>
+        <p>A digital multimeter is a versatile tool for measuring various electrical signals. On a 3D printer they are handy for measuring the VREF for tuning stepper motor current, measuring voltage to ensure components are turning on and off as expected, but perhaps most importantly, testing continuity to trace and find broken connections. Spending more means you will also gain the ability to measure temperature.</p>
+        <p><a href="https://amzn.to/3m0x765" target="_blank">Budget multimeter on Amazon</a></p>
+        <p><a href="https://amzn.to/2EZggQx" target="_blank">Multimeter with temperature reading on Amazon</a></p>
+        <h4>Terminal/console software</h4>
+        <p>This is perhaps the most important tool: the ability to connect directly to your 3D printer to read and send information. Options include:</p>
+        <ol>
+            <li><a href="https://www.pronterface.com/" target="_blank"></a>Pronterface</a> - Free and available for Windows, Mac and Linux.</li>
+            <li><a href="https://octoprint.org/" target="_blank"></a>Octoprint</a> - Free host software that typically runs on a Raspberry Pi. Has a 'terminal' tab. <a href="https://youtu.be/h--RLbvQKYc" target="_blank"></a>Octoprint setup video guide</a></li>
+            <li><a href="https://www.arduino.cc/en/software" target="_blank"></a>Arduino IDE</a> - Free and available for Windows, Mac and Linux. Less intuitive but the <i>Tools > Serial Monitor</i> option will provide a terminal.</li>
+            <li><a href="https://www.simplify3d.com/" target="_blank"></a>Simplify3D</a> - Paid slicing software that aso has a terminal feature.</li>
+        </ol>
+        <p>There are many others options but these are the most popular. If you already have a favourite piece of software, you don't need this list.</p>
+        <p>Connecting to the printer is covered in the next tab.</p>
+        <h4>Firmware Gcode References</h4>
+        <p>Once you have a working connection, you need to know what to send. A great place to start is by having the gcode reference for your firmware handy:</p>
+        <ul>
+            <li><a href="https://marlinfw.org/meta/gcode/" target="_blank">Marlin</a></li>
+            <li><a href="https://duet3d.dozuki.com/Wiki/Gcode" target="_blank">RepRapFirmware / Duet3D</a></li>
+            <li><a href="http://smoothieware.org/supported-g-codes" target="_blank">Smoothieware</a></li>
+            <li><a href="https://github.com/KevinOConnor/klipper/blob/master/docs/G-Codes.md" target="_blank">Klipper</a></li>
+            <li><a href="https://www.lerdge.com/document/Gcode" target="_blank">Lerdge</a></li>
+            <li><a href="https://github.com/gnea/grbl/wiki/Grbl-v1.1-Commands" target="_blank">Grbl</a></li>
+        </ul>
+        <h4>GitHub Resources</h4>
+        <p>Many manufacturers of 3D printers and upgrade parts provide GitHub repositories with detailed manuals, dimensions and wiring diagrams. Here are some popular examples:</p>
+        <ul>
+            <li><a href="https://github.com/bigtreetech" target="_blank">BigTreeTech</a></li>
+            <li><a href="https://github.com/makerbase-mks" target="_blank">Makerbase MKS</a></li>
+            <li><a href="https://github.com/Creality3DPrinting" target="_blank">Creality</a></li>
+        </ul>
+    </div>
+
+    <div id="terminal">
+        <h2>Connecting via terminal</h2>
+        <p>Typically, connecting to the printer with any of these software options involves using a USB cable, selecting a port and a baud rate.</p>
+        <h4>USB cable</h4>
+        <p>This one seems clear cut: just plug in the cable between the computer/Raspberry Pi and the mainbard. It is still worth mentioning that not all USB cables are created equal. If you are having trouble connecting, try another cable.</p>
+        <h4>Port</h4>
+        <p>On a Windows machine, after a driver is installed, the </p>
+    </div>
+</div>
+<div id="footer">
+	<p style="text-align: center;">This page is fully <a href="https://github.com/teachingtechYT/teachingtechYT.github.io" target="_blank">open source</a>. If you find a bug or have a feature request, please post in the <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues" target="_blank">issues</a> section there.</p>
+    <p style="text-align: center;">This page was created using:</p>
+    <ul style="margin-top:-20px;">
+        <li><a href="https://jquery.com/" target="_blank">jQuery</a></li>
+        <li><a href="https://github.com/jellekralt/Responsive-Tabs" target="_blank">Responsive Tabs by jellekraut</a></li>
+        <li><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto font</a></li>
+        <li><a href="https://github.com/tedktedk/videobox" target="_blank">Videobox by tedktedk</a></li>
+        <li><a href="https://github.com/noelboss/featherlight" target="_blank">Featherlight by noelboss</a></li>
+    </ul>
+</div>
+</body>
+<script>
+    $('#tabs').responsiveTabs({
+        startCollapsed: 'accordion'
+    });
+    $(".videoThumb").videoBox({
+        width: '480',
+        height: '360',
+        loop: false,
+        autoplay: false,
+        byline: false,
+        color: "00adef",
+        maxheight: '',
+        maxwidth: '',
+        portrait: true,
+        title: '',
+        controls: 1
+  });
+</script>
+</html>
