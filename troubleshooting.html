@@ -31,6 +31,7 @@
         <li><a href="#tools">Tools</a></li>
         <li><a href="#terminal">Connecting via Terminal</a></li>
         <li><a href="#firstlayer">First Layer</a></li>
+        <li><a href="#filamentjams">Filament Jams</a></li>
         <li><a href="#direction">Motor Direction</a></li>
         <li><a href="#endstops">Endstops/Filament Runout</a></li>
         <li><a href="#pid">BLtouch</a></li>
@@ -117,8 +118,121 @@
         <h4>USB cable</h4>
         <p>This one seems clear cut: just plug in the cable between the computer/Raspberry Pi and the mainbard. It is still worth mentioning that not all USB cables are created equal. If you are having trouble connecting, try another cable.</p>
         <h4>Port</h4>
-        <p>On a Windows machine, after a driver is installed, the </p>
+        <p>On a Windows machine, after a driver is installed, the name of the port can be found in <b>Device Manager</b>:</p>
+        <a href="#" data-featherlight="img/devicemanager.jpg"><img class="thumb" src="img/devicemanager.jpg" /></a>
+        <p>As you can see, the name of the port will be <b>COM</b> followed by a number. In the example above: <b>COM6</b>.</p>
+        <p>On a Mac, Linux or with Octoprint on a Raspberry Pi, the name of the port will typically start with <b>ttyUSB</b>, followed by a number. For example <b>/dev/ttyUSB0</b>.</p>
+        <p>On any system, there may be more than one devices listed, so trial and error may be required to find the right port.</p>
+        <h4>Baud</h4>
+        <p>Baud is the speed of the serial connection between the host device and mainboard. 99% of the time the baud should be either <b>115200</b> or <b>250000</b>. This is set in the firmware but even if you don't access to the firmware source to check, just try one and then the other.</p>
+        <h4>Connecting</h4>
+        <p>In Pronterface, select the port and baud in the top left and then click connect.</p>
+        <a href="#" data-featherlight="img/pronterfaceconnection.jpg"><img class="thumb" src="img/pronterfaceconnection.jpg" /></a>
+        <p>If this is successful, you will receive a confirmation message in the terminal output. If not, try a different combination.</p>
+        <p>With Octoprint, we have the same options, but Octoprint will automatically cycle between them until it finds the right combination.</p>
+        <a href="#" data-featherlight="img/octoprintconnection.jpg"><img class="thumb" src="img/octoprintconnection.jpg" /></a>
+        <h4>What to send to get started</h4>
+        <p>To test your serial connection, send <a href="https://marlinfw.org/docs/gcode/M115.html" target="_blank"><b>M115</b></a> which will report on your firmware, including when it was compiled and uploaded.</p>
+        <p>Another useful command is <a href="https://marlinfw.org/docs/gcode/M503.html" target="_blank"><b>M503</b></a>, which will return all of the firmware variables currently in place. This output is worth copying and pasting in a document before performing major modifications. This list of variables also represents everything that can be changed and stored in the EEPROM without the need for firmware compilation.</p>
     </div>
+
+    <div id="firstlayer">
+        <h2>First layer problems</h2>
+        <p>In my experience, the number one problem new 3D printer users will have is getting the bed levelled correctly and therefore an adequate first layer on a 3D print.</p>
+        <ul>
+            <li>If the nozzle is the correct distance from the bed, the extruded plastic will squish into the surface of the bed, gaining a good grip that will keep the printed object secure until printing is complete.</li>
+            <li>If the nozzle is too close to the bed, the filament will be squished too much into the bed. This could damage some more delicate bed surfaces. It can also have the effect of blocking the exit of the nozzle and leading to a jam.</li>
+            <li>If the nozzle is too far from the bed, the first layer effectively prints in mid air, with the filament not squishing into the bed surface and therefore not adhering properly. Such a print will likely be dislodged sooner rather than later.</li>
+            <li>If the bed is not levelled correctly, you may have a combination of the above in the same print in different parts of the bed.</li>
+            <li>If the bed is warped, it may be impossible to achieve the correct distance between the nozzle and bed across the whole bed surface.</li>
+        </ul>
+        <h4>First Layer Calibration</h4>
+        <p>I have already created a <a href="https://teachingtechyt.github.io/calibration.html#firstlayer" target="_blank">First Layer Calibration page</a> to address this need. It features a companion video:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/Ze36SX1xzOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>It also features a gcode generator to created a first layer test print to suit your 3D printer.</p>
+        <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img class="thumb" src="img/firstlayerpreview.jpg" /></a>
+        <p>Finally, there are reference diagrams to help you deterine your results.</p>
+        <a href="#" data-featherlight="img/firstlayer.jpg"><img class="thumb" src="img/firstlayer.jpg" /></a> <a href="#" data-featherlight="img/firstlayer2.jpg"><img class="thumb" src="img/firstlayer2.jpg" /></a>
+        <h4>Other Factors</h4>
+        <p>Apart from the levelling and physical distance between the nozzle and bed surface, there are a few other factors you can investigate if you are still having trouble with your first layer:</p>
+        <ul>
+            <li>Bed temperature - The bed temperature and nozzle temperature should match those stipulated by the filament manufacturer. If you attempt to print ABS with a heated bed temperature usually used for PLA (eg. 60 degrees C), the filament wiull probably look fine for the first layer but soon after will likely detach. It is also worth noting that some surfaces like Wham Bam PEX might need 10 degree C hotter bed temp over regular PEI to gain max adhesion eg. 70 degrees for PLA instad of 60 degrees.
+            </li>
+            <li>Dirty bed - Dust, debris and greasy fingerprints will inhibit the adhesion between bed and filament. Most bed surfaces benefit from a clean using Isopropyl alcohol and paper towel every few prints. Please check this for your bed to avoid damaging the surface.</li>
+            <li>Adhesion aids - Substances like glue stick, hairspray or even purpose made products like Dimifix may be used to increase adhesion. Again, read the instructions carefully and ensure the product will not damage your bed surface.</li>
+            <li>Environmental factors - A draft blowing over the printer from an open window might affect print adhesion. Ensuring a contrrolled environment will help 3D print quality overall. This may be as simple as closing doors and windows or providing a simple enclosure.</li>
+        </ul>
+    </div>
+
+    <div id="filamentjams">
+        <h2>Filament Jams</h2>
+        <p>When everything is working perfectly, the filament will be pushed through the heater block, melted and then exit the nozzle to be deposited as part of the printed object. It is possible, however, for the filament to jam somewhere in the system and cause the print to fail. The following is a list of areas to check if your 3D printer is jamming.</p>
+        <h4>Hot end temperature</h4>
+        <p>Thermoplastics require a certain temperature to melt and flow freely. Generally, the hotter the nozzle, the lower the viscosity of the filament and the more freely it flows. Upping the hot end temperature by 5 to 10 degrees is a viable test to try and stop filament jamming. If the nozzle temperature is too high, it may make the filament too 'oozy' which negatively impacts aspects like retraction. The faster you print, the higher the nozzle temperature will need to be allow the filament to melt in time.</p>
+        <h4>First layer squish</h4>
+        <p>As mentioned in the previous tab, if the nozzle is too close to the bed for the first layer, the bed blocks the exit of the nozzle which can jam the filament. Quite often you will notice the extruder stepper motor 'clicking'/missing steps only on the first layer. A first layer with too much squish is illustrated in the previous tab. If you experience jams at the start of a print, try increasing the distance between the nozzle and bed.</p>
+        <h4>'Baked' filament from sitting in hot nozzle</h4>
+        <p>Try to avoid leaving your nozzle at printing temperatures when the printer is idle. This can be easy to do, perhaps you heat up the nozzle for a filament swap and then get distracted. Over time, the filament in the nozzle can degrade, harden and then block the tip. This will likely require removal and cleaning.</p>
+        <h4>PTFE tube not correctly seated</h4>
+        <p>Hot ends can either be lined or 'all metal'. In a lined hot end, the PTFE tube runs through the heat break and either into the inside of the nozzle or jammed hard against the top of it. This design is popular on Creality and other budget machines.</p>
+        <p>If there are any gaps in the system between the PTFE tube and the metal components, filament is free to expand into the wider cavity and prevent the filament from moving through the whole system. This is illustrated in the diagram below with the resulting filament bulge which causes the jam:</p>
+        <a href="#" data-featherlight="img/ptfegap.jpg"><img class="thumb" src="img/ptfegap.jpg" /></a>
+        <p>To stop this problem, it is essential to have a good quality tube fitting that wll hold the PTFE tube in place. As these fittings can degrade over time, <a href="https://www.thingiverse.com/thing:3203831" target="_blank">Luke Hatfield has developed a simple but effective fix</a> to modify Creality lined hot ends so the tube remains seated. CHEP has made a great video on testing this solution:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/7tCxO17XZtw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Stripped filament in hobbed gear</h4>
+        <p>This problem is illustrated below:</p>
+        <a href="#" data-featherlight="img/strippedfilament.jpg"><img class="thumb" src="img/strippedfilament.jpg" /></a>
+        <p>The hobbed gear has tiny teeth to grab the filament and push it through the hot end. This problem often comes from an obstruction further along the system - a blockage in the nozzle for instance. The filament has no where to go, the hobbed gear cuts a trench in the filament an the debris clogs the hobbed gear. Quite often this problem must be checked and cleared after solving a jam elsewhere. After disassembly to gain access, a spare toothbrush is an excellent tool for cleaning the hobbed gear(s).</p>
+        <h4>Heat creep</h4>
+        <p>It is vital that only a specific section of the hot end assembly remains hot enough to fully melt the filament. To achieve this, a heat sink is typically fitted above a heat break that is actively cooled by a fan. This prevents the filament path above the melt zone from heating up and softening or melting the filament prematurely. This is illustrated well by Slice Engineering on their <a href="https://www.sliceengineering.com/products/copperhead%E2%84%A2" target="_blank">Copperhead hot end page:</a></p>
+        <video class="pf-html5-video" width="20%" height="auto" type="video/mp4?v=1585860716" src="https://cdn.shopify.com/s/files/1/0252/5285/5880/t/2/assets/Copperhead-2.85---ramp-up-25-250-C.mp4?v=1585860716" controls="" loop="" playsinline="" autoplay="" controlslist="nodownload" disablepictureinpicture="" muted="true"></video>
+        <p>If the heat sink cooling fan is starting to degrade, heat creep may soften the filament and cause a jam. As it is hard to diagnose a faulty fan, it may be easier to swap it to a good unit for peace of mind.</p>
+        <p>Some printers like The Monoprice Mini Delta has weak heat sink cooling systems from factory. I have found in this particular printer, I have to print 5-10 degrees below what I normally use to prevent heat creep.</p>
+        <p>Finally, it is possible for heat creep to affect a bowden tube design printer. If the extruder stepper gets too hot, the heat may creep up and cause the hobbed gear to also get hot. This will soften the filament and possibly lead to stripped filament as illustrated previously.</p>
+        <p>Heat creep jams normally occur a set amount of time into the print. If you notice that the printer jams approximately the same amount of time into the print regardless of the object, this may be the amount of time it takes the heat to creep up and saturate the system.</p>
+        <h4>Filament path obstruction/tangle</h4>
+        <p>This one can be easy to overlook. In the case of a clear tangle of the filament on the spool, the cause of the jam will be obvious:</p>
+        <a href="#" data-featherlight="img/filamenttangle.jpg"><img class="thumb" src="img/filamenttangle.jpg" /></a>
+        <p>It is also worth checking the filament can pull freely from the spool if you have some sort of guide system like a reverse bowden tube. Also check the filament spool can rotate freely.</p>
+        <h4>Physical obstruction in nozzle</h4>
+        <p>After printing a higher temperature filament, it is important to ensure that this has been completely purged from the nozzle when switching back to a lower temperature filament like PLA. Failing to do this or perhaps leaving filament to degrade in a hot nozzle might leave harder chunks of filament obstructing the path through the nozzle. An acupuncture needle, cleaning filament pushed through at high temp or performing a cold pull will clean the inside the inside of the nozzle in many cases. Sometimes, however, it is necessary to remove the nozzle and use a solvent or my favourite: a blow torch, to clean the nozzle more aggressively.</p>
+        <p>This problem can often be identified by abnormal extrusion in free air. The filament exiting the nozzle may be undersized and coming out at a strange angle.</p>
+        <h4>Excessive retraction</h4>
+        <p>This one is very rare, but if retraction distance is set too high in the slicer, the filament may be pulled so far out of the nozzle that a molten section pulls into the cool zone, solidifying as it sticks to the walls, jamming the system.</p>
+        <h4>Seasoning the hot end</h4>
+        <p>This is something I've never personally done, but it has been the solution for patrons when all else had failed. The process involves introducing a small amount of oil to lubricate the internals of the hot end and assist filament is moving through freely. This process is demonsrated below by Nillabean:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/shSfZxK-VUk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Extruder stepper current too low</h4>
+        <p>This should only be examined after checking and eliminating the more common causes above. Increasing the current to the extruder stepper motor and therefore the torque available will increase the system's ability to push filament out of the nozzle. If all else is well this may be just what is needed to make the printer reliable. If there is a blockage or problem elsewhere, however, this step will at best mask the problem or at worst enflame it. <a href="https://teachingtechyt.github.io/calibration.html#steppers" target="_blank">Stepper motor current tuning is covered on this calibration page</a>.</p>
+    </div>
+
+    <div id="direction">
+        <h2>Motor Direction</h2>
+        <p>Let's say we have completed an extruder upgrade, changed stepper motor drivers, swapped the mainboard or built a custom machine and one or more axes are reversed. In this tab we will deal with testing and fixing this problem.</p>
+        <h4>Testing</h4>
+        <p>Generally you would use the 3D printer's LCD menu or manual controls from a touchscreen, Octoprin or Pronterface to manually move each axis to see if the axis moves as expected. Keep in mind:</p>
+        <ul>
+            <li>Some printers won't move some axes until the printer is homed. If an axis is reversed, be handy on the power switch to avoid a damaging collision when trying to home.</li>
+            <li>Most firmwares will not allow an axis to move to a value smaller than zero.</li>
+            <li>Each of these manual movement methods puts the printers in relative relative move mode, send the movement command, then *should* put the printer back in absolute mode. The sequence should look lke this (eg. Move the axis 20mm to the right):
+            <pre>G91
+G1 X20 F360
+G90</pre>
+            If sending your own G1 commands to test movement, be careful to check if the printer is in relative or absolute mode as this may skew the results if you have this backwards.</li>
+            <li>Manual movements may not always be intuitive. On a machine where the bed moves vertically instead of the X axis gantry, a downward bed movement represents an increase in Z axis value. i3 'bed slinger' designs also confuse people too. Mark where you think min and max are on the bed with masking tape to make sure the nozle is moving in te right direction when testing.</li>
+            <li>The hot end will need to be up to temp before you can manually move the extruder, due to cold extrusion protection built int the firmware.</li>        
+        </ul>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/XBoXp31PCo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>However here we are focused on specific tools to collect information, because when troubleshooting a 3D printer: knowledge is power.</p>
+    </div>
+
+    <div id="directon">
+        <h2>Motor Direction</h2>
+        <p>I have a video on useful tools for 3D printing: <a href="https://youtu.be/XBoXp31PCo8" target="_blank">Essential (and obscure) 3D printing tools and spares</a></p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/XBoXp31PCo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>However here we are focused on specific tools to collect information, because when troubleshooting a 3D printer: knowledge is power.</p>
+    </div>
+
 </div>
 <div id="footer">
 	<p style="text-align: center;">This page is fully <a href="https://github.com/teachingtechYT/teachingtechYT.github.io" target="_blank">open source</a>. If you find a bug or have a feature request, please post in the <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues" target="_blank">issues</a> section there.</p>
