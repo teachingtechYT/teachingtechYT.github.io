@@ -1,30 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Teaching Tech 3D Printer Calibration</title>
-        <link  type="text/css" rel="stylesheet" href="css/styles.css">
-        <link  type="text/css" rel="stylesheet" href="css/responsive-tabs.css">
-        <link  type="text/css" rel="stylesheet" href="css/featherlight.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-        <script src="js/jquery-3.5.1.js"></script>
-        <script src="js/jquery.responsiveTabs.js"></script>
-        <script src="js/videobox.js"></script>
-        <script src="js/featherlight.js"></script>
-        <script src="js/firstlayer.js"></script>
-        <script src="js/baseline.js"></script>
-        <script src="js/retraction.js"></script>
-        <script src="js/temperature.js"></script>
-        <script src="js/acceleration.js"></script>
-        <script src="js/encoding-indexes.js"></script>
-        <script src="js/encoding.js"></script>
-        <script src="js/gcodeprocessing.js"></script>
-        <script src="js/minimumlength.js"></script>
-        <script src="js/persist.js"></script>
+        <script src="js/loadscripts.js"></script>
     </head>
 <body onload="loadAllFormData()">
-<div id="header">
-    <img src="img/tt.png" class="icon" style="vertical-align:middle;" /><h1>Teaching Tech 3D Printer Calibration</h1><span id="donate">Useful? Considering supporting me: <a href="https://paypal.me/testlawgicau" target="blank"><img class="icon" src="img/paypal.png" /></a><a href="http://www.patreon.com/teachingtech" target="blank"><img class="icon" src="img/patreon.png" /></a></span>
-</div>
+<div id="menu"></div>
+<div id="header"></div>
 <div id="tabs">
     <ul>
         <li><a href="#intro">Introduction</a></li>
@@ -1247,34 +1228,11 @@
     <pre>M900 K0</pre>
     </div>
 </div>
-<div id="footer">
-	<p style="text-align: center;">This page is fully <a href="https://github.com/teachingtechYT/teachingtechYT.github.io" target="_blank">open source</a>. If you find a bug or have a feature request, please post in the <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues" target="_blank">issues</a> section there.</p>
-    <p style="text-align: center;">This page was created using:</p>
-    <ul style="margin-top:-20px;">
-        <li><a href="https://jquery.com/" target="_blank">jQuery</a></li>
-        <li><a href="https://github.com/jellekralt/Responsive-Tabs" target="_blank">Responsive Tabs by jellekraut</a></li>
-        <li><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto font</a></li>
-        <li><a href="https://github.com/tedktedk/videobox" target="_blank">Videobox by tedktedk</a></li>
-        <li><a href="https://github.com/noelboss/featherlight" target="_blank">Featherlight by noelboss</a></li>
-    </ul>
-</div>
+<div id="footer"></div>
 </body>
 <script>
-    $('#tabs').responsiveTabs({
-        startCollapsed: 'accordion'
-    });
-    $(".videoThumb").videoBox({
-        width: '480',
-        height: '360',
-        loop: false,
-        autoplay: false,
-        byline: false,
-        color: "00adef",
-        maxheight: '',
-        maxwidth: '',
-        portrait: true,
-        title: '',
-        controls: 1
-  });
+  var pageName = "Calibration";
+  var pageTitle="Teaching Tech 3D Printer Calibration";
 </script>
+<script src="js/dynamic.js"></script>
 </html>

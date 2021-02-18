@@ -5,6 +5,41 @@ body {
     margin: auto;
 }
 
+#menu {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    padding: 20px 20px 10px;
+    z-index:100;
+    background-color: #1b1f23;
+    box-shadow: 0px 5px 5px #88888895;
+}
+
+#menu img {
+    max-height:2.5em;
+    margin-bottom:-14px;
+}
+
+#menu a.currentPage {
+    color: #00c5ad;
+    font-weight:bolder;
+    border-bottom: 4px solid #00c5ae25
+}
+
+#menu a:hover {
+    color: #00c5ad;
+    font-weight:bolder;
+}
+
+#menu a {
+    display:inline-block;
+    padding:5px 5px 10px;
+    margin: 0 15px 5px;
+    color:white;
+    font-weight: bold;
+}
+
 h1 {
     margin: 20px 20px;
     display: inline-block;
@@ -45,6 +80,37 @@ textarea {
     margin: 0 20px;
     width: 90%;
     font-size: 1.4em;
+}
+
+table.sponsor {
+    border-collapse: collapse;
+}
+
+table.sponsor img {
+    max-width: 300px;
+    margin: 20px;
+}
+
+table.sponsor td {
+    border:none;
+}
+
+table.contact {
+    border-collapse: collapse;
+    margin: 0 20px;
+}
+
+table.contact td {
+    border:none;
+}
+
+table.contact textarea {
+    margin: 0;
+    padding: 10px;
+}
+
+table.contact input {
+    padding: 10px;
 }
 
 input {
@@ -167,6 +233,17 @@ iframe {
 
 #header {
     height: 4.0em;
+    margin-bottom:20px;
+}
+
+#footer {
+    margin-top: 20px;
+    padding: 20px;
+    color: white;
+    background-color: #1b1f23;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 #estepsresult {
@@ -197,14 +274,16 @@ iframe {
 }
 
 #donate {
-    vertical-align: middle;
     float: right;
-    padding: 20px 20px 0 0;
+    color: white;
+    padding: 0px 5px 10px;
+    margin: 0 15px 5px;
+
 }
 
 #donate img {
     display: inline-block;
-    vertical-align: middle;
+    margin-bottom:-14px;
 }
 
 .icon {
