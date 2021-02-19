@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-	    <meta property="og:site_name" content="Teaching Tech's website">
 
-	    <meta property="og:description" content="This system has been implemented due my inbox being destroyed by an influx of tech support and review requests. Between emails, video comments and unsolicited Facebook messages I could easily do tech support full time, which means no time left to actually make videos. I feel it’s better for me to help many people with a video than to spend significant time trying to help individuals one on one.">
-	    <meta property="og:title" content="Contact Teaching Tech">
-	    <meta property="og:url" content="https://teachingtechyt.github.io/contact.html">
-	    <meta name="theme-color" content="#1b1f23">
-        <meta property="og:image" content="https://teachingtechyt.github.io/img/tt.png"/>
-        
-        <script src="js/loadscripts.js"></script>
-    </head>
+<head>
+    <meta property="og:site_name" content="Teaching Tech's website">
+    <meta name="theme-color" content="#1b1f23">
+    <meta property="og:image" content="https://teachingtechyt.github.io/img/tt.png" />
+    
+    <meta property="og:title" content="Contact Teaching Tech">
+    <meta property="og:description" content="This system has been implemented due my inbox being destroyed by an influx of tech support and review requests. Between emails, video comments and unsolicited Facebook messages I could easily do tech support full time, which means no time left to actually make videos. I feel it’s better for me to help many people with a video than to spend significant time trying to help individuals one on one.">
+    <meta property="og:url" content="https://teachingtechyt.github.io/contact.html">
+    
+
+    <script src="js/loadscripts.js"></script>
+</head>
+
 <body>
     <div id="menu"></div>
     <div id="header"></div>
@@ -32,10 +35,10 @@
             <tr>
                 <td style="width:15%">Nature of enquiry:</td>
                 <td><select name="entry.989224142" id="entry.989224142">
-                    <option value="Review">Product review</option>
-                    <option value="Request">Video request</option>
-                    <option value="Misc">Miscellaneous</option>
-                </select></td>
+                        <option value="Review">Product review</option>
+                        <option value="Request">Video request</option>
+                        <option value="Misc">Miscellaneous</option>
+                    </select></td>
             </tr>
             <tr>
                 <td>Company:</td>
@@ -64,17 +67,17 @@
     </form>
     <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
     <script type="text/javascript">
-        var submitted=false;
-        $('#contactForm').on('submit', function(e) {
-            $('#contactForm *').fadeOut(500);
-            $('#contactForm').prepend('<p>Your enquiry has been sent.</p>');
-        });
+    var submitted = false;
+    $('#contactForm').on('submit', function(e) {
+        $('#contactForm *').fadeOut(500);
+        $('#contactForm').prepend('<p>Your enquiry has been sent.</p>');
+    });
     </script>
     <div id="footer"></div>
 </body>
 <script>
-  var pageName = "Contact";
-  var pageTitle="Contact Teaching Tech";
+var pageName = "Contact";
+var pageTitle = "Contact Teaching Tech";
 </script>
 <script src="js/dynamic.js"></script>
 <html>
