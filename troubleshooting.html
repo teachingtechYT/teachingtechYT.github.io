@@ -421,7 +421,7 @@ Standard Deviation: 0.002795</pre>
         <m4>M43 T - Trigger pins</m4>
         <p><a href="https://marlinfw.org/docs/gcode/M043-T.html" target="_blank"><b>M43 T</b></a> offers a way to manually control pins with gcode.</p>
         <p>Sending <b>M43 T</b> is a variant of <b>M43</b> that allows you to cycle through your mainboard pins, pulsing them for a specific amount of time. I have not tested this personally, but the example linked on the Marlin reference page should illustrate it's use.</p>
-        <m4>M42 - Set Pin State</m4>
+        <h4>M42 - Set Pin State</h4>
         <p><a href="https://marlinfw.org/docs/gcode/M042.html" target="_blank"><b>M42</b></a> can be used to manually control mainboard pins. With the correct parameters, you can override the firmware and manually activate connected hardware. With the right gcode (which I will not include here), I managed to turn on the MOSFET for the hot end which rapidly started to raise the temperature without any target, hence the warning further up this page.</p>
         <p>Perhaps a better use for <b>M42</b> is to control hardware that is not supported by Marlin. Where some components are directly supported and have corresponding gcodes, <b>M42</b> would allow you to still use gcode to trigger pins, even using PWM control.</p>
     </div>
