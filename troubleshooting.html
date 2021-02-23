@@ -372,6 +372,9 @@ z_probe: open</pre>
             <li>Temporarily cutting power to the heated bed when probing. Some probes other than the BLtouch are affected by the current going through the heated bed elements. In this case, the bed should be brought up to temp, turned off for probing and then turned back omn before printing.</li>
             <li>Slowing down the vertical feedrate during probing. When setting up the firmware for ABL, the vertical speed the probe travels can be set. The slower the descent towards the bed, the greater the accuracy, at the expense of overall mesh generation duration.</li>
             <li>Some people have good experiences with clone BLtouch probes and some people hate them. I believe they are both right. By that I mean the quality may be variable.</li>
+            <li>This one comes courtesy of my patron <i>ucirello</i>: BLTouch wires are not shielded. Under the right circumstances the electromagnetic interference throws off the precision. One way to test for that is to run M48 with heaters off, take the number, the run M48 with heaters on (both bed and nozzle). (M48 is covered below). If they differ too much, that could be the source of the problem.<br />
+            Also, if you’re willing to go to the weeds of the firmware, try changing the features that disable the extruder stepper motor. Lots of people route their BLTouch through the same path of the extruder stepper motor, and if it is powered up, it can also throw off your probe measures.<br />
+            If the EMI is the source of your problems, you can use some kind of <a href="https://amzn.to/3urbnEM" target="_blank">metal braided wire sleeve</a>.</li>
         </ul>
         <p>If all of this is checked and you still want more information on the probing results, by entering <b>G28</b> and then <b>G29</b> in the terminal, we can receive detailed information on the probing that takes place. The output will vary depending on whether the printer is setup with a 3x3 grid, 4x4 grid, etc. Here is a sample:</p>
         <pre>Bilinear Leveling Grid:
@@ -379,7 +382,7 @@ z_probe: open</pre>
 0 +0.352 +0.185 +0.265
 1 +0.465 -0.007 -0.153
 2 +0.915 +0.267 -0.015</pre>
-        <p>Firstly, I need to manually adjust my bed to get it closer to flat. The numbers tell another story though. For row zero and column 1, we have a classic high, low, high warped bed. The rest of the bed seems to be more of a general slant. Keep in mind the point 0,0 is likely at the front left of your bed, which may be counter intuitive.</p>
+        <p>Firstly, I need to manually adjust my bed of this printer to get it closer to flat. The numbers do tell another story though. For row zero and column 1, we have a classic high, low, high warped bed. The rest of the bed seems to be more of a general slant. Keep in mind the point 0,0 is likely at the front left of your bed, which may be counter intuitive.</p>
         <p>For a more visual representation, the <a href="https://plugins.octoprint.org/plugins/bedlevelvisualizer/" target="_blank">Bed Visualizer</a> plugin for Octoprint will provide attractive and informative diagrams:</p>
         <a href="#" data-featherlight="img/bedvisualizerplugin.jpg"><img class="thumb" src="img/bedvisualizerplugin.jpg" /></a>
         <p>Repeating either test should give you a good idea of the probe's accuracy. If the results vary wildly it may indicate an underlying problem and more targeted testing is required.</p>
