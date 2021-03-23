@@ -254,6 +254,14 @@ iframe {
     margin: 20px 0;
 }
 
+#xyzstepsresult {
+    display: none;
+    border: 5px solid #00c5ad;
+    border-radius: 15px;
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
 .result {
     border: 5px solid #00c5ad;
     border-radius: 15px;

@@ -43,6 +43,19 @@ function esteps(){
     $("#estepsresult").show();
 }
 
+function xyzsteps(){
+    var targetAxis = document.xyzstepsForm.xyzAxis.value;
+    var oldSteps = document.xyzstepsForm.oldXYZSteps.value;
+    var requested = document.xyzstepsForm.requested.value;
+    var measured = document.xyzstepsForm.measured.value;
+    var newsteps = (oldSteps/measured*requested).toFixed(2);
+    $("#xyzAxis1").html(targetAxis);
+    $("#xyzAxis2").html(targetAxis);
+    $("#xyz").html(newsteps);
+    $("#xyz2").html(newsteps);
+    $("#xyzstepsresult").show();
+}
+
 function flowCalc1(){
     var oldflow = document.flow1.oldFlow1.value;
     var targetwall = document.flow1.targetWall.value;

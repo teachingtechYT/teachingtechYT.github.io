@@ -20,6 +20,7 @@
         <li><a href="#temp">Temperature Tuning</a></li>
         <li><a href="#accel">Acceleration Tuning</a></li>
         <li><a href="#linadv">Linear Advance</a></li>
+        <li><a href="#xyzsteps">XYZ steps Calibration</a></li>
     </ul>
 
     <div id="intro">
@@ -370,7 +371,7 @@
             <h5>When required:</h5>
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
             <h5>Tools:</h5>
-            <p>Your favourite slicer. Accurate digital/vernier callipers (two decimal places is much more preferable to a set with only one).</p>
+            <p>Your favourite slicer. <a href="https://amzn.to/3h62loN" target="_blank">Accurate digital/vernier calipers</a> (two decimal places is much more preferable to a set with only one).</p>
         </div>
         <p>Our E-steps are now correct in the firmware, so we will move on to calibrating the slicer. Each slicer has a setting to control the overall amount of filament extruded by the printer. If the flow rate is increased, more filament will be extruded. If the flow rate is decreased, less filament will be extruded.</p>
         <p>In Simplify3D and PrusaSlicer, this is called <b>Extrusion Multiplier</b>. Cura calls it <b>Flow</b>.</p>
@@ -1226,6 +1227,112 @@
     <p>You may prefer to use the <b>M900</b> gcode command in your start gcode instead, particularly if your slicer supports different start gcodes for different materials. In the event that you use start gcode, unless an <b>M500</b> follows, the setting of the K factor will be temporary. When the printer is next restarted the value stored in the EEPROM will be restored. When new print starts the value given it its start gcode will overwrite the previously set value.</p>
     <p>Linear advance can be temporarily be disabled by setting the K factor to 0:</p>
     <pre>M900 K0</pre>
+    </div>
+
+    <div id="xyzsteps">
+        <div class="exp">
+            <h2>XYZ steps Calibration</h2>
+            <h5>Aim:</h5>
+            <p>To ensure that when the firmware attempts a certain amount of X, Y, and Z travel, the actual movement of the machine is accurately matches.</p>
+            <h5>When required:</h5>
+            <p>This step is not necessary for many people, but is still worth doing if you are going over the machine in detail. Consider this procedure neccessary if your printed parts are clearly over or under sized.</p>
+            <h5>Tools:</h5>
+            <p>The best tool for this job is a <a href="https://amzn.to/3fbw02B" target="_blank">dial gauge</a>. These are a precision measuring device and well suited. You can also use a set of <a href="https://amzn.to/3h62loN" target="_blank">digital calipers</a> but they will be less useful.</p>
+            <p>The dial gauge also needs to be mounted. A universal design is tricky because of variations in 3D printers and dial gauges, but the example I used is here: <a href="https://www.thingiverse.com/thing:4803082" target="_blank">Dial gauge mount on Thingiverse</a></p>
+            <p>You will also find the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a> referred to on this page, but printing it is not a mandatory part of the calibration process.</p>
+        </div>
+        <p>This tab serves as a companion for this video: <a href="https://youtu.be/2v7EGDp55n4" target="_blank">Calibrating your XYZ steps using a dial gauge for maximum accuracy</a></p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/2v7EGDp55n4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>It is common practice for 3D printer users to measure a 20mm calibration cube to see how dimensionally accurate their machine is. While this is a very valid test to measure the accuracy of their printed parts, it is not a suitable measurement to base adjustments of the X, Y and Z steps per mm.</p>
+        <h2>X, Y and Z steps per unit</h2>
+        <p>Many people are familiar with E-steps, which is the value in the firmware that dictates how many steps the extruder stepper motor needs to rotate to push through 1 unit of material (typically millimetres). Depending on if the extruder is geared or not, this number can vary quite a lot and needs to be set accurately for prints to come out properly. <a href="#esteps">Calibrating E-steps already has its own tab.</a></p>
+        <p>If the objects you are printing are not the correct size, then adjusting the X, Y and Z steps is a suitable step to fix the problem. However, as you will see on this page, there are other factors that contribute to print accuracy that should be considered first.</p>
+        <h2>Finding out the current values for your X, Y and Z steps</h2>
+        <p>There are two choices here, which are both convient:</p>
+        <ol>
+            <li>On the Marlin LCD menu, go to Configuration > Advanced Configuration > Steps per mm. Your machine may say steps per inch if that is how you have it configured. The values will be shown on the LCD:<br>
+            <a href="#" data-featherlight="img/lcdstepsperunit.jpg"><img class="thumb" src="img/lcdstepsperunit.jpg" /></a></li>
+            <li>Connect via terminal, and send <b>M503</b>. This will report the variables currently being used by the firmware. Somewhere in the long outpout, it will say 'Steps per unit' and list your values on the next line:<br>
+            <a href="#" data-featherlight="img/terminalstepsperunit.jpg"><img class="thumb" src="img/terminalstepsperunit.jpg" /></a></li>
+        </ol>
+        <h2>How are X, Y and Z steps usually calculated?</h2>
+        <p>The steps per unit for the Z, Y and Z axes are a function of the mechanical and electronic components of the printer. These include the type of stepper motor, the type of belt/lead screw, the amount of micro stepping and so on. An excellent resource exists in the <a href="https://blog.prusaprinters.org/calculator_3416/" target="_blank">Prusa RepRap Calculator</a>. In the 'Stepper Motor' section, you can enter the specifications of your machine and the correct steps per unit will be calculated.</p>
+        <h2>What not to do - Measuring printed parts</h2>
+        <p>Often people will print a 20mm calibration cube and measure the external faces to see how accurate their machine is. While this is a valid measurement for determining how accurate the output of the printer is, it is NOT the correct measurement for calibrating X, Y and Z steps. This is because the printed part is the result of many more variables other than how far the X, Y and Z axes are moving during the print.</p>
+        <p>A simple demonstration of this can be made by printing three 20mm calibration cubes, with no changes to the machine but the extruder flow rate altered for each test. In the image below, the cubes have flow rates of 80%, 96% and 120%. Although they look identical from a distance, there is a clear variation in their external dimensions when measuring with calipers.</p>
+        <a href="#" data-featherlight="img/cubeflowvariation.jpg"><img class="thumb" src="img/cubeflowvariation.jpg" /></a>
+        <p>If the cube can vary this much without adjusting steps per unit, it goes to show that printed parts are not a reliable indicator of whether the steps per unit are correctly configured. Yes, we do care about the accuracy of the final part, but we need a better way to measure X, Y and Z movement.</p>
+        <h2>What to do - Measuring raw axis movement</h2>
+        <p>The primary variable we need to eliminate is the extruded plastic. Therefore we want to measure the movement of each axis when not printing, comparing target vs actual movement. This is where our calipers or preferably a dial gauge comes in handy. Our aim is to mount the dial gauge so that when we move an axis, it measures eactly how far it has travelled.</p>
+        <h2>Dial gauge mounting</h2>
+        <p>There are potentially two ways to mount the dial gauge:</p>
+        <ol>
+            <li>To the print head, so that it can measure the relative movement of the Z axis up and down.</li>
+            <li>Off the machine, so the dial gauge tip is pressed against moving components of the printer to measure the relative movement of the X and Y axes.</li>
+        </ol>
+        <p>In either case, we have some rules we must adhere to with mounting:</p>
+        <ul>
+            <li>The dial gauge must be rigidly mounted. If it can wiggle or the mount can flex, the reading will be inaccurate.</li>
+            <li>The linear motion of the dial gauge must be parallel to the motion of the axis being measured, or perpendicular to the object it is pushing on. If we imagine the dial gauge was mounted 45 degrees to the axis being measured, we can see that the reading will only be half of the movement.</li>
+            <li>When mounting to the machine to measure the Z axis travel, ensure the machine can still home safely without the dial gauge running out of travel. If this is not possible, home the machine first and then fit the dial gauge.</li>
+        </ul>
+        <p>If you search Thingiverse or other file sharing sites, you may find a dial gauge mount for your particular machine. This can be difficult because the mount also has to suit your dial gauge. For this guide, I designed and printed my own dial gauge mount to suit a 12mm round rod base, and a printhead mount to suit the printermods.com xchange system: <a href="https://www.thingiverse.com/thing:4803082" target="_blank">Dial gauge mount on Thingiverse</a></p>
+        <h2>Manual movements and measurements</h2>
+        <p>Manual movements can be made from the printer's LCD controls, by connecting via USB with Octoprint or Pronterface and using the provided interface buttons, or if you have a touch screen, with the buttons for manual 10mm movements.</p>
+        <p>You may need to home the machine first, as some firmware configurations will not allow manual movements until this takes place. As described in the previous section, it may be safer to home without the dial gauge in place.</p>
+        <p>Before measurement, we must know the range of motion of the dial gauge and mount accordingly. If the dial gauge can only move 25mm, there is no point in requesting a 30mm movement. Doing so might damage the dial gauge when it bottoms out.</p>
+        <p>Position the dial gauge so that it is part way through it's range of travel and zero the display.</p>
+        <p>Use the buttons in your chosen software to move one axis a designated distance. 10mm is generally acceptable and fits within the range of motion of most dial gauges. (100mm would actually be better but is beyond the range of the dial gauge).Take note of the measurement. Reverse the movement using the opposing button and see if the machine returns back to 0.00 on the dial gauge.</p>
+        <p>You can also issue two 10mm movements and see if any error is consistent. For example, if the movement was only 9.95mm, you would expect the second movement to land at 19.90mm, maintaining a variance of 0.05mm per 10mm.</p>
+        <h2>How inaccurate is too inaccurate?</h2>
+        <p>In your testing, you might find the movement for each axis is off, let's say in this example by 0.05mm. Given how hard it is to get the dial gauge perfectly perpendicular to the direction of travel, this is probably well within an acceptable margin of error. Factor in the tiny movement that comes via your hands in supporting the dial gauge and you have another contributor.</p>
+        <p>It is important to remember just how small this distance is. A 0.05mm variance over a 10mm movement represents an error of only 0.5%. In many cases this would be irrelevant to the printed object. However, it is up to each individual to decide the tolerances they expect their machine to operate within and whether a course of action is required to improve this.</p>
+        <h2>What to check if your motion is not accurate</h2>
+        <p>Before changing your steps per unit, it is worth remembering that these values should already be correct because they are based on the characteristics of your machine. Therefore, it is worth double checking the following aspects of the printer:</p>
+        <ul>
+            <li>Belts are adequately tensioned</li>
+            <li>Grub screws inside belt pullets are tight</li>
+            <li>V rollers are tensioned correctly</li>
+            <li>Z leadscrews are lubricated</li>
+            <li><a href="#vref">Stepper motor driver current</a> set properly</li>
+            <li>Toggling features like <i>SQUARE_WAVE_STEPPING</i> in Marlin firmware</li>
+        </ul>
+        <p>If the measured motion is incorrect but is also inconsistent, as in drifting further away from 0 each time it returns to the starting point, it may indicate the presence of backlash or binding in that axis. For leadscrew driven motion, an anti-backlash nut can be fitted as a potential remedy.</p>
+        <p>If everything above has been checked and you are certain your steps per unit need adjusting, then proceed to the next section.</p>
+        <h2>Adjusting X, Y and/or Z steps in the firmware</h2>
+        <p>If you still need to adjust your steps per unit, you can use the following calculator to determine the correct value, based on your dial gauge recordings:</p>
+        <form name="xyzstepsForm" onsubmit="return false;">
+            <label>Target axis:</label>
+                <p>X <input type="radio" name="xyzAxis" value="X">
+                Y <input type="radio" name="xyzAxis" value="Y">
+                Z <input type="radio" name="xyzAxis" value="Z"></p>
+            <p><label>Previous steps per unit as reported by M503: <input type="number" name="oldXYZSteps" value="80" step="0.01"></label></p>
+            <p><label>Distance requested (mm): <input type="number" name="requested" value="10.00" step="0.01"></label></p>
+            <p><label>Distance measured (mm): <input type="number" name="measured" value="9.90" step="0.01"></label></p>
+            <input type="button" onclick="xyzsteps();" value="Calculate">
+            <input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
+            <div id="xyzstepsresult">
+                <p>Your new <span id="xyzAxis1"></span> steps should be <b id="xyz"></b></p>
+                <p>Enter the following in the terminal:</p>
+                <pre>M92 <span id="xyzAxis2"></span><span id="xyz2"></span></pre>
+                <p>Followed by M500 to save to EEPROM.</p>
+                <pre>M500</pre>
+                <p>You may wish to repeat this test with the new X/Y/Z steps value to verify.</p>
+                <p>You can also use the LCD to set the new values and then store to EEPROM to save, although you will be limited to only one decimal place.</p>
+            </div>
+        </form>
+        <h2>Fixing persistent dimensional accuracy after X/Y/Z steps per unit have been corrected</h2>
+        <p>As we know from our earlier 20mm calibration cube test, there is more to the final printed dimensions that just the steps per unit for each axis.</p>
+        <p>Changing the slicer flow rate will influence the overall dimensions, although this also has an effect on every other aspect of the finished print. One obvious area is whether there are gaps inbetween individual extrusions (flow rate too low) or the individual extrusions overlap too much and bulge (flow rate too high). Perhaps the flow rate should be used to only make very small adjustments.</p>
+        <p>Some slicers have dimensional accuracy compensation. Seen below is this setting in PrusaSlicer (found in Print Settings > Advanced > Slicing):</p>
+        <a href="#" data-featherlight="img/prusaslicercompensation.jpg"><img class="thumb" src="img/prusaslicercompensation.jpg" /></a>
+        <p>A similar feature exists in Cura (found in Shell > Horizontal expansion):</p>
+        <a href="#" data-featherlight="img/curacompensation.jpg"><img class="thumb" src="img/curacompensation.jpg" /></a>
+        <p>Experimentation with these features would need to be undertaken to fully understand their advantages and disadvantages. For instance, increasing the X/Y measurements may fix the external dimensions but negatively impact the accuracy of printed holes.</p>
+        <p>Sometimes a machine can be upgraded to make it more accurate. For instance, I have a theory that using a belt pulley rather than a smooth surfaced bearing as a belt idler should have the belt ride the idler more consistently, due to the teeth of the belt deforming unevenly over the bearing surface:</p>
+        <a href="#" data-featherlight="img/bearingidlerdeformation.jpg"><img class="thumb" src="img/bearingidlerdeformation.jpg" /></a>
+        <p>One final measure, that is the least desirable, is to design parts to be printed bigger or smaller to compensate. This is a band aid approach and falls apart very quickly once we print geometry designed by other people.</p>
+
     </div>
 </div>
 <div id="footer"></div>
