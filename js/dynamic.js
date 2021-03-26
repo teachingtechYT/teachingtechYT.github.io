@@ -1,5 +1,5 @@
-var pages = ["Home", "Calibration", "Troubleshooting", "Review Policy", "Sponsors", "Contact"]
-var urls = ["index.html", "calibration.html", "troubleshooting.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
+var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Review Policy", "Sponsors", "Contact"]
+var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
 var menu = '<img src="img/ttwhite.png" />';
 for(var i = 0; i < pages.length; i++){
     menu += '<a href="'+urls[i]+'" target="_self"';
