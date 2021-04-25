@@ -952,7 +952,7 @@ function outputSettings(formName) {
             string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |     "+formName.accel_d2.value+" mm      |     "+formName.accel_d2.value+" mm\n";
             string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |     "+formName.accel_c2.value+" mm      |     "+formName.accel_c2.value+" mm\n";
             string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |     "+formName.accel_b2.value+" mm      |     "+formName.accel_b2.value+" mm\n";
-            string += "   A    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a2.value+" mm\n";
+            string += "   A    |    "+formName.accel_a1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a2.value+" mm\n";
         } else {
             string += "Segment | M204 P Acceleration |  M205 Junction Deviation\n";
             string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |          "+formName.accel_f4.value+"\n";
