@@ -9,7 +9,7 @@ M104 S210 T0
 M109 S210 T0
 G28 ; home all axes
 ;G29 ; probe ABL
-;M420 S1 ; restore ABL mesh 
+;M420 S1 ; restore ABL mesh
 ;customstart
 ; process Color1-2
 ; layer 1, Z = 0.200
@@ -19,8 +19,8 @@ G92 E0.0000
 ; feature skirt
 ; tool H0.200 W0.576
 ;zhopupA
-G1 X18.872 Y37.041 F6000
 G1 Z0.200 F1200
+G1 X18.872 Y37.041 F6000
 ;unretractionA
 G92 E0.0000
 G1 X19.104 Y36.937 E0.0110 F1800
