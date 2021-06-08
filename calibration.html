@@ -330,6 +330,7 @@
         <p>Now heat up your hot end to whatever temperature you usually print with plus 10 degrees. Once the temperature is stable, enter:</p>
         <pre>G91</pre>
         <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. This means requesting 100mm of filament adds 100mm to the current position, instead of moving to the specific position of 100mm.</p>
+        <p>For Klipper and Rep Rap Firmware, <b>M83</b> is used to select relative extruder movement instead.</p>
         <p>Now we take a permanent marker and put a mark 120mm from the entry to the extruder:</p>
         <a href="#" data-featherlight="img/mark.jpg"><img class="thumb" src="img/mark.jpg" /></a>
         <p>Next, we enter:</p>
@@ -354,6 +355,7 @@
         </form>
 		<p>Although starting a new print or power cycling will achieve this, it may be safer to put the printer back into absolute position mode after completing this calibration by sending:</p>
         <pre>G90</pre>
+        <p>For Klipper and Rep Rap Firmware, <b>M82</b> is used to select absolute extruder movement instead.</p>
         <h2>Storing the updated E-steps</h2>
         <p>Once you have determined the correct value, it must be saved to the firmware to take effect on subsequent prints. Although it can be hard coded into the firmware by recompiling Marlin, it is far easier to use gcode to achieve this.</p>
         <p>In a terminal, enter:</p>
