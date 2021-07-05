@@ -16,6 +16,7 @@ G28 ; home all axes
 T0
 G92 E0.0000
 ;retractionA
+;linearAdvA
 ; feature skirt
 ; tool H0.200 W0.576
 ;zhopupA
@@ -15899,6 +15900,7 @@ G1 X71.719 Y49.716 E0.7317
 G1 X71.660 Y49.357 E0.7448
 G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
+;linearAdvB
 ;retractionB
 ; feature inner perimeter
 ;zhopupB
@@ -27165,6 +27167,7 @@ G1 X71.719 Y49.716 E0.7317
 G1 X71.660 Y49.357 E0.7448
 G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
+;linearAdvC
 ;retractionC
 ; feature inner perimeter
 ;zhopupC
@@ -38431,6 +38434,7 @@ G1 X71.719 Y49.716 E0.7317
 G1 X71.660 Y49.357 E0.7448
 G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
+;linearAdvD
 ;retractionD
 ; feature inner perimeter
 ;zhopupD
@@ -49694,6 +49698,7 @@ G1 X71.719 Y49.716 E0.7317
 G1 X71.660 Y49.357 E0.7448
 G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
+;linearAdvE
 ;retractionE
 ; feature inner perimeter
 ;zhopupE
@@ -60957,6 +60962,7 @@ G1 X71.719 Y49.716 E0.7317
 G1 X71.660 Y49.357 E0.7448
 G1 X71.640 Y48.994 E0.7579
 G92 E0.0000
+;linearAdvF
 ;retractionF
 ; feature inner perimeter
 ;zhopupF

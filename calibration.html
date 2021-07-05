@@ -716,6 +716,7 @@
             <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
+
             <h4>Part Cooling Fan</h4>
             <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
             <label for="pc">Select part cooling fan behaviour:</label>
@@ -738,6 +739,16 @@
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh then 3 Probe Tilt </option>
             </select>
+
+            <h4>Firmware</h4>
+            <span><label>G-code flavor:</label>
+                <select name="flavor">
+                    <option value="0">Marlin</option>
+                    <option value="1">RRF</option>
+                </select> 
+            </span> <br />
+            <label>Firmware Retraction : <input type="checkbox" name="firmwareRetraction"></label><br />
+
             <h4>Retraction</h4>
             <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
             <table>
@@ -750,6 +761,7 @@
                         <th>Extra restart distance (mm)</th>
                         <th>Prime (unretract) speed (mm/sec)</th>
                         <th>Z hop (mm)</th>
+                        <th>Linear Advance</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -763,6 +775,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_f3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_f4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_f5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_f6" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">E</td>
@@ -771,6 +784,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_e3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_e4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_e5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_e6" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">D</td>
@@ -779,6 +793,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_d3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_d4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_d5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_d6" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">C</td>
@@ -787,6 +802,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_c3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_c4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_c5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_c6" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">B</td>
@@ -795,6 +811,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_b3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_b4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_b5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_b6" value="0" step="0.1"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">A</td>
@@ -803,6 +820,7 @@
                         <td><input type="number" min="-10" max="10" name="ret_a3" value="0" step="0.1"></td>
                         <td><input type="number" min="5" max="200" name="ret_a4" value="40" step="1"></td>
                         <td><input type="number" min="0" max="5" name="ret_a5" value="0" step="0.1"></td>
+                        <td><input type="number" min="0" max="5" name="ret_a6" value="0" step="0.1"></td>
                     </tr>
                 </tbody>
             </table>
