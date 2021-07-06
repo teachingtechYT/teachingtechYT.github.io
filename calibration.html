@@ -152,9 +152,17 @@
         <p>Another advantage of some ABL systems is that once the Z offset is set, you can interchange build surfaces of various thicknesses, with no changes needed for a successful first layer. Assuming the probe is triggered the same way on the bed surface, the Z offset is applied to this trigger point and the first layer height should be the same. On a manually levelled bed, the four corner knobs would need to be turned in unison to raise or lower the bed in accounting for thickness of the new build surface.</p>
         <h2>First layer gcode generator</h2>
         <p>The following form will create a series of five squares that you can use to live level your bed or set the Z offset. It is quick to print and features one square in the middle of the bed, with four others in the corners. You can use these to turn the levelling knobs in each corner until they are consistent, or ensure your ABL system is working if you have one in place.</p>
-        <p>This test uses a <b>0.2mm</b> first layer height.</p>
         <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img class="thumb" src="img/firstlayerpreview.jpg" /></a>
         <form name="firstlayerForm" id="firstlayerForm" onsubmit="return false;">
+            <h4>Nozzle Diameter / Layer Height</h4>
+            <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>
+            <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
+            <select name="nozzleLayer">
+                <option value="40_20">0.4 mm nozzle / 0.2 mm layer height</option>
+                <option value="40_16">0.4 mm nozzle / 0.16 mm layer height</option>
+                <option value="40_12">0.4 mm nozzle / 0.12 mm layer height</option>
+                <option value="30_15">0.3 mm nozzle / 0.15 mm layer height</option>
+            </select>
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#firstlayerStart')" value="extraStart"></label>
@@ -212,9 +220,10 @@
             </select>
             <h4>Retraction</h4>
             <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
-            <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
-            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
+            <p><label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
+                <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
+                <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
+                <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>
 
             <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
@@ -238,6 +247,15 @@
         <p>The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <a href="#" data-featherlight="img/cube.jpg"><img class="thumb" src="img/cube.jpg" /></a>
         <form name="baselineForm" id="baselineForm" onsubmit="return false;">
+            <h4>Nozzle Diameter / Layer Height</h4>
+            <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle. First layer height will be locked to the overall layer height. There are too many permutations to include support for first layer height variation too.</p>
+            <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
+            <select name="nozzleLayer">
+                <option value="40_20">0.4 mm nozzle / 0.2 mm layer height</option>
+                <option value="40_16">0.4 mm nozzle / 0.16 mm layer height</option>
+                <option value="40_12">0.4 mm nozzle / 0.12 mm layer height</option>
+                <option value="30_15">0.3 mm nozzle / 0.15 mm layer height</option>
+            </select>
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#baselineStart')" value="extraStart"></label>
@@ -270,16 +288,12 @@
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>Printing with PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
-            <label for="pc">Select part cooling fan behaviour:</label>
-            <select name="pc">
-                <option value="0">100% fan from layer 2</option>
-                <option value="1">100% fan from layer 3</option>
-                <option value="2">100% fan from layer 5</option>
-                <option value="3">50% fan from layer 2</option>
-                <option value="4">50% fan from layer 3</option>
-                <option value="5">50% fan from layer 5</option>
-                <option value="6">No constant fan (bridging only)</option>
+            <p>Printing with PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here. A zero speed value disables the fan apart from bridging.</p>
+            <label>Part cooling fan speed:</label> <input type="number" name="fanSpeed" value="100" min="0" max="100" step="5"> % </label><label for="fanLayer">starting on: </label>
+            <select name="fanLayer">
+                <option value="2">layer 2</option>
+                <option value="3">layer 3</option>
+                <option value="5">layer 5</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>
@@ -293,10 +307,10 @@
             </select>
             <h4>Retraction</h4>
             <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
-            <label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
-            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label>
-            <label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
-
+            <p><label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
+            <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
+            <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
+            <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
@@ -685,6 +699,15 @@
         <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and extra restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
+            <h4>Nozzle Diameter / Layer Height</h4>
+            <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle. First layer height will be locked to the overall layer height. There are too many permutations to include support for first layer height variation too.</p>
+            <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
+            <select name="nozzleLayer">
+                <option value="40_20">0.4 mm nozzle / 0.2 mm layer height</option>
+                <option value="40_16">0.4 mm nozzle / 0.16 mm layer height</option>
+                <option value="40_12">0.4 mm nozzle / 0.12 mm layer height</option>
+                <option value="30_15">0.3 mm nozzle / 0.15 mm layer height</option>
+            </select>
             <h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="toggle(!this.checked, '#retractionStart')" value="extraStart"></label>
@@ -717,16 +740,12 @@
             <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
             <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="5" max="150"></label><br />
             <h4>Part Cooling Fan</h4>
-            <p>PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here:</p>
-            <label for="pc">Select part cooling fan behaviour:</label>
-            <select name="pc">
-                <option value="0">100% fan from layer 2</option>
-                <option value="1">100% fan from layer 3</option>
-                <option value="2">100% fan from layer 5</option>
-                <option value="3">50% fan from layer 2</option>
-                <option value="4">50% fan from layer 3</option>
-                <option value="5">50% fan from layer 5</option>
-                <option value="6">No constant fan (bridging only)</option>
+            <p>Printing with PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here. A zero speed value disables the fan apart from bridging.</p>
+            <label>Part cooling fan speed:</label> <input type="number" name="fanSpeed" value="100" min="0" max="100" step="5"> % </label><label for="fanLayer">starting on: </label>
+            <select name="fanLayer">
+                <option value="2">layer 2</option>
+                <option value="3">layer 3</option>
+                <option value="5">layer 5</option>
             </select>
             <h4>Auto Bed Levelling</h4>
             <label for="abl">Select which method of ABL is in place.</label>

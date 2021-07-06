@@ -7,6 +7,7 @@ var scripts = `
 <script src="js/jquery.responsiveTabs.js"></script>
 <script src="js/videobox.js"></script>
 <script src="js/featherlight.js"></script>
+<script src="js/commongcode.js"></script>
 <script src="js/firstlayer.js"></script>
 <script src="js/baseline.js"></script>
 <script src="js/retraction.js"></script>
