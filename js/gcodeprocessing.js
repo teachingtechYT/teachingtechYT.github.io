@@ -827,12 +827,12 @@ function processAcceleration(){
     acceleration = acceleration.replace(/F1860/g, "F"+feed/2+" ; custom feedrate - half");
 
     acceleration = acceleration.replace(/raise/g, "M201 X5000 Y5000 ; custom raise acceleration limits");
-    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1+" ; custom acceleration - A");
-    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1+" ; custom acceleration - B");
-    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1+" ; custom acceleration - C");
-    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1+" ; custom acceleration - D");
-    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1+" ; custom acceleration - E");
-    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1+" ; custom acceleration - F");
+    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1+" T"+a1+" ; custom acceleration - A");
+    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1+" T"+b1+" ; custom acceleration - B");
+    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1+" T"+c1+" ; custom acceleration - C");
+    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1+" T"+d1+" ; custom acceleration - D");
+    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1+" T"+e1+" ; custom acceleration - E");
+    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1+" T"+f1+" ; custom acceleration - F");
 
     if(jerk_or_jd == "jerk"){
         acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
