@@ -352,6 +352,7 @@ function processBaseline(){
 }
 
 function processRetraction(){
+    var nozzleLayer = document.retractionForm.nozzleLayer.value;
     var hotendTemp = document.retractionForm.hotendtemp.value;
     var bedTemp = document.retractionForm.bedtemp.value;
     var centre = document.retractionForm.centre.checked;
@@ -398,7 +399,7 @@ function processRetraction(){
             retraction += retraction_40_20;
             break;
 
-        case: "40_16":
+        case "40_16":
             retraction += retraction_40_16;
             break;
     }
@@ -492,37 +493,42 @@ function processRetraction(){
     }
     retraction = retraction.replace(/;retract1/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
     retraction = retraction.replace(/;unretract1/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
-
     // B section
-    retraction = retraction.replace(/;retractionB/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
-    retraction = retraction.replace(/;unretractionB/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
+    retraction = retraction.replace(/;retract2\nG1 Z[0-9\.]+ F1200/g, ";retract2\n;zhop2");
     if(b5 > 0){
-        retraction = retraction.replace(/;zhopupB/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
+        retraction = retraction.replace(/;zhop2/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
     }
+    retraction = retraction.replace(/;retract2/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
+    retraction = retraction.replace(/;unretract2/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
     // C section
-    retraction = retraction.replace(/;retractionC/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
-    retraction = retraction.replace(/;unretractionC/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
+    retraction = retraction.replace(/;retract3\nG1 Z[0-9\.]+ F1200/g, ";retract3\n;zhop3");
     if(c5 > 0){
-        retraction = retraction.replace(/;zhopupC/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
-    }
+        retraction = retraction.replace(/;zhop3/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
+    }   
+    retraction = retraction.replace(/;retract3/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
+    retraction = retraction.replace(/;unretract3/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
     // D section
-    retraction = retraction.replace(/;retractionD/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
-    retraction = retraction.replace(/;unretractionD/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
+    retraction = retraction.replace(/;retract4\nG1 Z[0-9\.]+ F1200/g, ";retract4\n;zhop4");
     if(d5 > 0){
-        retraction = retraction.replace(/;zhopupD/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
-    }
+        retraction = retraction.replace(/;zhop4/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
+    }    
+    retraction = retraction.replace(/;retract4/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
+    retraction = retraction.replace(/;unretract4/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
     // E section
-    retraction = retraction.replace(/;retractionE/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
-    retraction = retraction.replace(/;unretractionE/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
+    retraction = retraction.replace(/;retract5\nG1 Z[0-9\.]+ F1200/g, ";retract5\n;zhop5");
     if(e5 > 0){
-        retraction = retraction.replace(/;zhopupE/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
-    }
+        retraction = retraction.replace(/;zhop5/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
+    } 
+    retraction = retraction.replace(/;retract5/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
+    retraction = retraction.replace(/;unretract5/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
     // F section
-    retraction = retraction.replace(/;retractionF/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
-    retraction = retraction.replace(/;unretractionF/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
+    retraction = retraction.replace(/;retract6\nG1 Z[0-9\.]+ F1200/g, ";retract6\n;zhop6");
     if(f5 > 0){
-        retraction = retraction.replace(/;zhopupF/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
-    }
+        retraction = retraction.replace(/;zhop6/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+    } 
+    retraction = retraction.replace(/;retract6/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
+    retraction = retraction.replace(/;unretract6/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
+
     if(document.retractionForm.psuon.checked == true) {
         retraction = retraction.replace(/;M80/, "M80");
     }
@@ -536,6 +542,7 @@ function processRetraction(){
 }
 
 function processTemperature(){
+    var nozzleLayer = document.temperatureForm.nozzleLayer.value;
     var bedTemp = document.temperatureForm.bedtemp.value;
     var centre = document.temperatureForm.centre.checked;
     var bedX = Math.round((document.temperatureForm.bedx.value-100)/2);
@@ -543,9 +550,11 @@ function processTemperature(){
     var retDist = document.temperatureForm.retdist.value;
     var retDistExtra = document.temperatureForm.retdistextra.value;
     var retSpeed = document.temperatureForm.retspeed.value*60;
+    var zhop = document.temperatureForm.zhop.value;
     var abl = document.temperatureForm.abl.value;
-    var pc = document.temperatureForm.pc.value;
-    var pcResume = 255;
+    var fanLayer = document.temperatureForm.fanLayer.value;
+    var fanPercentage = document.temperatureForm.fanSpeed.value;
+    var fanSpeed = Math.round(fanPercentage*2.55);
     var a0 = document.temperatureForm.temp_a0.value;
     var a1 = document.temperatureForm.temp_a1.value;
     var b1 = document.temperatureForm.temp_b1.value;
@@ -553,35 +562,31 @@ function processTemperature(){
     var d1 = document.temperatureForm.temp_d1.value;
     var e1 = document.temperatureForm.temp_e1.value;
     var customStart = document.temperatureForm.startgcode.value;
-    var temperature = originalTemperature;
-    switch(pc){
-        case '0':
-            temperature = temperature.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+    var temperature = commonStart;
+    switch(nozzleLayer){
+        case '40_20':
+            temperature += temperature_40_20;
             break;
-        case '1':
-            temperature = temperature.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
-            break;
-        case '2':
-            temperature = temperature.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
-            break;
-        case '3':
-            temperature = temperature.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
-            pcResume = 130;
-            break;
-        case '4':
-            temperature = temperature.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
-            pcResume = 130;
-            break;
-        case '5':
-            temperature = temperature.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
-            pcResume = 130;
-            break;
-        case '6':
-            temperature = temperature.replace(/;fan2/, "; custom fan off");
-            pcResume = 0;
+        case '40_16':
+            temperature += temperature_40_16;
             break;
     }
-    temperature = temperature.replace(/;fanrestore/g, "M106 S"+pcResume+" ; restore previous fan speed");
+    temperature += commonEnd;
+    temperature = temperature.replace(/M104 S210 T0/, "temp0a");
+    temperature = temperature.replace(/M109 S210 T0/, "temp0b");
+    temperature = temperature.replace(/M106 S3/, ";");
+    switch(fanLayer){
+        case '2':
+            temperature = temperature.replace(/;fan2;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 2");
+            break;
+        case '3':
+            temperature = temperature.replace(/;fan3;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 3");
+            break;
+        case '5':
+            temperature = temperature.replace(/;fan5;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 5");
+            break;
+    }
+    temperature = temperature.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
     if(abl == 1){
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -602,8 +607,12 @@ function processTemperature(){
     }
     temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp+" ; custom bed temp");
     temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp+" ; custom bed temp");
-    temperature = temperature.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    temperature = temperature.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
+    temperature = temperature.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
+    if(zhop > 0){
+        temperature = temperature.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200 ; custom z hop\nG90;");
+    } 
+    temperature = temperature.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    temperature = temperature.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
 
     if(centre == true){
         var temperatureArray = temperature.split(/\n/g);
@@ -654,11 +663,11 @@ function processTemperature(){
         temperature = temperature.replace(/temp0b/, "; Prusa Mini");
         temperature = temperature.replace(/tempmini/, "M109 S"+a0+" T0 ; custom hot end temp - first layer");
     }
-    temperature = temperature.replace(/temp1/, "M104 S"+a1+" T0 ; custom hot end temp - A");
-    temperature = temperature.replace(/temp2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
-    temperature = temperature.replace(/temp3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
-    temperature = temperature.replace(/temp4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
-    temperature = temperature.replace(/temp5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
+    temperature = temperature.replace(/;layer 2(.*?)\n/, "M104 S"+a1+" T0 ; custom hot end temp - A\n");
+    temperature = temperature.replace(/;process Process-2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
+    temperature = temperature.replace(/;process Process-3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
+    temperature = temperature.replace(/;process Process-4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
+    temperature = temperature.replace(/;process Process-5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
     if(document.temperatureForm.psuon.checked == true) {
         temperature = temperature.replace(/;M80/, "M80");
     }
@@ -672,6 +681,7 @@ function processTemperature(){
 }
 
 function processAcceleration(){
+    var nozzleLayer = document.accelerationForm.nozzleLayer.value;
     var hotendTemp = document.accelerationForm.hotendtemp.value;
     var bedTemp = document.accelerationForm.bedtemp.value;
     var centre = document.accelerationForm.centre.checked;
@@ -680,9 +690,11 @@ function processAcceleration(){
     var retDist = document.accelerationForm.retdist.value;
     var retDistExtra = document.accelerationForm.retdistextra.value;
     var retSpeed = document.accelerationForm.retspeed.value*60;
+    var zhop = document.accelerationForm.zhop.value;
     var abl = document.accelerationForm.abl.value;
-    var pc = document.accelerationForm.pc.value;
-    var pcResume = 255;
+    var fanLayer = document.accelerationForm.fanLayer.value;
+    var fanPercentage = document.accelerationForm.fanSpeed.value;
+    var fanSpeed = Math.round(fanPercentage*2.55);
     var feed = document.accelerationForm.feedrate.value*60;
     var jerk_or_jd = document.accelerationForm.jerk_or_jd.value;
     var a1 = document.accelerationForm.accel_a1.value;
@@ -710,34 +722,29 @@ function processAcceleration(){
     var f3 = document.accelerationForm.accel_f3.value;
     var f4 = document.accelerationForm.accel_f4.value;
     var customStart = document.accelerationForm.startgcode.value;
-    var acceleration = originalAcceleration;
-    switch(pc){
-        case '0':
-            acceleration = acceleration.replace(/;fan2/, "M106 S255 ; custom fan 100% from layer 2");
+    var acceleration = commonStart;
+    switch(nozzleLayer){
+        case '40_20':
+            acceleration += acceleration_40_20;
             break;
-        case '1':
-            acceleration = acceleration.replace(/;fan3/, "M106 S255 ; custom fan 100% from layer 3");
-            break;
-        case '2':
-            acceleration = acceleration.replace(/;fan5/, "M106 S255 ; custom fan 100% from layer 5");
-            break;
-        case '3':
-            acceleration = acceleration.replace(/;fan2/, "M106 S130 ; custom fan 50% from layer 2");
-            pcResume = 130;
-            break;
-        case '4':
-            acceleration = acceleration.replace(/;fan3/, "M106 S130 ; custom fan 50% from layer 3");
-            pcResume = 130;
-            break;
-        case '5':
-            acceleration = acceleration.replace(/;fan5/, "M106 S130 ; custom fan 50% from layer 5");
-            pcResume = 130;
-            break;
-        case '6':
-            acceleration = acceleration.replace(/;fan2/, "; custom fan off");
-            pcResume = 0;
+        case '40_16':
+            acceleration += acceleration_40_16;
             break;
     }
+    acceleration += commonEnd;
+    acceleration = acceleration.replace(/M106 S3/, ";");
+    switch(fanLayer){
+        case '2':
+            acceleration = acceleration.replace(/;fan2;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 2");
+            break;
+        case '3':
+            acceleration = acceleration.replace(/;fan3;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 3");
+            break;
+        case '5':
+            acceleration = acceleration.replace(/;fan5;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 5");
+            break;
+    }
+    acceleration = acceleration.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
     acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
     acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
     if(abl != 4){
@@ -747,8 +754,12 @@ function processAcceleration(){
         acceleration = acceleration.replace(/M104 S210/g, "; Prusa Mini");
         acceleration = acceleration.replace(/M109 S210/g, "; Prusa Mini");
     }
-    acceleration = acceleration.replace(/G1 E-5.0000 F2400/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-    acceleration = acceleration.replace(/G1 E0.0000 F2400/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
+    acceleration = acceleration.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
+    if(zhop > 0){
+        acceleration = acceleration.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200 ; custom z hop\nG90;");
+    }
+    acceleration = acceleration.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+    acceleration = acceleration.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     if(abl == 1){
         acceleration = acceleration.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
@@ -814,28 +825,27 @@ function processAcceleration(){
     acceleration = acceleration.replace(/F2790/g, "F"+feed+" ; custom feedrate - full");
     acceleration = acceleration.replace(/F1860/g, "F"+feed/2+" ; custom feedrate - half");
 
-    acceleration = acceleration.replace(/raise/g, "M201 X5000 Y5000 ; custom raise acceleration limits");
-    acceleration = acceleration.replace(/accel1/g, "M204 P"+a1+" ; custom acceleration - A");
-    acceleration = acceleration.replace(/accel2/g, "M204 P"+b1+" ; custom acceleration - B");
-    acceleration = acceleration.replace(/accel3/g, "M204 P"+c1+" ; custom acceleration - C");
-    acceleration = acceleration.replace(/accel4/g, "M204 P"+d1+" ; custom acceleration - D");
-    acceleration = acceleration.replace(/accel5/g, "M204 P"+e1+" ; custom acceleration - E");
-    acceleration = acceleration.replace(/accel6/g, "M204 P"+f1+" ; custom acceleration - F");
+    acceleration = acceleration.replace(/;process Process-1/, "M201 X50000 Y50000 ; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
+    acceleration = acceleration.replace(/;process Process-2/, "M204 P"+b1+" ; custom acceleration - B\n;j2");
+    acceleration = acceleration.replace(/;process Process-3/, "M204 P"+c1+" ; custom acceleration - C\n;j3");
+    acceleration = acceleration.replace(/;process Process-4/, "M204 P"+d1+" ; custom acceleration - D\n;j4");
+    acceleration = acceleration.replace(/;process Process-5/, "M204 P"+e1+" ; custom acceleration - E\n;j5");
+    acceleration = acceleration.replace(/;process Process-6/, "M204 P"+f1+" ; custom acceleration - F\n;j6");
 
     if(jerk_or_jd == "jerk"){
-        acceleration = acceleration.replace(/j1/g, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
-        acceleration = acceleration.replace(/j2/g, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
-        acceleration = acceleration.replace(/j3/g, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
-        acceleration = acceleration.replace(/j4/g, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
-        acceleration = acceleration.replace(/j5/g, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
-        acceleration = acceleration.replace(/j6/g, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
+        acceleration = acceleration.replace(/;j1/, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
+        acceleration = acceleration.replace(/;j2/, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
+        acceleration = acceleration.replace(/;j3/, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
+        acceleration = acceleration.replace(/;j4/, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
+        acceleration = acceleration.replace(/;j5/, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
+        acceleration = acceleration.replace(/;j6/, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
     } else {
-        acceleration = acceleration.replace(/j1/g, "M205 J"+a4+" ; custom junction deviation - A");
-        acceleration = acceleration.replace(/j2/g, "M205 J"+b4+" ; custom junction deviation - B");
-        acceleration = acceleration.replace(/j3/g, "M205 J"+c4+" ; custom junction deviation - C");
-        acceleration = acceleration.replace(/j4/g, "M205 J"+d4+" ; custom junction deviation - D");
-        acceleration = acceleration.replace(/j5/g, "M205 J"+e4+" ; custom junction deviation - E");
-        acceleration = acceleration.replace(/j6/g, "M205 J"+f4+" ; custom junction deviation - F");
+        acceleration = acceleration.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
+        acceleration = acceleration.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
+        acceleration = acceleration.replace(/;j3/, "M205 J"+c4+" ; custom junction deviation - C");
+        acceleration = acceleration.replace(/;j4/, "M205 J"+d4+" ; custom junction deviation - D");
+        acceleration = acceleration.replace(/;j5/, "M205 J"+e4+" ; custom junction deviation - E");
+        acceleration = acceleration.replace(/;j6/, "M205 J"+f4+" ; custom junction deviation - F");
     }
     if(document.accelerationForm.psuon.checked == true) {
         acceleration = acceleration.replace(/;M80/, "M80");

@@ -236,6 +236,20 @@ iframe {
     margin-bottom:20px;
 }
 
+#up {
+    cursor: pointer;
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 10;
+    color:white;
+    background-color: #1b1f23;
+    border: white 2px solid;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px #000000;
+}
+
 #footer {
     margin-top: 20px;
     padding: 20px;

@@ -1,4 +1,4 @@
-var originalSquare = `;process Process1
+var originalSquare = `;process Process-1
 ;layer 1, Z = 0.200
 T0
 G92 E0.0000
