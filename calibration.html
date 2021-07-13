@@ -235,7 +235,18 @@
                 <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
                 <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
                 <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>
-
+                <h4>Additional end gcode</h4>
+                <p>If you have additional end commands, tick the box and enter the gcode.</p>
+                <label>Additional end gcode:<input name="end" type="checkbox" onchange="toggle(!this.checked, '#firstlayerEnd')" value="extraEnd"></label>
+                <div id="firstlayerEnd" class="endExp">
+                    <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+                    <textarea name="endgcode"></textarea>
+                </div>
+                <script>
+                    if(document.firstlayerForm.start.checked == false){
+                        $("#firstlayerEnd").hide();
+                    }
+                </script>
             <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
@@ -322,6 +333,18 @@
             <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
             <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>
+            <h4>Additional end gcode</h4>
+            <p>If you have additional end commands, tick the box and enter the gcode.</p>
+            <label>Additional end gcode:<input name="end" type="checkbox" onchange="toggle(!this.checked, '#baselineEnd')" value="extraEnd"></label>
+            <div id="baselineEnd" class="endExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+                <textarea name="endgcode"></textarea>
+            </div>
+            <script>
+                if(document.baselineForm.start.checked == false){
+                    $("#baselineEnd").hide();
+                }
+            </script>
             <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
@@ -851,6 +874,18 @@
                     </tr>
                 </tbody>
             </table>
+            <h4>Additional end gcode</h4>
+            <p>If you have additional end commands, tick the box and enter the gcode.</p>
+            <label>Additional end gcode:<input name="end" type="checkbox" onchange="toggle(!this.checked, '#retractionEnd')" value="extraEnd"></label>
+            <div id="retractionEnd" class="endExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+                <textarea name="endgcode"></textarea>
+            </div>
+            <script>
+                if(document.retractionForm.start.checked == false){
+                    $("#retractionEnd").hide();
+                }
+            </script>
             <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
@@ -987,6 +1022,18 @@
                     </tr>
                 </tbody>
             </table>
+            <h4>Additional end gcode</h4>
+            <p>If you have additional end commands, tick the box and enter the gcode.</p>
+            <label>Additional end gcode:<input name="end" type="checkbox" onchange="toggle(!this.checked, '#temperatureEnd')" value="extraEnd"></label>
+            <div id="temperatureEnd" class="endExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+                <textarea name="endgcode"></textarea>
+            </div>
+            <script>
+                if(document.temperatureForm.start.checked == false){
+                    $("#temperatureEnd").hide();
+                }
+            </script>
             <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
@@ -1215,6 +1262,18 @@
                     </tr>
                 </tbody>
             </table>
+            <h4>Additional end gcode</h4>
+            <p>If you have additional end commands, tick the box and enter the gcode.</p>
+            <label>Additional end gcode:<input name="end" type="checkbox" onchange="toggle(!this.checked, '#accelerationEnd')" value="extraEnd"></label>
+            <div id="accelerationEnd" class="endExp">
+                <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+                <textarea name="endgcode"></textarea>
+            </div>
+            <script>
+                if(document.accelerationForm.start.checked == false){
+                    $("#accelerationEnd").hide();
+                }
+            </script>
             <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>

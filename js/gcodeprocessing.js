@@ -117,6 +117,7 @@ function processFirstlayer(){
     var zhop = document.firstlayerForm.zhop.value;
     var abl = document.firstlayerForm.abl.value;
     var customStart = document.firstlayerForm.startgcode.value;
+    var customEnd = document.firstlayerForm.endgcode.value;
     var firstlayerStart = commonStart;
     var skirts = "";
     var squares = "";
@@ -228,6 +229,9 @@ function processFirstlayer(){
     if(document.firstlayerForm.start.checked == true) {
         firstlayer = firstlayer.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
+    if(document.firstlayerForm.end.checked == true) {
+        firstlayer = firstlayer.replace(/;customend/, "; custom end gcode\n"+customEnd);
+    }
     downloadFile('firstlayer.gcode', firstlayer);
 }
 
@@ -247,6 +251,7 @@ function processBaseline(){
     var fanPercentage = document.baselineForm.fanSpeed.value;
     var fanSpeed = Math.round(fanPercentage*2.55);
     var customStart = document.baselineForm.startgcode.value;
+    var customEnd = document.baselineForm.endgcode.value;
     var baseline = commonStart;
     switch(nozzleLayer){
         case '40_20':
@@ -359,6 +364,9 @@ function processBaseline(){
     if(document.baselineForm.start.checked == true) {
         baseline = baseline.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
+    if(document.baselineForm.end.checked == true) {
+        baseline = baseline.replace(/;customend/, "; custom end gcode\n"+customEnd);
+    }
     downloadFile('baseline.gcode', baseline);
 }
 
@@ -404,6 +412,7 @@ function processRetraction(){
     var f4 = document.retractionForm.ret_f4.value*60;
     var f5 = document.retractionForm.ret_f5.value;
     var customStart = document.retractionForm.startgcode.value;
+    var customEnd = document.retractionForm.endgcode.value;
     var retraction = commonStart;
     switch(nozzleLayer){
         case "40_20":
@@ -554,6 +563,9 @@ function processRetraction(){
     if(document.retractionForm.start.checked == true) {
         retraction = retraction.replace(/;customstart/, "; custom start gcode\n"+customStart); 
     }
+    if(document.retractionForm.end.checked == true) {
+        retraction = retraction.replace(/;customend/, "; custom end gcode\n"+customEnd);
+    }
     downloadFile('retraction.gcode', retraction);
 }
 
@@ -578,6 +590,7 @@ function processTemperature(){
     var d1 = document.temperatureForm.temp_d1.value;
     var e1 = document.temperatureForm.temp_e1.value;
     var customStart = document.temperatureForm.startgcode.value;
+    var customEnd = document.temperatureForm.endgcode.value;
     var temperature = commonStart;
     switch(nozzleLayer){
         case '40_20':
@@ -698,6 +711,9 @@ function processTemperature(){
     if(document.temperatureForm.start.checked == true) {
         temperature = temperature.replace(/;customstart/, "; custom start gcode\n"+customStart);
     }
+    if(document.temperatureForm.end.checked == true) {
+        temperature = temperature.replace(/;customend/, "; custom end gcode\n"+customEnd);
+    }
     downloadFile('temperature.gcode', temperature);
 }
 
@@ -743,6 +759,7 @@ function processAcceleration(){
     var f3 = document.accelerationForm.accel_f3.value;
     var f4 = document.accelerationForm.accel_f4.value;
     var customStart = document.accelerationForm.startgcode.value;
+    var customEnd = document.accelerationForm.endgcode.value;
     var acceleration = commonStart;
     switch(nozzleLayer){
         case '40_20':
@@ -881,6 +898,9 @@ function processAcceleration(){
     }
     if(document.accelerationForm.start.checked == true) {
         acceleration = acceleration.replace(/;customstart/, "; custom start gcode\n"+customStart);
+    }
+    if(document.accelerationForm.end.checked == true) {
+        acceleration = acceleration.replace(/;customend/, "; custom end gcode\n"+customEnd);
     }
     downloadFile('acceleration.gcode', acceleration);
 }
