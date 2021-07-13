@@ -738,26 +738,32 @@ function processAcceleration(){
     var a2 = document.accelerationForm.accel_a2.value;
     var a3 = document.accelerationForm.accel_a3.value;
     var a4 = document.accelerationForm.accel_a4.value;
+    var a5 = document.accelerationForm.accel_a5.value;
     var b1 = document.accelerationForm.accel_b1.value;
     var b2 = document.accelerationForm.accel_b2.value;
     var b3 = document.accelerationForm.accel_b3.value;
     var b4 = document.accelerationForm.accel_b4.value;
+    var b5 = document.accelerationForm.accel_b5.value;
     var c1 = document.accelerationForm.accel_c1.value;
     var c2 = document.accelerationForm.accel_c2.value;
     var c3 = document.accelerationForm.accel_c3.value;
     var c4 = document.accelerationForm.accel_c4.value;
+    var c5 = document.accelerationForm.accel_c5.value;
     var d1 = document.accelerationForm.accel_d1.value;
     var d2 = document.accelerationForm.accel_d2.value;
     var d3 = document.accelerationForm.accel_d3.value;
     var d4 = document.accelerationForm.accel_d4.value;
+    var d5 = document.accelerationForm.accel_d5.value;
     var e1 = document.accelerationForm.accel_e1.value;
     var e2 = document.accelerationForm.accel_e2.value;
     var e3 = document.accelerationForm.accel_e3.value;
     var e4 = document.accelerationForm.accel_e4.value;
+    var e5 = document.accelerationForm.accel_e5.value;
     var f1 = document.accelerationForm.accel_f1.value;
     var f2 = document.accelerationForm.accel_f2.value;
     var f3 = document.accelerationForm.accel_f3.value;
     var f4 = document.accelerationForm.accel_f4.value;
+    var f5 = document.accelerationForm.accel_f5.value;
     var customStart = document.accelerationForm.startgcode.value;
     var customEnd = document.accelerationForm.endgcode.value;
     var acceleration = commonStart;
@@ -868,7 +874,7 @@ function processAcceleration(){
     acceleration = acceleration.replace(/F2790/g, "F"+feed+" ; custom feedrate - full");
     acceleration = acceleration.replace(/F1860/g, "F"+feed/2+" ; custom feedrate - half");
 
-    acceleration = acceleration.replace(/;process Process-1/, "M201 X50000 Y50000 ; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
+    acceleration = acceleration.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
     acceleration = acceleration.replace(/;process Process-2/, "M204 P"+b1+" ; custom acceleration - B\n;j2");
     acceleration = acceleration.replace(/;process Process-3/, "M204 P"+c1+" ; custom acceleration - C\n;j3");
     acceleration = acceleration.replace(/;process Process-4/, "M204 P"+d1+" ; custom acceleration - D\n;j4");
@@ -876,12 +882,12 @@ function processAcceleration(){
     acceleration = acceleration.replace(/;process Process-6/, "M204 P"+f1+" ; custom acceleration - F\n;j6");
 
     if(jerk_or_jd == "jerk"){
-        acceleration = acceleration.replace(/;j1/, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
-        acceleration = acceleration.replace(/;j2/, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
-        acceleration = acceleration.replace(/;j3/, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
-        acceleration = acceleration.replace(/;j4/, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
-        acceleration = acceleration.replace(/;j5/, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
-        acceleration = acceleration.replace(/;j6/, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
+        acceleration = acceleration.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk - A");
+        acceleration = acceleration.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk - B");
+        acceleration = acceleration.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk - C");
+        acceleration = acceleration.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk - D");
+        acceleration = acceleration.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk - E");
+        acceleration = acceleration.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk - F");
     } else {
         acceleration = acceleration.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
         acceleration = acceleration.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
