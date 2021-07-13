@@ -11,9 +11,9 @@
         <li><a href="#intro">Introduction</a></li>
         <li><a href="#frame">Frame Check</a></li>
         <li><a href="#pid">PID Autotune</a></li>
+        <li><a href="#esteps">Extruder E-steps Calibration</a></li>
         <li><a href="#firstlayer">First Layer</a></li>
         <li><a href="#baseline">Baseline Print</a></li>
-        <li><a href="#esteps">Extruder E-steps Calibration</a></li>
         <li><a href="#flow">Slicer Flow Calibration</a></li>
         <li><a href="#steppers">Stepper Motor Driver Current</a></li>
         <li><a href="#retraction">Retraction Tuning</a></li>
@@ -364,6 +364,7 @@
                 <pre>M92 E<span id="e4"></span></pre>
                 <p>Followed by M500 to save to EEPROM.</p>
                 <pre>M500</pre>
+                <p>Special note: Prusa has disabled M500 saving to EEPROM on some printers (eg. Mini). In these cases the above M92 gcode must be added to the start gcode in your slicer to be read before every print.</p>
                 <p>You may wish to repeat this test with the new E-steps value to verify.</p>
             </div>
         </form>
@@ -385,7 +386,7 @@
             <h5>Aim:</h5>
             <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.
             <h5>When required:</h5>
-            <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
+            <p>Base calibration, as well as any time there has been a change to the extruder/hot end. You may wish to revisit this after tuning linear advance.</p>
             <h5>Tools:</h5>
             <p>Your favourite slicer. <a href="https://amzn.to/3h62loN" target="_blank">Accurate digital/vernier calipers</a> (two decimal places is much more preferable to a set with only one).</p>
         </div>
