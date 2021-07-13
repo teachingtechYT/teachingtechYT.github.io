@@ -999,13 +999,13 @@ function outputSettings(formName) {
         string += "\nBase feedrate: "+formName.feedrate.value+" mm/s\n\n";
         var jjd = formName.jerk_or_jd.value;
         if(jjd == "jerk") {
-            string += "Segment | M204 P Acceleration |  M205 Jerk X  |  M205 Jerk Y   (jerk Z is set the same as X to suit deltas)\n";
-            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_f2.value+" mm      |     "+formName.accel_f2.value+" mm\n";
-            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |     "+formName.accel_e2.value+" mm      |     "+formName.accel_e2.value+" mm\n";
-            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |     "+formName.accel_d2.value+" mm      |     "+formName.accel_d2.value+" mm\n";
-            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |     "+formName.accel_c2.value+" mm      |     "+formName.accel_c2.value+" mm\n";
-            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |     "+formName.accel_b2.value+" mm      |     "+formName.accel_b2.value+" mm\n";
-            string += "   A    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a2.value+" mm\n";
+            string += "Segment | M204 P Acceleration |  M205 Jerk X  |  M205 Jerk Y|  M205 Jerk Z   \n";
+            string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |     "+formName.accel_f2.value+" mm      |     "+formName.accel_f3.value+" mm      |     "+formName.accel_f5.value+" mm\n";
+            string += "   E    |    "+formName.accel_e1.value+" mm/sec/sec   |     "+formName.accel_e2.value+" mm      |     "+formName.accel_e3.value+" mm      |     "+formName.accel_e5.value+" mm\n";
+            string += "   D    |    "+formName.accel_d1.value+" mm/sec/sec   |     "+formName.accel_d2.value+" mm      |     "+formName.accel_d3.value+" mm      |     "+formName.accel_d5.value+" mm\n";
+            string += "   C    |    "+formName.accel_c1.value+" mm/sec/sec   |     "+formName.accel_c2.value+" mm      |     "+formName.accel_c3.value+" mm      |     "+formName.accel_c5.value+" mm\n";
+            string += "   B    |    "+formName.accel_b1.value+" mm/sec/sec   |     "+formName.accel_b2.value+" mm      |     "+formName.accel_b3.value+" mm      |     "+formName.accel_b5.value+" mm\n";
+            string += "   A    |    "+formName.accel_a1.value+" mm/sec/sec   |     "+formName.accel_a2.value+" mm      |     "+formName.accel_a3.value+" mm      |     "+formName.accel_a5.value+" mm\n";
         } else {
             string += "Segment | M204 P Acceleration |  M205 Junction Deviation\n";
             string += "   F    |    "+formName.accel_f1.value+" mm/sec/sec   |          "+formName.accel_f4.value+"\n";
