@@ -603,6 +603,11 @@
         <p>Like the TMC drivers covered in the gcode section, the current for the TMC2208 (legacy mode) is set not as a peak, but instead as RMS. To determine RMS, divide the peak current by <b>1.41</b>.</p>
         <pre>VREF = (RMS current * 2.5) / 1.77</pre>
         <p>The process is then the same as for A4988s as shown in the video above.</p>
+        <div class="exp">
+            <h5>Special note for some Creality silent boards</h5>
+            <p>Courtesy of <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues/168" target="_blank">ZuckMe</a>:</p>
+            <p>"My creality silent board has <b>R150</b> sense resistors not <b>R100</b> so the VREF formula is wrong, for details here": <a href="https://www.eevblog.com/forum/chat/3d-printer-yet/msg3271034/#msg3271034" target="_blank">EEVBLOG</a></p>
+        </div>
         <h4>LV8729</h4>
         <p>There are mainly two kinds of stepper driver boards with this driver.</p>
         <p>One has a resistor labelled R100 on the bottom, and on the other the resistor is labelled R220. Which formula you use is based off of this resistor</p>
