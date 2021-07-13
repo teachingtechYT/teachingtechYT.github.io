@@ -377,6 +377,7 @@
         <pre>M92 E[your new value]</pre>
         <p>Obviously, you would substitute in your E-steps value after the E. Save to EEPROM with:</p>
         <pre>M500</pre>
+        <p>Special note: Prusa has disabled M500 saving to EEPROM on some printers (eg. Mini). In these cases the above M92 gcode must be added to the start gcode in your slicer to be read before every print.</p>
         <p>You can also use the <b>Configuration</b> menu on the LCD to make this change, but with a large change (eg. switch to geared extruder) it may take considerable time to turn the knob enough to reach the desired value. Don't forget to <b>Store Settings</b> to save to EEPROM.</p>
     </div>
 
