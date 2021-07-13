@@ -157,8 +157,14 @@ function processFirstlayer(){
         offsets[8] = bedX - xy - margin;
         offsets[9] = bedY - xy - margin;
     }
-    firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
-    firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(bedTemp == 0){
+        firstlayerStart = firstlayerStart.replace(/M140 S60/g, "; no heated bed");
+        firstlayerStart = firstlayerStart.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
+    
     if(abl != 4){
         firstlayerStart = firstlayerStart.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
         firstlayerStart = firstlayerStart.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
@@ -264,8 +270,13 @@ function processBaseline(){
             break;
     }
     baseline = baseline.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
-    baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
-    baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(bedTemp == 0){
+        baseline = baseline.replace(/M140 S60/g, "; no heated bed");
+        baseline = baseline.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        baseline = baseline.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        baseline = baseline.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
     if(abl != 4){
         baseline = baseline.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
         baseline = baseline.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
@@ -417,8 +428,13 @@ function processRetraction(){
             break;
     }
     retraction = retraction.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
-    retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
-    retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(bedTemp == 0){
+        retraction = retraction.replace(/M140 S60/g, "; no heated bed");
+        retraction = retraction.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        retraction = retraction.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        retraction = retraction.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
     if(abl != 4){
         retraction = retraction.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
         retraction = retraction.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
@@ -605,8 +621,13 @@ function processTemperature(){
     if(abl == 5){
         temperature = temperature.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
-    temperature = temperature.replace(/M140 S60/, "M140 S"+bedTemp+" ; custom bed temp");
-    temperature = temperature.replace(/M190 S60/, "M190 S"+bedTemp+" ; custom bed temp");
+    if(bedTemp == 0){
+        temperature = temperature.replace(/M140 S60/g, "; no heated bed");
+        temperature = temperature.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        temperature = temperature.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        temperature = temperature.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
     temperature = temperature.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
     if(zhop > 0){
         temperature = temperature.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200 ; custom z hop\nG90;");
@@ -745,8 +766,13 @@ function processAcceleration(){
             break;
     }
     acceleration = acceleration.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
-    acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
-    acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    if(bedTemp == 0){
+        acceleration = acceleration.replace(/M140 S60/g, "; no heated bed");
+        acceleration = acceleration.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        acceleration = acceleration.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        acceleration = acceleration.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
     if(abl != 4){
         acceleration = acceleration.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
         acceleration = acceleration.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
