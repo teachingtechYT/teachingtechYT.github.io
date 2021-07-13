@@ -8,7 +8,7 @@
 <div id="header"></div>
 <div id="tabs">
     <ul>
-        <li><a href="#intro">Introduction</a></li>
+        <li><a href="#intro">Introduction - read me!</a></li>
         <li><a href="#frame">Frame Check</a></li>
         <li><a href="#pid">PID Autotune</a></li>
         <li><a href="#esteps">Extruder E-steps Calibration</a></li>
@@ -107,6 +107,16 @@
         <p>The bed is selected with <ib>E-1</b>, and the temp set to 60 degrees. Substitute as necessary for your normal printing bed temperature. Once again save to EEPROM afterwards with:</p>
         <pre>M500</pre>
         <p>It may be preferable to have the printer as close to printing conditions as possible during these tuning procedures. That means having filament loaded and the part cooling fan on for PLA temperatures. If there is no UI button available to turn on the part cooling fan, you can do it manually via gcode with <b>M106 S255</b>.</p>
+        <div class="exp">
+            <h5>Special note: If your printer doesn't support saving settings in EEPROM</h5>
+            <p>In this case, you need to insert <b>M301</b> (hot end) or <b>M304</b> (bed) into your slicer start gcode so the correct settings are loaded before each print.</p>
+            <p>After PID auto tuning, the final values for P, I and D will be listed in the terminal. Retreive them and use them as follows for the hot end:</p>
+            <pre>M301 E0 P[p value] I[i value] D[d value]</pre>
+            <p>This will set the PID values for the default hot end, eg. <b>M301 E0 P34.4 I0.02 D5.7</b> (bogus numbers, please don't copy them.</p>
+            <p>For the bed:</p>
+            <pre>M304 P[p value] I[i value] D[d value]</pre>
+            <p>This will set the PID values for the bed, eg. <b>M304 P26.0 I1.33 D20.5</b> (bogus numbers, please don't copy them.</p>
+        </div>
     </div>
 
     <div id="firstlayer">
@@ -214,7 +224,7 @@
             <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
-                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by G80</option>
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
@@ -301,7 +311,7 @@
             <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
-                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by G80</option>
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
@@ -355,8 +365,8 @@
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other than this, complete the form below to calculate the correct E-steps:</p>
         <form name="estepsForm" onsubmit="return false;">
-            <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93" step="0.01"></label></p>
-            <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20" step="0.01"></label></p>
+            <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93.0" step="0.01"></label></p>
+            <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20.0" step="0.01"></label></p>
             <input type="button" onclick="esteps();" value="Calculate">
             <input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
             <div id="estepsresult">
@@ -489,7 +499,7 @@
                 <tr>
                     <td>
                         <form name="flow1" onsubmit="return false;">
-                            <p><label>Previous flow rate: <input type="number" name="oldFlow1" value="100" min="0" max="200" step="1"></label></p>
+                            <p><label>Previous flow rate: <input type="number" name="oldFlow1" value="100.0" min="0" max="200" step="1"></label></p>
                             <p><label>Target wall thickness (mm): <input type="number" name="targetWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <p><label>Measured wall thickness (mm): <input type="number" name="measuredWall" value="0.4" min="0.1" max="1" step="0.01"></label></p>
                             <input type="button" onclick="flowCalc1()" value="Calculate">
@@ -702,6 +712,7 @@
             <h5>Other factors beyond the scope of this test - Important!</h5>
             <ul>
                 <li>Auto cooling (PrusaSlicer) / Speed Overrides (Simplify3D) / Minimum layer time (Cura): Most slicers have a setting to detect if a layer will complete in less than a certain time threshold. In this case, all movement for that layer is slowed, including those related to retraction, to increase the layer time to meet the target. The gcode generated by the this page has this setting OFF. If your results vary, trying turning this setting off in your own slicer too.</li>
+                <li>Z hop speed: If you are using Z hop, the vertical feedrate for the Z movements is set to 20 mm/sec for these tests. Matching this in your slicer is advised if these tests look better than your own slicer results. </li>
                 <li>Retraction acceleration: This will affect whether the retraction speed can actually be reached. The gcode generator below does not include any changes to what is set on your printer. You can change this with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>R</b> argument.</li>
                 <li>Slicer settings such as coast and wipe: Coast stops extrusion slightly early to assist retraction. It effectively lets the hot end 'run dry' at the end of the printing movement to reduce ooze. This varies from slicer to slicer and isn't always necessary to tune.
                     <br />Wipe moves the nozzle back towards the recently printed geometry to wipe ooze off. If you are having trouble reducing stringing, it may be a good option.
@@ -767,7 +778,7 @@
             <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
-                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by G80</option>
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
@@ -925,7 +936,7 @@
             <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
-                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by G80</option>
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
@@ -1126,7 +1137,7 @@
             <select name="abl">
                 <option value="0">No ABL</option>
                 <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
-                <option value="2">Restore saved mesh - M420 S1</option>
+                <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
                 <option value="3">Prusa MK3 - G28 W followed by G80</option>
                 <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
@@ -1165,42 +1176,42 @@
                         <td><input type="number" name="accel_f1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_f2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_f3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_f4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td class="jdtd"><input type="number" name="accel_f4" value="0.050" min="0.01" max="20" step="0.001"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">E</td>
                         <td><input type="number" name="accel_e1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_e2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_e3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_e4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td class="jdtd"><input type="number" name="accel_e4" value="0.050" min="0.01" max="20" step="0.001"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">D</td>
                         <td><input type="number" name="accel_d1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_d2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_d3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_d4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td class="jdtd"><input type="number" name="accel_d4" value="0.050" min="0.01" max="20" step="0.001"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">C</td>
                         <td><input type="number" name="accel_c1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_c2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_c3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_c4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td class="jdtd"><input type="number" name="accel_c4" value="0.050" min="0.01" max="20" step="0.001"></td>
                     </tr>
                     <tr>
                         <td style="text-align: center;">B</td>
                         <td><input type="number" name="accel_b1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_b2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_b3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_b4" value="0.05" min="0.01" max="20" step="0.01"></td>>
+                        <td class="jdtd"><input type="number" name="accel_b4" value="0.050" min="0.01" max="20" step="0.001"></td>>
                     </tr>
                     <tr>
                         <td style="text-align: center;">A</td>
                         <td><input type="number" name="accel_a1" value="500" min="10" max="5000" step="100"></td>
                         <td class="jerktd"><input type="number" name="accel_a2" value="8" min="1" max="30" step="1"></td>
                         <td class="jerktd"><input type="number" name="accel_a3" value="8" min="1" max="30" step="1"></td>
-                        <td class="jdtd"><input type="number" name="accel_a4" value="0.05" min="0.01" max="20" step="0.01"></td>
+                        <td class="jdtd"><input type="number" name="accel_a4" value="0.050" min="0.01" max="20" step="0.001"></td>
                     </tr>
                 </tbody>
             </table>
