@@ -93,6 +93,7 @@
             <p>Any time the hot end is changed, including adding/removing a silicone sock or altering part cooling fan/ducts. Any time the bed is changed, such as adding a glass/mirror plate, magnetic spring steel sheet and/or under bed insulation.</p>
             <h5>Tools:</h5>
             <p>Terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
+            <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
         </div>
         <p>PID autotuning is quick and easy, and relates to the most potentially dangerous components of your 3D printer: the heaters. It makes sense to do it as a first step. This procedure is covered in this video: <a href="https://youtu.be/qCtL0Yd_w0I" target="_blank">Two easy fixes for 3D printer temperature swings</a></p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/qCtL0Yd_w0I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -103,7 +104,7 @@
         <pre>M500</pre>
         <p>For the bed, <b>PIDTEMPBED</b> must be enabled in the firmware, then the command is quite similar:</p>
         <pre>M303 E-1 S60 U1</pre>
-        <p>The bed is selected with <ib>E-1</b>, and the temp set to 60 degrees. Substitute as necessary for your normal printing bed temperature. Once again save to EEPROM afterwards with:</p>
+        <p>The bed is selected with <b>E-1</b>, and the temp set to 60 degrees. Substitute as necessary for your normal printing bed temperature. Once again save to EEPROM afterwards with:</p>
         <pre>M500</pre>
         <p>It may be preferable to have the printer as close to printing conditions as possible during these tuning procedures. That means having filament loaded and the part cooling fan on for PLA temperatures. If there is no UI button available to turn on the part cooling fan, you can do it manually via gcode with <b>M106 S255</b>.</p>
         <div class="exp">
@@ -355,11 +356,12 @@
         <div class="exp">
             <h2>Extruder E-steps Calibration</h2>
             <h5>Aim:</h5>
-            <p>To determine the correct amount of steps Marlin firmware needs to send to the extruder stepper motor for accurate  movement.
+            <p>To determine the correct amount of steps Marlin firmware needs to send to the extruder stepper motor for accurate  movement.</p>
             <h5>When required:</h5>
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end.</p>
             <h5>Tools:</h5>
             <p>Ruler, permanent marker, terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
+            <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
         </div>
         <p>For the X, Y, and Z axes, the steps per mm is usually consistent between printers and rarely changes with modifications. As long as belts are tight and true, it rarely needs to be tuned.</p>
         <p>For the extruder however, variations in extruder hardware and filament means it is worth properly calibrating the extruder steps per mm, or E-steps.</p>
@@ -424,7 +426,7 @@
         <div class="exp">
             <h2>Slicer Flow Calibration</h2>
             <h5>Aim:</h5>
-            <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.
+            <p>To determine the correct amount filament to be extruded by the 3D printer as directed by the slicer.</p>
             <h5>When required:</h5>
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end. You may wish to revisit this after tuning linear advance.</p>
             <h5>Tools:</h5>
@@ -573,6 +575,7 @@
             <h5>Tools:</h5>
             <p>For newer, 'smart' stepper motor drivers: terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>For older stepper motor drivers: a multimeter, small screwdriver and a spare wire with alligator clips (optional but recommended).</p>
+            <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
         </div>
         <p>Setting the stepper driver current is an important step in calibrating a 3D printer, although typically the value does not need to be exact. There is a window within which the printer will operate without issue.</p>
         <p>General methods are used on this page, but if you are after more detail on a specific driver, my <a href="https://www.youtube.com/playlist?list=PLGqRUdq5ULsOIIaBONPU65uH2s6iI6GqY" target="_blank">stepper motor driver guide playlist</a> may be of use.</p>
@@ -806,17 +809,17 @@
                 <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
             </select>
             <h4>Retraction</h4>
-            <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment.</p>
+            <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span>.</p>
             <table>
                 <thead>
                     <tr>
                         <th>Reference Diagram</th>
                         <th>Segment</th>
-                        <th>Retraction distance (mm)</th>
-                        <th>Retraction speed (mm/sec)</th>
-                        <th>Extra restart distance (mm)</th>
-                        <th>Prime (unretract) speed (mm/sec)</th>
-                        <th>Z hop (mm)</th>
+                        <th>Retraction distance (mm)<p class="sug">&#177; 0.5 - 1</p></th>
+                        <th>Retraction speed (mm/sec)<p class="sug">&#177; 5</p></th>
+                        <th>Extra restart distance (mm)<p class="sug">&#177; 0.2</p></th>
+                        <th>Prime (unretract) speed (mm/sec)<p class="sug">&#177; 5</p></th>
+                        <th>Z hop (mm)<p class="sug">&#177; 0.1</p></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -982,13 +985,13 @@
             <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
             <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>
             <h4>Hot end temperature</h4>
-            <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A.</p>
+            <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span></p>
             <table>
                 <thead>
                     <tr>
                         <th>Reference Diagram</th>
                         <th>Segment</th>
-                        <th>Hot end temperature</th>
+                        <th>Hot end temperature<p class="sug">&#177; 5 - 10</p></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1054,6 +1057,7 @@
             <h5>Tools:</h5>
             <p>Terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>Gcode generator on this page.</p>
+            <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
         </div>
         <p>We set a feedrate or movement speed in our slicer, but the printer does not instantly reach these speeds. Like a motor vehicle, it needs time to accelerate. If the distance of the movement is short, it may not even have time to reach the specified speed. This can determined with the handy <a href="https://blog.prusaprinters.org/calculator/" target="_blank">acceleration calculator</a>, available on the Prusa website.</p>
         <p>Complementary to acceleration we have jerk, replaced by junction deviation in newer versions of Marlin. These settings have differences, but both are essentially responsible for making sure the printer does not come to a complete stop between each movement, but rather decelerates an appropriate amount depending on the angle of the next 'corner'.</p>
@@ -1204,16 +1208,17 @@
             <p>Based on the values you saw from <b>M503</b>, enter variables around this below.</p>
             <p>Junction deviation requires a single value, whereas jerk has separate values for X and Y. You can leave them the same or enter independent values.</p>
             <p>You should only change either acceleration or jerk/junction deviation for each test print, otherwise it will be impossible to know which parameter is responsible for any changes.</p>
+            <p><span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span></p>
             <table>
                 <thead>
                     <tr>
                         <th>Reference diagram</th>
                         <th>Segment</th>
-                        <th>Acceleration</th>
-                        <th class="jerktd">Jerk X</th>
-                        <th class="jerktd">Jerk Y</th>
-                        <th class="jerktd">Jerk Z (delta only)</th>
-                        <th class="jdtd">Junction deviation</th>
+                        <th>Acceleration<p class="sug">&#177; 100 (moving bed i3)</p><p class="sug">&#177; 500 (coreXY / delta)</p></th>
+                        <th class="jerktd">Jerk X<p class="sug">&#177; 1</p></th>
+                        <th class="jerktd">Jerk Y<p class="sug">&#177; 1</p></th>
+                        <th class="jerktd">Jerk Z (delta only)<p class="sug">&#177; 1</p></th>
+                        <th class="jdtd">Junction deviation<p class="sug">&#177; 0.01 - 0.05</p></th>
                     </tr>
                 </thead>
                 <tbody>

@@ -236,6 +236,12 @@ iframe {
     margin-bottom:20px;
 }
 
+.sug {
+    color: green;
+    font-weight: bolder;
+    margin: 10px 0 0;
+}
+
 #up {
     cursor: pointer;
     position: fixed;
