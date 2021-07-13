@@ -380,6 +380,12 @@
         <pre>M500</pre>
         <p>Special note: Prusa has disabled M500 saving to EEPROM on some printers (eg. Mini). In these cases the above M92 gcode must be added to the start gcode in your slicer to be read before every print.</p>
         <p>You can also use the <b>Configuration</b> menu on the LCD to make this change, but with a large change (eg. switch to geared extruder) it may take considerable time to turn the knob enough to reach the desired value. Don't forget to <b>Store Settings</b> to save to EEPROM.</p>
+        <div class="exp">
+            <h5>Special note for dual/multi extrusion</h5>
+            <p>By default, Marlin expects the e-steps for each of your extruders to be the same. To work around this, you must compile with <b>DISTINCT_E_FACTORS</b> uncommented/enabled in <b>configuration.h</b>:</p>
+            <img style="margin-left:50px;" src="img/distinct-e-factors.jpg" />
+            <p>You will then be able to enter a unique <b>M92</b> value for each extruder.</p>
+        </div>
     </div>
 
     <div id="flow">
