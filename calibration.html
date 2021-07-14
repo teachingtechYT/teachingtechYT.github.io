@@ -50,7 +50,7 @@
                 <li>1.75mm filament (However <b>M221 S38</b> for 2.85 mm filament and <b>M221 S34</b> for 3.0 mm filament can be applied in the custom start gcode field as compensation)</b></li>
                 <li>0.4mm nozzle and 0.2mm layer height, although now additional configurations are now possible</li>
                 <li>0.4mm nozzle</li>
-                <li>Defaut feedrate of 60mm/sec, 50% for perimeters, 80% for solid infill, 50% first layer.</li>
+                <li>Defaut feedrate of 60mm/sec, 60% for perimeters, 80% for solid infill, 50% first layer.</li>
                 <li>Travel moves of 100 mm/sec for X/Y and 20 mm/sec for Z</li>
                 <li>Flow rate of 0.9. Please see the note on the bottom of the <a href="calibration.html#flow" target="_blank">flow</a> tab for instructions on adapting this to your printer.</li>
                 <li>Nozzle priming has been turned off to avoid bed clips or problems with deltas. Use the custom start gcode feature to insert the priming dequence from your slicer profile.</li>
@@ -119,7 +119,7 @@
             </ul>
             <p>Acceleration test:</p>
             <ul>
-                <li>Skirt off and instead a 5 perimeter wide brim</li>
+                <li>5 perimeter wide brim instead of a skirt</li>
                 <li>0% infill</li>
                 <li>0 top and bottom layers</li>
                 <li>2 perimeters</li>
@@ -253,7 +253,7 @@
             <script>
             createForm("firstlayer");    
             </script>
-            <p><input type="button" onclick="processFirstlayer()" value="Download Gcode"></p>
+            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
@@ -279,7 +279,7 @@
             <script>
                 createForm("baseline");    
             </script>
-            <p><input type="button" onclick="processBaseline()" value="Download Gcode"></p>
+            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
@@ -689,7 +689,7 @@
             <script>
                 createForm("retraction");
             </script>
-            <p><input type="button" onclick="processRetraction()" value="Download Gcode"></p>
+            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
@@ -726,7 +726,7 @@
             <script>
                 createForm("temperature");
             </script>
-            <p><input type="button" onclick="processTemperature()" value="Download Gcode"></p>
+            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
@@ -828,7 +828,7 @@
             <script>
                 createForm("acceleration");
             </script>
-            <p><input type="button" onclick="processAcceleration()" value="Download Gcode"></p>
+            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>

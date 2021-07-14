@@ -293,6 +293,7 @@ var endGcode = `<h4>Additional end gcode</h4>
 </div>`;
 
 function createForm(n){
+    document.write('<input type="hidden" name="description" value="'+n+'">')
     document.write(nozzleLayer);
     document.write(startGcode);
     document.write(abl);

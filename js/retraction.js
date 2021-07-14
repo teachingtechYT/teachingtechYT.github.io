@@ -1,4 +1,6 @@
-var retraction_40_20 = `
+var retraction = [];
+
+retraction["40_20"] = `
 ;process Process-1
 ;layer 1, Z = 0.200
 T0

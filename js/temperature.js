@@ -1,4 +1,6 @@
-var temperature_40_20 = `
+var temperature = [];
+
+temperature["40_20"] = `
 ;process Process-1
 ;layer 1, Z = 0.200
 T0

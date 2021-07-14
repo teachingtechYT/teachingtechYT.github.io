@@ -103,6 +103,403 @@ function toggleJ() {
     }
 }
 
+function processGcode(formName) {
+    var name = formName.name;
+    var description = formName.description.value;
+    var nozzleLayer = formName.nozzleLayer.value;
+    var bedTemp = formName.bedtemp.value;
+    var centre = formName.centre.checked;
+    if(name == "firstlayerForm"){
+        var bedX = formName.bedx.value - 50;
+        var bedY = formName.bedy.value - 50;
+        var bedRad = Math.round((formName.beddia.value)/2);
+    } else {
+        var bedX = Math.round((formName.bedx.value-100)/2);
+        var bedY = Math.round((formName.bedy.value-100)/2);
+    }
+    var abl = formName.abl.value;
+    var customStart = formName.startgcode.value;
+    var customEnd = formName.endgcode.value;
+    if(name != "firstlayerForm"){
+        var fanLayer = formName.fanLayer.value;
+        var fanPercentage = formName.fanSpeed.value;
+        var fanSpeed = Math.round(fanPercentage*2.55);
+    }
+    if(name == "temperatureForm"){
+        var hotendTemp = formName.temp_a0.value;
+        var a1 = formName.temp_a1.value;
+        var b1 = formName.temp_b1.value;
+        var c1 = formName.temp_c1.value;
+        var d1 = formName.temp_d1.value;
+        var e1 = formName.temp_e1.value;
+    } else {
+        var hotendTemp = formName.hotendtemp.value;
+    }
+    // first layer test specifics
+    if(name == "firstlayerForm"){
+        var margin = parseInt(formName.margin.value);
+        var offsets = [0,0,0,0,0,0,0,0,0,0];
+        var delt = 30;
+        var xy = 30;
+        var squares;
+        if(centre == true) {
+            // left
+            offsets[0] = (bedRad*-1) - 50 + delt + margin;
+            offsets[1] = -50;
+            // bottom
+            offsets[2] = -50;
+            offsets[3] = (bedRad*-1) - 50 + delt + margin;
+            // centre
+            offsets[4] = -50;
+            offsets[5] = -50;
+            // top
+            offsets[6] = -50;
+            offsets[7] = (bedRad - 50 - delt) - margin;
+            //right
+            offsets[8] = (bedRad - 50 - delt) - margin;
+            offsets[9] = -50;
+        } else {
+            // bottom left
+            offsets[0] = 0 + xy - 50 + margin;
+            offsets[1] = 0 + xy - 50 + margin;
+            // top left
+            offsets[2] = 0 + xy - 50 + margin;
+            offsets[3] = bedY - xy - margin;
+            // centre
+            offsets[4] = bedX/2 - 25;
+            offsets[5] = bedY/2 - 25;
+            // bottom right
+            offsets[6] = bedX - xy - margin;
+            offsets[7] = 0 + xy - 50 + margin;
+            // top right
+            offsets[8] = bedX - xy - margin;
+            offsets[9] = bedY - xy - margin;
+        }
+    }
+    // collect retraction inputs
+    if(name == "retractionForm") {
+        var a1 = formName.ret_a1.value;
+        var a2 = formName.ret_a2.value*60;
+        var a3 = formName.ret_a3.value;
+        var a4 = formName.ret_a4.value*60;
+        var a5 = formName.ret_a5.value;
+        var b1 = formName.ret_b1.value;
+        var b2 = formName.ret_b2.value*60;
+        var b3 = formName.ret_b3.value;
+        var b4 = formName.ret_b4.value*60;
+        var b5 = formName.ret_b5.value;
+        var c1 = formName.ret_c1.value;
+        var c2 = formName.ret_c2.value*60;
+        var c3 = formName.ret_c3.value;
+        var c4 = formName.ret_c4.value*60;
+        var c5 = formName.ret_c5.value;
+        var d1 = formName.ret_d1.value;
+        var d2 = formName.ret_d2.value*60;
+        var d3 = formName.ret_d3.value;
+        var d4 = formName.ret_d4.value*60;
+        var d5 = formName.ret_d5.value;
+        var e1 = formName.ret_e1.value;
+        var e2 = formName.ret_e2.value*60;
+        var e3 = formName.ret_e3.value;
+        var e4 = formName.ret_e4.value*60;
+        var e5 = formName.ret_e5.value;
+        var f1 = formName.ret_f1.value;
+        var f2 = formName.ret_f2.value*60;
+        var f3 = formName.ret_f3.value;
+        var f4 = formName.ret_f4.value*60;
+        var f5 = formName.ret_f5.value;
+    } else {
+        var retDist = formName.retdist.value;
+        var retDistExtra = formName.retdistextra.value;
+        var retSpeed = formName.retspeed.value*60;
+        var zhop = formName.zhop.value;
+    }
+    // collect acceleration inputs
+    if(name == "accelerationForm"){
+        var feed = formName.feedrate.value*60;
+        var jerk_or_jd = formName.jerk_or_jd.value;
+        var a1 = formName.accel_a1.value;
+        var a2 = formName.accel_a2.value;
+        var a3 = formName.accel_a3.value;
+        var a4 = formName.accel_a4.value;
+        var a5 = formName.accel_a5.value;
+        var b1 = formName.accel_b1.value;
+        var b2 = formName.accel_b2.value;
+        var b3 = formName.accel_b3.value;
+        var b4 = formName.accel_b4.value;
+        var b5 = formName.accel_b5.value;
+        var c1 = formName.accel_c1.value;
+        var c2 = formName.accel_c2.value;
+        var c3 = formName.accel_c3.value;
+        var c4 = formName.accel_c4.value;
+        var c5 = formName.accel_c5.value;
+        var d1 = formName.accel_d1.value;
+        var d2 = formName.accel_d2.value;
+        var d3 = formName.accel_d3.value;
+        var d4 = formName.accel_d4.value;
+        var d5 = formName.accel_d5.value;
+        var e1 = formName.accel_e1.value;
+        var e2 = formName.accel_e2.value;
+        var e3 = formName.accel_e3.value;
+        var e4 = formName.accel_e4.value;
+        var e5 = formName.accel_e5.value;
+        var f1 = formName.accel_f1.value;
+        var f2 = formName.accel_f2.value;
+        var f3 = formName.accel_f3.value;
+        var f4 = formName.accel_f4.value;
+        var f5 = formName.accel_f5.value;
+    }
+    // process start gcode
+    // bed temp
+    var gcode = commonStart;
+    if(bedTemp == 0){
+        gcode = gcode.replace(/M140 S60/g, "; no heated bed");
+        gcode = gcode.replace(/M190 S60/g, "; no heated bed");
+    } else {
+        gcode = gcode.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
+        gcode = gcode.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+    }
+    // start hot end emp
+    if(abl != 4){
+        gcode = gcode.replace(/;temp0a/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+        gcode = gcode.replace(/;temp0b/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    } else {
+        gcode = gcode.replace(/;temp0a/g, "; Prusa Mini");
+        gcode = gcode.replace(/;temp0b\n/g, "");
+    }
+    // abl
+    if(abl == 1){
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+    }
+    if(abl == 2){
+        gcode =  gcode.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+    }
+    if(abl == 3){
+        gcode = gcode.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level");
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G80 ; mesh bed leveling");
+    }
+    if(abl == 4){
+        gcode = gcode.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+
+        gcode = gcode.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+    }
+    if(abl == 5){
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
+    // firstlayer test square array
+    if(name == "firstlayerForm"){
+        var originalSquare = firstlayer[nozzleLayer];
+        for(var i = 0; i <= 4; i++){
+            var square = "; squarez "+(i+1)+"\n"+originalSquare;
+            var firstlayerArray = square.split(/\n/g);
+            var regexp = /X[0-9\.]+/;
+            firstlayerArray.forEach(function(index, item){
+                if(firstlayerArray[item].search(/X/) > -1){
+                    var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2];
+                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value));
+                }
+            });
+            var regexp = /Y[0-9\.]+/;
+            firstlayerArray.forEach(function(index, item){
+                if(firstlayerArray[item].search(/Y/) > -1){
+                    var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2+1];
+                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value))
+                }
+            });
+            square = firstlayerArray.join("\n");
+            squares += square;
+        }
+        gcode = gcode+squares;
+    }
+    // assign correct gcode source
+    if(name == "baselineForm"){
+        gcode += baseline[nozzleLayer];
+    }
+    if(name == "retractionForm"){
+        gcode += retraction[nozzleLayer];
+    }
+    if(name == "temperatureForm"){
+        gcode += temperature[nozzleLayer];
+    }
+    if(name == "accelerationForm"){
+        gcode += acceleration[nozzleLayer];
+    }
+    // add end common gcode
+    gcode += commonEnd;
+    if(name != "firstlayerForm"){
+        // strip original fan command
+        gcode = gcode.replace(/M106 S3/, ";");
+        // insert user fan starting layer and speed
+        switch(fanLayer){
+            case '2':
+                gcode = gcode.replace(/;fan2;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 2");
+                break;
+            case '3':
+                gcode = gcode.replace(/;fan3;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 3");
+                break;
+            case '5':
+                gcode = gcode.replace(/;fan5;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 5");
+                break;
+        }
+        // insert user fan speed for resumption after 100% bridging
+        gcode = gcode.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
+        // process gcode to suit bed size and type
+        if(centre == true){
+            var gcodeArray = gcode.split(/\n/g);
+            var regexp = /X[0-9\.]+/;
+            gcodeArray.forEach(function(index, item){
+                if(gcodeArray[item].search(/X/) > -1){
+                    var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
+                    gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value));
+                }
+            });
+            var regexp = /Y[0-9\.]+/;
+            gcodeArray.forEach(function(index, item){
+                if(gcodeArray[item].search(/Y/) > -1){
+                    var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
+                    gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value))
+                }
+            });
+            gcode = gcodeArray.join("\n");
+        } else {
+            if(bedX > 0){
+                var gcodeArray = gcode.split(/\n/g);
+                var regexp = /X[0-9\.]+/;
+                gcodeArray.forEach(function(index, item){
+                    if(gcodeArray[item].search(/X/) > -1){
+                        var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedX;
+                        gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value));
+                    }
+                });
+                gcode = gcodeArray.join("\n");
+            }
+            if(bedY > 0){  
+                var gcodeArray = gcode.split(/\n/g);
+                var regexp = /Y[0-9\.]+/;
+                gcodeArray.forEach(function(index, item){
+                    if(gcodeArray[item].search(/Y/) > -1){
+                        var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedY;
+                        gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value))
+                    }
+                });
+                gcode = gcodeArray.join("\n");
+            }   
+        }
+        // changes for acceleration test
+        if(name == "accelerationForm"){
+            // edit feedrates
+            gcode = gcode.replace(/F3600/g, "F"+feed+" ; custom feedrate - full");
+            gcode = gcode.replace(/F2880/g, "F"+feed+" ; custom feedrate - full");
+            gcode = gcode.replace(/F2160/g, "F"+feed/2+" ; custom feedrate - half");
+            // add acceleration segments
+            gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
+            gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" ; custom acceleration - B\n;j2");
+            gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" ; custom acceleration - C\n;j3");
+            gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" ; custom acceleration - D\n;j4");
+            gcode = gcode.replace(/;process Process-5/, "M204 P"+e1+" ; custom acceleration - E\n;j5");
+            gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" ; custom acceleration - F\n;j6");
+            // add jerk/junction deviation segments
+            if(jerk_or_jd == "jerk"){
+                gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk - A");
+                gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk - B");
+                gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk - C");
+                gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk - D");
+                gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk - E");
+                gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk - F");
+            } else {
+                gcode = gcode.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
+                gcode = gcode.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
+                gcode = gcode.replace(/;j3/, "M205 J"+c4+" ; custom junction deviation - C");
+                gcode = gcode.replace(/;j4/, "M205 J"+d4+" ; custom junction deviation - D");
+                gcode = gcode.replace(/;j5/, "M205 J"+e4+" ; custom junction deviation - E");
+                gcode = gcode.replace(/;j6/, "M205 J"+f4+" ; custom junction deviation - F");
+            }
+        }
+        // process user retraction
+        if(name == "retractionForm"){
+            // A section
+            gcode = gcode.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
+            if(a5 > 0){
+                gcode = gcode.replace(/;zhop1/g, "G91\nG1 Z"+a5+" F1200 ; custom z hop - A\nG90");
+            }
+            gcode = gcode.replace(/;retract1/g, "G1 E-"+a1+" F"+a2+" ; custom retraction - A");
+            gcode = gcode.replace(/;unretract1/g, "G1 E"+a3+" F"+a4+" ; custom un-retraction/prime - A");
+            // B section
+            gcode = gcode.replace(/;retract2\nG1 Z[0-9\.]+ F1200/g, ";retract2\n;zhop2");
+            if(b5 > 0){
+                gcode = gcode.replace(/;zhop2/g, "G91\nG1 Z"+b5+" F1200 ; custom z hop - B\nG90");
+            }
+            gcode = gcode.replace(/;retract2/g, "G1 E-"+b1+" F"+b2+" ; custom retraction - B");
+            gcode = gcode.replace(/;unretract2/g, "G1 E"+b3+" F"+b4+" ; custom un-retraction/prime - B");
+            // C section
+            gcode = gcode.replace(/;retract3\nG1 Z[0-9\.]+ F1200/g, ";retract3\n;zhop3");
+            if(c5 > 0){
+                gcode = gcode.replace(/;zhop3/g, "G91\nG1 Z"+c5+" F1200 ; custom z hop - C\nG90");
+            }   
+            gcode = gcode.replace(/;retract3/g, "G1 E-"+c1+" F"+c2+" ; custom retraction - C");
+            gcode = gcode.replace(/;unretract3/g, "G1 E"+c3+" F"+c4+" ; custom un-retraction/prime - C");
+            // D section
+            gcode = gcode.replace(/;retract4\nG1 Z[0-9\.]+ F1200/g, ";retract4\n;zhop4");
+            if(d5 > 0){
+                gcode = gcode.replace(/;zhop4/g, "G91\nG1 Z"+d5+" F1200 ; custom z hop - D\nG90");
+            }    
+            gcode = gcode.replace(/;retract4/g, "G1 E-"+d1+" F"+d2+" ; custom retraction - D");
+            gcode = gcode.replace(/;unretract4/g, "G1 E"+d3+" F"+d4+" ; custom un-retraction/prime - D");
+            // E section
+            gcode = gcode.replace(/;retract5\nG1 Z[0-9\.]+ F1200/g, ";retract5\n;zhop5");
+            if(e5 > 0){
+                gcode = gcode.replace(/;zhop5/g, "G91\nG1 Z"+e5+" F1200 ; custom z hop - E\nG90");
+            } 
+            gcode = gcode.replace(/;retract5/g, "G1 E-"+e1+" F"+e2+" ; custom retraction - E");
+            gcode = gcode.replace(/;unretract5/g, "G1 E"+e3+" F"+e4+" ; custom un-retraction/prime - E");
+            // F section
+            gcode = gcode.replace(/;retract6\nG1 Z[0-9\.]+ F1200/g, ";retract6\n;zhop6");
+            if(f5 > 0){
+                gcode = gcode.replace(/;zhop6/g, "G91\nG1 Z"+f5+" F1200 ; custom z hop - F\nG90");
+            } 
+            gcode = gcode.replace(/;retract6/g, "G1 E-"+f1+" F"+f2+" ; custom retraction - F");
+            gcode = gcode.replace(/;unretract6/g, "G1 E"+f3+" F"+f4+" ; custom un-retraction/prime - F");
+        } else {
+            gcode = gcode.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
+            if(zhop > 0){
+                gcode = gcode.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200; custom z hop\nG90;");
+            }  
+            gcode = gcode.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+            gcode = gcode.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
+        }
+        // temperature test user inputs
+        if(name == "temperatureForm"){
+            gcode = gcode.replace(/;layer 2(.*?)\n/, "M104 S"+a1+" T0 ; custom hot end temp - A\n");
+            gcode = gcode.replace(/;process Process-2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
+            gcode = gcode.replace(/;process Process-3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
+            gcode = gcode.replace(/;process Process-4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
+            gcode = gcode.replace(/;process Process-5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
+        }
+    }
+    
+
+    // final tweaks for start and end gcode
+    if(formName.psuon.checked == true) {
+        gcode = gcode.replace(/;M80/, "M80");
+    }
+    if(formName.removet0.checked == true) {
+        gcode = gcode.replace(/T0\n/, ";T0\n");
+    }
+    if(formName.start.checked == true) {
+        gcode = gcode.replace(/;customstart/, "; custom start gcode\n"+customStart);
+    }
+    if(formName.end.checked == true) {
+        gcode = gcode.replace(/;customend/, "; custom end gcode\n"+customEnd);
+    }
+    // process finished gcode file
+    downloadFile(description+'.gcode', gcode);
+
+    
+
+
+}
+
 function processFirstlayer(){
     var nozzleLayer = document.firstlayerForm.nozzleLayer.value;
     var hotendTemp = document.firstlayerForm.hotendtemp.value;
@@ -119,8 +516,6 @@ function processFirstlayer(){
     var customStart = document.firstlayerForm.startgcode.value;
     var customEnd = document.firstlayerForm.endgcode.value;
     var firstlayerStart = commonStart;
-    var skirts = "";
-    var squares = "";
     var offsets = [0,0,0,0,0,0,0,0,0,0];
     var delt = 30;
     var xy = 30;
@@ -165,7 +560,7 @@ function processFirstlayer(){
         firstlayerStart = firstlayerStart.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
         firstlayerStart = firstlayerStart.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
     }
-    
+        
     if(abl != 4){
         firstlayerStart = firstlayerStart.replace(/M104 S210 T0/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
         firstlayerStart = firstlayerStart.replace(/M109 S210 T0/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
