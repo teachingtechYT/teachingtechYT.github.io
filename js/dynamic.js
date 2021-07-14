@@ -1,6 +1,7 @@
 var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Review Policy", "Sponsors", "Contact"]
 var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
 var menu = '<img src="img/ttwhite.png" />';
+var tab;
 for(var i = 0; i < pages.length; i++){
     menu += '<a href="'+urls[i]+'" target="_self"';
     if(pages[i] == pageName){
@@ -60,4 +61,5 @@ $(document).ready(function(){
     $(window).resize(function(){
         sizeBody();
     });
+    tab = $(location).attr('hash');
   });
