@@ -23,26 +23,48 @@ var nozzleLayer = `
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>
     <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
     <select name="nozzleLayer">
-        <option value="40_20">0.4 mm nozzle / 0.2 mm layer height</option>
-        <option value="40_16">0.4 mm nozzle / 0.16 mm layer height</option>
-        <option value="40_12">0.4 mm nozzle / 0.12 mm layer height</option>
-        <option value="30_15">0.3 mm nozzle / 0.15 mm layer height</option>
+        <option value="20_05">0.20 mm nozzle / 0.05 mm layer height</option>
+        <option value="20_10">0.20 mm nozzle / 0.10 mm layer height</option>
+        <option value="20_15">0.20 mm nozzle / 0.15 mm layer height</option>
+        <option value="25_10">0.25 mm nozzle / 0.10 mm layer height</option>
+        <option value="25_15">0.25 mm nozzle / 0.15 mm layer height</option>
+        <option value="30_10">0.30 mm nozzle / 0.10 mm layer height</option>
+        <option value="30_15">0.30 mm nozzle / 0.15 mm layer height</option>
+        <option value="30_20">0.30 mm nozzle / 0.20 mm layer height</option>
+        <option value="40_12">0.40 mm nozzle / 0.12 mm layer height</option>    
+        <option value="40_16">0.40 mm nozzle / 0.16 mm layer height</option>
+        <option value="40_20" selected>0.40 mm nozzle / 0.20 mm layer height</option>
+        <option value="40_24">0.40 mm nozzle / 0.24 mm layer height</option>
+        <option value="40_28">0.40 mm nozzle / 0.28 mm layer height</option>
+        <option value="50_20">0.50 mm nozzle / 0.20 mm layer height</option>
+        <option value="50_30">0.50 mm nozzle / 0.30 mm layer height</option>
+        <option value="50_35">0.50 mm nozzle / 0.35 mm layer height</option>
+        <option value="60_20">0.60 mm nozzle / 0.20 mm layer height</option>
+        <option value="60_30">0.60 mm nozzle / 0.30 mm layer height</option>
+        <option value="60_40">0.60 mm nozzle / 0.40 mm layer height</option>
+        <option value="80_30">0.80 mm nozzle / 0.30 mm layer height</option>
+        <option value="80_40">0.80 mm nozzle / 0.40 mm layer height</option>
+        <option value="80_50">0.80 mm nozzle / 0.50 mm layer height</option>
+        <option value="80_60">0.80 mm nozzle / 0.60 mm layer height</option>
+        <option value="100_50">1.00 mm nozzle / 0.50 mm layer height</option>
+        <option value="100_75">1.00 mm nozzle / 0.75 mm layer height</option>
     </select>`;
 
 var startGcode = `
 <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, standard speed, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an <b>extruder prime sequence</b>, overwriting the standard <b>flow rate</b>, standard <b>print speed</b>, compensating for <b>2.85/3.00 mm filament</b>, setting <b>K factor</b> and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="displayCustom();" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
             <div class="startExp">
                 <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted after temperatures are set and homing is complete. Start gcode is saved by the browser, you should only have to enter it once. Example uses include:</p>
                 <ul>
-                    <li>Copying gcode commands from your slicer to draw an intro/prime/purge line. By default this is left out to accommodate delta printers.</li>
-                    <li>Telling the firmware to alter the flow rate of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
+                    <li>Copying gcode commands from your slicer to draw an <b>intro/prime/purge line</b>. By default this is left out to accommodate delta printers.</li>
+                    <li>Telling the firmware to alter the <b>flow rate</b> of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
                     <li><b>M221 S38</b> can also be used to compensate for 2.85 mm filament and <b>M221 S34</b> for 3.00 mm filament instead of the default 1.75 mm.</li>
-                    <li>Setting the K factor for linear advance. For example, <b>M900 K0.11</b></li>
-                    <li>Custom ABL sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.</li>
+                    <li>Telling the firmware to alter the <b>feedrate</b> (print speed). If you need to print more slowly with TPU or faster for another filament, <a href="https://marlinfw.org/docs/gcode/M220.html" target="_blank">M220</a> can be used to alter the feedrate. eg. <b>M220 S150</b> sets all movements to 150% of what is generated in the gcode file. Caution! Also affects retraction speed related movements and overrides the speeds you enter for the acceleration test.</li>
+                    <li>Setting the K factor for <b>linear advance</b>. For example, <b>M900 K0.11</b></li>
+                    <li><b>Custom ABL</b> sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.Useful for G34 auto stepper alignment and Klipper's Z_TILT_ADJUST.</li>
                     <li>Anything else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
                 </ul>
                 <textarea name="startgcode"></textarea>
