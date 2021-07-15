@@ -110,12 +110,12 @@ function processGcode(formName) {
     var bedTemp = formName.bedtemp.value;
     var centre = formName.centre.checked;
     if(name == "firstlayerForm"){
-        var bedX = formName.bedx.value - 50;
-        var bedY = formName.bedy.value - 50;
+        var bedX = formName.bedx.value - 60;
+        var bedY = formName.bedy.value - 60;
         var bedRad = Math.round((formName.beddia.value)/2);
     } else {
-        var bedX = Math.round((formName.bedx.value-100)/2);
-        var bedY = Math.round((formName.bedy.value-100)/2);
+        var bedX = Math.round((formName.bedx.value-120)/2);
+        var bedY = Math.round((formName.bedy.value-120)/2);
     }
     var abl = formName.abl.value;
     var customStart = formName.startgcode.value;
@@ -144,33 +144,33 @@ function processGcode(formName) {
         var squares;
         if(centre == true) {
             // left
-            offsets[0] = (bedRad*-1) - 50 + delt + margin;
-            offsets[1] = -50;
+            offsets[0] = (bedRad*-1) - 60 + delt + margin;
+            offsets[1] = -60;
             // bottom
-            offsets[2] = -50;
-            offsets[3] = (bedRad*-1) - 50 + delt + margin;
+            offsets[2] = -60;
+            offsets[3] = (bedRad*-1) - 60 + delt + margin;
             // centre
-            offsets[4] = -50;
-            offsets[5] = -50;
+            offsets[4] = -60;
+            offsets[5] = -60;
             // top
-            offsets[6] = -50;
-            offsets[7] = (bedRad - 50 - delt) - margin;
+            offsets[6] = -60;
+            offsets[7] = (bedRad - 60 - delt) - margin;
             //right
-            offsets[8] = (bedRad - 50 - delt) - margin;
-            offsets[9] = -50;
+            offsets[8] = (bedRad - 60 - delt) - margin;
+            offsets[9] = -60;
         } else {
             // bottom left
-            offsets[0] = 0 + xy - 50 + margin;
-            offsets[1] = 0 + xy - 50 + margin;
+            offsets[0] = 0 + xy - 60 + margin;
+            offsets[1] = 0 + xy - 60 + margin;
             // top left
-            offsets[2] = 0 + xy - 50 + margin;
+            offsets[2] = 0 + xy - 60 + margin;
             offsets[3] = bedY - xy - margin;
             // centre
-            offsets[4] = bedX/2 - 25;
-            offsets[5] = bedY/2 - 25;
+            offsets[4] = bedX/2 - 30;
+            offsets[5] = bedY/2 - 30;
             // bottom right
             offsets[6] = bedX - xy - margin;
-            offsets[7] = 0 + xy - 50 + margin;
+            offsets[7] = 0 + xy - 60 + margin;
             // top right
             offsets[8] = bedX - xy - margin;
             offsets[9] = bedY - xy - margin;
