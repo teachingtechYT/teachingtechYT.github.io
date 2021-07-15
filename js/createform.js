@@ -57,7 +57,7 @@ var bedDims =  `
             <span class="dia"><label>Bed diameter dimension (mm): <input type="number" name="beddia" value="100" min="100" max="600" step="1"></label></span>`;
 
 var extraMargin = `
-<p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap.</p>
+<p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap. You may also use a negative value to space the squares further apart. Make sure to preview the gcode before printing!</p>
             <label>Extra margin from edge (mm): <input type="number" name="margin" value="0" min="0" max="100" step="1"></label>`;
 
 var tempReg = `<h4>Temperatures</h4>
