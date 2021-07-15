@@ -212,6 +212,7 @@
             <p>Initial setup of the printer, regular maintainence, if first layer quality diminishes, any time the frame or mechanical components have been disassembled or replaced, any change of bed surface or nozzle, a change in filament that has significantly difference bed/hot end temperatures. There is a lot that can throw the bed level off, but careful use of your printer without any hardware changes should see it remain consistent for an extended period of time.</p>
             <h5>Tools:</h5>
             <p>The gcode generator on this page. A standard sheet of office paper.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#fl').offset().top-200)},500);">Scroll to gcode generator</button>
         </div>
         <h2>General Principles</h2>
         <p>Getting a good first layer is an essential part of 3D printing successfully and is probably the number one cause of failed prints for new users.</p>
@@ -245,7 +246,7 @@
         <p>If <b>BABYSTEP_ZPROBE_OFFSET</b> is enabled in Marlin, setting the Z offset can easily be done as the first layer goes down. Don't forget to save to EEPROM afterwards. Newer versions of Marlin also have a Z offset wizard that can be included when you compile. I have a dedicated video for this:</p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>Another advantage of some ABL systems is that once the Z offset is set, you can interchange build surfaces of various thicknesses, with no changes needed for a successful first layer. Assuming the probe is triggered the same way on the bed surface, the Z offset is applied to this trigger point and the first layer height should be the same. On a manually levelled bed, the four corner knobs would need to be turned in unison to raise or lower the bed in accounting for thickness of the new build surface.</p>
-        <h2>First layer gcode generator</h2>
+        <h6 id="fl" >First layer gcode generator</h6>
         <p>The following form will create a series of five squares that you can use to live level your bed or set the Z offset. It is quick to print and features one square in the middle of the bed, with four others in the corners. You can use these to turn the levelling knobs in each corner until they are consistent, or ensure your ABL system is working if you have one in place.</p>
         <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img class="thumb" src="img/firstlayerpreview.jpg" /></a>
         <!-- firstlayerForm-->
@@ -271,7 +272,9 @@
             <p>Before general calibration or before a significant modification is to be fitted.</p>
             <h5>Tools:</h5>
             <p>Gcode generator on this page.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#bl').offset().top-200)},500);">Scroll to gcode generator</button>
         </div>
+        <h6 id="bl">Baseline test print generator</h6>
         <p>The form below will create a customised version of the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a>. It is fast to print and gives a good indication if there is any fundamental problem with the printer.</p>
         <a href="#" data-featherlight="img/cube.jpg"><img class="thumb" src="img/cube.jpg" /></a>
         <!-- baselineForm -->
@@ -296,6 +299,7 @@
             <h5>Tools:</h5>
             <p>Ruler, permanent marker, terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#esc').offset().top-200)},500);">Scroll to calculator</button>
         </div>
         <p>For the X, Y, and Z axes, the steps per mm is usually consistent between printers and rarely changes with modifications. As long as belts are tight and true, it rarely needs to be tuned.</p>
         <p>For the extruder however, variations in extruder hardware and filament means it is worth properly calibrating the extruder steps per mm, or E-steps.</p>
@@ -322,6 +326,7 @@
         <p>The filament will then very slowly go through the extruder (and hot end). Once the extrusion finishes, we measure the distance between the mark and the entry to the extruder.</p>
         <img src="img/mark2.jpg" />
         <p>Ideally, 20mm remains, which means exactly 100mm was extruded. If your distance is anything other than this, complete the form below to calculate the correct E-steps:</p>
+        <h6 id="esc">E-steps calculator</h6>
         <form name="estepsForm" onsubmit="return false;">
             <p><label>Previous E-steps as reported by M92: <input type="number" name="oldSteps" value="93.0" step="0.01"></label></p>
             <p><label>Measurement between extruder entry and mark on filament (mm): <input type="number" name="remainingFil" value="20.0" step="0.01"></label></p>
@@ -365,6 +370,7 @@
             <p>Base calibration, as well as any time there has been a change to the extruder/hot end. You may wish to revisit this after tuning linear advance.</p>
             <h5>Tools:</h5>
             <p>Your favourite slicer. <a href="https://amzn.to/3h62loN" target="_blank">Accurate digital/vernier calipers</a> (two decimal places is much more preferable to a set with only one).</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#frc').offset().top-200)},500);">Scroll to calculator</button>
         </div>
         <p>Our E-steps are now correct in the firmware, so we will move on to calibrating the slicer. Each slicer has a setting to control the overall amount of filament extruded by the printer. If the flow rate is increased, more filament will be extruded. If the flow rate is decreased, less filament will be extruded.</p>
         <p>In Simplify3D and PrusaSlicer, this is called <b>Extrusion Multiplier</b>. Cura calls it <b>Flow</b>.</p>
@@ -446,6 +452,7 @@
         <p>Use digital/vernier callipers to measure the outer wall thickness of the hollow cube. Take measurements in multiple places/sides and average them. You may wish to cut/tear off the lower and upper layers of the cube. This is to remove portions with elephant's foot and/or other abnormalities.</p>
         <a href="#" data-featherlight="img/measurecube.jpg"><img class="thumb" src="img/measurecube.jpg" /></a>
         <p>If your measurement is <i>significantly</i> off, the following calculator can then be used to calculate the new flow rate:</p>
+        <h6 id="frc">Flow rate calculator</h6>
         <table>
             <thead>
                 <tr>
@@ -616,6 +623,7 @@
             <p>Initial calibration, any time the hot end or extruder is changed, when trying a new type/brand of filament.</p>
             <h5>Tools:</h5>
             <p>Gcode generator on this page.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#ret').offset().top-200)},500);">Scroll to gcode generator</button>
         </div>
         <p>FDM works by melting plastic filament and extruding it accurately one layer at a time to build up 3D geometry. By its nature, the plastic will continue to ooze and drip out of the nozzle even when not pushed by the extruder. To combat this, our slicers use retraction, where the filament is withdrawn from the hot end, alleviating pressure and minimising ooze. When properly tuned, this has the effect of removing stringing, the unwanted oozing of plastic between two points of the model.</p>
         <p>An example of fine stringing can be seen in the following image. It appears like cobwebs:</p>
@@ -667,21 +675,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="exp">
-            <h5>I can't translate my test results to my own slicer! Other factors beyond the scope of this test - Important!</h5>
-            <ul>
-                <li>Auto cooling (PrusaSlicer) / Speed Overrides (Simplify3D) / Minimum layer time (Cura): Most slicers have a setting to detect if a layer will complete in less than a certain time threshold. In this case, all movement for that layer is slowed, including those related to retraction, to increase the layer time to meet the target. The gcode generated by the this page has this setting OFF. If your results vary, trying turning this setting off in your own slicer too.</li>
-                <li>Z hop speed: If you are using Z hop, the vertical feedrate for the Z movements is set to 20 mm/sec for these tests. Matching this in your slicer is advised if these tests look better than your own slicer results. </li>
-                <li>Retraction acceleration: This will affect whether the retraction speed can actually be reached. The gcode generator below does not include any changes to what is set on your printer. You can change this with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>R</b> argument.</li>
-                <li>Slicer settings such as coast and wipe: Coast stops extrusion slightly early to assist retraction. It effectively lets the hot end 'run dry' at the end of the printing movement to reduce ooze. This varies from slicer to slicer and isn't always necessary to tune.
-                    <br />Wipe moves the nozzle back towards the recently printed geometry to wipe ooze off. If you are having trouble reducing stringing, it may be a good option.
-                    <br />Both coast and wipe are turned off in the gcode generator below.</li>
-                <li>Maximum extruder feedrate: Your firmware may have a hard limit imposed on extruder movement that is below the retraction speed values you are attempting to use with the form below. You may need to use <a href="https://marlinfw.org/docs/gcode/M203.html" target="_target">M203</a> to raise the extruder feedrate limit to try higher values for retraction speed. This potentially needs to be saved with <b>M500</b> if you want it to be permanent.</li>
-                <li>Travel feedrate and acceleration: A travel move is one where the printer moves to a new location without extruding. The slower this move is, the more time filament will have to ooze from the nozzle and add to stringing. The feedrate is set to 100mm/sec in the gcode generator below, and does not include any changes to what is set on your printer for acceleration. You can change travel acceleration with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>T</b> argument.</li>
-                <li>Linear advance: Linear advance, covered later in this guide, can drastically improve the accuracy of our extrusion. It has a significant impact of retraction (reducing the need), so after configuring linear advance you may need to revisit retraction.</li>
-                <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For instance, Cura measures extra restart distance in volume rather than length.</li>
-            </ul>
-        </div> 
+        <h6 id="ret">Retraction tuning tower generator</h6> 
         <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and extra restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontestv2.stl">retractiontestv2.stl</a>. This file has been updated to V2, which changes the external shape from circular to pentagonal. It is also slightly shorter to print faster. The original file is still available here: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <!-- retractionForm -->
@@ -697,6 +691,23 @@
         <p>I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in. A third test could then take place to test extra restart distance.</p>
         <a href="#" data-featherlight="img/retractionresults.jpg"><img class="thumb" src="img/retractionresults.jpg" /></a>
         <p>If you would like to be able to customise additional parameters for a retraction test, Prahjister has made a great tool: <a href="http://retractioncalibration.com/" target="_blank">Retraction Calibration Tool</a>. It has a higher degree of difficulty due to needing more parameters but is ultimately more powerful. Warning! This is an external website and beyond my control. Some users have reported success and others have had  issues with the gcode generated. As with the gcode made by this website, monitor your printer during printing with a view to cutting the power if needed.</p>
+        <div class="exp">
+            <h5>I can't translate my test results to my own slicer! Other factors beyond the scope of this test - Important!</h5>
+            <p>After you have found a combination of parameters which works well on your machine, the idea is to then translate them  to your own slicing profile. If you can't replicate the results, please work through the following:</p>
+            <ul>
+                <li>Auto cooling (PrusaSlicer) / Speed Overrides (Simplify3D) / Minimum layer time (Cura): Most slicers have a setting to detect if a layer will complete in less than a certain time threshold. In this case, all movement for that layer is slowed, including those related to retraction, to increase the layer time to meet the target. The gcode generated by the this page has this setting OFF. If your results vary, trying turning this setting off in your own slicer too.</li>
+                <li>Z hop speed: If you are using Z hop, the vertical feedrate for the Z movements is set to 20 mm/sec for these tests. Matching this in your slicer is advised if these tests look better than your own slicer results.</li>
+                <li>Retraction acceleration: This will affect whether the retraction speed can actually be reached. The gcode generator below does not include any changes to what is set on your printer. You can change this with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>R</b> argument.</li>
+                <li>Slicer settings such as coast and wipe: Coast stops extrusion slightly early to assist retraction. It effectively lets the hot end 'run dry' at the end of the printing movement to reduce ooze. This varies from slicer to slicer and isn't always necessary to tune.
+                    <br />Wipe moves the nozzle back towards the recently printed geometry to wipe ooze off. If you are having trouble reducing stringing, it may be a good option.
+                    <br />Both coast and wipe are turned off in the gcode generator below.</li>
+                <li>Maximum extruder feedrate: Your firmware may have a hard limit imposed on extruder movement that is below the retraction speed values you are attempting to use with the form above. You may need to use <a href="https://marlinfw.org/docs/gcode/M203.html" target="_target">M203</a> to raise the extruder feedrate limit to try higher values for retraction speed. This potentially needs to be saved with <b>M500</b> if you want it to be permanent.</li>
+                <li>Travel feedrate: A travel move is one where the printer moves to a new location without extruding. The slower this move is, the more time filament will have to ooze from the nozzle and add to stringing. The feedrate is set to 100mm/sec in the gcode generator above. Matching this in your slicer is advised if these tests look better than your own slicer results.</li>
+                <li>Travel acceleration: This test does not manipulate travel acceleration but increasing its value may help reduce stringing. You can change travel acceleration with <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> and the <b>T</b> argument.</li>
+                <li>Linear advance: Linear advance, covered later in this guide, can drastically improve the accuracy of our extrusion. It has a significant impact of retraction (reducing the need), so after configuring linear advance you may need to revisit retraction.</li>
+                <li>Slicer differences: The gcode generated below was originally sliced by Simplify3D. The settings you establish should translate to your slicer quite well but there may be idiosyncrasies. For instance, Cura measures extra restart distance in volume rather than length.</li>
+            </ul>
+        </div>
     </div>
 
     <div id="temp">
@@ -708,6 +719,7 @@
             <p>Initial calibration, any time the hot end is changed, when trying a new type/brand of filament.</p>
             <h5>Tools:</h5>
             <p>Gcode generator on this page.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#tmp').offset().top-200)},500);">Scroll to gcode generator</button>
         </div>
         <p>For this calibration, we are only concerned with the temperature of the hot end, not the bed. The bed temperature will need to be matched to any given filament, and once a good value is found, you will generally stick with it.</p>
         <p>Instead here we are tuning the temperature at which the filament is extruded. There is no universal temperature for a given filament. Variations in heater blocks and thermistor placement dictate this.</p>
@@ -721,6 +733,7 @@
         <p>Your 3D printer firmware will have a minimum hot end temperature extrusion is allowed and a maximum hot end temperature for safety. Make sure to keep within these boundaries to avoid errors.</p>
         <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/temperaturetowerv2.stl">temperaturetowerv2.stl</a>. This is an updated model that prints in less time, has more variation in overhangs, and has a narrow pyramid in each band to try and snap off to test layer adhesion.</p>
         <p>The original design can be found here: <a href="files/temperaturetower.stl">temperaturetower.stl</a></p>
+        <h6 id="tmp">Temperature tuning tower generator</h6>
         <!-- temperatureForm -->
         <form name="temperatureForm" id="temperatureForm" onsubmit="return false;">
             <script>
@@ -748,6 +761,8 @@
             <p>Terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>Gcode generator on this page.</p>
             <p>Instructions on how to setup <a href="troubleshooting.html#tools" target="_blank">terminal software</a> can be found <a href="troubleshooting.html#terminal" target="_blank">here.</a></p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#acc').offset().top-200)},500);">Scroll to gcode generator</button>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#mfc').offset().top-200)},500);">Scroll to max feedrate calculator</button>
         </div>
         <p>We set a feedrate or movement speed in our slicer, but the printer does not instantly reach these speeds. Like a motor vehicle, it needs time to accelerate. If the distance of the movement is short, it may not even have time to reach the specified speed. This can determined with the handy <a href="https://blog.prusaprinters.org/calculator/" target="_blank">acceleration calculator</a>, available on the Prusa website.</p>
         <p>Complementary to acceleration we have jerk, replaced by junction deviation in newer versions of Marlin. These settings have differences, but both are essentially responsible for making sure the printer does not come to a complete stop between each movement, but rather decelerates an appropriate amount depending on the angle of the next 'corner'.</p>
@@ -780,6 +795,7 @@
             <li>After you find the limiting speed, back off and repeat the test at a lower feedrate several times in a row until you are confident of reliable and repeatable extrusion. <br />Don't forget to put the printer back into absolute movement mode:</li>
             <pre>G90</pre>
             <li>Enter your reliable feedrate and filament diameter below:</li>
+            <h6 id="mfc">Maximum feedrate calculator</h6>
             <label>Reliable feedrate: <input type="number" min="60" max="1000" name="maxFeed" value="180" step="10" onchange="maxExt(); maxFee();"></label>
             <label>Filament diameter: <input type="number" min="1.5" max="4" name="filDia" value="1.75" step="0.05" onchange="maxExt(); maxFee();"></label>
             <p class="result">Your maximum reliable extrusion rate is <b><span id="maxExt">7.22</span> mm³</b> per second.</p>
@@ -823,6 +839,7 @@
         <p>The image below shows an example of each of these scenarios:</p>
         <a href="#" data-featherlight="img/m205.jpg"><img class="thumb" src="img/m205.jpg" /></a>
         <p>Use the following form to customise the gcode to your liking:</p>
+        <h6 id="acc">Acceleration & jerk/junction deviation tuning tower generator</h6>
         <!-- accelerationForm -->
         <form name="accelerationForm" id="accelerationForm" onsubmit="return false;">
             <script>
@@ -912,6 +929,7 @@
             <p>The best tool for this job is a <a href="https://amzn.to/3fbw02B" target="_blank">dial gauge</a>. These are a precision measuring device and well suited. You can also use a set of <a href="https://amzn.to/3h62loN" target="_blank">digital calipers</a> but they will be less useful.</p>
             <p>The dial gauge also needs to be mounted. A universal design is tricky because of variations in 3D printers and dial gauges, but the example I used is here: <a href="https://www.thingiverse.com/thing:4803082" target="_blank">Dial gauge mount on Thingiverse</a></p>
             <p>You will also find the <a href="https://www.thingiverse.com/thing:1278865" target="_blank">XYZ 20mm calibration cube by iDig3Dprinting</a> referred to on this page, but printing it is not a mandatory part of the calibration process.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#xyzc').offset().top-200)},500);">Scroll to X/Y/Z steps calculator</button>
         </div>
         <p>This tab serves as a companion for this video: <a href="https://youtu.be/2v7EGDp55n4" target="_blank">Calibrating your XYZ steps using a dial gauge for maximum accuracy</a></p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/2v7EGDp55n4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -973,6 +991,7 @@
         <p>If everything above has been checked and you are certain your steps per unit need adjusting, then proceed to the next section.</p>
         <h2>Adjusting X, Y and/or Z steps in the firmware</h2>
         <p>If you still need to adjust your steps per unit, you can use the following calculator to determine the correct value, based on your dial gauge recordings:</p>
+        <h6 id="xyzc">X / Y / Z steps calculator</h6>
         <form name="xyzstepsForm" onsubmit="return false;">
             <label>Target axis:</label>
                 <p>X <input type="radio" name="xyzAxis" value="X">

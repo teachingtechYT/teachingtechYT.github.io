@@ -70,6 +70,15 @@ h5 {
     font-size: 1.4em;
 }
 
+h6 {
+    font-size: 1.4em;
+    font-weight: bolder;
+    margin: 20px 20px 5px;
+    padding: 5px 10px;
+    background-color: black;
+    color: white;
+}
+
 p {
     margin: 10px 20px 20px;
     line-height: 1.5em;
@@ -217,6 +226,12 @@ iframe {
 
 .jdtd {
     display:none;
+}
+
+.zoom {
+    float: right;
+    position: relative;
+    bottom: 60px;
 }
 
 .thumb {
