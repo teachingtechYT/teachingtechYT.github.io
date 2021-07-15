@@ -21,6 +21,7 @@ function displayCustom(){
 var nozzleLayer = `
 <h4>Nozzle Diameter / Layer Height</h4>
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>
+    <p>25 options are available, however some of the tests don't work very well with the larger options.</p>
     <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
     <select name="nozzleLayer">
         <option value="20_05">0.20 mm nozzle / 0.05 mm layer height</option>
