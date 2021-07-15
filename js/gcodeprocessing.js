@@ -253,11 +253,11 @@ function processGcode(formName) {
     // bed temp
     var gcode = commonStart;
     if(bedTemp == 0){
-        gcode = gcode.replace(/M140 S60/g, "; no heated bed");
-        gcode = gcode.replace(/M190 S60/g, "; no heated bed");
+        gcode = gcode.replace(/;bed0a/g, "; no heated bed");
+        gcode = gcode.replace(/;bed0b/g, "; no heated bed");
     } else {
-        gcode = gcode.replace(/M140 S60/g, "M140 S"+bedTemp+" ; custom bed temp");
-        gcode = gcode.replace(/M190 S60/g, "M190 S"+bedTemp+" ; custom bed temp");
+        gcode = gcode.replace(/;bed0a/g, "M140 S"+bedTemp+" ; custom bed temp");
+        gcode = gcode.replace(/;bed0b/g, "M190 S"+bedTemp+" ; custom bed temp");
     }
     // start hot end emp
     if(abl != 4){
@@ -285,7 +285,13 @@ function processGcode(formName) {
         gcode = gcode.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     }
     if(abl == 5){
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L0 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
+    if(abl == 6){
         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L1 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
+    }
+    if(abl == 7){
+        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L2 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
     // firstlayer test square array
     if(name == "firstlayerForm"){
@@ -477,7 +483,6 @@ function processGcode(formName) {
             gcode = gcode.replace(/;process Process-5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
         }
     }
-    
 
     // final tweaks for start and end gcode
     if(formName.psuon.checked == true) {
@@ -494,10 +499,6 @@ function processGcode(formName) {
     }
     // process finished gcode file
     downloadFile(description+'.gcode', gcode);
-
-    
-
-
 }
 
 function processFirstlayer(){
