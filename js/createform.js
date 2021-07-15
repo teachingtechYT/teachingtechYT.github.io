@@ -31,7 +31,7 @@ var nozzleLayer = `
 
 var startGcode = `
 <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an extruder prime sequence, overwriting the standard flow rate, standard speed, compensating for 2.85/3.00 mm filament, setting K factor and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="displayCustom();" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
@@ -129,7 +129,9 @@ var abl = `<h4>Auto Bed Levelling</h4>
     <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
     <option value="3">Prusa MK3 - G28 W followed by G80</option>
     <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>
-    <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
+    <option value="5">Unified Bed Leveling - Load Saved Mesh (slot 0) then 3 Probe Tilt </option>
+    <option value="6">Unified Bed Leveling - Load Saved Mesh (slot 1) then 3 Probe Tilt </option>
+    <option value="7">Unified Bed Leveling - Load Saved Mesh (slot 2) then 3 Probe Tilt </option>
 </select>`;
 
 var retractionReg = `<h4>Retraction</h4>
