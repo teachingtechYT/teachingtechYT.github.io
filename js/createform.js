@@ -162,7 +162,7 @@ var retractionReg = `<h4>Retraction</h4>
 <p><label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
     <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
     <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
-    <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label></p>`;
+    <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label> (zero disables Z hop)</p>`;
 
 var retractionTower = `<h4>Retraction</h4>
 <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span>.</p>
