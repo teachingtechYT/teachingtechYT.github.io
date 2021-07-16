@@ -317,6 +317,8 @@ var endGcode = `<h4>Additional end gcode</h4>
     <textarea name="endgcode"></textarea>
 </div>`;
 
+var preview = `<p>It is advised to preview the generated gcode through your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> before printing.`;
+
 function createForm(n){
     document.write('<input type="hidden" name="description" value="'+n+'">')
     document.write(nozzleLayer);
@@ -345,6 +347,6 @@ function createForm(n){
         document.write(accel);
     }
     document.write(endGcode);
-    
+    document.write(preview);
 }            
             
