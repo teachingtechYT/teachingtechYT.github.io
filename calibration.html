@@ -28,7 +28,10 @@
         <p>This page serves as a companion for this video: <a href="https://www.youtube.com/watch?v=rp3r921DBGI" target="_blank">3D printer calibration revolutionised - Step by step to better print quality</a></p>
         <p>It has received a major update to bring it up to V2 which is explained in this video: <a href="https://www.youtube.com/watch?v=rp3r921DBGI" target="_blank">3D printer calibration revolutionised - Step by step to better print quality</a></p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/rp3r921DBGI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <img src="371-thumb.jpg" height="360"/>
+        <!--
         <iframe width="480" height="360" src="https://www.youtube.com/embed/rp3r921DBGI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        -->
         <p>It aims to make calibrating your 3D printer as easy as possible. If you find it helps you and you would like to say thank you, here is a donation link: <a href="https://paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
         <p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for suggesting this video, helping define the contents and testing/proofing.</p>
         <p>Watch the videos and then work through each tab. I have created a custom gcode generator to assist in making testing towers. This used to be a laborious process and beyond the skills of many users. Other times pre-sliced gcode was used from the internet, but it is impossible to have gcode available for every printer configuration. <i>Until now!</i></p>
@@ -50,10 +53,10 @@
                 <li>1.75mm filament (However <b>M221 S38</b> for 2.85 mm filament and <b>M221 S34</b> for 3.0 mm filament can be applied in the custom start gcode field as compensation)</b></li>
                 <li>0.4mm nozzle and 0.2mm layer height, although now additional configurations are now possible</li>
                 <li>Line width on auto, typically 120% of nozzle diameter</li>
-                <li>Defaut feedrate of 60mm/sec, 60% for perimeters, 80% for solid infill, 50% first layer.</li>
+                <li>Defaut feedrate of 60mm/sec. Modifiers include 60% for perimeters, 80% for solid infill, and 50% first layer.</li>
                 <li>Travel moves of 100 mm/sec for X/Y and 20 mm/sec for Z</li>
-                <li>Flow rate of 0.9. Please see the note on the bottom of the <a href="calibration.html#flow" target="_blank">flow</a> tab for instructions on adapting this to your printer.</li>
-                <li>Nozzle priming has been turned off to avoid bed clips or problems with deltas. Use the custom start gcode feature to insert the priming dequence from your slicer profile.</li>
+                <li>Flow rate of 0.90. Please see the note on the bottom of the <a href="calibration.html#flow" target="_blank">flow</a> tab for instructions on adapting this to your printer.</li>
+                <li>Nozzle priming has been turned off to avoid bed clips or problems with delta printers. Use the custom start gcode feature to insert the priming dequence from your slicer profile.</li>
                 <li>A single layer skirt (except on the acceleration test)</li>
                 <li>100% part cooling fan for bridging</li>
                 <li>First layer height of 100%, width 120%</li>
@@ -63,13 +66,13 @@
             </ul>
             <p>The information above is a summary, but if you wish to see the exact settings, the Simplify3D fff profile is available for download <a href="files/calibration.fff" target="_blank">here</a>.</p>
             <p>Please note that non Simplify users can simply open this file in a text editor and everything will be listed.</p>
-            <p>You may notice settings related to temperatures, retraction, Z hop, part cooling fan percentage, etc have set values, but these are altered by post processing scripts and this site to ultimately be determined by the user's inputs. Several parameters work like this, please don't be fooled by what is in the slicing profile. Opening the final gcode file in a text editor and searching for 'custom' will show if the user's inputs have been successfully adopted.</p>
+            <p>You may notice settings related to temperatures, retraction, Z hop, part cooling, etc have set values, but these are altered by post processing scripts and this site to ultimately be set using the user's inputs. Several parameters work like this, please don't be fooled by what is in the slicing profile. Opening the final gcode file in a text editor and searching for 'custom' will show if the user's inputs have been successfully adopted.</p>
             <h4>Post processing scripts in Simplify3D</h4>
             <p>Unfortunately, there is no official reference for this provided by S3D. Instead, I have relied on <a href="https://forum.simplify3d.com/viewtopic.php?f=8&t=1959" target="_blank">this forum post</a>.</p>
             <p>The scripts in my profile perform the following tasks:</p>
             <ul>
                 <li>Strip out all comments apart from new processes and layers.</li>
-                <li>Strip out all start and end gcode. This is provided by the site.</li>
+                <li>Strip out all start and end gcode. This gcode is instead provided by the site.</li>
                 <li>Find specific lines relating to retraction and zhop, replacing them with comments this site expects to find and modify further.</li>
             </ul>
             <pre>
@@ -97,8 +100,8 @@
                 {REPLACE "G1 E-7.5000 F2700\n" ";retract6\n"}
                 {REPLACE "G1 E0.0000 F2700\n" ";unretract6\n"}</pre>
             <h4>Changes made per test to the base slicing profile</h4>
-            <p>The information below is mainly for my reference. However, if you wish to duplicate the tests yourself out of interest or perhaps to develop a new test for the site, then the steps must be followed exactly.</p>
-            <p>First layer test: No changes, although it should be noted that a single square is included which is then duplicated and positioned by this site. Non uniform scaling of the source STL needs to occur to suit certain nozzle/layer combinations.</p>
+            <p>The information below is mainly for my reference. However, if you wish to duplicate the tests yourself out of interest or perhaps to develop a new test for the site, then the steps must be followed exactly, including replicating the process names.</p>
+            <p>First layer test: No changes, although it should be noted that a single square is included which is then duplicated and positioned by this site. Non uniform scaling of the source STL needs to occur to suit certain nozzle/layer combinations. THe square should be 25 x 25 mm with it's height scaled to match the target layer height.</p>
             <p>Baseline test: No changes</p>
             <p>Retraction test:</p>
             <ul>
@@ -292,7 +295,7 @@
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
         <iframe width="640" height="480" src="https://www.youtube.com/embed/Vf7nSuDGHI0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>The cube should look similar to those at the top of this page. If there are no major issues, please continue to the next step. If there is a significant defect, the culprit will likely be found by working through the frame page.</p>
+        <p>The cube should look similar to those at the top of this page. If there are no major issues, please continue to the next step. If there is a significant defect, the culprit will likely be found by working through the frame tab. Minor issues will hopefully be resolved with the subsequent tests.</p>
     </div>
 
     <div id="esteps">
@@ -344,8 +347,8 @@
                 <pre>M92 E<span id="e4"></span></pre>
                 <p>Followed by M500 to save to EEPROM.</p>
                 <pre>M500</pre>
-                <p>Special note: Prusa has disabled M500 saving to EEPROM on some printers (eg. Mini). In these cases the above M92 gcode must be added to the start gcode in your slicer to be read before every print.</p>
                 <p>You may wish to repeat this test with the new E-steps value to verify.</p>
+                <p>Special note: Prusa has disabled M500 saving to EEPROM on some printers (eg. Mini). In these cases the above M92 gcode must be added to the start gcode in your slicer to be read before every print.</p>
             </div>
         </form>
 		<p>Although starting a new print or power cycling will achieve this, it may be safer to put the printer back into absolute position mode after completing this calibration by sending:</p>
@@ -503,7 +506,7 @@
             <p>This print shows clear signs of under extrusion. There are gaps in the top infill as well as gaps between the perimeters and infill. Despite what any calibration procedure determined, the flow rate for this slicer/printer combination needs to be increased.</p>
             <p><a href="https://all3dp.com/2/over-extrusion-3d-printing-tips-and-tricks-to-solve-it/" target="_blank">This article on all3DP</a> has examples of what over extrusion looks like.</p>
         </div>
-        <h2>Can I use this flow value in the other tests on this site?</h2>
+        <h2>Can I use this flow value in the other tests on this site? - <span style="color:red">Important!</span></h2>
         <p>The short answer is: not really.</p>
         <p>The gcode generators on this site work by using javascript to modify source gcode originally created by Simplify3D. However, when you completed the calibration test above, you sliced your own gcode, making your own baseline and then making a flow adjustment relative to that. Therefore, this test is unique from the others on this site which is why the flow rate doesn't necessarily translate.</p>
         <p>Let's say your old flow rate was 100% and you have tested and corrected this to 96%. The gcode on this site originally had a flow rate of 90% when sliced, so applying your 96% to that gives a final result of 86.4%, not 96%. Your slicer profile settings will also be different in other ways, which further complicates matters. Therefore, there is not a straightforward correlation between your slicer and my gcode generators.</p>
@@ -683,7 +686,7 @@
         </table>
         <h6 id="ret">Retraction tuning tower generator</h6> 
         <p>The following form will create a retraction tower to conveniently test back to back parameters in the same print. Of the three available parameters, it is best to change only one per test print. For example, keep the retraction speed and extra restart distance the same, but vary the retraction distance over each segment. Changing more than one parameter makes is hard to tell what made the difference. The print is quick, so repeat the test varying other parameters until you are happy with them all.</p>
-        <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontestv2.stl">retractiontestv2.stl</a>. This file has been updated to V2, which changes the external shape from circular to pentagonal. It is also slightly shorter to print faster. The original file is still available here: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
+        <p>Here is the STL if you would like to slice a similar test yourself: <a href="files/retractiontestv2.stl">retractiontestv2.stl</a>. This file has been updated to V2, which changes the external shape from circular to pentagonal. It is also prints slightly faster. The original file is still available here: <a href="files/retractiontest.stl">retractiontest.stl</a></p>
         <!-- retractionForm -->
         <form name="retractionForm" id="retractionForm" onsubmit="return false;">
             <script>
@@ -755,7 +758,7 @@
         <iframe width="640" height="480" src="https://www.youtube.com/embed/D6m_kYhOth0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 180 to 260 in 20 degree increments</p>
         <a href="#" data-featherlight="img/temperatureresults.jpg"><img class="thumb" src="img/temperatureresults.jpg" /></a>
-        <p>As expected, surfaces becomes more glossy as the temperature increases. What was unexpected, was surface rippling being more obvious as the temperatures went up. Underhangs and bridges all look good on this test, however the little spikes could not be printed accurately at the higher temps due to the part cooling system not keeping up. The coolest spike in segment A was very brittle, the spike on segment C the strongest, and the upper spikes too malformed to test accurately.</p> 
+        <p>As expected, surfaces becomes more glossy as the temperature increases. What was unexpected was surface rippling being more obvious as the temperatures went up. Overhangs and bridges all look good on this test, however the little spikes could not be printed accurately at the higher temps due to the part cooling system not keeping up. The coolest spike in segment A was very brittle, the spike on segment C the strongest, and the upper spikes too malformed to test accurately.</p> 
         <p>My previous hot end temperature was 200 degrees for this printer, but I will consider raising it to 210 degrees after this test to gain some interlayer strength without any trouble with part cooling.</p>
     </div>
 
@@ -861,7 +864,7 @@
         <p>Please use the following video as a guide to this test:</p>
         <iframe width="640" height="480" src="https://www.youtube.com/embed/SIsKQIyuzYs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>You may initially think the X and Y labels are facing the wrong way, but they do not. This is explains and demonstrated in the video above.</p>
-        <p>You may also notice a few bits of stringing. These are a quirk of how the test was originally sliced and can be ignored.</p>
+        <p>You may also notice a few bits of stringing. These are a quirk of how the test was originally sliced and can safely be ignored.</p>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. In the lowest segment,  the gentle acceleration means the nozzle spends more time in the corners and they tend to bulge. This would be more evident if linear advance was disabled.</p>
         <p>The ideal segment will have the best compromise between low acceleration corner bulging and high acceleration ringing.</p>
         <p>My previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
@@ -885,7 +888,7 @@
             <a href="#" data-featherlight="img/acceloverride.jpg"><img class="thumb" src="img/acceloverride.jpg" /></a>
         </div>
         <h2>Higher acceleration without ringing: Input Shaping</h2>
-        <p>An amzing development in 3D printing is input shaping, which compensates for the machine's resonant frequency by altering stepper motor inputs to drastically reduce ringing. Available in Klipper and soon to be introduced to RepRapFirmware, input shaping allows much higher feedrates without a loss in print quality. To see it in action, see the video below:</p>
+        <p>An amazing development in 3D printing is input shaping, which compensates for the machine's resonant frequency by altering stepper motor inputs to drastically reduce ringing. Available in Klipper and soon to be introduced to RepRapFirmware, input shaping allows much higher feedrates without a loss in print quality. To see it in action, see the video below:</p>
         <iframe width="480" height="360" src="https://www.youtube.com/embed/er7q-CJL1lc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
