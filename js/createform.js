@@ -171,7 +171,7 @@ var retractionTower = `<h4>Retraction</h4>
         <tr>
             <th>Reference Diagram</th>
             <th>Segment</th>
-            <th>Retraction distance (mm)<p class="sug">&#177; 0.5 - 1</p></th>
+            <th>Retraction distance (mm)<p class="sug">&#177; 0.5 - 1 (bowden tube)</p><p class="sug">&#177; 0.1 - 0.2 (direct drive)</p></th>
             <th>Retraction speed (mm/sec)<p class="sug">&#177; 5</p></th>
             <th>Extra restart distance (mm)<p class="sug">&#177; 0.2</p></th>
             <th>Prime (unretract) speed (mm/sec)<p class="sug">&#177; 5</p></th>
@@ -234,7 +234,7 @@ var retractionTower = `<h4>Retraction</h4>
 </table>`;
 
 var accel = `<h4>Base feedrate/speed</h4>
-<p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed.</p>
+<p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
 <label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>
 <h4>Acceleration and jerk/junction deviation</h4>
 <p>After entering <b>M503</b>, I have determined my 3D printer firmware uses:</p>
@@ -249,7 +249,7 @@ var accel = `<h4>Base feedrate/speed</h4>
         <tr>
             <th>Reference diagram</th>
             <th>Segment</th>
-            <th>Acceleration<p class="sug">&#177; 100 (moving bed i3)</p><p class="sug">&#177; 500 (coreXY / delta)</p></th>
+            <th>Acceleration (mm/sec/sec)<p class="sug">&#177; 100 (moving bed i3)</p><p class="sug">&#177; 500 (coreXY / delta)</p></th>
             <th class="jerktd">Jerk X<p class="sug">&#177; 1</p></th>
             <th class="jerktd">Jerk Y<p class="sug">&#177; 1</p></th>
             <th class="jerktd">Jerk Z (delta only)<p class="sug">&#177; 1</p></th>

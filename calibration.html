@@ -63,9 +63,9 @@
             </ul>
             <p>The information above is a summary, but if you wish to see the exact settings, the Simplify3D fff profile is available for download <a href="files/calibration.fff" target="_blank">here</a>.</p>
             <p>Please note that non Simplify users can simply open this file in a text editor and everything will be listed.</p>
-            <p>You will see that there are also values in place for retraction, temperatures, etc. These are modified by post processing scripts and this site to suit user inputs.</p>
+            <p>You may notice settings related to temperatures, retraction, Z hop, part cooling fan percentage, etc have set values, but these are altered by post processing scripts and this site to ultimately be determined by the user's inputs. Several parameters work like this, please don't be fooled by what is in the slicing profile. Opening the final gcode file in a text editor and searching for 'custom' will show if the user's inputs have been successfully adopted.</p>
             <h4>Post processing scripts in Simplify3D</h4>
-            <p>Unfortunately, there is no official reference for this provided by S3D. Instead, I have relied on <a href="" target="_blank">this forum post</a>.</p>
+            <p>Unfortunately, there is no official reference for this provided by S3D. Instead, I have relied on <a href="https://forum.simplify3d.com/viewtopic.php?f=8&t=1959" target="_blank">this forum post</a>.</p>
             <p>The scripts in my profile perform the following tasks:</p>
             <ul>
                 <li>Strip out all comments apart from new processes and layers.</li>
@@ -260,6 +260,8 @@
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
+        <p>Please use the following video as a guide to this test:</p>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/seBOQpjLCQ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>The following diagram and reference picture can be useful in determing if your first layer is too close or too far away from the nozzle. The reference image is quite large to aid clarity, you may wish to open it in a new tab to view it at maximum size.</p>
         <p>If one side looks too close, but the other too far, adjust the levellng knobs to correct this. It is worth printing this gcode more than once after making adjustments to make sure the result is accurate and repeatable.</p>
         <a href="#" data-featherlight="img/firstlayer.jpg"><img class="thumb" src="img/firstlayer.jpg" /></a> <a href="#" data-featherlight="img/firstlayer2.jpg"><img class="thumb" src="img/firstlayer2.jpg" /></a>
@@ -288,6 +290,8 @@
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
+        <p>Please use the following video as a guide to this test:</p>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/Vf7nSuDGHI0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>The cube should look similar to those at the top of this page. If there are no major issues, please continue to the next step. If there is a significant defect, the culprit will likely be found by working through the frame page.</p>
     </div>
 
@@ -689,12 +693,14 @@
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
+        <p>Please use the following video as a guide to this test:</p>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/JY6E9srwZm0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the settings you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the retraction distance varied from 0.4 up to 1.4mm in 0.2mm increments. Segments A and B have the least stringing. Based on this, I would assume that a retraction distance of 0.4 - 0.6 is best for this printer. this is consistent with linear advance being enabled.</p>
-        <p>I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in. A third test could then take place to test extra restart distance.</p>
+        <p>I would then repeat the test, setting the same retraction distance for each segment and instead altering the retraction speed to dial that in. A third test could then take place to test extra restart distance, a fourth for Z hop, etc.</p>
         <a href="#" data-featherlight="img/retractionresults.jpg"><img class="thumb" src="img/retractionresults.jpg" /></a>
         <p>If you would like to be able to customise additional parameters for a retraction test, Prahjister has made a great tool: <a href="http://retractioncalibration.com/" target="_blank">Retraction Calibration Tool</a>. It has a higher degree of difficulty due to needing more parameters but is ultimately more powerful. Warning! This is an external website and beyond my control. Some users have reported success and others have had  issues with the gcode generated. As with the gcode made by this website, monitor your printer during printing with a view to cutting the power if needed.</p>
         <div class="exp">
-            <h5>I can't translate my test results to my own slicer! Other factors beyond the scope of this test - Important!</h5>
+            <h5>I can't translate my test results to my own slicer! Other factors beyond the scope of this test - <span style="color:red;">Important!</span></h5>
             <p>After you have found a combination of parameters which works well on your machine, the idea is to then translate them  to your own slicing profile. If you can't replicate the results, please work through the following:</p>
             <ul>
                 <li>Auto cooling (PrusaSlicer) / Speed Overrides (Simplify3D) / Minimum layer time (Cura): Most slicers have a setting to detect if a layer will complete in less than a certain time threshold. In this case, all movement for that layer is slowed, including those related to retraction, to increase the layer time to meet the target. The gcode generated by the this page has this setting OFF. If your results vary, trying turning this setting off in your own slicer too.</li>
@@ -745,11 +751,12 @@
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 185 to 225 in 10 degree increments"</p>
+        <p>Please use the following video as a guide to this test:</p>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/D6m_kYhOth0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the temperatures you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), the hot end temperature varied from 180 to 260 in 20 degree increments</p>
         <a href="#" data-featherlight="img/temperatureresults.jpg"><img class="thumb" src="img/temperatureresults.jpg" /></a>
-        <p>For the first layer, there was some extruder clicking as the extruder struggled to push the filament through the cooler nozzle. As expected, surface becomes more glossy as the temperature increases. What was unexpected, was surface rippling either being more prominent or at least more obvious as the temperature went up. Underhangs and bridges all look good on this test.</p> 
-        <p>My previous hot end temperature was 200 degrees for this printer, but I will consider lowering it to 190 degrees after this test.</p>
-        <p>You may also wish to conduct some destructive testing to evaluate part strength. In many cases this is more important than the appearance of the part.</p>
+        <p>As expected, surfaces becomes more glossy as the temperature increases. What was unexpected, was surface rippling being more obvious as the temperatures went up. Underhangs and bridges all look good on this test, however the little spikes could not be printed accurately at the higher temps due to the part cooling system not keeping up. The coolest spike in segment A was very brittle, the spike on segment C the strongest, and the upper spikes too malformed to test accurately.</p> 
+        <p>My previous hot end temperature was 200 degrees for this printer, but I will consider raising it to 210 degrees after this test to gain some interlayer strength without any trouble with part cooling.</p>
     </div>
 
     <div id="accel">
@@ -851,7 +858,13 @@
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
-        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. The previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
+        <p>Please use the following video as a guide to this test:</p>
+        <iframe width="640" height="480" src="https://www.youtube.com/embed/SIsKQIyuzYs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>You may initially think the X and Y labels are facing the wrong way, but they do not. This is explains and demonstrated in the video above.</p>
+        <p>You may also notice a few bits of stringing. These are a quirk of how the test was originally sliced and can be ignored.</p>
+        <p>Inspect your finished print. Hopefully, there will be a clear difference between the segments that reflect the acceleration values you entered. In the example below (Ender 3 direct drive, PLA, linear advance enabled), acceleration varied from 300 to 800 in 100 mm/sec/sec increments. Junction deviation was left at the default 0.08. The difference between each segment is subtle, but there is increased ghosting around the letter Y on the higher segments. In the lowest segment,  the gentle acceleration means the nozzle spends more time in the corners and they tend to bulge. This would be more evident if linear advance was disabled.</p>
+        <p>The ideal segment will have the best compromise between low acceleration corner bulging and high acceleration ringing.</p>
+        <p>My previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
         <a href="#" data-featherlight="img/accelerationresults.jpg"><img class="thumb" src="img/accelerationresults.jpg" /></a>
         <p></p>
         <p>Once you have a value you are happy with, you can update with:</p>
@@ -871,6 +884,9 @@
             <p>Cura and PrusaSlicer both have the capability to control these parameters from the slicer by inserting appropriate gcode. If you are finding that your new acceleration values are not taking effect, you may need to also set them in the slicer. This is actually a desirable feature, as it allows more aggressive settings for infill and features that can't be seen in the final print, yet be more conservative for outer walls where aesthetics are paramount.</p>
             <a href="#" data-featherlight="img/acceloverride.jpg"><img class="thumb" src="img/acceloverride.jpg" /></a>
         </div>
+        <h2>Higher acceleration without ringing: Input Shaping</h2>
+        <p>An amzing development in 3D printing is input shaping, which compensates for the machine's resonant frequency by altering stepper motor inputs to drastically reduce ringing. Available in Klipper and soon to be introduced to RepRapFirmware, input shaping allows much higher feedrates without a loss in print quality. To see it in action, see the video below:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/er7q-CJL1lc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <div id="linadv">
