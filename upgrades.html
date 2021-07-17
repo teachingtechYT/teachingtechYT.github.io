@@ -41,7 +41,7 @@
                 <p>Compared to other ABL probes, a BLtouch requires a slight amount of extra wiring. If the mainboard does not have a dedicated 'probe' port or spare PWM output (Creality V1.X boards), a 'pin27 adaptor' is required.</p>
             </div>
             <p>I have made many BLtouch guide videos in the past, but this one aims to be generic enough to apply to almost any 3D printer. This guide has a companion video with many of the concepts illustrated: <a href="https://youtu.be/eF060dBEnfs" target="_blank">BLtouch for any 3D printer - Comprehensive step by step guide</a></p>
-            <iframe width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>For this guide, we will start with the physical mounting of the BLtouch, then cover wiring, firmware changes, calibration, slicer changes, customisation and troubleshooting.</p>
             <h4>Physical mounting</h4>
             <p>A BLtouch needs to be mounted to the print head of the machine. Ideally the BLtouch (or any other ABL probe) will be mounted as closely to the nozzle as possible, but not so close it fails from exposure to heat. A silicone sock over the heater block can assist here. The BLtouch should be secured tightly. Any play or wobble will destroy accuracy and repeataility. Other considerations when mounting are making sure the BLtouch is not so close to the hot end that it suffers damage from heat, and that its placement does not interfere with homing.</p>
@@ -53,16 +53,16 @@
                 <li><a href="https://www.thingiverse.com/thing:3716043" target="_blank">Artillery3D X1</a></li>             
             </ul>
             <p>The vertical mounting height of the BLtouch tip relative to the tip of nozzle is very important for accuracy. Antclabs have a diagram on their site and advise a target height of 2.3 to 4.3mm.</p>
-            <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img class="thumb" src="img/bltouchdimensions.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img loading="lazy" class="thumb" src="img/bltouchdimensions.jpg" /></a>
             <p>With the power off, lower the print head down until the nozzle is resting on the bed. If your BLtouch mount is adjustable, you can put an appropriately sized (3mm is ideal) allen key flat on the bed and slide the BLtouch down until the tip touches. For a non adjustable mount, washers can be use to shim the position downwards to spec. If the tip is sitting too low, you need a new mount to prevent the tip hitting the bed/printed part and being damaged.</p>
-            <a href="#" data-featherlight="img/bltouchspacing.jpg"><img class="thumb" src="img/bltouchspacing.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouchspacing.jpg"><img loading="lazy" class="thumb" src="img/bltouchspacing.jpg" /></a>
             <h4>Wiring loom</h4>
             <p>Hopefully you saw the note at the top of the page and purchased a wiring extension loom long enough to go from the BLtouch back to the mainboard. Alternately, you can make your own if you have the appropraite connectors and crimping tools. You want to ensure the loom is protected and can't snag on the moving printer parts. At a minimum, it should be tied to the existing loom to prevent it being caught. Ideally, it should be enclosed in some sort of sleeve or wrap.</p>
-            <a href="#" data-featherlight="img/loomwraps.jpg"><img class="thumb" src="img/loomwraps.jpg" /></a>
+            <a href="#" data-featherlight="img/loomwraps.jpg"><img loading="lazy" class="thumb" src="img/loomwraps.jpg" /></a>
             <h4>Wiring to mainboard</h4>
             <p>A BLtouch requires 5 wires. Three are used to control it (red, yellow and brown), and the remaing two are used to read the trigger signal from it (black and white). Sometimes extension looms use different colours, such as the Creality loom which substitutes blue for brown.</p>
             <p class="warning">Pay attention to wiring diagrams! The following diagram was created for a <a href="https://youtu.be/neS7lB7fCww" target="_blank">video guide for the Creality V4 32 bit mainoards</a>. The comments are littered with people who assumed the Creality extension loom would match the Creality board, connected the BLtouch incorrectly and blew up their mainboard. Never assume the extension loom you are using matches the input to the mainboard (even if they are both Creality).</p>
-            <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
+            <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img loading="lazy" class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
             <p>Here is a break down of the pins:</p>
             <ul>
                 <li><span style="color:red; font-weight:900;"> Red: </span> 5V power to BLtouch. (Some mainboards supply 3.3V and the BLtouch can be configured to operate with this logic level).</li>
@@ -81,33 +81,33 @@
             <p>Personally, I prefer to use the normal Z axis endstop port. This is because it simplifies the changes needed in the firmware (both versions covered below). It also prevents any chance of leaving the old Z endstop switch connected and potentially interfering.</p>
             <h4>Marlin firmware changes</h4>
             <p>Firstly, if you are new to firmware, I have a few beginner guides, but <a href="https://youtu.be/eq_ygvHF29I" target="_blank">Updated Marlin firmware setup guide - VS Code and Auto Build Marlin</a> is probably the best place to start as it goes over installing the software and how to use the example configurations to get a good starting point for your printer.</p>
-            <iframe width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <h5>Mandatory changes</h5>
             <p>Once you have this baseline, the following changes are mandatory for a BLtouch:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-1.jpg"><img class="thumb" src="img/bltouch-firmware-1.jpg" /></a>
-            <a href="#" data-featherlight="img/bltouch-firmware-2.jpg"><img class="thumb" src="img/bltouch-firmware-2.jpg" /></a>
-            <a href="#" data-featherlight="img/bltouch-firmware-3.jpg"><img class="thumb" src="img/bltouch-firmware-3.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-1.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-2.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-2.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-3.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-3.jpg" /></a>
             <p>Previously, when using a pin27 board with a Creality V1.x mainboard, it was required to add a custom line to the firmware to account for this. Thanks to the Marlin developers and contributers, this is now automatically in place in the pins file.</p>
             <h5>If you are connecting the black and white BLtouch wires to the Z axis endstop port</h5>
             <p>The following should already be in place by default:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-8.jpg"><img class="thumb" src="img/bltouch-firmware-8.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-8.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-8.jpg" /></a>
             <h5>If you are connecting the black and white BLtouch wires to a dedicated port</h5>
             <p>You will need to look up the name of the pin that the port uses, and then make the following changes:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-9.jpg"><img class="thumb" src="img/bltouch-firmware-9.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-9.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-9.jpg" /></a>
             <h5>If you are using a custom PWM pin for the BLtouch yellow wire</h5>
             <p>You will need to look up the name of your pin and then enter it in the pins file for your board. Make sure this is the only reference to this pin. Uncomment other references to avoid conflicts.</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-10.jpg"><img class="thumb" src="img/bltouch-firmware-10.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-10.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-10.jpg" /></a>
             <h5>Optional changes</h5>
             <p>If you are using a traditional LCD, you can enable an ABL specific sub menu:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-4.jpg"><img class="thumb" src="img/bltouch-firmware-4.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-4.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-4.jpg" /></a>
             <p>For a much easier way to calibrate the Z offset of your probe (covered in the video below), enable the following:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-5.jpg"><img class="thumb" src="img/bltouch-firmware-5.jpg" /></a>
-            <a href="#" data-featherlight="img/bltouch-firmware-6.jpg"><img class="thumb" src="img/bltouch-firmware-6.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-5.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-5.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-6.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-6.jpg" /></a>
             <p>If you have already measured your X and Y probe offsets, you can enter them now. This is not mandatory, however, as it can be done after the firmware is updated. More on probe offsets later.</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-7.jpg"><img class="thumb" src="img/bltouch-firmware-7.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-7.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-7.jpg" /></a>
             <h4>Calibration</h4>
             <p>Once you have connected everything and flashed your updated firmware, there is still some calibration regarding the offset of the probe. Fortynuately I have dedicated video on this topic:</p>
-            <iframe width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>In summary, we need to do the following:</p>
             <ul>
                 <li>Measure and input our X/Y probe offsets. This can be done using the <a href="https://marlinfw.org/docs/gcode/M851.html" target="_bank"><b>M851</b></a> gcode command over terminal or via the LCD screen. Even if you previously entered this when compiling firmware, double check the values are correct. When changing offsets, don't forget to save to EEPROM.</li>
@@ -122,18 +122,18 @@
             <h5>Probe before every print</h5>
             <p>This option has the advantage of providing the most accurate result and suits printers that have a less than steady bed that may shift between prints. The disadvantage is the added time to the start of the print.</p>
             <p>To do this, <b>G29</b> (ABL) must be placed on the line after <b>G28</b> (homing) in the start gcode section of your slicer. <b>G28</b> cancels any probed meshes so it must be in this order.</p>
-            <a href="#" data-featherlight="img/g29-start-gcode.jpg"><img class="thumb" src="img/g29-start-gcode.jpg" /></a>
+            <a href="#" data-featherlight="img/g29-start-gcode.jpg"><img loading="lazy" class="thumb" src="img/g29-start-gcode.jpg" /></a>
             <h5>Probe once and restore the saved mesh at the start of the print</h5>
             <p>Alternatively, if your bed is stable, you can home with <b>G28</b>, then probe the bed to create a mesh with <b>G29</b>, followed by saving the mesh to EEPROM with <b>M500</b>. All of this can also be done with LCD controls instead of gcodes. In your slicer start gcode, you can add <a href="https://marlinfw.org/docs/gcode/M420.html" target="_blank"><b>M420 S1</b></a> on the line AFTER <b>G28</b>, which will load the previously saved mesh to use for compensation in the current print.</p>
             <p>As neccessary, from time to time you can re-probe the bed and store the mesh to maintain accuracy.</p>
-            <a href="#" data-featherlight="img/m420-S1.jpg"><img class="thumb" src="img/m420-S1.jpg" /></a>
+            <a href="#" data-featherlight="img/m420-S1.jpg"><img loading="lazy" class="thumb" src="img/m420-S1.jpg" /></a>
             <h4>Customisation</h4>
             <p>By default, the probing grid is 3 x 3. For small printers this is fine but you may want to increase the resolution at the expense of a longer probing sequence. This can be changed in the firmware:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-11.jpg"><img class="thumb" src="img/bltouch-firmware-11.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-11.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-11.jpg" /></a>
             <p>By default, the probing sequence is fairly slow. Again, we can customise this in the firmware. Your choices here will be a trade off between speed and accuracy:</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-12.jpg"><img class="thumb" src="img/bltouch-firmware-12.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-12.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-12.jpg" /></a>
             <p>By default, the boundaries of the probing grid will be offset towards the position of the probe relative to the nozzle. I personally prefer a symmetrical probing grid. In the firmware, you can set manual boundaries for the grid. Just keep your probe X/Y offset in mind. You don't want to request probing 20mm from the edge when the probe is 40mm to the side of the nozzle. Best case, you receive an error. Worst case, the probe misses the bed and the nozzle collides with the bed.</p>
-            <a href="#" data-featherlight="img/bltouch-firmware-13.jpg"><img class="thumb" src="img/bltouch-firmware-13.jpg" /></a>
+            <a href="#" data-featherlight="img/bltouch-firmware-13.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-13.jpg" /></a>
             <p>There is also a parameter called fade height, that can be set from the LCD or with the <a href="https://marlinfw.org/docs/gcode/M420.html" target="_blank"><b>M420 Z</b></a> gcode command. The first layer will not actually be perfectly flat, due to the compensation applied to match the measured bed contours. We don't necessarily want each layer to match this contour for the rest of the print, however. Fade height is the vertical distance in which the printer will transition between following the contours of the bed to printing in a perfectly flat plane. Remember to save to EEPROM after changing the fade height.</p>
             <h4>Troubleshooting</h4>
             <p>There's a lot to get right, which means there is also a lot that can go wrong. Fortunately, I have a full page dedicated to <a href="troubleshooting.html#bltouch">BLtouch troubleshooting</a> elsewhere on this site.</p>
