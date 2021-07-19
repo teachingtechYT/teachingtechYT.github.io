@@ -317,6 +317,12 @@ function processGcode(formName) {
             squares += square;
         }
         gcode = gcode+squares;
+        gcode = gcode.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
+            if(zhop > 0){
+                gcode = gcode.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200; custom z hop\nG90;");
+            }  
+            gcode = gcode.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+            gcode = gcode.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     }
     // assign correct gcode source
     if(name == "baselineForm"){
