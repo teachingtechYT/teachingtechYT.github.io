@@ -248,6 +248,9 @@ function processGcode(formName) {
         var f3 = formName.accel_f3.value;
         var f4 = formName.accel_f4.value;
         var f5 = formName.accel_f5.value;
+    } else {
+        var feed = formName.baseFeedrate.value*60;
+        var feedMod = feed/3600;
     }
     // process start gcode
     // bed temp
@@ -398,6 +401,24 @@ function processGcode(formName) {
                 gcode = gcodeArray.join("\n");
             }   
         }
+        // experimental feedrate change
+        if(name != "accelerationForm"){
+            if(feedMod != 1){
+                var gcodeArray = gcode.split(/\n/g);
+                var regexp = /F[0-9]+/;
+                gcodeArray.forEach(function(index, item){
+                    if(gcodeArray[item].search(/F/) > -1){
+                        var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1));
+                        //alert(value);
+                        if(value != 1200){
+                            gcodeArray[item] = gcodeArray[item].replace(regexp, "F"+String(value*feedMod)+" ; custom feedrate")
+                        }
+                    }
+                });
+                gcode = gcodeArray.join("\n");
+            }
+        }
+
         // changes for acceleration test
         if(name == "accelerationForm"){
             // edit feedrates

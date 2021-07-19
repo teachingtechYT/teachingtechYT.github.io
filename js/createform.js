@@ -53,7 +53,7 @@ var nozzleLayer = `
 
 var startGcode = `
 <h4>Additional start gcode</h4>
-            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an <b>extruder prime sequence</b>, overwriting the standard <b>flow rate</b>, standard <b>print speed</b>, compensating for <b>2.85/3.00 mm filament</b>, setting <b>K factor</b> and more. Tick the box for more details.</p>
+            <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an <b>extruder prime sequence</b>, overwriting the standard <b>flow rate</b>, compensating for <b>2.85/3.00 mm filament</b>, setting <b>K factor</b> and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="displayCustom();" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
             <label>Remove <b>T0</b> from gcode (advanced users with MMU)<input name="removet0" type="checkbox"></label>
@@ -63,7 +63,6 @@ var startGcode = `
                     <li>Copying gcode commands from your slicer to draw an <b>intro/prime/purge line</b>. By default this is left out to accommodate delta printers.</li>
                     <li>Telling the firmware to alter the <b>flow rate</b> of the gcode to follow. This does not mean the exact flow rate you have set in your own slicer. For example, using <b><a href="https://marlinfw.org/docs/gcode/M221.html" target="_blank">M221</a> S120</b> would set the flow rate to 120% of what it was originally sliced as in Simpilfy3D. Use this to compensate for obvious over or under extrusion you may encounter with these tests. Additional information available at the base of the <a href="#flow">Flow Rate</a> tab.</li>
                     <li><b>M221 S38</b> can also be used to compensate for 2.85 mm filament and <b>M221 S34</b> for 3.00 mm filament instead of the default 1.75 mm.</li>
-                    <li>Telling the firmware to alter the <b>feedrate</b> (print speed). If you need to print more slowly with TPU or faster for another filament, <a href="https://marlinfw.org/docs/gcode/M220.html" target="_blank">M220</a> can be used to alter the feedrate. eg. <b>M220 S150</b> sets all movements to 150% of what is generated in the gcode file. Caution! Also affects retraction speed related movements and overrides the speeds you enter for the acceleration test.</li>
                     <li>Setting the K factor for <b>linear advance</b>. For example, <b>M900 K0.11</b></li>
                     <li><b>Custom ABL</b> sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.Useful for G34 auto stepper alignment and Klipper's Z_TILT_ADJUST.</li>
                     <li>Anything else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
@@ -233,6 +232,11 @@ var retractionTower = `<h4>Retraction</h4>
     </tbody>
 </table>`;
 
+var feedrate = `<h4>Feedrate</h4>
+<p>The default printing speed is 60 mm/sec, with modifiers including 60% for perimeters, 80% for solid infill, travel moves 166%, and 50% of these for the first layer. Modify the base feedrate here and the generated gcode will be modified using the same proportions. Please note extruder retraction/unretraction and Z-hop speeds will be unaffected by this.</p>
+<p><label>Base feedrate (mm/sec): <input type="number" name="baseFeedrate" value="60" min="5" max="1000" step="1"></label></p>
+`;
+
 var accel = `<h4>Base feedrate/speed</h4>
 <p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
 <label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>
@@ -345,6 +349,8 @@ function createForm(n){
     }
     if(n == "acceleration"){
         document.write(accel);
+    } else {
+        document.write(feedrate);
     }
     document.write(endGcode);
     document.write(preview);
