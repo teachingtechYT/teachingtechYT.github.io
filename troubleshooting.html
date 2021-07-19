@@ -24,7 +24,7 @@
     <div id="general">
         <h2>General Principles</h2>
         <p>This page serves as a companion for this video: <a href="https://youtu.be/fiwbp2NKyTY" target="_blank">3D printer troubleshooting - Free step by step help website</a></p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/fiwbp2NKyTY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fiwbp2NKyTY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>It aims to provide a methodology for identifying and solving common problems that occur with hobby 3D printers. If you find it helps you and you would like to say thank you, here is a donation link: <a href="https://paypal.me/testlawgicau" target="blank">PayPal.me</a></p>
         <p>Special thanks to my <a href="http://www.patreon.com/teachingtech" target="_blank">Patrons</a> for helping define the contents.</p>
         <p>Watch the video, read this tab, prepare yourself with the appropriate tools and then work through relevant tabs.</p>
@@ -57,7 +57,7 @@
     <div id="tools">
         <h2>Tools</h2>
         <p>I have a video on useful tools for 3D printing: <a href="https://youtu.be/XBoXp31PCo8" target="_blank">Essential (and obscure) 3D printing tools and spares</a></p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/XBoXp31PCo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/XBoXp31PCo8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>However, here we are focused on specific tools to collect information, because when troubleshooting a 3D printer: knowledge is power.</p>
         <h4>Calipers</h4>
         <p>Digital calipers are a cheap and easy to use tool for measuring various dimensions. This may include printed objects, probe offsets, and measuring the movement of the machine. A ruler is a useful backup but will not be as accurate as digital calipers. Calipers are also excellent for measuring objects when 3D modelling.</p>
@@ -100,7 +100,7 @@
         <h2>Frame Check</h2>
         <p>Before going down the rabbit hole diagnosing problems, it is probably best to confirm they actually exist by making sure your 3D printer is in good condition.</p>
         <p>The following is a guide to 3D printer maintenance that should serve you well:</p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/kAafiApJs9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/kAafiApJs9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>Additionally, I have a list of items to check around the printer on the <a href="calibration.html#frame" target="_blank">Frame tab of my Calibration page</a> that should serve as a handy guide to work through.</p>
     </div>
 
@@ -111,7 +111,7 @@
         <p>This one seems clear cut: just plug in the cable between the computer/Raspberry Pi and the mainboard. It is still worth mentioning that not all USB cables are created equal. If you are having trouble connecting, try another cable.</p>
         <h4>Port</h4>
         <p>On a Windows machine, after a driver is installed, the name of the port can be found in <b>Device Manager</b>:</p>
-        <a href="#" data-featherlight="img/devicemanager.jpg"><img class="thumb" src="img/devicemanager.jpg" /></a>
+        <a href="#" data-featherlight="img/devicemanager.jpg"><img loading="lazy" class="thumb" src="img/devicemanager.jpg" /></a>
         <p>As you can see, the name of the port will be <b>COM</b> followed by a number. In the example above: <b>COM6</b>.</p>
         <p>On a Mac, Linux or with Octoprint on a Raspberry Pi, the name of the port will typically start with <b>ttyUSB</b>, followed by a number. For example <b>/dev/ttyUSB0</b>.</p>
         <p>On any system, there may be more than one device listed, so trial and error may be required to find the right port.</p>
@@ -119,10 +119,10 @@
         <p>Baud is the speed of the serial connection between the host device and mainboard. 99% of the time the baud should be either <b>115200</b> or <b>250000</b>. This is set in the firmware but even if you don't access to the firmware source to check, just try one and if needed, the other.</p>
         <h4>Connecting</h4>
         <p>In Pronterface, select the port and baud in the top left and then click connect.</p>
-        <a href="#" data-featherlight="img/pronterfaceconnection.jpg"><img class="thumb" src="img/pronterfaceconnection.jpg" /></a>
+        <a href="#" data-featherlight="img/pronterfaceconnection.jpg"><img loading="lazy" class="thumb" src="img/pronterfaceconnection.jpg" /></a>
         <p>If this is successful, you will receive a confirmation message in the terminal output. If not, try a different combination.</p>
         <p>With Octoprint, we have the same options, but Octoprint will automatically cycle between them until it finds the right combination.</p>
-        <a href="#" data-featherlight="img/octoprintconnection.jpg"><img class="thumb" src="img/octoprintconnection.jpg" /></a>
+        <a href="#" data-featherlight="img/octoprintconnection.jpg"><img loading="lazy" class="thumb" src="img/octoprintconnection.jpg" /></a>
         <h4>What to send to get started</h4>
         <p>To test your serial connection, send <a href="https://marlinfw.org/docs/gcode/M115.html" target="_blank"><b>M115</b></a> which will report on your firmware, including when it was compiled and uploaded.</p>
         <p>Another useful command is <a href="https://marlinfw.org/docs/gcode/M503.html" target="_blank"><b>M503</b></a>, which will return all of the firmware variables currently in place. This output is worth copying and pasting in a document before performing major modifications. This list of variables also represents everything that can be changed and stored in the EEPROM without the need for firmware compilation.</p>
@@ -131,7 +131,7 @@
         <ul>
             <li>Close Simplify3D/Cura/other 3D printing software - These may connect automaticlly to available machines, hogging the serial port and preventing your terminal software from connecting.</li>
             <li>Double check you serial port settings in the firmware - 8 bit mainboard generally had the same settings but 32 bit boards vary. Consult the documentation to ensure you have the right values in <b>configuration.h</b>. The examle below is from a Creality V4 32 bit mainboard:<br />
-            <a href="#" data-featherlight="img/v4serialsettings.jpg"><img class="thumb" src="img/v4serialsettings.jpg" /></a></li>
+            <a href="#" data-featherlight="img/v4serialsettings.jpg"><img loading="lazy" class="thumb" src="img/v4serialsettings.jpg" /></a></li>
             <li>Turn the printer on - Some mainboards will come to life solely from a 5V USB cable, where as others need the main power switch turned on.</li>
         </ul>
     </div>
@@ -148,11 +148,11 @@
         </ul>
         <h4>First Layer Calibration</h4>
         <p>I have already created a <a href="calibration.html#firstlayer" target="_blank">First Layer Calibration page</a> to address this need. It features a companion video:</p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/Ze36SX1xzOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/Ze36SX1xzOE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>It also features a gcode generator to created a first layer test print to suit your 3D printer.</p>
-        <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img class="thumb" src="img/firstlayerpreview.jpg" /></a>
+        <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img loading="lazy" class="thumb" src="img/firstlayerpreview.jpg" /></a>
         <p>Finally, there are reference diagrams to help you deterine your results.</p>
-        <a href="#" data-featherlight="img/firstlayer.jpg"><img class="thumb" src="img/firstlayer.jpg" /></a> <a href="#" data-featherlight="img/firstlayer2.jpg"><img class="thumb" src="img/firstlayer2.jpg" /></a>
+        <a href="#" data-featherlight="img/firstlayer.jpg"><img loading="lazy" class="thumb" src="img/firstlayer.jpg" /></a> <a href="#" data-featherlight="img/firstlayer2.jpg"><img loading="lazy" class="thumb" src="img/firstlayer2.jpg" /></a>
         <h4>Other Factors</h4>
         <p>Apart from the levelling and physical distance between the nozzle and bed surface, there are a few other factors you can investigate if you are still having trouble with your first layer:</p>
         <ul>
@@ -177,12 +177,12 @@
         <h4>PTFE tube not correctly seated</h4>
         <p>Hot ends can either be lined or 'all metal'. In a lined hot end, the PTFE tube runs through the heat break and either into the inside of the nozzle or is jammed hard against the back/top of it. This design is popular on Creality and other budget machines.</p>
         <p>If there are any gaps in the system between the PTFE tube and the metal components, filament is free to expand into the wider cavity and prevent the filament from moving through the whole system. This is illustrated in the diagram below with the resulting filament bulge which causes the jam:</p>
-        <a href="#" data-featherlight="img/ptfegap.jpg"><img class="thumb" src="img/ptfegap.jpg" /></a>
+        <a href="#" data-featherlight="img/ptfegap.jpg"><img loading="lazy" class="thumb" src="img/ptfegap.jpg" /></a>
         <p>To stop this problem, it is essential to have a good quality tube fitting that wll hold the PTFE tube firmly in place. As these fittings can degrade over time, <a href="https://www.thingiverse.com/thing:3203831" target="_blank">Luke Hatfield has developed a simple but effective fix</a> to modify Creality lined hot ends so the tube remains seated. CHEP has made a great video on testing this solution:</p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/7tCxO17XZtw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/7tCxO17XZtw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Stripped filament in hobbed gear</h4>
         <p>This problem is illustrated below:</p>
-        <a href="#" data-featherlight="img/strippedfilament.jpg"><img class="thumb" src="img/strippedfilament.jpg" /></a>
+        <a href="#" data-featherlight="img/strippedfilament.jpg"><img loading="lazy" class="thumb" src="img/strippedfilament.jpg" /></a>
         <p>The hobbed gear has tiny teeth to grab the filament and push it through the hot end. This problem often comes from an obstruction further along the system - a blockage in the nozzle for instance. The filament has no where to go, the hobbed gear cuts a trench in the filament and the debris clog the hobbed gear(s). Quite often this problem must be checked and cleared after solving a jam elsewhere. After disassembly to gain access, a spare toothbrush is an excellent tool for cleaning the hobbed gear(s).</p>
         <h4>Heat creep</h4>
         <p>Heat creep is when areas of the printer that are meant to stay cool slowly heat up to problematic temperatures. It is vital that only a specific section of the hot end assembly remains hot enough to fully melt the filament. To achieve this, a heat sink is typically fitted above a heat break that is actively cooled by a fan. This prevents the filament path above the melt zone from heating up and softening or melting the filament prematurely. This is illustrated well by Slice Engineering on their <a href="https://www.sliceengineering.com/products/copperhead%E2%84%A2" target="_blank">Copperhead hot end page, where we can see the heater block is hot but everything above it is cool:</a></p>
@@ -194,7 +194,7 @@
         <p>Heat creep jams normally occur a set amount of time into the print. If you notice that the printer jams approximately the same amount of time into the print regardless of the object, this may be the amount of time it takes the heat to creep up and saturate the system.</p>
         <h4>Filament path obstruction/tangle</h4>
         <p>This one can be easy to overlook. In the case of a clear tangle of the filament on the spool, the cause of the jam will be obvious:</p>
-        <a href="#" data-featherlight="img/filamenttangle.jpg"><img class="thumb" src="img/filamenttangle.jpg" /></a>
+        <a href="#" data-featherlight="img/filamenttangle.jpg"><img loading="lazy" class="thumb" src="img/filamenttangle.jpg" /></a>
         <p>It is also worth checking the filament can pull freely from the spool if you have some sort of guide system like a reverse bowden tube. Also check the filament spool can rotate freely.</p>
         <h4>Physical obstruction in nozzle</h4>
         <p>After printing a higher temperature filament, it is important to ensure that the old filament has been completely purged from the nozzle when switching back to a lower temperature filament like PLA. Failing to do this or perhaps leaving filament to degrade in a hot nozzle might leave harder chunks of filament obstructing the path through the nozzle. An acupuncture needle, cleaning filament pushed through at high temp or performing a cold pull will clean the inside the inside of the nozzle in many cases. Sometimes, however, it is necessary to remove the nozzle and use a solvent or my favourite: a blow torch, to clean the nozzle more aggressively.</p>
@@ -205,7 +205,7 @@
         <p>This one is very rare, but if retraction distance is set too high in the slicer, the filament may be pulled so far out of the nozzle that a molten section pulls into the cool zone, solidifying as it sticks to the walls, jamming the system.</p>
         <h4>Seasoning the hot end</h4>
         <p>This is something I've never personally done, but it has been the correct solution for patrons when all else had failed. The process involves introducing a small amount of oil to lubricate the internals of the hot end and assist filament in moving through freely. This process is demonstrated below by Nillabean:</p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/shSfZxK-VUk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/shSfZxK-VUk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Extruder stepper current too low</h4>
         <p>This should only be examined after checking and eliminating the more common causes above. Increasing the current to the extruder stepper motor and therefore the torque available will increase the system's ability to push filament out of the nozzle. If all else is well this may be just what is needed to make the printer reliable. If there is a blockage or problem elsewhere, however, this step will at best mask the problem or at worst enflame it. <a href="https://teachingtechyt.github.io/calibration.html#steppers" target="_blank">Stepper motor current tuning is covered on this calibration page</a>.</p>
         <h4>Linear advance with incompatible drivers</h4>
@@ -231,14 +231,14 @@ G90</pre>
         <p>We'll now assume you have at least one axis that is travelling in reverse and needs fixing.</p>
         <h4>Reversing direction in the firmware</h4>
         <p>For Marlin firmware, in <b>configuration.h</b>, search for the term <b>INVERT_X</b> to be taken to the section shown below:</p>
-        <a href="#" data-featherlight="img/marlinstepperdirection.jpg"><img class="thumb" src="img/marlinstepperdirection.jpg" /></a>
+        <a href="#" data-featherlight="img/marlinstepperdirection.jpg"><img loading="lazy" class="thumb" src="img/marlinstepperdirection.jpg" /></a>
         <p>Simply toggle the value from true to false or vice versa for any axes that are reversed. Recompile and flash the changes.</p>
         <h4>Reversal through wiring changes</h4>
         <p>If you don't have access to the firmware source, there is the option of altering the wiring. The simplest solution is to just plug in the stepper motor in reverse, however much to the time the connectors will make this difficult. Rather than using a blade to modify the connector and mangle it, a better solution is to lift the plastic connector housing off the mainboard PCB and then replace it facing the other way. This is illustrated in the picture below, where the E stepper port has been reversed:</p>
-        <a href="#" data-featherlight="img/stepperplugreversed.jpg"><img class="thumb" src="img/stepperplugreversed.jpg" /></a>
+        <a href="#" data-featherlight="img/stepperplugreversed.jpg"><img loading="lazy" class="thumb" src="img/stepperplugreversed.jpg" /></a>
         <h4>Stepper motor stutters from incorrect wiring</h4>
         <p>Sometimes you may complete an upgrade of stepper motors to another brand which has different wiring. If connected without remedy the stepper motor will stutter back and forth rather than turning smoothly in either direction. In these cases, the most common fix is to remove the centre two pins from the connector and swap them. This can be fiddly but is doable with a pick or tiny screwdriver.</p>
-        <a href="#" data-featherlight="img/flippedstepperwires.jpg"><img class="thumb" src="img/flippedstepperwires.jpg" /></a>
+        <a href="#" data-featherlight="img/flippedstepperwires.jpg"><img loading="lazy" class="thumb" src="img/flippedstepperwires.jpg" /></a>
         <p>If your stepper motor current was set far too low, the same stutters could occur. Proceed with caution in either switching wires or increasing the current.</p>
     </div>
 
@@ -267,26 +267,26 @@ z_min: open</pre>
         <p>Let's say we press the X axis endstop but the Y reports as triggered. In this case we know that the endstops are plugged into the wrong port on the mainboard and the fix is a simple case of switching the plugs.</p>
         <h4>Endstops report in reverse</h4>
         <p>If the endstops report <b>TRIGGERED</b> when not pressed, and then <b>open</b> when pressed, you need to invert your endstop logic in the firmware. In <b>configuration.h</b>, search for <b>X_MIN</b> to be taken to the section below, where you can toggle between true/false for any axis working in reverse.</p>
-        <a href="#" data-featherlight="img/endstopinverting.jpg"><img class="thumb" src="img/endstopinverting.jpg" /></a>
+        <a href="#" data-featherlight="img/endstopinverting.jpg"><img loading="lazy" class="thumb" src="img/endstopinverting.jpg" /></a>
         <p>In the case that the firmware source is not available, you can change which pins are connected on the microswitch. The common pin will always be connected, so you can change whether NO (normally open) or NC (normally closed) is the other pin connected to back to the mainboard.</p>
         <h4>Endstop status never changes - always reports open or TRIGGERED</h4>
         <p>This can be caused by several things. The first is that the endstop is not plugged in or plugged into the wrong port (eg. max port instead of min. If all of the axes work except for one, this is likely your culprit.</p>
         <p>After double checking connections, and we find there is still no response from pressing any of the switches with <b>M119</b>, we have an option in the firmware to toggle between pull down and pull up resistors to prevent a floating state. In <b>configuration.h</b>, search for <b>ENDSTOPPULLUPS</b> to be taken to the section below, where you can comment out <b>ENDSTOPPULLUPS</b> and uncomment <b>ENDSTOPPULLDOWNS</b>. In this area, we have three options: using endstoppullups (default), endstoppulldowns (possible), or neither (very unlikely).</p>
-        <a href="#" data-featherlight="img/endstoppullups.jpg"><img class="thumb" src="img/endstoppullups.jpg" /></a>
+        <a href="#" data-featherlight="img/endstoppullups.jpg"><img loading="lazy" class="thumb" src="img/endstoppullups.jpg" /></a>
         <p>If all of the endstops now come to life, you still may need to tweak the logic as described above. If there is still no response, perhaps you are using powered endstops and they are wired incorrectly.</p>
         <h4>One switch still not responding - Testing for broken wiring</h4>
         <p>If the procedures above do not produce working endstops, we need to consider that a switch or the wiring is damaged. This is particularly relevant if only one endstop is not working as intended.</p>
         <p>A quick way to identify that wiring or a faulty switch is the issue is to remove the endstop plug from the mainboard and use a jumper to short the signal and ground pins, simulating a closed switch.</p>
         <p class="warning">Warning: If your mainboard endstop ports have pins for 5V, ground and signal, take extra care to avoid connecting 5V to signal or ground. This will likely kill your mainboard! Consult the wiring diagram for your mainboard to avoid disaster.</p>
-        <a href="#" data-featherlight="img/endstopjumper.jpg"><img class="thumb" src="img/endstopjumper.jpg" /></a>
+        <a href="#" data-featherlight="img/endstopjumper.jpg"><img loading="lazy" class="thumb" src="img/endstopjumper.jpg" /></a>
         <p>If the jumper out/in provides correct <b>M119</b> reporting then we know for sure we have an electrical problem with wiring or the switch.</p>	
         <h4>Using a multimeter to test continuity</h4>
         <p>A multimeter is required and we will use the continuity feature. In this case the multimeter will indicate when the two probes are connected by the screen (and a buzz if your multimeter supports this). The image below shows the typical symbol for continuity, and how the screen display changes when the probes are touching or not touching. The exact value doesn't matter when the probes are touching, all we care about is that the display registers something to indicate we have continuity.</p>
-        <a href="#" data-featherlight="img/multimetercontinuity.jpg"><img class="thumb" src="img/multimetercontinuity.jpg" /></a>
+        <a href="#" data-featherlight="img/multimetercontinuity.jpg"><img loading="lazy" class="thumb" src="img/multimetercontinuity.jpg" /></a>
         <p>Now we can use the multimeter to first test the actual switch. Connecting the probes to the microwitch terminals, We would expect continuity to change when the switch is pressed or not pressed. If it does, the switch is good. If not, the switch needs replacing. The image below shows the switch to be good. It doesn't matter if it reads continuity when it is pressed or open, as the endstop logic can be adjusted in the firmware.</p>
-        <a href="#" data-featherlight="img/multimetertestswitch.jpg"><img class="thumb" src="img/multimetertestswitch.jpg" /></a>
+        <a href="#" data-featherlight="img/multimetertestswitch.jpg"><img loading="lazy" class="thumb" src="img/multimetertestswitch.jpg" /></a>
         <p>Assuming the switch is good, we can now probe each wire between the switch and the mainboard to check for breaks. Connect the multimeter probes to each end of the wire, and hopefully the continuity should be measured. If one or more of the wires do not, there is an internal break and the wire(s) need to be replaced. The image below shows the red wire to be good but the black wire to be broken. If there is no continuity measured with the multimeter then there is no chance the signal can be transmitted correctly from the switch to the mainboard.</p>
-        <a href="#" data-featherlight="img/multimetertestwire.jpg"><img class="thumb" src="img/multimetertestwire.jpg" /></a>
+        <a href="#" data-featherlight="img/multimetertestwire.jpg"><img loading="lazy" class="thumb" src="img/multimetertestwire.jpg" /></a>
         <h4>Applying this testing to filament runout sensors</h4>
         <p>Most filament runout sensors are simple microswitches in a fancy housing, the same switches used for endstops. <b>M119</b> also report filament runout status. If you start a print and find that the machine immediately tries to start a filament swap despite filament being loaded, you can use <b>M119</b> to diagnose. With filament runout enabled in the firmware, the <b>M119</b> output should read:</p>
         <pre>SENDING:M119
@@ -298,7 +298,7 @@ filament: TRIGGERED</pre>
         <p>If you manually add or remove filament from the sensor, you would expect the report to change from <b>open</b> to <b>TRIGGERED</b> accordingly.</p>
         <p>For an encoder based runout sensor (eg. BTT smart filament runout sensor), we need to repeatedly pull the filament through around 1mm at a time, sending M119 and read the status. We would expect <b>M119</b> to report <b>open</b> most of the time and then <b>TRIGGERED</b> on occasion.</p>
         <p>Like the endstops, we can change the logic and whether pullup or pulldown resistors are used in <b>configuration.h</b> of the firmware:</p>
-        <a href="#" data-featherlight="img/marlinfilamentrunout.jpg"><img class="thumb" src="img/marlinfilamentrunout.jpg" /></a>
+        <a href="#" data-featherlight="img/marlinfilamentrunout.jpg"><img loading="lazy" class="thumb" src="img/marlinfilamentrunout.jpg" /></a>
         <p>We can also use a multimeter to test the wiring the same as for endstops.</p>
         <h4>Applying this testing to Z probes</h4>
         <p>With ABL enabled in the firmware, <b>M119</b> will also report probe status:</p>
@@ -310,8 +310,8 @@ z_min: open
 z_probe: open</pre>
         <p>We can use the above methods to troubleshoot the probe triggering. This works well for probes like the EZabl from TH3D or Prusa PINDA probe. You can expect the <b>M119</b> status for the probe to change when you add or remove an object beneath the probe. Please remember that some probes only detect metal objects!</p>
         <p>You may have noticed that the probe can have its logic reversed and pullup or pulldown resistors toggled at the same place as the endstops:</p>
-        <a href="#" data-featherlight="img/endstopinverting.jpg"><img class="thumb" src="img/endstopinverting.jpg" /></a>
-        <a href="#" data-featherlight="img/endstoppullups.jpg"><img class="thumb" src="img/endstoppullups.jpg" /></a>
+        <a href="#" data-featherlight="img/endstopinverting.jpg"><img loading="lazy" class="thumb" src="img/endstopinverting.jpg" /></a>
+        <a href="#" data-featherlight="img/endstoppullups.jpg"><img loading="lazy" class="thumb" src="img/endstoppullups.jpg" /></a>
         <p class="warning">Note: The testing of a BLtouch is slightly different to other probes. It is covered in its own tab.</p>
     </div>
 
@@ -325,7 +325,7 @@ z_probe: open</pre>
         <h4>BLtouch wiring</h4>
         <p>A BLtouch requires 5 wires. Three are used to control it (red, yellow and brown), and the remaing two are used to read the trigger signal from it (black and white). Sometimes extension looms use different colours, such as the Creality loom which substitutes blue for brown.</p>
         <p class="warning">Pay attention to wiring diagrams! The following diagram was created for a <a href="https://youtu.be/neS7lB7fCww" target="_blank">video guide for the Creality V4 32 bit mainoards</a>. The comments are littered with people who assumed the Creality extension loom would match the Creality board, connected the BLtouch incorrectly and blew up their mainboard. Never assume the extension loom you are using matches the input to the mainboard (even if they are both Creality).</p>
-        <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
+        <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img loading="lazy" class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
         <p>Here is a break down of the pins:</p>
         <ul>
             <li><span style="color:red; font-weight:900;"> Red: </span> 5V power to BLtouch. (Some mainboards supply 3.3V and the BLtouch can be configured to operate with this logic level).</li>
@@ -354,9 +354,9 @@ z_probe: open</pre>
         <h4>BLtouch physical mounting</h4>
         <p>It should go without saying that everything should be rigidly mounted. BLtouch kits come with small springs but I have never used them without issue. Check for any loose fasteners in the print head and probe mounting assembly as a first step. If there is play and the BLtouch can pivot or slide from probing point to probing point, accuracy will really suffer.</p>
         <p>Ideally the BLtouch (or any other ABL probe) will be mounted as closely to the nozzle as possible, but not so close it fails from exposure to heat. A silicone sock over the heater block can assist here. What people often forget is that the tip of the retracted probe needs to be a certain distance from the tip of he nozzle, as illustrated in the Antclabs diagram:</p>
-        <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img class="thumb" src="img/bltouchdimensions.jpg" /></a>
+        <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img loading="lazy" class="thumb" src="img/bltouchdimensions.jpg" /></a>
         <p>If your BLtouch is mounting too far off this target of 2.3 to 4.3mm, the probing results may be inaccurate. For a guide to measuring and inputing the probe X, Y and Z offsets, see this video guide:</p>
-        <iframe width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>What to check if ABL compensation seems non existant or probing is inaccurate</h4>
         <p>Firstly, check the items previously listed on this page:</p>
         <ul>
@@ -387,11 +387,11 @@ z_probe: open</pre>
         <p>Firstly, I need to manually adjust my bed of this printer to get it closer to flat. The numbers do tell another story though. For row zero and column 1, we have a classic high, low, high warped bed. The rest of the bed seems to be more of a general slant. Keep in mind the point 0,0 is likely at the front left of your bed, which may be counter intuitive.</p>
         <p>For a more visual representation, the <a href="https://plugins.octoprint.org/plugins/bedlevelvisualizer/" target="_blank">Bed Visualizer</a> plugin for Octoprint will provide attractive and informative diagrams (pictured below)</p>
         <p>There is now a fantastic <a href="http://lokspace.eu/3d-printer-auto-bed-leveling-mesh-visualizer/" target="_blank">web based visualiser available from Lokster</a>. Octoprint not required! Thanks to ouartsiw for pointing this out.</p>
-        <a href="#" data-featherlight="img/bedvisualizerplugin.jpg"><img class="thumb" src="img/bedvisualizerplugin.jpg" /></a>
+        <a href="#" data-featherlight="img/bedvisualizerplugin.jpg"><img loading="lazy" class="thumb" src="img/bedvisualizerplugin.jpg" /></a>
         <p>Repeating either test should give you a good idea of the probe's accuracy. If the results vary wildly it may indicate an underlying problem and more targeted testing is required.</p>
         <h4>M48 Probe Repeatability test</h4>
         <p>Another option we have is to enable a purpose built probing accuracy test built into Marlin firmware. In <b>configuration.h</b>, search for <b>M48</b> to find the section below and uncomment as shown:</p>
-        <a href="#" data-featherlight="img/marlinm48.jpg"><img class="thumb" src="img/marlinm48.jpg" /></a>
+        <a href="#" data-featherlight="img/marlinm48.jpg"><img loading="lazy" class="thumb" src="img/marlinm48.jpg" /></a>
         <p>Now when you send <a href="https://marlinfw.org/docs/gcode/M048.html" target="_blank"><b>M48</b></a> via terminal (or via the LCD screen) the probe will test the same point repeatdly and return the results:</p>
         <pre>Finished!
 Mean: -0.006250 Min: -0.010 Max: 0.000 Range: 0.010
@@ -403,27 +403,27 @@ Standard Deviation: 0.002795</pre>
     <div id="pindebugging">
         <h2>Pin Debugging / Direct Pin Control</h2>
         <p>Marlin firmware provides very powerful low level control of your printer by enabling <b>PINS_DEBUGGING</b> and <b>DIRECT_PIN_CONTROL</b> in <b>configuration_adv.h</b>:</p>
-        <a href="#" data-featherlight="img/marlinpindebugging.jpg"><img class="thumb" src="img/marlinpindebugging.jpg" /></a>
+        <a href="#" data-featherlight="img/marlinpindebugging.jpg"><img loading="lazy" class="thumb" src="img/marlinpindebugging.jpg" /></a>
         <p>As the firmware comments suggest, after recompiling the firmware and uploading we can use gcode to access this feature.</p>
         <p class="warning">These features are intended for temporary testing only. There is the potential to damage your printer if you don't know what you're doing. Proceed with caution and disable these features after troubleshooting is complete.</p>
         <h4>M43 - Debug Pins</h4>
         <p><a href="https://marlinfw.org/docs/gcode/M043.html" target="_blank"><b>M43</b></a> offers a way to see exactly what the pins are doing as we have the firmware configured.</p>
         <p>Sending <b>M43</b> by itself will list all of the pins and their functions:</p>
-        <a href="#" data-featherlight="img/m43_1.jpg"><img class="thumb" src="img/m43_1.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_1.jpg"><img loading="lazy" class="thumb" src="img/m43_1.jpg" /></a>
         <p>As you can see, there is a lot of information and the formatting suffers as a result. There also appears to be some pins missing.</p>
         <p>To get a slightly cleaner output, we can instead send <b>M43 I</b>, which will omit telling you that some pins are protected:</p>
-        <a href="#" data-featherlight="img/m43_2.jpg"><img class="thumb" src="img/m43_2.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_2.jpg"><img loading="lazy" class="thumb" src="img/m43_2.jpg" /></a>
         <p>If a pin is protected, that means the firmware is using it for an important function and it doesn't want you manually change the state.</p>
         <p>Some pins are still missing, but we can still query a specific pin, by adding the <b>P</b> argument followed by the pin number:</p>
-        <a href="#" data-featherlight="img/m43_3.jpg"><img class="thumb" src="img/m43_3.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_3.jpg"><img loading="lazy" class="thumb" src="img/m43_3.jpg" /></a>
         <p>We need to use the integer pin numbers (eg. 0, 1, 2, 3 ,4 , 5...) assigned by <b>M43</b> rather than the specific pin numbers from the firmware (eg. P2_04).</p>
         <h4>Specific M43 Uses</h4>
         <p><b>M43 S</b> will actually test the BLtouch for us, by moving the pin in and out several times and then waiting for us to manually trigger the pin.</p>
-        <a href="#" data-featherlight="img/m43_4.jpg"><img class="thumb" src="img/m43_4.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_4.jpg"><img loading="lazy" class="thumb" src="img/m43_4.jpg" /></a>
         <p><b>M43 E1</b> will begin watching the endstops for activity, and <b>M43 E0</b> will stop this. I found no output in the terminal from manually pressing the endstops in this state.</p>
-        <a href="#" data-featherlight="img/m43_5.jpg"><img class="thumb" src="img/m43_5.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_5.jpg"><img loading="lazy" class="thumb" src="img/m43_5.jpg" /></a>
         <p><b>M43 P[pin] W</b> will begin watching a specific pin for activity. I couldn't find a way to exit this watching state without resetting the printer.</p>
-        <a href="#" data-featherlight="img/m43_6.jpg"><img class="thumb" src="img/m43_6.jpg" /></a>
+        <a href="#" data-featherlight="img/m43_6.jpg"><img loading="lazy" class="thumb" src="img/m43_6.jpg" /></a>
         <h4>M43 T - Trigger pins</h4>
         <p><a href="https://marlinfw.org/docs/gcode/M043-T.html" target="_blank"><b>M43 T</b></a> offers a way to manually control pins with gcode.</p>
         <p>Sending <b>M43 T</b> is a variant of <b>M43</b> that allows you to cycle through your mainboard pins, pulsing them for a specific amount of time. I have not tested this personally, but the example linked on the Marlin reference page should illustrate it's use.</p>
