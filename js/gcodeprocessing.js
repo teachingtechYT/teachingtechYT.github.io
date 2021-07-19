@@ -301,20 +301,20 @@ function processGcode(formName) {
     if(name == "firstlayerForm"){
         var originalSquare = firstlayer[nozzleLayer];
         for(var i = 0; i <= 4; i++){
-            var square = "; squarez "+(i+1)+"\n"+originalSquare;
+            var square = "\n; square "+(i+1)+originalSquare;
             var firstlayerArray = square.split(/\n/g);
             var regexp = /X[0-9\.]+/;
             firstlayerArray.forEach(function(index, item){
                 if(firstlayerArray[item].search(/X/) > -1){
                     var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2];
-                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value));
+                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                 }
             });
             var regexp = /Y[0-9\.]+/;
             firstlayerArray.forEach(function(index, item){
                 if(firstlayerArray[item].search(/Y/) > -1){
                     var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2+1];
-                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value))
+                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
                 }
             });
             square = firstlayerArray.join("\n");
@@ -367,14 +367,14 @@ function processGcode(formName) {
             gcodeArray.forEach(function(index, item){
                 if(gcodeArray[item].search(/X/) > -1){
                     var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
-                    gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value));
+                    gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                 }
             });
             var regexp = /Y[0-9\.]+/;
             gcodeArray.forEach(function(index, item){
                 if(gcodeArray[item].search(/Y/) > -1){
                     var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
-                    gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value))
+                    gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
                 }
             });
             gcode = gcodeArray.join("\n");
@@ -385,7 +385,7 @@ function processGcode(formName) {
                 gcodeArray.forEach(function(index, item){
                     if(gcodeArray[item].search(/X/) > -1){
                         var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedX;
-                        gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value));
+                        gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                     }
                 });
                 gcode = gcodeArray.join("\n");
@@ -396,7 +396,7 @@ function processGcode(formName) {
                 gcodeArray.forEach(function(index, item){
                     if(gcodeArray[item].search(/Y/) > -1){
                         var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedY;
-                        gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value))
+                        gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
                     }
                 });
                 gcode = gcodeArray.join("\n");
