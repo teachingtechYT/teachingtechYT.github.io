@@ -238,8 +238,9 @@ var feedrate = `<h4>Feedrate</h4>
 `;
 
 var accel = `<h4>Base feedrate/speed</h4>
-<p>You can specify the feedrate for X and Y movements. The inner perimeter will be set to this speed and the outer perimeter 50% of this speed. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
-<label>Base feedrate (mm/sec): <input type="number" name="feedrate" value="60" min="20" max="500"></label>
+<p>You can specify the feedrate for X and Y movements. Both the inner and outer perimeter speed can be specified. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
+<p><label>Inner perimeter feedrate (mm/sec): <input type="number" name="innerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
+<p><label>Outer perimeter feedrate (mm/sec): <input type="number" name="outerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
 <h4>Acceleration and jerk/junction deviation</h4>
 <p>After entering <b>M503</b>, I have determined my 3D printer firmware uses:</p>
 <label>Jerk: <input type="radio" value="jerk" name="jerk_or_jd" checked="checked" onchange="toggleJ()"></label>

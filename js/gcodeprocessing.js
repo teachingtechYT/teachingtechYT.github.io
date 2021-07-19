@@ -216,7 +216,8 @@ function processGcode(formName) {
     }
     // collect acceleration inputs
     if(name == "accelerationForm"){
-        var feed = formName.feedrate.value*60;
+        var inner = formName.innerFeedrate.value*60;
+        var outer = formName.outerFeedrate.value*60;
         var jerk_or_jd = formName.jerk_or_jd.value;
         var a1 = formName.accel_a1.value;
         var a2 = formName.accel_a2.value;
@@ -401,7 +402,7 @@ function processGcode(formName) {
                 gcode = gcodeArray.join("\n");
             }   
         }
-        // experimental feedrate change
+        // feedrate change
         if(name != "accelerationForm"){
             if(feedMod != 1){
                 var gcodeArray = gcode.split(/\n/g);
@@ -422,9 +423,9 @@ function processGcode(formName) {
         // changes for acceleration test
         if(name == "accelerationForm"){
             // edit feedrates
-            gcode = gcode.replace(/F3600/g, "F"+feed+" ; custom feedrate - full");
-            gcode = gcode.replace(/F2880/g, "F"+feed+" ; custom feedrate - full");
-            gcode = gcode.replace(/F2160/g, "F"+feed/2+" ; custom feedrate - half");
+            gcode = gcode.replace(/F3600/g, "F"+outer+" ; custom outer perimeter feedrate");
+            gcode = gcode.replace(/F2880/g, "F"+outer+" ; custom outer perimeter feedrate");
+            gcode = gcode.replace(/F2160/g, "F"+inner+" ; custom inner perimeter feedrate");
             // add acceleration segments
             gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
             gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" ; custom acceleration - B\n;j2");
