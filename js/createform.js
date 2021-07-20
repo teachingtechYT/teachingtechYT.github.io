@@ -18,8 +18,7 @@ function displayCustom(){
     }
 }
 
-var nozzleLayer = `
-<h4>Nozzle Diameter / Layer Height</h4>
+var nozzleLayer = /*html*/ `<h4>Nozzle Diameter / Layer Height</h4>
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>
     <p>25 options are available, however some of the tests don't work very well with the larger options.</p>
     <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
@@ -51,8 +50,7 @@ var nozzleLayer = `
         <option value="100_75">1.00 mm nozzle / 0.75 mm layer height</option>
     </select>`;
 
-var startGcode = `
-<h4>Additional start gcode</h4>
+var startGcode = /*html*/ `<h4>Additional start gcode</h4>
             <p>If you have additional start commands, tick the box and enter the gcode. This can be used for an <b>extruder prime sequence</b>, overwriting the standard <b>flow rate</b>, compensating for <b>2.85/3.00 mm filament</b>, setting <b>K factor</b> and more. Tick the box for more details.</p>
             <label>Additional start gcode:<input name="start" type="checkbox" onchange="displayCustom();" value="extraStart"></label>
             <label>Add M80 to turn PSU on:<input name="psuon" type="checkbox" value="on"></label>
@@ -70,24 +68,22 @@ var startGcode = `
                 <textarea name="startgcode"></textarea>
             </div>`;
 
-var bedDims =  `
-<h4>Bed dimensions</h4>
+var bedDims =  /*html*/ `<h4>Bed dimensions</h4>
             <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the 0,0 at centre button is checked for a delta, also enter your bed diameter. Please check the gcode to ensure it will fit on your bed.</p>
             <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="displayCustom();" value="centre"></label>
             <span class="XY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
             <span class="dia"><label>Bed diameter dimension (mm): <input type="number" name="beddia" value="100" min="100" max="600" step="1"></label></span>`;
 
-var extraMargin = `
-<p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap. You may also use a negative value to space the squares further apart. Make sure to preview the gcode before printing!</p>
+var extraMargin = /*html*/ `<p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap. You may also use a negative value to space the squares further apart. Make sure to preview the gcode before printing!</p>
             <label>Extra margin from edge (mm): <input type="number" name="margin" value="0" min="0" max="100" step="1"></label>`;
 
-var tempReg = `<h4>Temperatures</h4>
+var tempReg = /*html*/ `<h4>Temperatures</h4>
 <p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
 <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
 <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="0" max="150"></label> (use 0 for a non heated bed)<br />`;
 
-var tempTower = `<h4>Bed Temperature</h4>
+var tempTower = /*html*/ `<h4>Bed Temperature</h4>
 <p>For bed, typical PLA temperatures are 60, PETG 80, ABS 100, TPU 5 (effectively off).</p>
 <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="0" max="150"></label> (use 0 for a non heated bed)
 <h4>Hot end temperature</h4>
@@ -131,7 +127,7 @@ var tempTower = `<h4>Bed Temperature</h4>
     </tbody>
 </table>`;
 
-var pcReg = `<h4>Part Cooling Fan</h4>
+var pcReg = /*html*/ `<h4>Part Cooling Fan</h4>
 <p>Printing with PLA typically has the part cooling fan come on from layer 2. Alter this default behaviour here. A zero speed value disables the fan apart from bridging.</p>
 <label>Part cooling fan speed:</label> <input type="number" name="fanSpeed" value="100" min="0" max="100" step="5"> % </label><label for="fanLayer">starting on: </label>
 <select name="fanLayer">
@@ -140,10 +136,10 @@ var pcReg = `<h4>Part Cooling Fan</h4>
     <option value="5">layer 5</option>
 </select>`;
 
-var pcFirstlayer = `<h4>Part Cooling Fan</h4>
+var pcFirstlayer = /*html*/ `<h4>Part Cooling Fan</h4>
 <p>Part cooling fans typically don't activate until at least layer 2. Since this print is only one layer thick, part cooling is not applicable.</p>`;
 
-var abl = `<h4>Auto Bed Levelling</h4>
+var abl = /*html*/ `<h4>Auto Bed Levelling</h4>
 <label for="abl">Select which method of ABL is in place.</label>
 <select name="abl">
     <option value="0">No ABL</option>
@@ -156,14 +152,14 @@ var abl = `<h4>Auto Bed Levelling</h4>
     <option value="7">Unified Bed Leveling - Load Saved Mesh (slot 2) then 3 Probe Tilt </option>
 </select>`;
 
-var retractionReg = `<h4>Retraction</h4>
+var retractionReg = /*html*/ `<h4>Retraction</h4>
 <p>If you don't know what to enter here, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. If you are not sure about extra restart distance, leave this as 0.</p>
 <p><label>Retraction distance (mm): <input type="number" name="retdist" value="5" min="0" max="20" step="0.1"></label>
     <label>Retraction speed (mm/sec): <input type="number" name="retspeed" value="40" min="5" max="150" step="1"></label></p>
     <p><label>Extra restart distance (mm): <input type="number" name="retdistextra" min="-10" max="10" value="0" step="0.1"></label>
     <label>Z hop (mm): <input type="number" name="zhop" min="0" max="10" value="0" step="0.1"></label> (zero disables Z hop)</p>`;
 
-var retractionTower = `<h4>Retraction</h4>
+var retractionTower = /*html*/ `<h4>Retraction</h4>
 <p>For initial tests, you can leave the retraction speed at 40 mm/sec. For a bowden tube printer, 6mm is a likely retraction distance. For direct drive, a starting value of 1mm may be suitable. Vary either side of this for each segment. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span>.</p>
 <table>
     <thead>
@@ -232,12 +228,12 @@ var retractionTower = `<h4>Retraction</h4>
     </tbody>
 </table>`;
 
-var feedrate = `<h4>Feedrate</h4>
+var feedrate = /*html*/ `<h4>Feedrate</h4>
 <p>The default printing speed is 60 mm/sec, with modifiers including 60% for perimeters, 80% for solid infill, travel moves 166%, and 50% of these for the first layer. Modify the base feedrate here and the generated gcode will be modified using the same proportions. Please note extruder retraction/unretraction and Z-hop speeds will be unaffected by this.</p>
 <p><label>Base feedrate (mm/sec): <input type="number" name="baseFeedrate" value="60" min="5" max="1000" step="1"></label></p>
 `;
 
-var accel = `<h4>Base feedrate/speed</h4>
+var accel = /*html*/ `<h4>Base feedrate/speed</h4>
 <p>You can specify the feedrate for X and Y movements. Both the inner and outer perimeter speed can be specified. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
 <p><label>Inner perimeter feedrate (mm/sec): <input type="number" name="innerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
 <p><label>Outer perimeter feedrate (mm/sec): <input type="number" name="outerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
@@ -314,7 +310,7 @@ var accel = `<h4>Base feedrate/speed</h4>
     </tbody>
 </table>`;
 
-var endGcode = `<h4>Additional end gcode</h4>
+var endGcode = /*html*/ `<h4>Additional end gcode</h4>
 <p>If you have additional end commands, tick the box and enter the gcode.</p>
 <label>Additional end gcode:<input name="end" type="checkbox" onchange="displayCustom();" value="extraEnd"></label>
 <label>Home all axes with G28 at the end (delta)<input name="deltaHome" type="checkbox" value="off"></label>
@@ -323,7 +319,7 @@ var endGcode = `<h4>Additional end gcode</h4>
     <textarea name="endgcode"></textarea>
 </div>`;
 
-var preview = `<p>It is advised to preview the generated gcode through your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> before printing.`;
+var preview = /*html*/ `<p>It is advised to preview the generated gcode through your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> before printing.`;
 
 function createForm(n){
     document.write('<input type="hidden" name="description" value="'+n+'">')
@@ -356,5 +352,4 @@ function createForm(n){
     }
     document.write(endGcode);
     document.write(preview);
-}            
-            
+}      

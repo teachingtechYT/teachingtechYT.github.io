@@ -1,4 +1,4 @@
-var scripts = `
+var scripts = /*html*/ `
 <link  type="text/css" rel="stylesheet" href="css/styles.css">
 <link  type="text/css" rel="stylesheet" href="css/responsive-tabs.css">
 <link  type="text/css" rel="stylesheet" href="css/featherlight.css">
