@@ -347,6 +347,15 @@ iframe {
     float: left;
 }
 
+.summary {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 2px solid rgb(230, 230, 230);
+    border-radius: 5px;
+    margin: 2px 5px;
+    font-size: 1.2em;
+}
+
 /* Tabs container */
 .r-tabs {
 	position: relative;

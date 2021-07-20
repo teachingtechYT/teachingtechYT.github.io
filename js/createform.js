@@ -229,8 +229,9 @@ var retractionTower = /*html*/ `<h4>Retraction</h4>
 </table>`;
 
 var feedrate = /*html*/ `<h4>Feedrate</h4>
-<p>The default printing speed is 60 mm/sec, with modifiers including 60% for perimeters, 80% for solid infill, travel moves 166%, and 50% of these for the first layer. Modify the base feedrate here and the generated gcode will be modified using the same proportions. Please note extruder retraction/unretraction and Z-hop speeds will be unaffected by this.</p>
-<p><label>Base feedrate (mm/sec): <input type="number" name="baseFeedrate" value="60" min="5" max="1000" step="1"></label></p>
+<p>The default printing speed is 60 mm/sec, with modifiers including 60% for perimeters, 80% for solid infill, travel moves 166%, and 50% of these for the first layer. Modify the base feedrate here and the generated gcode will be modified using the same proportions (<b>calculated feedrates shown in grey</b>). Please note extruder retraction/unretraction and Z-hop speeds will be unaffected by this.</p>
+<p><label>Base feedrate (mm/sec): <input type="number" name="baseFeedrate" value="60" min="5" max="1000" step="1" onchange="updateFeeds(form);"></label>
+<span  class="summary">Perimeters: <b><span class="perimFeed">36</span> mm/s</b></span><span class="summary">Solid infill: <b><span class="solidFeed">48</span> mm/s</b></span><span class="summary">Travel moves: <b><span class="travelFeed">100</span> mm/s</b></span><span class="summary">First layer: <b><span class="firstFeed">30</span> mm/s</b></span></p>
 `;
 
 var accel = /*html*/ `<h4>Base feedrate/speed</h4>
