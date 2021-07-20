@@ -525,6 +525,10 @@ function processGcode(formName) {
     if(formName.end.checked == true) {
         gcode = gcode.replace(/;customend/, "; custom end gcode\n"+customEnd);
     }
+    if(formName.deltaHome.checked == true) {
+        gcode = gcode.replace(/G28 X0 ; home X axis/, "G28 ; home all on delta");
+    }
+    
     // process finished gcode file
     downloadFile(description+'.gcode', gcode);
 }

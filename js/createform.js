@@ -317,6 +317,7 @@ var accel = `<h4>Base feedrate/speed</h4>
 var endGcode = `<h4>Additional end gcode</h4>
 <p>If you have additional end commands, tick the box and enter the gcode.</p>
 <label>Additional end gcode:<input name="end" type="checkbox" onchange="displayCustom();" value="extraEnd"></label>
+<label>Home all axes with G28 at the end (delta)<input name="deltaHome" type="checkbox" value="off"></label>
 <div class="endExp">
     <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
     <textarea name="endgcode"></textarea>
