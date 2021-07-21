@@ -103,8 +103,7 @@ function toggleJ() {
     }
 }
 
-function updateFeeds(formName) {
-    var feedrate = formName.baseFeedrate.value;
+function updateFeeds(feedrate) {
     $('.perimFeed').html(Math.round(feedrate*0.6));
     $('.solidFeed').html(Math.round(feedrate*0.8));
     $('.travelFeed').html(Math.round(feedrate*1.67));
