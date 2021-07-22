@@ -320,7 +320,7 @@
 		<pre>M503</pre>
         <p><a href="https://marlinfw.org/docs/gcode/M092.html" target="_blank">M92</a> is used to report or set the steps per mm for each axis. M92 by itself will report the current parameters. We want to make note of the number after <b>E</b>, in the example below, <b>93.00</b>:</p>
         <img src="img/esteps1.jpg" />
-        <p>Now heat up your hot end to whatever temperature you usually print with plus 10 degrees. Once the temperature is stable, enter:</p>
+        <p>Manually move the nozzle high enough above the bed to provide adequate clearance to extrude filament. Now heat up your hot end to whatever temperature you usually print with plus 10 degrees. Once the temperature is stable, enter:</p>
         <pre>G91</pre>
         <p><a href="https://marlinfw.org/docs/gcode/G091.html" target="_blank">G91</a> puts the printer in relative movement mode. This means requesting 100mm of filament adds 100mm to the current position, instead of moving to the specific position of 100mm.</p>
         <p>For Klipper and Rep Rap Firmware, <b>M83</b> is used to select relative extruder movement instead.</p>
