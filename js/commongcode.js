@@ -13,7 +13,7 @@ G28 ; home all axes
 ;M420 S1 ; restore ABL mesh 
 ;customstart
 G92 E0.0 ; set current extruder position as 0
-M82; switch to extruder absolute mode
+G90 ; set all axes back to absolute mode
 G0 Z3; fix for delta printers that home at max`;
 
 var commonEnd = `
