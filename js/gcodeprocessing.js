@@ -593,11 +593,11 @@ function outputSettings(formName) {
     string += "\n\nTemperatures:\n";
     if(formName.name == "temperatureForm") {
         string += "Bed: "+formName.bedtemp.value+" deg C\n";
-        string += "Segement E: "+formName.temp_e1.value+" deg C\n";
-        string += "Segement D: "+formName.temp_d1.value+" deg C\n";
-        string += "Segement C: "+formName.temp_c1.value+" deg C\n";
-        string += "Segement B: "+formName.temp_b1.value+" deg C\n";
-        string += "Segement A: "+formName.temp_a1.value+" deg C\n";
+        string += "Segment E: "+formName.temp_e1.value+" deg C\n";
+        string += "Segment D: "+formName.temp_d1.value+" deg C\n";
+        string += "Segment C: "+formName.temp_c1.value+" deg C\n";
+        string += "Segment B: "+formName.temp_b1.value+" deg C\n";
+        string += "Segment A: "+formName.temp_a1.value+" deg C\n";
         string += "First Layer: "+formName.temp_a0.value+" deg C\n";
     } else {
         string += "Bed: "+formName.bedtemp.value+" deg C\n";
