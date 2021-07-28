@@ -434,12 +434,12 @@ function processGcode(formName) {
             gcode = gcode.replace(/F2880/g, "F"+outer+" ; custom outer perimeter feedrate");
             gcode = gcode.replace(/F2160/g, "F"+inner+" ; custom inner perimeter feedrate");
             // add acceleration segments
-            gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" ; custom acceleration - A\n;j1");
-            gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" ; custom acceleration - B\n;j2");
-            gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" ; custom acceleration - C\n;j3");
-            gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" ; custom acceleration - D\n;j4");
-            gcode = gcode.replace(/;process Process-5/, "M204 P"+e1+" ; custom acceleration - E\n;j5");
-            gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" ; custom acceleration - F\n;j6");
+            gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+            gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" T"+b1+" ; custom acceleration - B\n;j2");
+            gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" T"+c1+" ; custom acceleration - C\n;j3");
+            gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" T"+d1+" ; custom acceleration - D\n;j4");
+            gcode = gcode.replace(/;process Process-5/, "M204 P"+e1+" T"+e1+" ; custom acceleration - E\n;j5");
+            gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" T"+f1+" ; custom acceleration - F\n;j6");
             // add jerk/junction deviation segments
             if(jerk_or_jd == "jerk"){
                 gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk - A");
