@@ -65,6 +65,8 @@ var startGcode = /*html*/ `<h4>Additional start gcode</h4>
                     <li><b>Custom ABL</b> sequence. By default, only G28 is present. This gcode will be inserted immediately afer that so custom commands can be used here.Useful for G34 auto stepper alignment and Klipper's Z_TILT_ADJUST.</li>
                     <li>Anything else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
                 </ul>
+                <label>Strip <b>ALL</b> original start gcode and use only custom gcode instead: <input name="customStartOnly" type="checkbox"></label>
+                <p class="warning">This option will remove all start gcode except what is entered in the box below. This means you are responsible for providing commands to home the machine and heat the bed/nozzle. Advanced users only!</p>
                 <textarea name="startgcode"></textarea>
             </div>`;
 
@@ -317,6 +319,8 @@ var endGcode = /*html*/ `<h4>Additional end gcode</h4>
 <label>Home all axes with G28 at the end (delta)<input name="deltaHome" type="checkbox" value="off"></label>
 <div class="endExp">
     <p>For the majority of users, you can skip this section. Any gcode entered here will be inserted at the very end of the file.</p>
+    <label>Strip <b>ALL</b> original end gcode and use only custom gcode instead: <input name="customEndOnly" type="checkbox"></label>
+    <p class="warning">This option will remove all end gcode except what is entered in the box below. This means you are responsible for providing commands to shut down all heaters, fans, motors, etc. Advanced users only!</p>
     <textarea name="endgcode"></textarea>
 </div>`;
 

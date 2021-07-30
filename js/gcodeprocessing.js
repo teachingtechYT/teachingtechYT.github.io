@@ -261,29 +261,34 @@ function processGcode(formName) {
         var feedMod = feed/3600;
     }
     // process start gcode
+    var gcode;
+    if((formName.start.checked == true) && (formName.customStartOnly.checked == true)){
+        gcode = ";customstart";    
+    } else {
+        gcode = commonStart;
+    }    
     // bed temp
-    var gcode = commonStart;
     if(bedTemp == 0){
-        gcode = gcode.replace(/;bed0a/g, "; no heated bed");
-        gcode = gcode.replace(/;bed0b/g, "; no heated bed");
+         gcode = gcode.replace(/;bed0a/g, "; no heated bed");
+         gcode = gcode.replace(/;bed0b/g, "; no heated bed");
     } else {
         gcode = gcode.replace(/;bed0a/g, "M140 S"+bedTemp+" ; custom bed temp");
         gcode = gcode.replace(/;bed0b/g, "M190 S"+bedTemp+" ; custom bed temp");
     }
     // start hot end emp
     if(abl != 4){
-        gcode = gcode.replace(/;temp0a/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
-        gcode = gcode.replace(/;temp0b/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
+         gcode = gcode.replace(/;temp0a/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+         gcode = gcode.replace(/;temp0b/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     } else {
         gcode = gcode.replace(/;temp0a/g, "; Prusa Mini");
         gcode = gcode.replace(/;temp0b\n/g, "");
-    }
+     }
     // abl
     if(abl == 1){
-        gcode = gcode.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
+         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
     }
     if(abl == 2){
-        gcode =  gcode.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
+         gcode =  gcode.replace(/;M420 S1 ; restore ABL mesh/, "M420 S1 ; restore ABL mesh");
     }
     if(abl == 3){
         gcode = gcode.replace(/G28 ; home all axes/, "G28 W ; home all without mesh bed level");
@@ -292,7 +297,6 @@ function processGcode(formName) {
     if(abl == 4){
         gcode = gcode.replace(/G28 ; home all axes/, "M109 S170 T0 ; probing temperature\nG28 ; home all");
         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 ; probe ABL");
-
         gcode = gcode.replace(/;M420 S1 ; restore ABL mesh/, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     }
     if(abl == 5){
@@ -304,6 +308,7 @@ function processGcode(formName) {
     if(abl == 7){
         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L2 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
+
     // firstlayer test square array
     if(name == "firstlayerForm"){
         var originalSquare = firstlayer[nozzleLayer];
@@ -348,8 +353,12 @@ function processGcode(formName) {
     if(name == "accelerationForm"){
         gcode += acceleration[nozzleLayer];
     }
-    // add end common gcode
-    gcode += commonEnd;
+    // add end gcode
+    if((formName.customEndOnly.checked == true) && (formName.end.checked == true)){
+        gcode += ";customend\n";      
+    } else {
+        gcode += commonEnd;
+    }    
     if(name != "firstlayerForm"){
         // strip original fan command
         gcode = gcode.replace(/M106 S3/, ";");
