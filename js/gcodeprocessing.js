@@ -308,9 +308,9 @@ function processGcode(formName) {
     if(abl == 7){
         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L2 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
-
     // firstlayer test square array
     if(name == "firstlayerForm"){
+        var squares = "";
         var originalSquare = firstlayer[nozzleLayer];
         for(var i = 0; i <= 4; i++){
             var square = "\n; square "+(i+1)+originalSquare;
