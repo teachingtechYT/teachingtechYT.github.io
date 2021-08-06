@@ -294,10 +294,8 @@ M84 ; disable motors
         <!-- firstlayerForm -->
         <form name="firstlayerForm" id="firstlayerForm" onsubmit="return false;">
             <script>
-            createForm("firstlayer");    
+                createForm("firstlayer");
             </script>
-            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
@@ -324,10 +322,8 @@ M84 ; disable motors
         <!-- baselineForm -->
         <form name="baselineForm" id="baselineForm" onsubmit="return false;">
             <script>
-                createForm("baseline");    
+                createForm("baseline");
             </script>
-            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
@@ -752,8 +748,6 @@ M84 ; disable motors
             <script>
                 createForm("retraction");
             </script>
-            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
@@ -810,8 +804,6 @@ M84 ; disable motors
             <script>
                 createForm("temperature");
             </script>
-            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
         </form>
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
@@ -922,8 +914,6 @@ M84 ; disable motors
             <script>
                 createForm("acceleration");
             </script>
-            <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
-            <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
             <p class="warning">This gcode will raise the acceleration limits (<a href="https://marlinfw.org/docs/gcode/M201.html" target="_blank">M201</a>), set acceleration (<a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a>) and set junction deviation/jerk (<a href="https://marlinfw.org/docs/gcode/M205.html" target="_blank">M205</a>) for the purposes of the test. If you print another job afterwards these higher values will still be in place. If you are unsure how to restore your previous values, the easiest thing to do is to power cycle the printer.</p> 
         </form>
         <h2>Interpreting Results:</h2>
