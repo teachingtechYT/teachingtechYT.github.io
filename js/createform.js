@@ -473,16 +473,8 @@ var downloadGcodeHtml = /*html*/ `<h4>Download</h4>
 <div class="octoprintExp">
     <label>Configure Octoprint:</label>
     <ul>
-        <li>Get API Key go to <b>User Settings > Application Keys</b> and manually generate new application key.</li>
-        <li>Enable CORS support by going to <b>OctoPrint Settings > API</b> and checking <b>Allow Cross Origin Resource Sharing (CORS)</b>. Restart afterwards</li>
-        <li>Restart afterwards</li>
-    </ul>
-
-    <label>Configure Moonraker if used with Klipper:</label>
-    <ul>
-        <li>As part of the <a href="https://moonraker.readthedocs.io/en/latest/configuration/#authorization">[authorization] config</a>
-            add to <b>cors_domains:</b> the <b><script>document.write(window.location.origin);</script></b>.</li>
-        <li>Restart afterwards</li>
+        <li>Login to your Octoprint from this browser</li>
+        <li>Or get API Key from <b>User Settings > Application Keys</b></li>
     </ul>
 </div>
 

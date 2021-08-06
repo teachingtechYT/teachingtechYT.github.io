@@ -749,56 +749,22 @@ function uploadGcode(form, fileName) {
 
     // get only basename
     if (!fileName) {
-        fileName = form.description.value + ".gcode";
+        fileName = form.description.value;
     }
+    fileName += ".gcode";
     fileName = fileName.split('/').reverse()[0];
     fileName = fileName.trimRight(".gcode");
     fileName += ".gcode";
 
     // remove `/` from the end of URL
-    var url = form.octoprint_url.value.replace(/\/$/, '');
+    var url = form.octoprint_url.value.replace(/\/+$/, '');
     url += "/api/files/local";
 
-    // this detects a `mixed-context` scenario:
-    // sending request to `http:` when connected via `https:` is not possible
-    if (window.location.protocol == "https:" && url.toLowerCase().startsWith("http:")) {
-        httpUrl = window.location.href.replace('https:', 'http:');
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(new File([output], fileName, {type : 'text/plain'}));
 
-        alert("Your local Octoprint/Moonraker uses `http://`. " +
-              "You need to open the `" + httpUrl + "` instead");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", new Blob([output], {type : 'text/plain'}), fileName);
-    formData.append("path", "TeachingTechYT");
-    formData.append("select", "true");
-    formData.append("print", "true");
-
-    fetch(url, {
-        method: "POST",
-        body: formData,
-        headers: {
-            'X-Api-Key': form.octoprint_key.value
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            response.json().then(data => {
-                if (data.print_started) {
-                    alert("Successfully uploaded and started print from " + fileName);
-                } else {
-                    alert("Successfully uploaded, but print was not started from " + fileName);
-                }
-            });
-        } else {
-            alert("Failed to upload due to " + response.statusText);
-        }
-    })
-    .catch((error) => {
-       alert("Failed to upload due to an error. Possible causes:\n" +
-        "- CORS not configured properly\n" +
-        "- url does not start with `http://` or `https://`\n" +
-        "\n" + error);
-    });
+    document.octoprintForm.action = url;
+    document.octoprintForm.file.files = dataTransfer.files;
+    document.octoprintForm.apikey.value = form.octoprint_key.value;
+    document.octoprintForm.submit();
 }
