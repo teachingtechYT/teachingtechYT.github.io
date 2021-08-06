@@ -714,9 +714,7 @@ function downloadGcode(form, fileName) {
     var settings = outputSettings(form);
 
     // process finished gcode file
-    if (!fileName) {
-        fileName = form.description.value;
-    }
+    fileName = fileName.trimRight(".gcode");
     fileName += ".gcode";
 
     var output = "";
@@ -729,9 +727,7 @@ function downloadGcode(form, fileName) {
 function downloadSettings(form, fileName) {
     var settings = outputSettings(form);
 
-    if (!fileName) {
-        fileName = form.description.value;
-    }
-    fileName += "settings.txt";
+    fileName = fileName.trimRight(".gcode");
+    fileName += "_settings.txt";
     downloadFile(fileName, settings);
 }
