@@ -708,26 +708,97 @@ function outputSettings(formName) {
     return string;
 }
 
-
-function downloadGcode(form, fileName) {
+function getGcodeAndSettings(form) {
     var gcode = processGcode(form);
     var settings = outputSettings(form);
-
-    // process finished gcode file
-    fileName = fileName.trimRight(".gcode");
-    fileName += ".gcode";
 
     var output = "";
     // prefix each line with ; to indicate comment
     output += "; " + settings.replaceAll("\n", "\n; ");
     output += gcode;
-    downloadFile(fileName, output);
+    return output;
+}
+
+function downloadGcode(form, fileName) {
+    if (!fileName) {
+        fileName = form.description.value;
+    }
+    fileName = fileName.trimRight(".gcode");
+    fileName += ".gcode";
+
+    downloadFile(fileName, getGcodeAndSettings(form));
 }
 
 function downloadSettings(form, fileName) {
-    var settings = outputSettings(form);
-
+    if (!fileName) {
+        fileName = form.description.value;
+    }
     fileName = fileName.trimRight(".gcode");
     fileName += "_settings.txt";
-    downloadFile(fileName, settings);
+
+    downloadFile(fileName, outputSettings(form));
+}
+
+function uploadGcode(form, fileName) {
+    var output = getGcodeAndSettings(form);
+
+    if (!form.octoprint_url.value) {
+        alert("No URL specified for Octoprint or Moonraker.");
+        return;
+    }
+
+    // get only basename
+    if (!fileName) {
+        fileName = form.description.value + ".gcode";
+    }
+    fileName = fileName.split('/').reverse()[0];
+    fileName = fileName.trimRight(".gcode");
+    fileName += ".gcode";
+
+    // remove `/` from the end of URL
+    var url = form.octoprint_url.value.replace(/\/$/, '');
+    url += "/api/files/local";
+
+    // this detects a `mixed-context` scenario:
+    // sending request to `http:` when connected via `https:` is not possible
+    if (window.location.protocol == "https:" && url.toLowerCase().startsWith("http:")) {
+        httpUrl = window.location.href.replace('https:', 'http:');
+
+        alert("Your local Octoprint/Moonraker uses `http://`. " +
+              "You need to open the `" + httpUrl + "` instead");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", new Blob([output], {type : 'text/plain'}), fileName);
+    formData.append("path", "TeachingTechYT");
+    formData.append("select", "true");
+    formData.append("print", "true");
+
+    fetch(url, {
+        method: "POST",
+        body: formData,
+        headers: {
+            'X-Api-Key': form.octoprint_key.value
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            response.json().then(data => {
+                if (data.print_started) {
+                    alert("Successfully uploaded and started print from " + fileName);
+                } else {
+                    alert("Successfully uploaded, but print was not started from " + fileName);
+                }
+            });
+        } else {
+            alert("Failed to upload due to " + response.statusText);
+        }
+    })
+    .catch((error) => {
+       alert("Failed to upload due to an error. Possible causes:\n" +
+        "- CORS not configured properly\n" +
+        "- url does not start with `http://` or `https://`\n" +
+        "\n" + error);
+    });
 }
