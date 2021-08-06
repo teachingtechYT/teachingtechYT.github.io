@@ -328,9 +328,31 @@ var preview = /*html*/ `<p>It is advised to preview the generated gcode through 
 
 var downloadGcodeHtml = /*html*/ `<h4>Download</h4>
 <p><label>Filename: <input type="text" name="{formName}_filename" value="{formName}.gcode"></label></p>
-<p><input type="button" onclick="downloadGcode(form, form['{formName}_filename'].value)" value="Download Gcode"></p>
+<p><input type="button" onclick="downloadGcode(form, form['{formName}_filename'].value)" value="Download Gcode">
+   <input type="button" onclick="uploadGcode(form, form['{formName}_filename'].value)" value="Upload&Print Gcode"></p>
 <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
    <input type="button" onclick="downloadSettings(form, form['{formName}_filename'].value)" value="Output Settings Summary"></p>
+
+<h4>Octoprint / Moonraker</h4>
+<p>You can directly print from this website if you specify <b>Octoprint</b> or <b>Moonraker</b> server.</p>
+<p><label>URL: <input type="text" name="octoprint_url"></label>
+   <label>API Key: <input type="password" name="octoprint_key"></label></p>
+<div class="octoprintExp">
+    <label>Configure Octoprint:</label>
+    <ul>
+        <li>Get API Key go to <b>User Settings > Application Keys</b> and manually generate new application key.</li>
+        <li>Enable CORS support by going to <b>OctoPrint Settings > API</b> and checking <b>Allow Cross Origin Resource Sharing (CORS)</b>. Restart afterwards</li>
+        <li>Restart afterwards</li>
+    </ul>
+
+    <label>Configure Moonraker if used with Klipper:</label>
+    <ul>
+        <li>As part of the <a href="https://moonraker.readthedocs.io/en/latest/configuration/#authorization">[authorization] config</a>
+            add to <b>cors_domains:</b> the <b><script>document.write(window.location.origin);</script></b>.</li>
+        <li>Restart afterwards</li>
+    </ul>
+</div>
+
 `;
 
 function createForm(n){
