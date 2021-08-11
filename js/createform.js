@@ -460,7 +460,7 @@ var endGcode = /*html*/ `<h4>Additional end gcode</h4>
 var preview = /*html*/ `<p>It is advised to preview the generated gcode through your slicer or <a href="http://zupfe.velor.ca" target="_blank">Zupfe GCode Viewer</a> before printing.`;
 
 var downloadGcodeHtml = /*html*/ `<h4>Download</h4>
-<p><label>Filename: <input type="text" name="{formName}_filename" value="{formName}.gcode"></label></p>
+<p><label>Filename: <input type="text" name="{formName}_filename" value="{formName}"></label></p>
 <p><input type="button" onclick="downloadGcode(form, form['{formName}_filename'].value)" value="Download Gcode"></p>
 <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
    <input type="button" onclick="downloadSettings(form, form['{formName}_filename'].value)" value="Output Settings Summary"></p>

@@ -715,8 +715,9 @@ function downloadGcode(form, fileName) {
 
     // process finished gcode file
     if (!fileName) {
-        fileName = form.description.value + ".gcode";
+        fileName = form.description.value;
     }
+    fileName += ".gcode";
 
     var output = "";
     // prefix each line with ; to indicate comment
@@ -729,7 +730,8 @@ function downloadSettings(form, fileName) {
     var settings = outputSettings(form);
 
     if (!fileName) {
-        fileName = form.description.value + "settings.txt";
+        fileName = form.description.value;
     }
+    fileName += "settings.txt";
     downloadFile(fileName, settings);
 }
