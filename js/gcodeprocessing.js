@@ -333,12 +333,25 @@ function processGcode(formName) {
             squares += square;
         }
         gcode = gcode+squares;
+        if(feedMod != 1){
+            var gcodeArray = gcode.split(/\n/g);
+            var regexp = /F[0-9]+/;
+            gcodeArray.forEach(function(index, item){
+                if(gcodeArray[item].search(/F/) > -1){
+                    var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1));
+                    if(value != 1200){
+                        gcodeArray[item] = gcodeArray[item].replace(regexp, "F"+String(value*feedMod)+" ; custom feedrate")
+                    }
+                }
+            });
+            gcode = gcodeArray.join("\n");
+        }
         gcode = gcode.replace(/;retract1\nG1 Z[0-9\.]+ F1200/g, ";retract1\n;zhop1");
             if(zhop > 0){
                 gcode = gcode.replace(/;zhop1/g, "G91;\nG1 Z"+zhop+" F1200; custom z hop\nG90;");
             }  
-            gcode = gcode.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
-            gcode = gcode.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
+        gcode = gcode.replace(/;retract1/g, "G1 E-"+retDist+" F"+retSpeed+" ; custom retraction");
+        gcode = gcode.replace(/;unretract1/g, "G1 E"+retDistExtra+" F"+retSpeed+" ; custom un-retraction/prime");
     }
     // assign correct gcode source
     if(name == "baselineForm"){
