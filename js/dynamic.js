@@ -42,7 +42,7 @@ $('#footer').html(footer);
 
 $(document).ready(function(){
     $('#tabs').responsiveTabs({
-        startCollapsed: 'accordion'
+        startCollapsed: 'tabs'
     });
     $(".videoThumb").videoBox({
         width: '480',

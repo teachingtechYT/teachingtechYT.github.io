@@ -248,7 +248,7 @@ iframe {
 
 #header {
     height: 4.0em;
-    margin-bottom:20px;
+    margin-bottom:100px;
 }
 
 .sug {
@@ -487,4 +487,4 @@ button {
 	background-color: #fff;
 
 	cursor: pointer;
-} 
+}
