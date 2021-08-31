@@ -66,7 +66,7 @@ var startGcode = /*html*/ `<h4>Additional start gcode</h4>
                     <li>Anything else you have in your start gcode, such as setting acceleration values, E-steps, etc.</li>
                 </ul>
                 <label>Strip <b>ALL</b> original start gcode and use only custom gcode instead: <input name="customStartOnly" type="checkbox"></label>
-                <p class="warning">This option will remove all start gcode except what is entered in the box below. This means you are responsible for providing commands to home the machine and heat the bed/nozzle. Advanced users only!</p>
+                <p class="warning">This option will remove all start gcode except what is entered in the box below. This means you are responsible for providing commands to home the machine and heat the bed/nozzle. Note: this gcode uses M82 absolute extrusion values, do not enter the M83 command (relative extrusion values) here. Advanced users only!</p>
                 <textarea name="startgcode"></textarea>
             </div>`;
 
