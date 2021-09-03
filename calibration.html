@@ -185,7 +185,9 @@
         <p>PID autotuning is quick and easy, and relates to the most potentially dangerous components of your 3D printer: the heaters. It makes sense to do it as a first step. This procedure is covered in this video: <a href="https://youtu.be/qCtL0Yd_w0I" target="_blank">Two easy fixes for 3D printer temperature swings</a></p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/qCtL0Yd_w0I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>In Marlin, this is a very straightforward process using <a href="https://marlinfw.org/docs/gcode/M303.html" target="_blank">M303</a>.</p>
-        <p>It is not essential, but you may prefer to start this process with the hot end at room temperature. In a terminal, enter the following to tune the hot end:</p>
+        <p>It is recommended to run the tuning with conditions as close to printing as possible. This means filament loaded and the part cooling fan set to your normal speed. This can be done from the printer's interface or in a terminal, by entering the following (this example is 100% fan speed):</p>
+        <pre>M106 S255</pre>
+        <p>It is not essential, but you may prefer to start this process with the hot end at room temperature. To tune the hot end, enter in a terminal:</p>
         <pre>M303 E0 S200 U1</pre>
         <p>This will tune the hot end at 200 degrees. The <b>S</b> value can be altered to suit your most common printing temperature. The <b>U1</b> means the result is stored to RAM and we can save it immediately to EEPROM by sending:</p>
         <pre>M500</pre>
