@@ -91,6 +91,23 @@ textarea {
     font-size: 1.4em;
 }
 
+table.head {
+    border-collapse: collapse;
+    border: none;
+}
+
+table.head td {
+    border: none;
+    padding: 0;
+}
+
+#header h1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border: 0;
+}
+
 table.sponsor {
     border-collapse: collapse;
 }
@@ -187,7 +204,7 @@ ol li {
 }
 
 table {
-    width: 100%;
+    /*width: 100%;*/
     margin-bottom: 20px;
 }
 table input {
