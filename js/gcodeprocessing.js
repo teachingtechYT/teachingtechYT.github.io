@@ -624,7 +624,7 @@ function outputSettings(formName) {
         string += "\nPerimeters: "+document.querySelector( ".perimFeed" ).innerText+" mm/sec";
         string += "\nSolid infill: "+document.querySelector( ".solidFeed" ).innerText+" mm/sec";
         string += "\nTravel moves: "+document.querySelector( ".travelFeed" ).innerText+" mm/sec";
-        string += "\nFirst layer: "+document.querySelector( ".firstFeed" ).innerText+" mm/sec";
+        string += "\nFirst layer: "+document.querySelector( ".firstFeed" ).innerText+" mm/sec\n\n";
     }
 
     if(formName.name == "firstlayerForm") {
