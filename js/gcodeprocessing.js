@@ -647,7 +647,8 @@ function outputSettings(formName) {
         string += "Z hop: "+formName.zhop.value+" mm\n";
     }
     if(formName.name == "accelerationForm") {
-        string += "\nBase feedrate: "+formName.feedrate.value+" mm/s\n\n";
+        string += "\nInner perimeter feedrate: "+formName.innerFeedrate.value+" mm/s";
+        string += "\nOuter perimeter feedrate: "+formName.outerFeedrate.value+" mm/s\n\n";
         var jjd = formName.jerk_or_jd.value;
         if(jjd == "jerk") {
             string += "Segment | M204 P Acceleration |  M205 Jerk X  |  M205 Jerk Y|  M205 Jerk Z   \n";
