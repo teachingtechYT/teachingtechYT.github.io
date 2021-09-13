@@ -20,6 +20,5 @@ M106 S0 ; turn off cooling fan
 M104 S0 ; turn off extruder
 M140 S0 ; turn off bed
 M84 ; disable motors
-M501 ; restore previous EEPROM values
 ;customend
 `;
