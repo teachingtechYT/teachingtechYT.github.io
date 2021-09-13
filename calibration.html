@@ -859,6 +859,7 @@
             </script>
             <p><input type="button" onclick="processGcode(form)" value="Download Gcode"></p>
             <p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters"> <input type="button" onclick="outputSettings(form)" value="Output Settings Summary"></p>
+            <p class="warning">This gcode will raise the acceleration limits (<a href="https://marlinfw.org/docs/gcode/M201.html" target="_blank">M201</a>), set acceleration (<a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a>) and set junction deviation/jerk (<a href="https://marlinfw.org/docs/gcode/M205.html" target="_blank">M205</a>) for the purposes of the test. If you print another job afterwards these higher values will still be in place. If you are unsure how to restore your previous values, the easiest thing to do is to power cycle the printer.</p> 
         </form>
         <h2>Interpreting Results:</h2>
         <p>Please use the following video as a guide to this test:</p>
@@ -872,7 +873,9 @@
         <p></p>
         <p>Once you have a value you are happy with, you can update with:</p>
         <pre>M204 P400</pre>
-        <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print. We can store the value to EEPROM by sending:</p>
+        <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print.</p>
+        <p>It's also worth noting that the <b>M201 value acts as a per axis limit for acceleration</b>. For example, if you set the <b>M204</b> print acceleration to 1000 but the X and Y <b>M201</b> acceleration limits are only 800, then the <b>M204 P</b> value will be capped at 800. Use <b>M503</b> to see the current <b>M201</b> values, and if necessary, use <b>M201</b> to set higher X and Y acceleration limit values to suit.</p>
+        <p>We can store the new value(s) to EEPROM by sending:</p>
         <pre>M500</pre>
         <p>You would then repeat the test with all of the acceleration values locked at your preferred value for each segment, but this time varying jerk/junction deviation.</p>
         <p>To save for a printer with jerk (with a determined best compromise of <b>8</b> for this example), we would enter:</p>
