@@ -323,13 +323,13 @@ z_probe: open</pre>
         <h4>Understanding the differences between a BLtouch and other probes</h4>
         <p>The BLtouch is unique in that it has actively moving parts. Other probes replace a microswitch for the z axis and function the same way: they are either trigger or not depending on if they sense the bed directly beneath the probe. A BLtouch must be deployed (pin extended) before it can be triggered and report back to the firmware. Whereas other probes only report back to the firmware with one way communication whether they are triggered or not, a BLtouch requires two way communication. The firmware has to be able to send instructions to it, as well as receive a trigger signal back from it. This is why it has extra wiring and special gcodes that can be sent to control it.</p>
         <h4>BLtouch wiring</h4>
-        <p>A BLtouch requires 5 wires. Three are used to control it (red, yellow and brown), and the remaing two are used to read the trigger signal from it (black and white). Sometimes extension looms use different colours, such as the Creality loom which substitutes blue for brown.</p>
+        <p>A BLtouch requires 5 wires. Three are used to control it (red, yellow and brown), and the remaining two are used to read the trigger signal from it (black and white). Sometimes extension looms use different colours, such as the Creality loom which substitutes blue for brown.</p>
         <p class="warning">Pay attention to wiring diagrams! The following diagram was created for a <a href="https://youtu.be/neS7lB7fCww" target="_blank">video guide for the Creality V4 32 bit mainoards</a>. The comments are littered with people who assumed the Creality extension loom would match the Creality board, connected the BLtouch incorrectly and blew up their mainboard. Never assume the extension loom you are using matches the input to the mainboard (even if they are both Creality).</p>
         <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img loading="lazy" class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
         <p>Here is a break down of the pins:</p>
         <ul>
             <li><span style="color:red; font-weight:900;"> Red: </span> 5V power to BLtouch. (Some mainboards supply 3.3V and the BLtouch can be configured to operate with this logic level).</li>
-            <li><span style="color:brown; font-weight:900;"> Brown: </span> Ground to BLtouch. In conjuction with the red wire provides power.</li>
+            <li><span style="color:brown; font-weight:900;"> Brown: </span> Ground to BLtouch. In conjunction with the red wire provides power.</li>
             <li><span style="color:yellow; font-weight:900; background-color:black;"> Yellow: </span> Control signal from firmware to BLtouch. Uses pulse width modulation (PWM) to control the BLtouch, the same way as a servo is controlled with PWM.</li>
             <li><span style="color:white; font-weight:900; background-color:black;"> White: </span> Trigger signal from BLtouch to mainboard.</li>
             <li><span style="color:black; font-weight:900;"> Black: </span> Ground for trigger signal from BLtouch to the mainboard.</li>
@@ -357,7 +357,7 @@ z_probe: open</pre>
         <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img loading="lazy" class="thumb" src="img/bltouchdimensions.jpg" /></a>
         <p>If your BLtouch is mounting too far off this target of 2.3 to 4.3mm, the probing results may be inaccurate. For a guide to measuring and inputing the probe X, Y and Z offsets, see this video guide:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <h4>What to check if ABL compensation seems non existant or probing is inaccurate</h4>
+        <h4>What to check if ABL compensation seems non existent or probing is inaccurate</h4>
         <p>Firstly, check the items previously listed on this page:</p>
         <ul>
             <li>BLtouch correctly wired and configured in firmware - passes manual control and trigger tests</li>
