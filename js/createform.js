@@ -1,9 +1,11 @@
 function displayCustom(){
+    // custom start
     if($(tab+' input[name="start"]').is(':checked')){
         $('.startExp').show();
     } else {
         $('.startExp').hide();
     }
+    // delta
     if($(tab+' input[name="centre"]').is(':checked')){
         $('.dia').show();
         $('.XY').hide();
@@ -11,12 +13,42 @@ function displayCustom(){
         $('.dia').hide();
         $('.XY').show();
     }
+    // custom end
     if($(tab+' input[name="end"]').is(':checked')){
         $('.endExp').show();
     } else {
         $('.endExp').hide();
     }
+    // firmware selector
+    if($("#marlinSelector").prop("checked") == true){
+        $('.marlinContent').show();
+        $('.klipperContent').hide();
+        $('.rrfContent').hide();
+    }
+    if($("#klipperSelector").prop("checked") == true){
+        $('.marlinContent').hide();
+        $('.klipperContent').show();
+        $('.rrfContent').hide();
+    }
+    if($("#rrfSelector").prop("checked") == true){
+        $('.marlinContent').hide();
+        $('.klipperContent').hide();
+        $('.rrfContent').show();
+    }
 }
+
+var firmwareSelector = /*html*/ `<form name="firmwareSelect" class="firmwareSelector">
+<p style="margin-left:20px;">Use the button to switch instructions for different firmwares:
+<input name="firmware" id="marlinSelector" value="marlin" checked type="radio" onchange="displayCustom()"/>
+<label for="marlinSelector">Marlin</label>
+<input name="firmware" id="klipperSelector" value="klipper" type="radio" onchange="displayCustom()"/>
+<label for="klipperSelector">Klipper</label>
+<input name="firmware" id="rrfSelector" value="rrf" checked type="radio" onchange="displayCustom()"/>
+<label for="rrfSelector">RRF</label>
+</p>
+</form>
+
+`;
 
 var nozzleLayer = /*html*/ `<h4>Nozzle Diameter / Layer Height</h4>
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>

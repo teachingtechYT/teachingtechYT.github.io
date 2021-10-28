@@ -3,17 +3,18 @@
     <head>
         <script src="js/loadscripts.js"></script>
     </head>
-<body>
+<body onload="loadAllFormData(); displayCustom();">
     <div id="menu"></div>
     <div id="header"></div>
     <div id="tabs">
         <ul>
             <li><a href="#overview">Overview</a></li>
             <li><a href="#bltouch">BLtouch</a></li>
+            <li><a href="#neopixels">Neopixels</a></li>
         </ul>
     
         <div id="overview">
-            <h4>Overview</h4>
+            <h2>Overview</h2>
             <p>In these tabs you will find guides to popular 3D printer upgrades.</p>
             <p>Sometimes it is easier to reference a static page rather than a video, especially for wiring diagrams and firmware changes. A webpage also provides the opportunity to be updated as things change whereas a video potentionally becomes inaccurate.</p>
         </div>
@@ -41,9 +42,9 @@
                 <p>Compared to other ABL probes, a BLtouch requires a slight amount of extra wiring. If the mainboard does not have a dedicated 'probe' port or spare PWM output (Creality V1.X boards), a 'pin27 adaptor' is required.</p>
             </div>
             <p>I have made many BLtouch guide videos in the past, but this one aims to be generic enough to apply to almost any 3D printer. This guide has a companion video with many of the concepts illustrated: <a href="https://youtu.be/eF060dBEnfs" target="_blank">BLtouch for any 3D printer - Comprehensive step by step guide</a></p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>For this guide, we will start with the physical mounting of the BLtouch, then cover wiring, firmware changes, calibration, slicer changes, customisation and troubleshooting.</p>
-            <h4>Physical mounting</h4>
+            <h2>Physical mounting</h2>
             <p>A BLtouch needs to be mounted to the print head of the machine. Ideally the BLtouch (or any other ABL probe) will be mounted as closely to the nozzle as possible, but not so close it fails from exposure to heat. A silicone sock over the heater block can assist here. The BLtouch should be secured tightly. Any play or wobble will destroy accuracy and repeatability. Other considerations when mounting are making sure the BLtouch is not so close to the hot end that it suffers damage from heat, and that its placement does not interfere with homing.</p>
             <p>As the BLtouch is very popular, there is a wide range of printed mounts available on Thingiverse and other 3D file sharing sites. Below are some examples:</p>
             <ul>
@@ -56,10 +57,10 @@
             <a href="#" data-featherlight="img/bltouchdimensions.jpg"><img loading="lazy" class="thumb" src="img/bltouchdimensions.jpg" /></a>
             <p>With the power off, lower the print head down until the nozzle is resting on the bed. If your BLtouch mount is adjustable, you can put an appropriately sized (3mm is ideal) allen key flat on the bed and slide the BLtouch down until the tip touches. For a non adjustable mount, washers can be use to shim the position downwards to spec. If the tip is sitting too low, you need a new mount to prevent the tip hitting the bed/printed part and being damaged.</p>
             <a href="#" data-featherlight="img/bltouchspacing.jpg"><img loading="lazy" class="thumb" src="img/bltouchspacing.jpg" /></a>
-            <h4>Wiring loom</h4>
+            <h2>Wiring loom</h2>
             <p>Hopefully you saw the note at the top of the page and purchased a wiring extension loom long enough to go from the BLtouch back to the mainboard. Alternately, you can make your own if you have the appropraite connectors and crimping tools. You want to ensure the loom is protected and can't snag on the moving printer parts. At a minimum, it should be tied to the existing loom to prevent it being caught. Ideally, it should be enclosed in some sort of sleeve or wrap.</p>
             <a href="#" data-featherlight="img/loomwraps.jpg"><img loading="lazy" class="thumb" src="img/loomwraps.jpg" /></a>
-            <h4>Wiring to mainboard</h4>
+            <h2>Wiring to mainboard</h2>
             <p>A BLtouch requires 5 wires. Three are used to control it (red, yellow and brown), and the remaing two are used to read the trigger signal from it (black and white). Sometimes extension looms use different colours, such as the Creality loom which substitutes blue for brown.</p>
             <p class="warning">Pay attention to wiring diagrams! The following diagram was created for a <a href="https://youtu.be/neS7lB7fCww" target="_blank">video guide for the Creality V4 32 bit mainoards</a>. The comments are littered with people who assumed the Creality extension loom would match the Creality board, connected the BLtouch incorrectly and blew up their mainboard. Never assume the extension loom you are using matches the input to the mainboard (even if they are both Creality).</p>
             <a href="#" data-featherlight="img/crealityv4bltouchwiring.jpg"><img loading="lazy" class="thumb" src="img/crealityv4bltouchwiring.jpg" /></a>
@@ -74,14 +75,14 @@
             <p>Most modern 32 bit mainboards have dedicated ports for a BLtouch, typically labelled 'BLtouch', 'probe' or 'servo'. This may be a three pin port, intended for the the red, brown and yellow wires only, or a five pin port, intended for all five wires.</p>
             <p>If your mainboard does not have a dedicated BLtouch port, you can most likely still use it, but you will likely need to consult the manual or data sheet for your board or processor. 5V and GND can be be taken from any identified spare pins. All that you need is a spare PWM pin. PWM stands for <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation" target="_blank">pulse width modulation</a>, and involves a logic signal being cycled on and off at various duty cycles. This method is used to set the angle on a servo, and is also used to control the BLtouch through the yellow wire.</p>
             <p>With some basic knowledge, you can examine the datasheet for your mainboard processor to see which spare pins support PWM. This is demonstrated in the video at the top of the page.</p>
-            <h4>Do I need a pin27 board?</h4>
+            <h2>Do I need a pin27 board?</h2>
             <p>Mainboards like the earlier 8 bit Creality V1.X models had very little spare input/output pins. In fact, there was no spare PWM pins at all, so pin27 (usually used for the LCD buzzer) was hijacked with a pin27 board to provide a means of controlling the BLtouch (which meant losing the buzzer). Any modern 32 bit board has enough spare pins that it does not need a pin27 board. Despite this, I have seen BLtouch packages sold to suit the Creality V4 32 bit board that still include a pin27 board when this mainboard does not require it. I can only assume this is a cash grab and way to offload old pin27 board stock. While you can probably still wire a BLtouch to this board using a pin27 board, why would you? You are ignoring the dedicated port and are adding needless complexity.</p>
-            <h4>Should I plug the black and white BLtouch wires into the Z endstop plug or the dedicated plug?</h4>
+            <h2>Should I plug the black and white BLtouch wires into the Z endstop plug or the dedicated plug?</h2>
             <p>The honest answer is that either of these options work. The firmware just needs an input pin to receive the trigger signal from the BLtouch and it does't care which pin it is.</p>
             <p>Personally, I prefer to use the normal Z axis endstop port. This is because it simplifies the changes needed in the firmware (both versions covered below). It also prevents any chance of leaving the old Z endstop switch connected and potentially interfering.</p>
-            <h4>Marlin firmware changes</h4>
+            <h2>Marlin firmware changes</h2>
             <p>Firstly, if you are new to firmware, I have a few beginner guides, but <a href="https://youtu.be/eq_ygvHF29I" target="_blank">Updated Marlin firmware setup guide - VS Code and Auto Build Marlin</a> is probably the best place to start as it goes over installing the software and how to use the example configurations to get a good starting point for your printer.</p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <h5>Mandatory changes</h5>
             <p>Once you have this baseline, the following changes are mandatory for a BLtouch:</p>
             <a href="#" data-featherlight="img/bltouch-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-1.jpg" /></a>
@@ -106,15 +107,15 @@
             <a href="#" data-featherlight="img/bltouch-firmware-6.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-6.jpg" /></a>
             <p>If you have already measured your X and Y probe offsets, you can enter them now. This is not mandatory, however, as it can be done after the firmware is updated. More on probe offsets later.</p>
             <a href="#" data-featherlight="img/bltouch-firmware-7.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-7.jpg" /></a>
-            <h4>Calibration</h4>
+            <h2>Calibration</h2>
             <p>Once you have connected everything and flashed your updated firmware, there is still some calibration regarding the offset of the probe. Fortunately I have dedicated video on this topic:</p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>In summary, we need to do the following:</p>
             <ul>
                 <li>Measure and input our X/Y probe offsets. This can be done using the <a href="https://marlinfw.org/docs/gcode/M851.html" target="_bank"><b>M851</b></a> gcode command over terminal or via the LCD screen. Even if you previously entered this when compiling firmware, double check the values are correct. When changing offsets, don't forget to save to EEPROM.</li>
                 <li>Adjust the Z offset of the probe to achieve the perfect amount of squish on the first layer. You can use the Marlin Z offset wizard for this and/or do a live adjustment as the first layer goes down. In either case don't forget to save this value to EEPROM so it stays persistent.</li>
             </ul>
-            <h4>Modes of operation and slicer changes</h4>
+            <h2>Modes of operation and slicer changes</h2>
             <p>Before using ABL, the printer must be homed. Please note that in most cases, the BLtouch has replaced the Z axis endstop as the means of the printer knowing when Z is approaching zero.</p>
             <p class="warning">The first time you home the printer, it is safest to start with the nozzle a long way above the bed. Then use your hand to trigger the probe in mid air. If there is a problem and the trigger doesn't work, this will give you a chance to kill the power before a collision. Then consult the troublshooting section lower on the page.</p>
             <p>After this, a <a href="https://marlinfw.org/docs/gcode/G029.html" target="_bank"><b>G29</b></a> command will initiate the probing of the bed. Optionally saving to EEPROM will then store the probed mesh.</p>
@@ -128,7 +129,7 @@
             <p>Alternatively, if your bed is stable, you can home with <b>G28</b>, then probe the bed to create a mesh with <b>G29</b>, followed by saving the mesh to EEPROM with <b>M500</b>. All of this can also be done with LCD controls instead of gcodes. In your slicer start gcode, you can add <a href="https://marlinfw.org/docs/gcode/M420.html" target="_blank"><b>M420 S1</b></a> on the line AFTER <b>G28</b>, which will load the previously saved mesh to use for compensation in the current print.</p>
             <p>As neccessary, from time to time you can re-probe the bed and store the mesh to maintain accuracy.</p>
             <a href="#" data-featherlight="img/m420-S1.jpg"><img loading="lazy" class="thumb" src="img/m420-S1.jpg" /></a>
-            <h4>Customisation</h4>
+            <h2>Customisation</h2>
             <p>By default, the probing grid is 3 x 3. For small printers this is fine but you may want to increase the resolution at the expense of a longer probing sequence. This can be changed in the firmware:</p>
             <a href="#" data-featherlight="img/bltouch-firmware-11.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-11.jpg" /></a>
             <p>By default, the probing sequence is fairly slow. Again, we can customise this in the firmware. Your choices here will be a trade off between speed and accuracy:</p>
@@ -136,9 +137,223 @@
             <p>By default, the boundaries of the probing grid will be offset towards the position of the probe relative to the nozzle. I personally prefer a symmetrical probing grid. In the firmware, you can set manual boundaries for the grid. Just keep your probe X/Y offset in mind. You don't want to request probing 20mm from the edge when the probe is 40mm to the side of the nozzle. Best case, you receive an error. Worst case, the probe misses the bed and the nozzle collides with the bed.</p>
             <a href="#" data-featherlight="img/bltouch-firmware-13.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-13.jpg" /></a>
             <p>There is also a parameter called fade height, that can be set from the LCD or with the <a href="https://marlinfw.org/docs/gcode/M420.html" target="_blank"><b>M420 Z</b></a> gcode command. The first layer will not actually be perfectly flat, due to the compensation applied to match the measured bed contours. We don't necessarily want each layer to match this contour for the rest of the print, however. Fade height is the vertical distance in which the printer will transition between following the contours of the bed to printing in a perfectly flat plane. Remember to save to EEPROM after changing the fade height.</p>
-            <h4>Troubleshooting</h4>
+            <h2>Troubleshooting</h2>
             <p>There's a lot to get right, which means there is also a lot that can go wrong. Fortunately, I have a full page dedicated to <a href="troubleshooting.html#bltouch">BLtouch troubleshooting</a> elsewhere on this site.</p>
         </div>
+
+        <div id="neopixels">
+            <div class="exp">
+                <h2>Neopixels - Digital RGB LEDs</h2>
+                <p>Manufacturer's website: <a href="https://www.adafruit.com/category/168" target="_blank">Adafruit Neopixels</a></p>
+                <h5>Purchase links:</h5>
+                <p>Neopixels</p>
+                <ul>
+                    <li><a href="https://www.th3dstudio.com/product/ezneo220-rgb-printer-lighting-strip/?share=lawgicau" target="_blank">EZneo strip by TH3D as shown in video below</a></li>
+                    <li><a href="https://amzn.to/3GnsAER" target="_blank">Adafruit Neopixel strip (Amazon)</a></li>
+                </ul>
+                <p>Supporting parts</p>
+                <ul>
+                    <li><a href="https://www.th3dstudio.com/product/ezneo-5v-universal-power-kit/?share=lawgicau" target="_blank">EZneo universal 5V power kit</a></li>
+                    <li><a href="https://amzn.to/3kaZG0z" target="_blank">Adjustable buck converter (Amazon)</a></li>
+                    <li><a href="https://s.click.aliexpress.com/e/_Ael6Ob" target="_blank">Adjustable buck converter (Aliexpress)</a></li>
+                    <li><a href="https://bit.ly/2POMHEG" target="_blank">Adjustable buck converter (Banggood)</a></li>
+                </ul>
+                <h5>What it does:</h5>
+                <p>RGB LEDs are lights that can be set to almost any colour by mixing different magnitudes of red, green and blue. Neopixels are digital/addressible RGB LEDs, which means each LED in a strip can be set to a unique colour. This means you can have rainbow effects and even animations. Neopixels allow you to illuminate your 3D printer and/or printing area in a creative way.</p>
+                <h5>Advantages:</h5>
+                <p>Neopixels can be used to illuminate the print area for timelapses. They can also be configured to change their colour depending on the printer state. For example, glowing red to indicate the printer is hot or green to indicate a print is complete.</p>
+                <h5>Disadvantages:</h5>
+                <p>For the most part this is a superficial mod and will not add to the function of the printer.</p>
+            </div>
+            <p>This guide has a companion video with many of the concepts illustrated: <a href="" target="_blank">RGB Neopixels for any 3D printer - Marlin, Klipper and RRF guide</a></p>
+            <img src="img/390-thumb.jpg" width="480" height="270" />
+            <!-- <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <h2>Wiring</h2>
+            <p>Neopixels are digital and therefore only require three wires.</p>
+            <ul>
+                <li><span style="color:red; font-weight:900;"> Red: </span> 5V power</li>
+                <li><span style="color:black; font-weight:900;"> Black: </span> Ground</li>
+                <li><span style="color:blue; font-weight:900;"> Blue</span> / <span style="color:white; font-weight:900; background-color:#444;">&nbsp;White&nbsp;</span> : Data signal</li>                
+            </ul>
+            <p class="warning">Never assume the loom/wires you are using matches ports of the mainboard. Check the three wires before connecting to avoid damaging your Neopixels or mainboard. Depin and arrange as necessary.</p>
+            <h2>Wiring: Data pin</h2>
+            <p>A single data pin is needed to set the colour of an entire Neopixel strip. The microcontroller or processor controlling the Neopixels should know how long the strip is before sending a data command. It can then address a colour/brightness command for each pixel in the strip. The first pixel will read this, set its own color, then pass on the list of instructions to the next in the strip minus its own instruction. The process repeats down the chain of LEDS until each has received their instruction.</p>
+            <p>A very simplified example might be a four LED strip that the user wants to set to red, orange, yellow, green.</p>
+            <ol>
+                <li>The MCU sends 'red, orange, yellow, green' to the first pixel in the strip</li>
+                <li>The first pixel sets itself to red, then sends 'orange, yellow, green' to the next pixel in the strip.</li>
+                <li>The second pixel sets itself to orange, then sends 'yellow, green' to the next pixel in the strip.</li>
+                <li>The third pixel sets itself to yellow, then sends 'green' to the next pixel in the strip.</li>
+                <li>The fourth pixel sets itself to green. The strip is now set to red, orange, yellow, green.</li>
+            </ol>
+            <h2>Wiring: Power pins</h2>
+            <p>The power wiring for Neopixels is very simple on paper but needs care in reality. This is because the required current increases with each pixel added to the strip. Each pixel might draw somewhere between 60-80mA, therefore once the strip increases in length beyond a certain length, it will need more power than the onboard 5V regulator of the mainboard can supply.</p>
+            <p>The available current capacity for Neopixels will vary depending on the mainboard and other connected 5V hardware (BLtouch, 5V fans, servos, powered endstops, etc), therefore it is recommended to power the Neopixels from a separate 5V source if the strip is of any significant length. Options to create a suitable 5V power source include (each is shown in the video above):</p>
+            <ul>
+                <li>An DCDC 'buck converter', setting the output voltage to 5V.</li>
+                <li>A preprepared product like the EZneo universal 5V power kit, which is already set to an output of 5V.</li>
+                <li>A specialised mainboard add on like the Bigtreetech DCDC mode module, connected to the SKR V1.4 to add to the additional available 5V current.</li>
+            </ul>
+            <p>If your strip is particularly long, you may notice pixels further down the line are dimmer than those near the start. This is because the voltage drops with each pixel. For a long strip, you may need to add additional 5V power inputs at set intervals down the strip to boost the voltage.</p>
+            <h2>Physical Mounting</h2>
+            <p>In your have purchased Neopixels in a long roll, typically double side tape is used to stick the strip somewhere on the frame. If using a Neopixel product formed as a rigid PCB, this will typically have mounting holes which can be used in conjuction with screws and T nuts to bolt it to the frame. Both options are very easy but depending the the adhesive tape used, the rigid option will be more secure in the long term.</p>
+            <p>Take care to ensure both the Neopixel strip and your wiring back to the mainboard are secure and clear of any moving parts. For machines built with V slot extrusions, you can run the wires inside one of the trenches to keep them out of the way.</p>
+            <h2>Mainboard connection</h2>
+            <p>For Marlin and Klipper, you should be able connect the data pin to any free IO pin. There are some exceptions, however. For instance I was unable to use the Y min (P1.27) on an SKR V1.3 board. If you are sure everything is configured correctly but the Neopixels are unresponsive, try another mainboard pin. For RepRapFirmware, if using Duet3D hardware, the available ports are listed on the <a href="https://duet3d.dozuki.com/Wiki/Neopixel_and_DotStar_LEDs" target="_blank">Duet3D Neopixel and Dotstar LED reference</a>. Restrictins apply depending on the board so read carefully.</p>
+            <p>If using the <a href="https://teamgloomy.github.io/index.html" target="_blank">TeamGloomy RRF port</a>, you can use any spare IO pin and specify it in the next section.</p>
+            <p>It is possible, as demonstrated in the video, that two or more Neopixel strips can be connected to a single data pin in parallel. Two works perfectly, but I have not tested how more can be connected in parallel before problems occur.</p>
+            <h2>Firmware Setup</h2>
+            <script>document.write(firmwareSelector);</script>
+            <div class="marlinContent">
+                <h4>Marlin Neopixel Setup</h4>
+                <p>If you are new to editing Marlin firmware, the following video will assist you in setup, compilation and flashing: <a href="https://youtu.be/eq_ygvHF29I" target="_blank">Updated Marlin firmware setup guide - VS Code and Auto Build Marlin</a>.</p>
+                <p>The major firmware changes are minimal, with optional and recommended features available too.</p>
+                <a href="#" data-featherlight="img/neopixel-marlin-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/neopixel-marlin-firmware-1.jpg" /></a>
+                <p>Set the <i>NEOPIXEL_PIN</i> to suit your mainboard. I set my pin to <i>P1.24</i> after referencing the SKR E3 Turbo
+                <a href="https://teamgloomy.github.io/images/skr_E3T.png" target="_blank">pinout diagram</a>.</p>
+                <p><i>NEOPIXEL_PIXELS</i> should be set to match the length of your Neopixel strip.</p>
+                <p><i>NEO_GRB</i> is the correct <i>NEOPIXEL_TYPE</i> setting for TH3D EZneo strip I used, but other options are available for other brands of Neopixels.</p>
+                <p>Uncommenting <i>NEOPIXEL_STARTUP_TEST</i> is recommended as it will flash three colours in succession when the printer first boots, indicating the Neopixels are connected and configured correctly.</p>
+                <a href="#" data-featherlight="img/neopixel-marlin-firmware-2.jpg"><img loading="lazy" class="thumb" src="img/neopixel-marlin-firmware-2.jpg" /></a>
+                <p>By uncommenting <i>PRINTER_EVENT_LEDS</i>, the Neopixel strip will change colour automatically during print jobs as described in the firmware and demonstrated in the video.</p>
+                <a href="#" data-featherlight="img/neopixel-marlin-firmware-3.jpg"><img loading="lazy" class="thumb" src="img/neopixel-marlin-firmware-3.jpg" /></a>
+                <p>By uncommenting <i>LED_CONTROL_MENU</i>, if you are using a Marlin LCD a new menu will appear to control the Neopixels as demonstrated in the video.</p>
+                <p>Compile the firmware and flash it to the mainboard.</p>
+            </div>
+            <div class="klipperContent">
+                <h4>Klipper Neopixel setup</h4>
+                <p>The required settings can be copied from the Neopixel section of the <a href="https://www.klipper3d.org/Config_Reference.html#neopixel" target="_blank">Klipper config reference</a>, pasted into your printer.cfg and then modified to suit your setup.</p>
+                <a href="#" data-featherlight="img/neopixel-klipper-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/neopixel-klipper-firmware-1.jpg" /></a>
+                <p>The name after <i>[neopixel</i> is up to the user and should not contain spaces or start with a number. I used <i>neo</i>.</p>
+                <p>In the above example, I am using an SKR V1.3 board, which has no designated Neopixel port. I am therefore using the data pin from the servo port, pin 2.0 as seen on the <a href="https://teamgloomy.github.io/images/skr_1.3.png" target="_blank">pinout diagram</a>.</p>
+                <p><i>chain_count</i> should be set to match the length of your Neopixel strip.</p>
+                <p>GRB is the correct <i>color_order</i> setting for TH3D EZneo strip I used, but other options are available for other brands of Neopixels.
+                <p>Save and restart Klipper.</p>
+            </div>
+            <div class="rrfContent">
+                <h4>RepRapFirmware Neopixel Setup</h4>
+                <p>The required steps differ slightly depending on whether you are running RRF on Duet3D hardware or the TeamGloomy LPC/STM32 port. If using Duet3D hardware, your mainboard pin is preset and no additional data pin specification is required.</p>
+                <p>If you are using the <a href="https://teamgloomy.github.io/index.html" target="_blank">TeamGloomy RRF port</a> on LPC/STM32 hardware, you must specify the pin as follows:</p>
+                <a href="#" data-featherlight="img/neopixel-rrf-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/neopixel-rrf-firmware-1.jpg" /></a>
+                <p>In the above example, I used the default SKR V1.4 Neopixel pin which is labelled as 1.24 on the <a href="https://teamgloomy.github.io/images/skr_1.4.png" target="_blank">pinout diagram</a>.</p>
+                <p>We now configure support for the Neopixel strip in config.g using <a href="https://duet3d.dozuki.com/Wiki/M150" target="_blank">M150</a>:</p>
+                <a href="#" data-featherlight="img/neopixel-rrf-firmware-2.jpg"><img loading="lazy" class="thumb" src="img/neopixel-rrf-firmware-2.jpg" /></a>
+                <p>If you are using an unusual brand of Neopixels, you may also need the Q parameter to set the SPI frequency. The Q parameter is not supported on the LPC/STM32 port of RRF. See further notes on compatibity <a href="https://teamgloomy.github.io/neopixels.html" target="_blank">here</a>.</p>
+                <p>Save and restart the board.</p>
+            </div>
+            <h2>Gcode Control</h2>
+            <p>The following website may be useful when trying to generate RGB colour codes when programming Neopixels: <a href="https://www.w3schools.com/colors/colors_rgb.asp" target="_blank">w3 Schools RGB Calculator</a></p>
+            <p>For Klipper firmware, divide each colour value by 255 to bring it into the required range of 0.0 to 1.0.</p>
+            <p class="warning">It is not recommended to change the Neopixel strip during printing as this can potentially cause stepper movements to stutter. This will vary based on the firmware and hardware being used.</p>
+            <script>document.write(firmwareSelector);</script>
+            <div class="marlinContent">
+                <h4>Marlin control</h4>
+                <p>If you enabled <i>PRINTER_EVENT_LEDS</i> when compiling the firmware, once a print job starts the Neopixel strip will change colour automatically according to the printer status. If you enabled <i>LED_CONTROL_MENU</i> when compiling the firmware, you can also control the Neopixels from the new <i>Lights</i> LCD menu. We can also manually control the strip using the <a href="https://marlinfw.org/docs/gcode/M150.html" target="_blank">M150</a> gcode.</p>
+                <p>The key (but not all) arguments are as follows:</p>
+                <ul>
+                    <li>R - Red value between 0 and 255</li>
+                    <li>U - Green value between 0 and 255</li>
+                    <li>B - Blue value between 0 and 255</li>
+                    <li>I - The address/index of the pixel to set the colour for (starting from 0). If this is omitted the entire strip will be set.</li>
+                </ul>
+                <h5>Example: Setting all LEDs in a 15 pixel strip to purple</h5>
+                <pre>M150 R255 U0 B255</pre>
+                <p>This uses full red and blue with no green to make purple for all 15 pixels.</p>
+                <h5>Example: Turn off all LEDs in a 15 pixel strip</h5>
+                <pre>M150 R0 U0 B0</pre>
+                <h5>Set groups of five LEDS different colours in a 15 pixel strip</h5>
+                <pre>M150 R255 U0 B0 I0
+M150 R255 U0 B0 I1
+M150 R255 U0 B0 I2
+M150 R255 U0 B0 I3
+M150 R255 U0 B0 I4</pre>
+                <p>Here we set the first five pixels to red only. Note the index starts from zero and increases by one for each command. The strip will update after each command.</p>
+                <pre>M150 R0 U255 B0 I5
+M150 R0 U255 B0 I6
+M150 R0 U255 B0 I7
+M150 R0 U255 B0 I8
+M150 R0 U255 B0 I9</pre>
+                <p>Now we set the next five pixels to green only. The strip will update after each command.</p>
+                <pre>M150 R0 U0 B255 I10
+M150 R0 U0 B255 I11
+M150 R0 U0 B255 I12
+M150 R0 U0 B255 I13
+M150 R0 U0 B255 I14                    
+                </pre>
+                <p>Finally, we set the last five pixels to blue only. The strip will update after each command.</p>
+                <h5>Macros</h5>
+                <p>Marlin supports user macros with the <a href="https://marlinfw.org/docs/gcode/M810-M819.html" target="_blank">M810 to M819</a> gcode commands.</p>
+                <p>This would be an efficient way to use more complex RGB patterns with Neopixels and will be the subect of a future video.</p>
+            </div>
+            <div class="klipperContent">
+                <h4>Klipper control</h4>
+                <p>Unfortunately, there is no automatic control of Neopixels in relation to the events and/or status of the printer. We must use the <a href="https://www.klipper3d.org/G-Codes.html#neopixel-and-dotstar-commands" target="_blank">SET_LED</a> command to set colour of the strip manually.</p>
+                <p>The key (but not all) arguments are as follows:</p>
+                <ul>
+                    <li>RED - Red value between 0 and 1.0</li>
+                    <li>GREEN - Green value between 0 and 1.0</li>
+                    <li>BLUE - Blue value between 0 and 1.0</li>
+                    <li>INDEX - The address/index of the pixel to set the colour for (starting from 1). If this is omitted, the entire strip will be set.</li>
+                    <li>TRANSMIT - If <i>TRANSMIT=0</i> is included, the command will be stored without the strip changing colour. When a <i>SET_LED</i> command is later sent without <i>TRANSMIT=0</i>, all buffered commands will be then executed and the strip will change colour.</li>
+                </ul>
+                <h5>Example: Setting all LEDs in a 15 pixel strip to purple</h5>
+                <pre>SET_LED LED=neo RED=1 GREEN=0 BLUE=1</pre>
+                <p>This uses full red and blue with no green to make purple for all 15 pixels. This example, like the others, uses the name <i>neo</i> to match my configuration above. Substitute your own name as necessary.</p>
+                <h5>Example: Turning off all LEDs in a 15 pixel strip</h5>
+                <pre>SET_LED LED=neo RED=0 GREEN=0 BLUE=0</pre>
+                <h5>Set groups of five LEDS different colours in a 15 pixel strip</h5>
+                <pre>SET_LED LED=neo RED=1 GREEN=0 BLUE=0 INDEX=1 TRANSMIT=0
+SET_LED LED=neo RED=1 GREEN=0 BLUE=0 INDEX=2 TRANSMIT=0
+SET_LED LED=neo RED=1 GREEN=0 BLUE=0 INDEX=3 TRANSMIT=0
+SET_LED LED=neo RED=1 GREEN=0 BLUE=0 INDEX=4 TRANSMIT=0
+SET_LED LED=neo RED=1 GREEN=0 BLUE=0 INDEX=5 TRANSMIT=0</pre>
+                <p>We set the first five pixels to red, one at a time, specifying with <i>INDEX</i>. <i>TRANSMIT=0</i> prevents the Neopixel strip from actually showing the change.</p>
+                <pre>SET_LED LED=neo RED=0 GREEN=1 BLUE=0 INDEX=6 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=1 BLUE=0 INDEX=7 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=1 BLUE=0 INDEX=8 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=1 BLUE=0 INDEX=9 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=1 BLUE=0 INDEX=10 TRANSMIT=0</pre>
+                <p>We now set the middle five pixels to green, one at a time, specifying with <i>INDEX</i>. <i>TRANSMIT=0</i> prevents the Neopixel strip from actually showing the change.</p>
+                <pre>SET_LED LED=neo RED=0 GREEN=0 BLUE=1 INDEX=11 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=0 BLUE=1 INDEX=12 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=0 BLUE=1 INDEX=13 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=0 BLUE=1 INDEX=14 TRANSMIT=0
+SET_LED LED=neo RED=0 GREEN=0 BLUE=1 INDEX=15</pre>
+                <p>We now set the final five pixels to blue, one at a time, specifying with <i>INDEX</i>. <i>TRANSMIT=0</i> prevents the Neopixel strip from actually showing the change, until the final command, where it is omitted and the strip finally updates to show the complete pattern.</p>
+                <h5>Macros</h5>
+                <p>It's probably most efficient to set designated colour combinations ahead of time in <a href="https://www.klipper3d.org/G-Codes.html#g-code-macro-commands" target="_blank">macros</a>. You can then call set colour combinations to indicate heating, printing, or job completion. To run a macro, simply enter its name in the terminal.</p>
+                <p>You can also enter the macro name in your slicer where you want the colour change to occur.</p>
+            </div>
+            <div class="rrfContent">
+                <h4>RepRapFirmware control</h4>
+                <p>Unfortunately, there is no automatic control of Neopixels in relation to the events and/or status of the printer. We must use the <a href="https://duet3d.dozuki.com/Wiki/M150" target="_blank">M150</a> gcode to set the colour of the strip manually.</p>
+                <p>The key (but not all) arguments are as follows:</p>
+                <ul>
+                    <li>R - Red value between 0 and 255</li>
+                    <li>U - Green value between 0 and 255</li>
+                    <li>B - Blue value between 0 and 255</li>
+                    <li>S - The quantity of pixels to set the colour for</li>
+                    <li>F - Follow on command. F0 indicates you are finished whereas F1 indicates you will be setting the colours of additional pixels with the next M150 command.</li>
+                </ul>
+                <h5>Example: Setting all LEDs in a 15 pixel strip to purple</h5>
+                <pre>M150 R255 U0 B255 S15 F0</pre>
+                <p>This uses full red and blue with no green to make purple for all 15 pixels.</p>
+                <h5>Example: Turn off all LEDs in a 15 pixel strip</h5>
+                <pre>M150 R0 U0 B0 S15 F0</pre>
+                <h5>Set groups of five LEDS different colours in a 15 pixel strip</h5>
+                <pre>M150 R255 U0 B0 S5 F1</pre>
+                <p>Here we set the first five pixels to red only. Note the F1 argument to NOT close the command.</p>
+                <pre>M150 R0 U255 B0 S5 F1</pre>
+                <p>Now we set the next five pixels to green only. Note the F1 argument to NOT close the command.</p>
+                <pre>M150 R0 U0 B255 S5 F0</pre>
+                <p>Finally, we set the final five pixels to blue only. Note the F0 argument to close the command and change all of the colours.</p>
+                <h5>Macros</h5>
+                <p>It's probably most efficient to set designated colour combinations ahead of time in <a href="https://duet3d.dozuki.com/Wiki/Macros" target="_blank">macros</a>. You can then call set colours to indicate heating, printing, or job completion. To run a macro, use the <a href="https://duet3d.dozuki.com/Wiki/M98" target="_blank">M98</a> command. eg:</p>
+                <pre>M98 P"/macros/neo-purple.g"</pre>
+                <p>The M98 gcode can be inserted into your slicer as you please.</p>
+            </div>
+        </div>
+
     <div id="up"></div>
     <div id="footer"></div>
 </body>
