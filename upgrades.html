@@ -42,7 +42,7 @@
                 <p>Compared to other ABL probes, a BLtouch requires a slight amount of extra wiring. If the mainboard does not have a dedicated 'probe' port or spare PWM output (Creality V1.X boards), a 'pin27 adaptor' is required.</p>
             </div>
             <p>I have made many BLtouch guide videos in the past, but this one aims to be generic enough to apply to almost any 3D printer. This guide has a companion video with many of the concepts illustrated: <a href="https://youtu.be/eF060dBEnfs" target="_blank">BLtouch for any 3D printer - Comprehensive step by step guide</a></p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>For this guide, we will start with the physical mounting of the BLtouch, then cover wiring, firmware changes, calibration, slicer changes, customisation and troubleshooting.</p>
             <h2>Physical mounting</h2>
             <p>A BLtouch needs to be mounted to the print head of the machine. Ideally the BLtouch (or any other ABL probe) will be mounted as closely to the nozzle as possible, but not so close it fails from exposure to heat. A silicone sock over the heater block can assist here. The BLtouch should be secured tightly. Any play or wobble will destroy accuracy and repeatability. Other considerations when mounting are making sure the BLtouch is not so close to the hot end that it suffers damage from heat, and that its placement does not interfere with homing.</p>
@@ -82,7 +82,7 @@
             <p>Personally, I prefer to use the normal Z axis endstop port. This is because it simplifies the changes needed in the firmware (both versions covered below). It also prevents any chance of leaving the old Z endstop switch connected and potentially interfering.</p>
             <h2>Marlin firmware changes</h2>
             <p>Firstly, if you are new to firmware, I have a few beginner guides, but <a href="https://youtu.be/eq_ygvHF29I" target="_blank">Updated Marlin firmware setup guide - VS Code and Auto Build Marlin</a> is probably the best place to start as it goes over installing the software and how to use the example configurations to get a good starting point for your printer.</p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eq_ygvHF29I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <h5>Mandatory changes</h5>
             <p>Once you have this baseline, the following changes are mandatory for a BLtouch:</p>
             <a href="#" data-featherlight="img/bltouch-firmware-1.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-1.jpg" /></a>
@@ -109,7 +109,7 @@
             <a href="#" data-featherlight="img/bltouch-firmware-7.jpg"><img loading="lazy" class="thumb" src="img/bltouch-firmware-7.jpg" /></a>
             <h2>Calibration</h2>
             <p>Once you have connected everything and flashed your updated firmware, there is still some calibration regarding the offset of the probe. Fortunately I have dedicated video on this topic:</p>
-            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/fN_ndWvXGBQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p>In summary, we need to do the following:</p>
             <ul>
                 <li>Measure and input our X/Y probe offsets. This can be done using the <a href="https://marlinfw.org/docs/gcode/M851.html" target="_bank"><b>M851</b></a> gcode command over terminal or via the LCD screen. Even if you previously entered this when compiling firmware, double check the values are correct. When changing offsets, don't forget to save to EEPROM.</li>
@@ -159,15 +159,17 @@
                     <li><a href="https://bit.ly/2POMHEG" target="_blank">Adjustable buck converter (Banggood)</a></li>
                 </ul>
                 <h5>What it does:</h5>
-                <p>RGB LEDs are lights that can be set to almost any colour by mixing different magnitudes of red, green and blue. Neopixels are digital/addressible RGB LEDs, which means each LED in a strip can be set to a unique colour. This means you can have rainbow effects and even animations. Neopixels allow you to illuminate your 3D printer and/or printing area in a creative way.</p>
+                <p>RGB LEDs are lights that can be set to almost any colour by mixing different magnitudes of red, green and blue. Neopixels are digital/addressible RGB LEDs, which means each LED in a strip can be set to a unique colour. This means you can have rainbow effects and even animations. Neopixels allow you to illuminate your 3D printer and/or printing area in a creative way. Neopixels are a specific brand name for Adafruit WS2812B addressable LEDs, but the term has become ubiquitous when discussing digital RGB LEDs and 3D printing.</p>
                 <h5>Advantages:</h5>
                 <p>Neopixels can be used to illuminate the print area for timelapses. They can also be configured to change their colour depending on the printer state. For example, glowing red to indicate the printer is hot or green to indicate a print is complete.</p>
                 <h5>Disadvantages:</h5>
                 <p>For the most part this is a superficial mod and will not add to the function of the printer.</p>
             </div>
-            <p>This guide has a companion video with many of the concepts illustrated: <a href="" target="_blank">RGB Neopixels for any 3D printer - Marlin, Klipper and RRF guide</a></p>
-            <img src="img/390-thumb.jpg" width="480" height="270" />
-            <!-- <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/eF060dBEnfs" framebordeRED="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+            <p>This guide has a companion video with many of the concepts illustrated: <a href="https://youtu.be/SNAepJUDlsA" target="_blank">RGB Neopixels for any 3D printer - Marlin, Klipper and RRF guide</a></p>
+            <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/SNAepJUDlsA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <h2>Physical Mounting</h2>
+            <p>In your have purchased Neopixels in a long roll, typically double side tape is used to stick the strip somewhere on the frame. If using a Neopixel product formed as a rigid PCB, this will typically have mounting holes which can be used in conjuction with screws and T nuts to bolt it to the frame. Both options are very easy but depending the the adhesive tape used, the rigid option will be more secure in the long term.</p>
+            <p>Take care to ensure both the Neopixel strip and your wiring back to the mainboard are secure and clear of any moving parts. For machines built with V slot extrusions, you can run the wires inside one of the trenches to keep them out of the way.</p>
             <h2>Wiring</h2>
             <p>Neopixels are digital and therefore only require three wires.</p>
             <ul>
@@ -175,7 +177,7 @@
                 <li><span style="color:black; font-weight:900;"> Black: </span> Ground</li>
                 <li><span style="color:blue; font-weight:900;"> Blue</span> / <span style="color:white; font-weight:900; background-color:#444;">&nbsp;White&nbsp;</span> : Data signal</li>                
             </ul>
-            <p class="warning">Never assume the loom/wires you are using matches ports of the mainboard. Check the three wires before connecting to avoid damaging your Neopixels or mainboard. Depin and arrange as necessary.</p>
+            <p class="warning">Never assume the loom/wires you are using matches ports of the mainboard. Check the three wires before connecting to avoid damaging your Neopixels or mainboard. De-pin and arrange as necessary.</p>
             <h2>Wiring: Data pin</h2>
             <p>A single data pin is needed to set the colour of an entire Neopixel strip. The microcontroller or processor controlling the Neopixels should know how long the strip is before sending a data command. It can then address a colour/brightness command for each pixel in the strip. The first pixel will read this, set its own color, then pass on the list of instructions to the next in the strip minus its own instruction. The process repeats down the chain of LEDS until each has received their instruction.</p>
             <p>A very simplified example might be a four LED strip that the user wants to set to red, orange, yellow, green.</p>
@@ -190,14 +192,11 @@
             <p>The power wiring for Neopixels is very simple on paper but needs care in reality. This is because the required current increases with each pixel added to the strip. Each pixel might draw somewhere between 60-80mA, therefore once the strip increases in length beyond a certain length, it will need more power than the onboard 5V regulator of the mainboard can supply.</p>
             <p>The available current capacity for Neopixels will vary depending on the mainboard and other connected 5V hardware (BLtouch, 5V fans, servos, powered endstops, etc), therefore it is recommended to power the Neopixels from a separate 5V source if the strip is of any significant length. Options to create a suitable 5V power source include (each is shown in the video above):</p>
             <ul>
-                <li>An DCDC 'buck converter', setting the output voltage to 5V.</li>
+                <li>An DCDC 'buck converter', setting the output voltage to 5V. I have a <a href="https://youtu.be/yW9ovo9CHi0" target="_blank">video guide</a> on these already.</li>
                 <li>A preprepared product like the EZneo universal 5V power kit, which is already set to an output of 5V.</li>
-                <li>A specialised mainboard add on like the Bigtreetech DCDC mode module, connected to the SKR V1.4 to add to the additional available 5V current.</li>
+                <li>A specialised mainboard add on like the Bigtreetech DCDC mode module, connected to the SKR V1.4 to add to the additional available 5V current. This is demonstrated in <a href="https://youtu.be/-Gdk0wHg51w" target="_blank">this video guide</a>.</li>
             </ul>
             <p>If your strip is particularly long, you may notice pixels further down the line are dimmer than those near the start. This is because the voltage drops with each pixel. For a long strip, you may need to add additional 5V power inputs at set intervals down the strip to boost the voltage.</p>
-            <h2>Physical Mounting</h2>
-            <p>In your have purchased Neopixels in a long roll, typically double side tape is used to stick the strip somewhere on the frame. If using a Neopixel product formed as a rigid PCB, this will typically have mounting holes which can be used in conjuction with screws and T nuts to bolt it to the frame. Both options are very easy but depending the the adhesive tape used, the rigid option will be more secure in the long term.</p>
-            <p>Take care to ensure both the Neopixel strip and your wiring back to the mainboard are secure and clear of any moving parts. For machines built with V slot extrusions, you can run the wires inside one of the trenches to keep them out of the way.</p>
             <h2>Mainboard connection</h2>
             <p>For Marlin and Klipper, you should be able connect the data pin to any free IO pin. There are some exceptions, however. For instance I was unable to use the Y min (P1.27) on an SKR V1.3 board. If you are sure everything is configured correctly but the Neopixels are unresponsive, try another mainboard pin. For RepRapFirmware, if using Duet3D hardware, the available ports are listed on the <a href="https://duet3d.dozuki.com/Wiki/Neopixel_and_DotStar_LEDs" target="_blank">Duet3D Neopixel and Dotstar LED reference</a>. Restrictins apply depending on the board so read carefully.</p>
             <p>If using the <a href="https://teamgloomy.github.io/index.html" target="_blank">TeamGloomy RRF port</a>, you can use any spare IO pin and specify it in the next section.</p>
@@ -290,6 +289,7 @@ M150 R0 U0 B255 I14
                 <p>Unfortunately, there is no automatic control of Neopixels in relation to the events and/or status of the printer. We must use the <a href="https://www.klipper3d.org/G-Codes.html#neopixel-and-dotstar-commands" target="_blank">SET_LED</a> command to set colour of the strip manually.</p>
                 <p>The key (but not all) arguments are as follows:</p>
                 <ul>
+                    <li>LED - The name of the instance you setup in printer.cfg (eg. <i>neo</i>)</li>
                     <li>RED - Red value between 0 and 1.0</li>
                     <li>GREEN - Green value between 0 and 1.0</li>
                     <li>BLUE - Blue value between 0 and 1.0</li>
