@@ -35,6 +35,42 @@ function displayCustom(){
         $('.klipperContent').hide();
         $('.rrfContent').show();
     }
+    // slicer selector
+    if($("#curaSelector").prop("checked") == true){
+        $('.curaContent').show();
+        $('.s3dContent').hide();
+        $('.prusaslicerContent').hide();
+        $('.superslicerContent').hide();
+        $('.ideamakerContent').hide();
+    }
+    if($("#s3dSelector").prop("checked") == true){
+        $('.curaContent').hide();
+        $('.s3dContent').show();
+        $('.prusaslicerContent').hide();
+        $('.superslicerContent').hide();
+        $('.ideamakerContent').hide();
+    }
+    if($("#prusaslicerSelector").prop("checked") == true){
+        $('.curaContent').hide();
+        $('.s3dContent').hide();
+        $('.prusaslicerContent').show();
+        $('.superslicerContent').hide();
+        $('.ideamakerContent').hide();
+    }
+    if($("#superslicerSelector").prop("checked") == true){
+        $('.curaContent').hide();
+        $('.s3dContent').hide();
+        $('.prusaslicerContent').hide();
+        $('.superslicerContent').show();
+        $('.ideamakerContent').hide();
+    }
+    if($("#ideamakerSelector").prop("checked") == true){
+        $('.curaContent').hide();
+        $('.s3dContent').hide();
+        $('.prusaslicerContent').hide();
+        $('.superslicerContent').hide();
+        $('.ideamakerContent').show();
+    }
 }
 
 var firmwareSelector = /*html*/ `<form name="firmwareSelect" class="firmwareSelector">
@@ -47,8 +83,24 @@ var firmwareSelector = /*html*/ `<form name="firmwareSelect" class="firmwareSele
 <label for="rrfSelector">RRF</label>
 </p>
 </form>
-
 `;
+
+var slicerSelector = /*html*/ `<form name="slicerSelect" class="slicerSelector">
+<p style="margin-left:20px;">Use the button to switch instructions for different slicers:</p>
+<p><input name="slicer" id="curaSelector" value="cura" checked type="radio" onchange="displayCustom()"/>
+<label for="curaSelector">Cura</label>
+<input name="slicer" id="s3dSelector" value="s3d" type="radio" onchange="displayCustom()"/>
+<label for="s3dSelector">Simplify3D</label>
+<input name="slicer" id="prusaslicerSelector" value="prusaslicer" checked type="radio" onchange="displayCustom()"/>
+<label for="prusaslicerSelector">PrusaSlicer</label>
+<input name="slicer" id="superslicerSelector" value="superslicer" checked type="radio" onchange="displayCustom()"/>
+<label for="superslicerSelector">SuperSlicer</label>
+<input name="slicer" id="ideamakerSelector" value="ideamaker" checked type="radio" onchange="displayCustom()"/>
+<label for="ideamakerSelector">ideaMaker</label>
+</p>
+</form>
+`;
+
 
 var nozzleLayer = /*html*/ `<h4>Nozzle Diameter / Layer Height</h4>
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>

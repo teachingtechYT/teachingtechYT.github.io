@@ -77,8 +77,8 @@ function flowCalc2(){
 var maxExtVol = 7.22;
 var maxFeedRate = 100;
 function maxExt(){
-    var dia = document.maxExtrusion.filDia.value;
-    var max = document.maxExtrusion.maxFeed.value;
+    var dia = document.maxExtrusion1.filDia.value;
+    var max = document.maxExtrusion1.maxFeed.value;
     var result = ((Math.pow(dia/2, 2))*Math.PI)*(max/60);
     var str = result.toFixed(2);
     maxExtVol = parseFloat(str);
@@ -86,8 +86,8 @@ function maxExt(){
 }
 
 function maxFee(){
-    var layH = document.maxExtrusion.layerH.value;
-    var layW = document.maxExtrusion.layerW.value;
+    var layH = document.maxExtrusion2.layerH.value;
+    var layW = document.maxExtrusion2.layerW.value;
     var maxFeedRate = Math.floor(maxExtVol/(layH*layW));
     $('#maxFee').html(maxFeedRate);
 }
