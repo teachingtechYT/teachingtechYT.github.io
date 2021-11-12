@@ -7,10 +7,10 @@ M106 S0
 ;bed0a
 ;bed0b
 ;temp0a
-;temp0b
 G28 ; home all axes
 ;G29 ; probe ABL
-;M420 S1 ; restore ABL mesh 
+;M420 S1 ; restore ABL mesh
+;temp0b 
 ;customstart
 G0 Z3; fix for delta printers that home at max`;
 

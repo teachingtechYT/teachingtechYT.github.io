@@ -18,6 +18,7 @@ var scripts = /*html*/ `
 <script defer src="js/retraction.js"></script>
 <script defer src="js/temperature.js"></script>
 <script defer src="js/acceleration.js"></script>
+<script defer src="js/speed.js"></script>
 <script defer src="js/minimumlength.js"></script>
 `;
 document.write(scripts);

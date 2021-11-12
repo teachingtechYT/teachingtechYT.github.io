@@ -110,6 +110,12 @@ function updateFeeds(feedrate) {
     $('.firstFeed').html(Math.round(feedrate*0.5));
 }
 
+function updateFeedsTower(feedrate) {
+    $('.solidFeedTower').html(Math.round(feedrate*0.8));
+    $('.travelFeedTower').html(Math.round(feedrate*1.67));
+    $('.firstFeedTower').html(Math.round(feedrate*0.5));
+}
+
 function processGcode(formName) {
     var name = formName.name;
     var description = formName.description.value;
@@ -132,7 +138,7 @@ function processGcode(formName) {
         var fanPercentage = formName.fanSpeed.value;
         var fanSpeed = Math.round(fanPercentage*2.55);
     }
-    if(name == "temperatureForm"){
+    if(name == "temperatureForm"){ // collect temperature tower inputs
         var hotendTemp = formName.temp_a0.value;
         var a1 = formName.temp_a1.value;
         var b1 = formName.temp_b1.value;
@@ -141,6 +147,12 @@ function processGcode(formName) {
         var e1 = formName.temp_e1.value;
     } else {
         var hotendTemp = formName.hotendtemp.value;
+    }
+    if(name == "speedForm"){ // collect speed test inputs
+        var feedB = formName.feedrateB.value;
+        var feedC = formName.feedrateC.value;
+        var feedD = formName.feedrateD.value;
+        var feedE = formName.feedrateE.value;
     }
     // first layer test specifics
     if(name == "firstlayerForm"){
@@ -277,7 +289,7 @@ function processGcode(formName) {
     }
     // start hot end emp
     if(abl != 4){
-         gcode = gcode.replace(/;temp0a/g, "M104 S"+hotendTemp+" T0 ; custom hot end temp");
+         gcode = gcode.replace(/;temp0a/g, "M104 S"+(hotendTemp-50)+" T0 ; custom hot end temp minus 50 degrees");
          gcode = gcode.replace(/;temp0b/g, "M109 S"+hotendTemp+" T0 ; custom hot end temp");
     } else {
         gcode = gcode.replace(/;temp0a/g, "; Prusa Mini");
@@ -366,6 +378,9 @@ function processGcode(formName) {
     if(name == "accelerationForm"){
         gcode += acceleration[nozzleLayer];
     }
+    if(name == "speedForm"){
+        gcode += speed[nozzleLayer];
+    }
     // add end gcode
     if((formName.customEndOnly.checked == true) && (formName.end.checked == true)){
         gcode += ";customend\n";      
@@ -439,7 +454,6 @@ function processGcode(formName) {
                 gcodeArray.forEach(function(index, item){
                     if(gcodeArray[item].search(/F/) > -1){
                         var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1));
-                        //alert(value);
                         if(value != 1200){
                             gcodeArray[item] = gcodeArray[item].replace(regexp, "F"+String(value*feedMod)+" ; custom feedrate")
                         }
@@ -448,7 +462,15 @@ function processGcode(formName) {
                 gcode = gcodeArray.join("\n");
             }
         }
-
+        // changes for speed tower test
+        if(name == "speedForm"){
+            gcode = gcode.replace(/;process Process-1/, "M220 S100 ; custom speed A - "+feed/60+" mm/sec");
+            gcode = gcode.replace(/;process Process-2/, "M220 S"+(feedB/(feed/60)*100)+" ; custom speed B - "+feedB+" mm/sec");
+            gcode = gcode.replace(/;process Process-3/, "M220 S"+(feedC/(feed/60)*100)+" ; custom speed C - "+feedC+" mm/sec");
+            gcode = gcode.replace(/;process Process-4/, "M220 S"+(feedD/(feed/60)*100)+" ; custom speed D - "+feedD+" mm/sec");
+            gcode = gcode.replace(/;process Process-5/, "M220 S"+(feedE/(feed/60)*100)+" ; custom speed E - "+feedE+" mm/sec");
+            gcode += "M220 S100 ; return feedrate to normal";
+        }
         // changes for acceleration test
         if(name == "accelerationForm"){
             // edit feedrates
