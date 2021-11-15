@@ -107,6 +107,7 @@ var nozzleLayer = /*html*/ `<h4>Nozzle Diameter / Layer Height</h4>
     <p>25 options are available, however some of the tests don't work very well with the larger options.</p>
     <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
     <select name="nozzleLayer">
+        <option value="15_08">0.15 mm nozzle / 0.08 mm layer height</option>
         <option value="20_05">0.20 mm nozzle / 0.05 mm layer height</option>
         <option value="20_10">0.20 mm nozzle / 0.10 mm layer height</option>
         <option value="20_15">0.20 mm nozzle / 0.15 mm layer height</option>
