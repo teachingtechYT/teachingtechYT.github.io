@@ -367,6 +367,9 @@ var accel = /*html*/ `<h4>Base feedrate/speed</h4>
 <p>You can specify the feedrate for X and Y movements. Both the inner and outer perimeter speed can be specified. It is recommend to follow the process above to calculate safe limits for feedrate.</p>
 <p><label>Inner perimeter feedrate (mm/sec): <input type="number" name="innerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
 <p><label>Outer perimeter feedrate (mm/sec): <input type="number" name="outerFeedrate" value="60" min="5" max="1000" step="1"></label></p>
+<h4>Delta printer</h4>
+<p>Delta printers require X, Y and Z acceleration limits to be raised at the start of the test, whereas cartesian and coreXY only need X and Y limits raised. Tick the box if you are printing this test on a delta printer in order to set the correct behaviour.
+<p><label>Delta printer: <input name="deltaAcc" type="checkbox" value="off"></label></p>
 <h4>Acceleration and jerk/junction deviation</h4>
 <p>After entering <b>M503</b>, I have determined my 3D printer firmware uses:</p>
 <label>Jerk: <input type="radio" value="jerk" name="jerk_or_jd" checked="checked" onchange="toggleJ()"></label>

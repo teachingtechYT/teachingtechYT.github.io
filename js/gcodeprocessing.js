@@ -478,7 +478,11 @@ function processGcode(formName) {
             gcode = gcode.replace(/F2880/g, "F"+inner+" ; custom outer perimeter feedrate");
             gcode = gcode.replace(/F2160/g, "F"+outer+" ; custom inner perimeter feedrate");
             // add acceleration segments
-            gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+            if(formName.deltaAcc.checked == true){
+                gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits delta\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+            } else {
+                gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000; custom raise acceleration limits\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+            }
             gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" T"+b1+" ; custom acceleration - B\n;j2");
             gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" T"+c1+" ; custom acceleration - C\n;j3");
             gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" T"+d1+" ; custom acceleration - D\n;j4");
@@ -486,12 +490,21 @@ function processGcode(formName) {
             gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" T"+f1+" ; custom acceleration - F\n;j6");
             // add jerk/junction deviation segments
             if(jerk_or_jd == "jerk"){
-                gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk - A");
-                gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk - B");
-                gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk - C");
-                gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk - D");
-                gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk - E");
-                gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk - F");
+                if(formName.deltaAcc.checked == true){
+                    gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk delta - A");
+                    gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk delta - B");
+                    gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk delta - C");
+                    gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk delta - D");
+                    gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk delta - E");
+                    gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk delta - F");
+                } else {
+                    gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
+                    gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
+                    gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
+                    gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
+                    gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
+                    gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
+                }
             } else {
                 gcode = gcode.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
                 gcode = gcode.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
