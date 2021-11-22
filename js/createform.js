@@ -166,12 +166,12 @@ var extraMargin = /*html*/ `<p>You may add extra margin for clearing bed clips, 
             <label>Extra margin from edge (mm): <input type="number" name="margin" value="0" min="0" max="100" step="1"></label>`;
 
 var tempReg = /*html*/ `<h4>Temperatures</h4>
-<p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off).</p>
+<p>For the hot end and bed respectively, typical PLA temperatures are 200 and 60, PETG 235 and 80, ABS 250 and 100, TPU 230 and 5 (effectively off). Note: Homing and ABL sequence will be completed with a hot end temperature 50 degrees below what is set.</p>
 <label>Hot end temperature (deg C): <input type="number" name="hotendtemp" value="200" min="160" max="450"></label>
 <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="0" max="150"></label> (use 0 for a non heated bed)<br />`;
 
 var tempTower = /*html*/ `<h4>Bed Temperature</h4>
-<p>For bed, typical PLA temperatures are 60, PETG 80, ABS 100, TPU 5 (effectively off).</p>
+<p>For bed, typical PLA temperatures are 60, PETG 80, ABS 100, TPU 5 (effectively off).  Note: Homing and ABL sequence will be completed with a hot end temperature 50 degrees below what is set.</p>
 <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="0" max="150"></label> (use 0 for a non heated bed)
 <h4>Hot end temperature</h4>
 <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span></p>
