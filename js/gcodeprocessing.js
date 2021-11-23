@@ -35,7 +35,7 @@ function esteps(){
     var oldSteps = document.estepsForm.oldSteps.value;
     var remainingFil = document.estepsForm.remainingFil.value;
     var actualExtrusion = 120 - remainingFil;
-    var newSteps = (oldSteps/actualExtrusion*100).toFixed(2);
+    var newSteps = (oldSteps/actualExtrusion*100).toFixed(5);
     $("#e1").html(remainingFil);
     $("#e2").html(actualExtrusion);
     $("#e3").html(newSteps);
