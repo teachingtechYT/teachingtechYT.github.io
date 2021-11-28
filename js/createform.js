@@ -455,7 +455,7 @@ var endGcode = /*html*/ `<h4>Additional end gcode</h4>
     <textarea name="endgcode"></textarea>
 </div>`;
 
-var preview = /*html*/ `<p>It is advised to preview the generated gcode through your slicer or <a href="http://gcode.ws/" target="_blank">Gcode.ws</a> before printing.`;
+var preview = /*html*/ `<p>It is advised to preview the generated gcode through your slicer or <a href="http://zupfe.velor.ca" target="_blank">Zupfe GCode Viewer</a> before printing.`;
 
 function createForm(n){
     document.write('<input type="hidden" name="description" value="'+n+'">')
