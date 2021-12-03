@@ -289,6 +289,7 @@ M84 ; disable motors
         <p>Another advantage of some ABL systems is that once the Z offset is set, you can interchange build surfaces of various thicknesses, with no changes needed for a successful first layer. Assuming the probe is triggered the same way on the bed surface, the Z offset is applied to this trigger point and the first layer height should be the same. On a manually levelled bed, the four corner knobs would need to be turned in unison to raise or lower the bed in accounting for thickness of the new build surface.</p>
         <h6 id="fl" >First layer gcode generator</h6>
         <p>The following form will create a series of five squares that you can use to live level your bed or set the Z offset. It is quick to print and features one square in the middle of the bed, with four others in the corners. You can use these to turn the levelling knobs in each corner until they are consistent, or ensure your ABL system is working if you have one in place.</p>
+        <p>This test is intentionally placed before others because it is assumed that your first layer must be reasonable for the later tests to succeed. In some cases, however, if your flow, retraction, etc is way off, it may prevent your first layer from sticking properly and you may wish to try these other tests first.</p>
         <a href="#" data-featherlight="img/firstlayerpreview.jpg"><img loading="lazy" class="thumb" src="img/firstlayerpreview.jpg" /></a>
         <!-- firstlayerForm -->
         <form name="firstlayerForm" id="firstlayerForm" onsubmit="return false;">
