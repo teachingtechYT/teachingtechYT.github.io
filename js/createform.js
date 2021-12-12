@@ -157,11 +157,12 @@ var startGcode = /*html*/ `<h4>Additional start gcode</h4>
             </div>`;
 
 var bedDims =  /*html*/ `<h4>Bed dimensions</h4>
-            <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the 0,0 at centre button is checked for a delta, also enter your bed diameter. Please check the gcode to ensure it will fit on your bed.</p>
+            <p>Inputting the correct number will attempt to move the print into the centre of the bed. If the 0,0 at centre button is checked for a delta, also enter your bed diameter. Please check the gcode to ensure it will fit on your bed. For unusual 3D printers, apply X/Y offsets to shift the gcode on the build platform. 99.9% of users will leave this on 0,0. Please ensure you check a gcode preview before printing if you use this feature.</p>
             <label>0,0 at centre of bed (most deltas):<input name="centre" type="checkbox" onchange="displayCustom();" value="centre"></label>
             <span class="XY"><label>Bed X dimension (mm): <input type="number" name="bedx" value="100" min="100" max="600" step="1"></label>
             <label>Bed Y dimension (mm): <input type="number" name="bedy" value="100" min="100" max="600" step="1"></label><br /></span>
-            <span class="dia"><label>Bed diameter dimension (mm): <input type="number" name="beddia" value="100" min="100" max="600" step="1"></label></span>`;
+            <span class="dia"><label>Bed diameter dimension (mm): <input type="number" name="beddia" value="100" min="100" max="600" step="1"></label></span>
+            <label>X offset (mm): <input type="number" name="offsetx" value="0" min="-1000" max="1000" step="1"></label> <label>Y offset (mm): <input type="number" name="offsety" value="0" min="-1000" max="1000" step="1"></label>`;
 
 var extraMargin = /*html*/ `<p>You may add extra margin for clearing bed clips, etc. Caution! If this is too large on small printers the squares will overlap. You may also use a negative value to space the squares further apart. Make sure to preview the gcode before printing!</p>
             <label>Extra margin from edge (mm): <input type="number" name="margin" value="0" min="0" max="100" step="1"></label>`;

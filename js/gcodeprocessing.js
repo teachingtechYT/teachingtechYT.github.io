@@ -130,6 +130,8 @@ function processGcode(formName) {
         var bedX = Math.round((formName.bedx.value-120)/2);
         var bedY = Math.round((formName.bedy.value-120)/2);
     }
+    var offsetX = formName.offsetx.value;
+    var offsetY = formName.offsety.value;
     var abl = formName.abl.value;
     var customStart = formName.startgcode.value;
     var customEnd = formName.endgcode.value;
@@ -331,6 +333,7 @@ function processGcode(formName) {
             firstlayerArray.forEach(function(index, item){
                 if(firstlayerArray[item].search(/X/) > -1){
                     var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2];
+                    value += parseFloat(offsetX);
                     firstlayerArray[item] = firstlayerArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                 }
             });
@@ -338,7 +341,8 @@ function processGcode(formName) {
             firstlayerArray.forEach(function(index, item){
                 if(firstlayerArray[item].search(/Y/) > -1){
                     var value = parseFloat(firstlayerArray[item].match(regexp)[0].substring(1)) + offsets[i*2+1];
-                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
+                    value += parseFloat(offsetY);
+                    firstlayerArray[item] = firstlayerArray[item].replace(regexp, "Y"+String(value.toFixed(4)));
                 }
             });
             square = firstlayerArray.join("\n");
@@ -411,6 +415,7 @@ function processGcode(formName) {
             gcodeArray.forEach(function(index, item){
                 if(gcodeArray[item].search(/X/) > -1){
                     var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
+                    value += parseFloat(offsetX);
                     gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                 }
             });
@@ -418,6 +423,7 @@ function processGcode(formName) {
             gcodeArray.forEach(function(index, item){
                 if(gcodeArray[item].search(/Y/) > -1){
                     var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) - 50;
+                    value += parseFloat(offsetY);
                     gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
                 }
             });
@@ -429,6 +435,7 @@ function processGcode(formName) {
                 gcodeArray.forEach(function(index, item){
                     if(gcodeArray[item].search(/X/) > -1){
                         var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedX;
+                        value += parseFloat(offsetX);
                         gcodeArray[item] = gcodeArray[item].replace(regexp, "X"+String(value.toFixed(4)));
                     }
                 });
@@ -440,6 +447,7 @@ function processGcode(formName) {
                 gcodeArray.forEach(function(index, item){
                     if(gcodeArray[item].search(/Y/) > -1){
                         var value = parseFloat(gcodeArray[item].match(regexp)[0].substring(1)) + bedY;
+                        value += parseFloat(offsetY);
                         gcodeArray[item] = gcodeArray[item].replace(regexp, "Y"+String(value.toFixed(4)))
                     }
                 });
