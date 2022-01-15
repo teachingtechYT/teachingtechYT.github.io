@@ -135,7 +135,7 @@ function processGcode(formName) {
     var abl = formName.abl.value;
     var customStart = formName.startgcode.value;
     var customEnd = formName.endgcode.value;
-    if(name != "firstlayerForm"){
+    if(name != "firstlayerForm" && name != "temperatureForm"){
         var fanLayer = formName.fanLayer.value;
         var fanPercentage = formName.fanSpeed.value;
         var fanSpeed = Math.round(fanPercentage*2.55);
@@ -143,10 +143,15 @@ function processGcode(formName) {
     if(name == "temperatureForm"){ // collect temperature tower inputs
         var hotendTemp = formName.temp_a0.value;
         var a1 = formName.temp_a1.value;
+        var aFan1 = formName.fan_a1.value;
         var b1 = formName.temp_b1.value;
+        var bFan1 = formName.fan_b1.value;
         var c1 = formName.temp_c1.value;
+        var cFan1 = formName.fan_c1.value;
         var d1 = formName.temp_d1.value;
+        var dFan1 = formName.fan_d1.value;
         var e1 = formName.temp_e1.value;
+        var eFan1 = formName.fan_e1.value;
     } else {
         var hotendTemp = formName.hotendtemp.value;
     }
@@ -394,20 +399,25 @@ function processGcode(formName) {
     if(name != "firstlayerForm"){
         // strip original fan command
         gcode = gcode.replace(/M106 S3/, ";");
-        // insert user fan starting layer and speed
-        switch(fanLayer){
-            case '2':
-                gcode = gcode.replace(/;fan2;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 2");
-                break;
-            case '3':
-                gcode = gcode.replace(/;fan3;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 3");
-                break;
-            case '5':
-                gcode = gcode.replace(/;fan5;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 5");
-                break;
+
+        // temperature form does overwrite fan behavior
+        if (name != "temperatureForm") {
+            // insert user fan starting layer and speed
+            switch(fanLayer){
+                case '2':
+                    gcode = gcode.replace(/;fan2;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 2");
+                    break;
+                case '3':
+                    gcode = gcode.replace(/;fan3;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 3");
+                    break;
+                case '5':
+                    gcode = gcode.replace(/;fan5;/, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"% from layer 5");
+                    break;
+            }
+            // insert user fan speed for resumption after 100% bridging
+            gcode = gcode.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
         }
-        // insert user fan speed for resumption after 100% bridging
-        gcode = gcode.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
+
         // process gcode to suit bed size and type
         if(centre == true){
             var gcodeArray = gcode.split(/\n/g);
@@ -576,11 +586,18 @@ function processGcode(formName) {
         }
         // temperature test user inputs
         if(name == "temperatureForm"){
-            gcode = gcode.replace(/;layer 2(.*?)\n/, "M104 S"+a1+" T0 ; custom hot end temp - A\n");
-            gcode = gcode.replace(/;process Process-2/, "M104 S"+b1+" T0 ; custom hot end temp - B");
-            gcode = gcode.replace(/;process Process-3/, "M104 S"+c1+" T0 ; custom hot end temp - C");
-            gcode = gcode.replace(/;process Process-4/, "M104 S"+d1+" T0 ; custom hot end temp - D");
-            gcode = gcode.replace(/;process Process-5/, "M104 S"+e1+" T0 ; custom hot end temp - E");
+            function temperatureAndFanSpeed(segment, temp, fan) {
+                var speed = Math.round(fan*2.55);
+
+                return "M104 S"+temp+" T0 ; custom hot end temp - " + segment + "\n" +
+                    "M106 S"+speed+"; custom fan "+fan+"% - " + segment + "\n";
+            }
+
+            gcode = gcode.replace(/;layer 2(.*?)\n/, temperatureAndFanSpeed("A", a1, aFan1));
+            gcode = gcode.replace(/;process Process-2/, temperatureAndFanSpeed("B", b1, bFan1));
+            gcode = gcode.replace(/;process Process-3/, temperatureAndFanSpeed("C", c1, aFan1));
+            gcode = gcode.replace(/;process Process-4/, temperatureAndFanSpeed("D", d1, dFan1));
+            gcode = gcode.replace(/;process Process-5/, temperatureAndFanSpeed("E", e1, eFan1));
         }
     }
 
@@ -676,17 +693,17 @@ function outputSettings(formName) {
     string += "\n\nTemperatures:\n";
     if(formName.name == "temperatureForm") {
         string += "Bed: "+formName.bedtemp.value+" deg C\n";
-        string += "Segment E: "+formName.temp_e1.value+" deg C\n";
-        string += "Segment D: "+formName.temp_d1.value+" deg C\n";
-        string += "Segment C: "+formName.temp_c1.value+" deg C\n";
-        string += "Segment B: "+formName.temp_b1.value+" deg C\n";
-        string += "Segment A: "+formName.temp_a1.value+" deg C\n";
+        string += "Segment E: "+formName.temp_e1.value+" deg C | Fan: "+formName.fan_e1.value+"%\n";
+        string += "Segment D: "+formName.temp_d1.value+" deg C | Fan: "+formName.fan_d1.value+"%\n";
+        string += "Segment C: "+formName.temp_c1.value+" deg C | Fan: "+formName.fan_c1.value+"%\n";
+        string += "Segment B: "+formName.temp_b1.value+" deg C | Fan: "+formName.fan_b1.value+"%\n";
+        string += "Segment A: "+formName.temp_a1.value+" deg C | Fan: "+formName.fan_a1.value+"%\n";
         string += "First Layer: "+formName.temp_a0.value+" deg C\n";
     } else {
         string += "Bed: "+formName.bedtemp.value+" deg C\n";
         string += "Hot end: "+formName.hotendtemp.value+" deg C\n";
     }
-    if(formName.name != "firstlayerForm") {
+    if(formName.name != "firstlayerForm" && formName.name != "temperatureForm") {
         var fanSpeed = formName.fanSpeed.value;
         var fanLayer = formName.fanLayer.value
         string += "\n\nPart Cooling: "+fanSpeed+"% from layer "+fanLayer+"\n";

@@ -177,12 +177,14 @@ var tempTower = /*html*/ `<h4>Bed Temperature</h4>
 <label>Bed temperature (deg C): <input type="number" name="bedtemp" value="60" min="0" max="150"></label> (use 0 for a non heated bed)
 <h4>Hot end temperature</h4>
 <p>Typically, filament comes with a recommended hot end temperature. It is recommended to use values either side of this. For instance, if a PLA filament asked for 200 degrees, you may vary the temperature from 190, 195, 200, 205, 210 (the default values of the form). Typically, the first layer temperature will be elevated to increase adhesion with the bed, especially if a lower than usual temperature is being trialled for segment A. <span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span></p>
+<p>Some filaments do prefer little cooling or no cooling you might as well fine tune fan settings for a given temperature</p>
 <table>
     <thead>
         <tr>
             <th>Reference Diagram</th>
             <th>Segment</th>
             <th>Hot end temperature<p class="sug">&#177; 5 - 10</p></th>
+            <th>Part Cooling Fan<p class="sug">&#177; 0 - 100</p></th>
         </tr>
     </thead>
     <tbody>
@@ -192,22 +194,27 @@ var tempTower = /*html*/ `<h4>Bed Temperature</h4>
             </td>
             <td style="text-align: center;">E</td>
             <td><input type="number" min="150" max="450" name="temp_e1" value="210"></td>
+            <td><input type="number" min="150" max="450" name="fan_e1" value="100"></td>
         </tr>
         <tr>
             <td style="text-align: center;">D</td>
             <td><input type="number" min="150" max="450" name="temp_d1" value="205"></td>
+            <td><input type="number" min="150" max="450" name="fan_d1" value="100"></td>
         </tr>
         <tr>
             <td style="text-align: center;">C</td>
             <td><input type="number" min="150" max="450" name="temp_c1" value="200"></td>
+            <td><input type="number" min="150" max="450" name="fan_c1" value="100"></td>
         </tr>
         <tr>
             <td style="text-align: center;">B</td>
             <td><input type="number" min="150" max="450" name="temp_b1" value="195"></td>
+            <td><input type="number" min="150" max="450" name="fan_b1" value="100"></td>
         </tr>
         <tr>
             <td style="text-align: center;">A</td>
             <td><input type="number" min="150" max="450" name="temp_a1" value="190"></td>
+            <td><input type="number" min="150" max="450" name="fan_a1" value="100"></td>
         </tr>
         <tr>
             <td style="text-align: center;">First layer</td>
@@ -475,7 +482,7 @@ function createForm(n){
     }
     if(n == "firstlayer"){
         document.write(pcFirstlayer);
-    } else {
+    } else if(n != "temperature"){
         document.write(pcReg);
     }
     if(n == "retraction"){
