@@ -12,6 +12,7 @@
         <li><a href="#tools">Tools</a></li>
         <li><a href="#frame">Frame Check</a></li>
         <li><a href="#terminal">Connecting via Terminal</a></li>
+        <li><a href="#ssh">Connecting to a Pi via SSH</a></li>
         <li><a href="#firstlayer">First Layer</a></li>
         <li><a href="#filamentjams">Filament Jams</a></li>
         <li><a href="#direction">Motor Direction</a></li>
@@ -105,6 +106,8 @@
     </div>
 
     <div id="terminal">
+        <p>This tab has a companion video:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/13XDMQ6UWy4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h2>Connecting via terminal</h2>
         <p>Typically, connecting to the printer with any of these software options involves using a USB cable, selecting a port and a baud rate.</p>
         <h4>USB cable</h4>
@@ -134,6 +137,37 @@
             <a href="#" data-featherlight="img/v4serialsettings.jpg"><img loading="lazy" class="thumb" src="img/v4serialsettings.jpg" /></a></li>
             <li>Turn the printer on - Some mainboards will come to life solely from a 5V USB cable, where as others need the main power switch turned on.</li>
         </ul>
+    </div>
+
+    <div id="ssh">
+        <p>This tab has a companion video:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/-bbJkvTYO8A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>Connecting via SSH to a Raspberry Pi</h2>
+        <p>Connecting to a Pi from your PC is possible via Secure Shell (SSH). This is a protocol for communicating with the Pi remotely. This is needed because we typically run the Pi headless on our 3D printers (no attached GUI).</p>
+        <h4>PuTTY</h4>
+        <p>Windows has an in built SSH client but I can never get it to open. Therefore I use the free and open source software <a href="https://www.putty.org/" target="_blank">PuTTY</a> .</p>
+        <h4>IP address</h4>
+        <p>To connect with PuTTY, we need the ip address of the Pi on our local network. If already being used in a working Octoprint or Klipper installation, this is simply the ip address you enter into the browser to access the web interface. Alternatively, you can log in to your WIFI router and retrieve a list of connected devices with their IP addresses. An example ip address is <i>192.168.1.5</i></p>
+        <h4>Default username and password</h4>
+        <p>The default username for the Pi should be <i>pi</i> and the default password <i>raspberry</i> .</p>
+        <p>It is recommended to change this after logging in with <i>passwd</i> .</p>
+        <p>Some useful commands:</p>
+        <pre>ls</pre>
+        <p>Lists the contents of the current directory.</p>
+        <pre>cd ..</pre>
+        <p>Move up a directory.</p>
+        <pre>cd [name]</pre>
+        <p>Move to the named directory. You can start to type and then press <i>tab</i> to auto complete the name.</p>
+        <pre>sudo</pre>
+        <p>Superuser do command. Added before other commands to give admin/root privileges. Your password will be required after using this.</p>
+        <pre>sudo nano [filename]</pre>
+        <p>Nano is an inbuilt text editor. sudo is needed to give file overwriting privileges. Be careful to enter the filename correctly. If you enter a typo, a blank file with that name will be created instead.</p>
+        <h4>Copying and pasting in PuTTY</h4>
+        <p>To copy in PuTTY, simply highlight text and it will be copied to the clipboard automatically. This is the equivalent of highlighting and inputing <i>Control + C</i> in Windows.</p>
+        <p>To paste in PuTTY, simply right click the mouse. This is the equivalent of inputing <i>Control + V</i> in Windows.</p>
+        <h4>WinSCP</h4>
+        <p>Another very useful piece of free software for Windows users is <a href="https://winscp.net/eng/index.php" target="_blank">WinSCP</a> .</p>
+        <p>The left panel shows a local Windows directory and the right a directory from the Raspberry Pi. Both can be navigated using the graphical interface and files and folders can be moved and copied between the two.</p>
     </div>
 
     <div id="firstlayer">
