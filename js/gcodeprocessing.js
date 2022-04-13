@@ -87,6 +87,13 @@ function volumeCalc(){
     $("#volA").html(parseFloat(document.speedForm.baseFeedrate.value*area).toFixed(2));
 }
 
+function reverseVol(){
+    var width = document.maxExtrusion3.layerW.value;
+    var height = document.maxExtrusion3.layerH.value;
+    var vol = document.maxExtrusion3.maxVol.value
+    $("#maxFee2").html(parseFloat(vol/width/height).toFixed(2));
+}
+
 var maxExtVol = 7.22;
 var maxFeedRate = 100;
 function maxExt(){

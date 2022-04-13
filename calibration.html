@@ -1191,6 +1191,42 @@ M84 ; disable motors
         <p>Please use the following video as a guide to this test:</p>
         <iframe loading="lazy" width="640" height="480" src="https://www.youtube.com/embed/CZC5n2J8k_c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>You may wish to stop the print early if it is clear extrusion has ceased or become unreliable. This may prevent the need for disassembly of the extruder to clear the blockage.</p>
+        <p>Some slicers support using the calculated volumetric flow rate above as a hard limit. For those that don't, you can use the following calculator to reverse engineer a maximum feedrat for your preferred extrusion width and layer height:</p>
+        <p><table>
+            <thead>
+                <tr>
+                    <th>Input setting:</th>
+                    <th><script>document.write(slicerSelector);</script></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <form id="maxExtrusion3" name="maxExtrusion3">
+                    <td><label>Layer height (mm): <input type="number" name="layerH" min="0.05" max="2" value="0.2" step="0.05" onchange="reverseVol();"></label></td>
+                    <td class="curaContent">Quality > Layer height</td>
+                    <td class="s3dContent">Layer > Primary layer height</td>
+                    <td class="prusaslicerContent">Print settings > Layers and perimeters > Layer height > Layer height</td>
+                    <td class="superslicerContent">Print settings > Slicing > Layer height > Base Layer height</td>
+                    <td class="ideamakerContent">Template > Layer > General > Layer height</td>
+                </tr>
+                <tr>
+                    <td><label>Extrusion width (mm): <input type="number" name="layerW" min="0.1" max="2" value="0.4" step="0.01" onchange="reverseVol();"></label></td>
+                    <td class="curaContent">Quality > Line width</td>
+                    <td class="s3dContent">Extruder > Extrusion width</td>
+                    <td class="prusaslicerContent">Print settings > Advanced > Extrusion width > Default extrusion width</td>
+                    <td class="superslicerContent">Print settings > Width & Flow > Extrusion width > default</td>
+                    <td class="ideamakerContent">Template > Extruder > General > Extrusion width</td>
+                </tr>
+                <tr>
+                    <td><label>Volumetric flow (mm³/sec): <input type="number" name="maxVol" min="0.1" max="100" value="5" step="0.1" onchange="reverseVol();"></label></td>
+                    <td>Taken from the form above after testing when extrusion breaks down</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="result">Your maximum reliable XY feedrate is <b><span id="maxFee2">52.08</span> mm</b> per second.</p></td>
+                </form>
+                </tr>
+            </tbody>
+        </table></p>
     </div>
 </div>
 <div id="up"></div>
