@@ -1152,8 +1152,9 @@ M84 ; disable motors
             <li>Because of the above reasons, vase mode makes it ideal to use the <b>M220</b> feedrate modifier gcode to alter the feedrate for each segment of the test. This is supported in <a href="https://marlinfw.org/docs/gcode/M220.html" target="_blank">Marlin</a>, <a href="https://www.klipper3d.org/G-Codes.html" target="_blank">Klipper</a> and <a href="https://duet3d.dozuki.com/Wiki/M220" target="_blank">RepRapFirmware</a>. Changing your feedrate mid print from the printer's LCD controls or web inteface uses this feature of the firmware. This test will insert <b>M220</b> commands into the gcode for speed changes on the fly.</li>
         </ul>
         <p>M220 can be a double edge sword because it also affects the speed of retraction movements. If you are performing something like a retraction test, M220 is not suitable. In this case, however, due to the use of vase mode, M220 is a simple way for us to start with a slower feedrate and easily increase it throughout the print at set height intervals.</p>
-        <h2>Maximum feedrate limits in firmware</h2>
-        <p>Every firmware has a safety feature to limit the feedrate to a user set maximum. This prevents a typo in the slicer or terminal command from producing a move so fast it damages the printer. Use the following instructions to check what feedrate limit is in place for your firmware and temporarily raise it if necessary.</p>
+        <h2>Maximum feedrate and acceleration limits in firmware</h2>
+        <p>Every firmware has a safety feature to limit the feedrate and acceleration to user set maximums. This prevents a typo in the slicer or terminal command from producing a move so fast it damages the printer. Use the following instructions to check what feedrate/acceleration limits are in place for your firmware and temporarily raise them if necessary.</p>
+        <p>Please note that for this test, you would typically only alter feedrate limits. Acceleration limits are also covered here for completeness.</p>
         <script>document.write(firmwareSelector);</script>
         <div class="marlinContent">
             <h4>Marlin</h4>
@@ -1162,7 +1163,10 @@ M84 ; disable motors
             <p>If you wish to raise these limits, re-enter <b>203</b> and use the <b>X</b> and <b>Y</b> arguments to set the max feedrate, typically in mm/sec. eg:</p>
             <pre>M203 X500 Y500</pre>
             <p>where 500 is a feedrate of 500 mm/sec.</p>
-            <p>If you wish this change to be permanent, save to EEPROM with <a href="https://marlinfw.org/docs/gcode/M500.html" target="_blank">M500</a>.</p>
+            <p>Marlin limits the acceleration with the <a href="https://marlinfw.org/docs/gcode/M201.html" target="_blank">M201</a> and <a href="https://marlinfw.org/docs/gcode/M204.html" target="_blank">M204</a> gcodes.</p>
+            <p>You can enter <b>M503</b> into a terminal and these values will be reported.</p>
+            <p><b>M204</b> sets target acceleration for print, retraction and travel moves, however <b>M201</b> values impose limits per axis. For example, if you set the <b>M204</b> print acceleration to 1000 but the <b>M201 Y</b> acceleration limit is only 800, then the <b>M204 P</b> value will be capped at 800 for Y while printing. If you have a bed slinger with a heavy y axis, M201 can be used in this way to combat ringing.</p>
+            <p>If you wish this changes to be permanent, save to EEPROM with <a href="https://marlinfw.org/docs/gcode/M500.html" target="_blank">M500</a>.</p>
         </div>
         <div class="klipperContent">
             <h4>Klipper</h4>
@@ -1170,6 +1174,12 @@ M84 ; disable motors
             <p>You can change this value and restart Klipper to raise it, or temporarily override it by entering:</p>
             <pre>SET_VELOCITY_LIMIT VELOCITY=500</pre>
             <p>in the terminal where <i>500</i> is a max feedrate of 500 mm/sec.</p>
+            <p>Klipper limits acceleration in  <b>printer.cfg</b>with <a href="https://www.klipper3d.org/Config_Reference.html#printer" target="_blank">MAX_ACCEL and MAX_ACCEL_TO_DECEL</a>.</p>
+            <p>You can change these values and restart Klipper to raise them, or temporarily override by entering:</p>
+            <pre>SET_VELOCITY_LIMIT ACCEL=600</pre>
+            <p>or</p>
+            <pre>SET_VELOCITY_LIMIT ACCEL_TO_DECEL=600</pre>
+            <p>in the terminal where <i>600</i> is a max acceleration/accel to decel of 600 mm/sec/sec.</p>
         </div>
         <div class="rrfContent">
             <h4>RepRapFirmware</h4>
@@ -1179,6 +1189,10 @@ M84 ; disable motors
             <pre>M201 X3000 Y3000</pre>
             <p>Remember that RRF uses mm/min instead of mm/sec, so this example uses a value of 500 mm/sec. Convert from mm/sec to mm/min by multiplying by 60. When editing <b>config.g</b>, do not omit the arguments for <b>Z</b> and <b>E</b>. Only <b>X</b> and <b>Y</b> potentially need modifiying for this test so leave the values for <b>Z</b> and <b>E</b> untouched.</p>
             <p>Later versions of RRF also use the <b>I</b> argument to set the minimum overall feedrate. It may be necessary to lower this value if you want a particularly slow feedrate for segments of the tuning tower.</p>
+            <p>RRF limits acceleration with the <a href="https://duet3d.dozuki.com/Wiki/M201" target="_blank">M201</a> and <a href="https://duet3d.dozuki.com/Wiki/M204" target="_blank">M204</a> gcodes.</p>
+            <p>You can see your current value in <b>config.g</b> under <b>M201</b> and <b>M204</b>.</p>
+            <p><b>M204</b> sets target acceleration for print, and travel moves, however <b>M201</b> values impose limits per axis. For example, if you set the <b>M204</b> print acceleration to 1000 but the <b>M201 Y</b> acceleration limit is only 800, then the <b>M204 P</b> value will be capped at 800 for Y while printing. If you have a bed slinger with a heavy y axis, M201 can be used in this way to combat ringing.</p>
+            <p>For acceleration, RRF uses mm/sec, despite using mm/min for feedrate. When editing <b>config.g</b> for <b>M201</b>, be sure to include values for each axis (typically <B>X</B>, <b>Y</b>, <b>Z</b> and <b>E</b>). When editing <b>config.g</b> for <b>M204</b>, be sure to include values for both <b>P</b> and <b>T</b>.</p>
         </div>
         <h6 id="spd">Speed/feedrate/Max flow tuning tower generator</h6>
         <p>The STL for this test is available here: <a href="files/speedtower.stl">speedtower.stl</a></p>
