@@ -1120,7 +1120,7 @@ M84 ; disable motors
             <h5>Aim:</h5>
             <p>To find the maximum feedrate suitable for the outer walls, in terms of surface artefacts, flow rate and reliable extrusion.</p>
             <h5>When required:</h5>
-            <p>This is an optional step, and only applies to specific scenarios. Examples include finding a safe feedrate for a difficult to extrude flexible filament, and tuning outer wall speed to reduce 'noise' on external surfaces.</p>
+            <p>This is an optional step, and only applies to specific scenarios. Examples include finding a safe feedrate for a difficult to extrude flexible filament, determing the maximum reliable feedrate when trying to print faster, and tuning outer wall speed to reduce 'noise' on external surfaces.</p>
             <h5>Tools:</h5>
             <p>Terminal software such as <a href="https://www.pronterface.com/" target="_blank">Pronterface</a> or <a href="https://octoprint.org/" target="_blank">Octoprint</a>.</p>
             <p>Gcode generator on this page.</p>
@@ -1133,8 +1133,8 @@ M84 ; disable motors
         <p>Some printers may have a combination of hardware and software that produces noise or surface artefacts with feedate as a factor. This is the case for the image submitted by midicdj1000, where a chnge in feedrate for the outer walls alters the pattern on this surface:</p>
         <a href="#" data-featherlight="img/speedartefacts.jpg"><img loading="lazy" class="thumb" src="img/speedartefacts.jpg" /></a>
         <p>The test on this page is therefore useful for finding an ideal feedrate for outer wall surface quality.</p>
-        <h2>Feedrate limitations from the extruder drive</h2>
-        <p>The tools on the <a href="calibration.html#accel" target="_blank">Acceleration Tuning</a> tab will allow you to calculate the maximum feedrate your 3D printer can move at and still maintain reliable extrusion. This relates to how quickly filament can be melted as it travels through the hot end. Once the filament cannot be melted sufficiently, it won't flow properly through the system and under extrusion or jams will occur.</p>
+        <h2>Feedrate limitations from the extruder drive and hot end</h2>
+        <p>The tools on this tab will also allow you to calculate the maximum feedrate your 3D printer can move at and still maintain reliable extrusion. This relates to how quickly filament can be melted as it travels through the hot end. Once the filament cannot be melted sufficiently, it won't flow properly through the system and under extrusion or jams will occur.</p>
         <p>Sometimes the ability of the heater is not the limiting factor, and instead the amount of grip and push from the extruder drive. Consider a flexible filament such as TPU. TPU doesn't need a particularly high temperature hot end to melt it properly, but many extruder drives struggle to grip and push the filament towards the hot end without it buckling and jamming. The test on this page can be used in these situations to find how fast you can print before the system breaks down.</p>
         <h2>Feedrate variations and modifiers in your slicer profile</h2>
         <p>It is important to understand how feedrate is handled by the slicer software. Slicers generally have a default/base feedrate that most speed calculations are based on. Features such as perimeters, external perimeters and solid infill are reduced in speed to aid visual print quality. Features such as internal infill are sped up because they will never be seen. The image below shows examples interfaces for this in several slicers:</p>
@@ -1177,7 +1177,7 @@ M84 ; disable motors
             <p>Remember that RRF uses mm/min instead of mm/sec, so this example uses a value of 500 mm/sec. Convert from mm/sec to mm/min by multiplying by 60. When editing <b>config.g</b>, do not omit the arguments for <b>Z</b> and <b>E</b>. Only <b>X</b> and <b>Y</b> potentially need modifiying for this test so leave the values for <b>Z</b> and <b>E</b> untouched.</p>
             <p>Later versions of RRF also use the <b>I</b> argument to set the minimum overall feedrate. It may be necessary to lower this value if you want a particularly slow feedrate for segments of the tuning tower.</p>
         </div>
-        <h6 id="spd">Speed/feedrate tuning tower generator</h6>
+        <h6 id="spd">Speed/feedrate/Max flow tuning tower generator</h6>
         <p>The STL for this test is available here: <a href="files/speedtower.stl">speedtower.stl</a></p>
         <!-- speedForm -->
         <form name="speedForm" id="speedForm" onsubmit="return false;">
