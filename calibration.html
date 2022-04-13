@@ -17,11 +17,11 @@
         <li><a href="#flow">Slicer Flow Calibration</a></li>
         <li><a href="#steppers">Stepper Motor Driver Current</a></li>
         <li><a href="#temp">Temperature Tuning</a></li>
-        <li><a href="#retraction">Retraction Tuning</a></li>        
+        <li><a href="#retraction">Retraction Tuning</a></li>
+        <li><a href="#speed">Speed & Max Flow Tuning</a></li>        
         <li><a href="#accel">Acceleration Tuning</a></li>
         <li><a href="#linadv">Linear Advance</a></li>
         <li><a href="#xyzsteps">XYZ steps Calibration</a></li>
-        <li><a href="#speed">Speed & Max Flow Tuning</a></li>
     </ul>
 
     <div id="intro">
@@ -848,63 +848,66 @@ M84 ; disable motors
             <p>Lower acceleration and jerk will result in a slower print time, as the printer reaches top speed more gradually and corners at a lower velocity. This is easier on the printer, with potentially increased component lifespan and less need for regular maintenance. It reduces surface artefacts such as ringing/ghosting, unless it is far too conservative, in which case it may introduce bulging in corners.</p>
         </div>
         <h2>Calculating maximum feedrate - optional but strongly recommended</h2>
-        <p>One strategy is to calculate the fastest your 3D printer can move while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
-        <p><i>This part of the guide and calculator is adapted from <a href="https://grabcad.com/tutorials/dialing-in-a-filament-and-specifying-the-max-volumetric-e-xtrusion-value" target="_blank">Martin Pirringer's tutorial</a>. Please consider supporting him and his robotics team through <a href="paypal.me/DudeWithaPulse" target="_blank">paypal</a> or you can also donate to team 1989 through their <a href="https://www.vernonrobotics.com" target="_blank">Team 1989 Web Site</a></i></p>
-        <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>
-        
-        <ol>
-            <li>Clear debris from hobbed gear, bring nozzle up to normal printing temp and load filament.</li>
-            <li>Enter the following into pronterface. This will set movement to relative and then extrude 50mm of filament at a feedrate of 2mm/sec:</li>
-            <pre>G91</pre>
-            <pre>G1 E50 F120</pre>
-            <li>Inspect extruded filament for consistency. If all is well, keep repeating with higher feedrate F, until extrusion is inconsistent, extruder stepper skips steps and/or hobbed gear starts eating into filament.<br />
-            The following are examples of increasing the extruder feed rate by 1mm/sec each time, although you should stop when the extrusion becomes problematic. You may have more or less steps than this:</li>
-            <pre>G1 E50 F180</pre>
-            <pre>G1 E50 F240</pre>
-            <pre>G1 E50 F300</pre>
-            <pre>G1 E50 F360</pre>
-            <pre>...</pre>
-            <li>After you find the limiting speed, back off and repeat the test at a lower feedrate several times in a row until you are confident of reliable and repeatable extrusion. <br />Don't forget to put the printer back into absolute movement mode:</li>
-            <pre>G90</pre>
-            <li>Enter your reliable feedrate and filament diameter below:</li>
-            <h6 id="mfc">Maximum feedrate calculator</h6>
-            <form id="maxExtrusion1" name="maxExtrusion1">
-            <label>Reliable feedrate: <input type="number" min="60" max="1000" name="maxFeed" value="180" step="10" onchange="maxExt(); maxFee();"></label>
-            <label>Filament diameter: <input type="number" min="1.5" max="4" name="filDia" value="1.75" step="0.05" onchange="maxExt(); maxFee();"></label>
-            <p class="result">Your maximum reliable extrusion rate is <b><span id="maxExt">7.22</span> mm³</b> per second.</p>
-            </form>
-            <li>Enter the following settings from your slicer:</li>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Input setting:</th>
-                        <th><script>document.write(slicerSelector);</script></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <form id="maxExtrusion2" name="maxExtrusion2">
-                        <td><label>Layer height (mm): <input type="number" name="layerH" min="0.05" max="1" value="0.2" step="0.05" onchange="maxFee();"></label></td>
-                        <td class="curaContent">Quality > Layer height</td>
-                        <td class="s3dContent">Layer > Primary layer height</td>
-                        <td class="prusaslicerContent">Print settings > Layers and perimeters > Layer height > Layer height</td>
-                        <td class="superslicerContent">Print settings > Slicing > Layer height > Base Layer height</td>
-                        <td class="ideamakerContent">Template > Layer > General > Layer height</td>
-                    </tr>
-                    <tr>
-                        <td><label>Extrusion width (mm): <input type="number" name="layerW" min="0.1" max="1" value="0.4" step="0.01" onchange="maxFee();"></label></td>
-                        <td class="curaContent">Quality > Line width</td>
-                        <td class="s3dContent">Extruder > Extrusion width</td>
-                        <td class="prusaslicerContent">Print settings > Advanced > Extrusion width > Default extrusion width</td>
-                        <td class="superslicerContent">Print settings > Width & Flow > Extrusion width > default</td>
-                        <td class="ideamakerContent">Template > Extruder > General > Extrusion width</td>
-                    </form>
-                    </tr>
-                </tbody>
-            </table>
-            <p class="result">Your maximum reliable XY feedrate is <b><span id="maxFee">90</span> mm</b> per second.</p>
-            <p class="warning">Warning: This value is dependent on a number of variables such as filament type, brand, colour, ambient temperature, etc. Be conservative to ensure success.</p>						
-        </ol>        
+        <p>This is simplified test that will not be as accurate as using the gcode generator on the <a href="calibration.html#speed" target="_blank">Speed/Max flow tab</a>. If you would like to see it, you can toggle visibility <span style="cursor:pointer;" onclick="$('#oldFlowTest').toggle();"><b>here</b></span>.</p>
+        <div id="oldFlowTest" style="display:none;">
+            <p>One strategy is to calculate the fastest your 3D printer can move while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
+            <p><i>This part of the guide and calculator is adapted from <a href="https://grabcad.com/tutorials/dialing-in-a-filament-and-specifying-the-max-volumetric-e-xtrusion-value" target="_blank">Martin Pirringer's tutorial</a>. Please consider supporting him and his robotics team through <a href="paypal.me/DudeWithaPulse" target="_blank">paypal</a> or you can also donate to team 1989 through their <a href="https://www.vernonrobotics.com" target="_blank">Team 1989 Web Site</a></i></p>
+            <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>
+            
+            <ol>
+                <li>Clear debris from hobbed gear, bring nozzle up to normal printing temp and load filament.</li>
+                <li>Enter the following into pronterface. This will set movement to relative and then extrude 50mm of filament at a feedrate of 2mm/sec:</li>
+                <pre>G91</pre>
+                <pre>G1 E50 F120</pre>
+                <li>Inspect extruded filament for consistency. If all is well, keep repeating with higher feedrate F, until extrusion is inconsistent, extruder stepper skips steps and/or hobbed gear starts eating into filament.<br />
+                The following are examples of increasing the extruder feed rate by 1mm/sec each time, although you should stop when the extrusion becomes problematic. You may have more or less steps than this:</li>
+                <pre>G1 E50 F180</pre>
+                <pre>G1 E50 F240</pre>
+                <pre>G1 E50 F300</pre>
+                <pre>G1 E50 F360</pre>
+                <pre>...</pre>
+                <li>After you find the limiting speed, back off and repeat the test at a lower feedrate several times in a row until you are confident of reliable and repeatable extrusion. <br />Don't forget to put the printer back into absolute movement mode:</li>
+                <pre>G90</pre>
+                <li>Enter your reliable feedrate and filament diameter below:</li>
+                <h6 id="mfc">Maximum feedrate calculator</h6>
+                <form id="maxExtrusion1" name="maxExtrusion1">
+                <label>Reliable feedrate: <input type="number" min="60" max="1000" name="maxFeed" value="180" step="10" onchange="maxExt(); maxFee();"></label>
+                <label>Filament diameter: <input type="number" min="1.5" max="4" name="filDia" value="1.75" step="0.05" onchange="maxExt(); maxFee();"></label>
+                <p class="result">Your maximum reliable extrusion rate is <b><span id="maxExt">7.22</span> mm³</b> per second.</p>
+                </form>
+                <li>Enter the following settings from your slicer:</li>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Input setting:</th>
+                            <th><script>document.write(slicerSelector);</script></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <form id="maxExtrusion2" name="maxExtrusion2">
+                            <td><label>Layer height (mm): <input type="number" name="layerH" min="0.05" max="1" value="0.2" step="0.05" onchange="maxFee();"></label></td>
+                            <td class="curaContent">Quality > Layer height</td>
+                            <td class="s3dContent">Layer > Primary layer height</td>
+                            <td class="prusaslicerContent">Print settings > Layers and perimeters > Layer height > Layer height</td>
+                            <td class="superslicerContent">Print settings > Slicing > Layer height > Base Layer height</td>
+                            <td class="ideamakerContent">Template > Layer > General > Layer height</td>
+                        </tr>
+                        <tr>
+                            <td><label>Extrusion width (mm): <input type="number" name="layerW" min="0.1" max="1" value="0.4" step="0.01" onchange="maxFee();"></label></td>
+                            <td class="curaContent">Quality > Line width</td>
+                            <td class="s3dContent">Extruder > Extrusion width</td>
+                            <td class="prusaslicerContent">Print settings > Advanced > Extrusion width > Default extrusion width</td>
+                            <td class="superslicerContent">Print settings > Width & Flow > Extrusion width > default</td>
+                            <td class="ideamakerContent">Template > Extruder > General > Extrusion width</td>
+                        </form>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="result">Your maximum reliable XY feedrate is <b><span id="maxFee">90</span> mm</b> per second.</p>
+                <p class="warning">Warning: This value is dependent on a number of variables such as filament type, brand, colour, ambient temperature, etc. Be conservative to ensure success.</p>						
+            </ol>
+        </div>        
         <h2>Acceleration Tuning</h2>
         <p>We will now produce an acceleration tower to conveniently test back to back settings in a single print. If you would like to slice the model yourself, here is the STL: <a href="files/accelerationtower.stl">accelerationtower.stl</a>. It should be sliced with a normal base, but hollow, no top layers and only 2 perimeters.</p>
         <p>The only thing you need to know before this test is whether your firmware is set up for jerk (older) or junction deviation (newer). Entering <b>M503</b> via terminal will give a list of printer variables:</p>
@@ -1116,7 +1119,7 @@ M84 ; disable motors
     
     <div id="speed">
         <div class="exp">
-            <h2>Speed/Feedrate/Max Flow Tuning</h2>
+            <h2>Speed & Max Flow Tuning</h2>
             <h5>Aim:</h5>
             <p>To find the maximum feedrate suitable for the outer walls, in terms of surface artefacts, flow rate and reliable extrusion.</p>
             <h5>When required:</h5>
