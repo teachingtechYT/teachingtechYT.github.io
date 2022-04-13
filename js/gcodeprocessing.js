@@ -74,6 +74,19 @@ function flowCalc2(){
     $("#flow2result").show();
 }
 
+function volumeCalc(){
+    var nozzleLayer = speedForm.nozzleLayer.value;
+    extrusionArray = nozzleLayer.split("_");
+    var width = extrusionArray[0]*1.2;
+    var height = extrusionArray[1];
+    var area = (width/100)*(height/100);
+    $("#volE").html(parseFloat(document.speedForm.feedrateE.value*area).toFixed(2))
+    $("#volD").html(parseFloat(document.speedForm.feedrateD.value*area).toFixed(2))
+    $("#volC").html(parseFloat(document.speedForm.feedrateC.value*area).toFixed(2))
+    $("#volB").html(parseFloat(document.speedForm.feedrateB.value*area).toFixed(2));
+    $("#volA").html(parseFloat(document.speedForm.baseFeedrate.value*area).toFixed(2));
+}
+
 var maxExtVol = 7.22;
 var maxFeedRate = 100;
 function maxExt(){

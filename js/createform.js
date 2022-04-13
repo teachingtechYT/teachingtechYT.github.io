@@ -106,7 +106,7 @@ var nozzleLayer = /*html*/ `<h4>Nozzle Diameter / Layer Height</h4>
     <p>Select your nozzle diameter and layer height. If you have not changed your nozzle, it will likely be 0.4 mm. 0.2 mm is a typical layer height for this nozzle.</p>
     <p>25 options are available, however some of the tests don't work very well with the larger options.</p>
     <label for="nozzleLayer">Select nozzle diameter / layer height:</label>
-    <select name="nozzleLayer">
+    <select name="nozzleLayer" onchange="volumeCalc();">
         <option value="15_08">0.15 mm nozzle / 0.08 mm layer height</option>
         <option value="20_05">0.20 mm nozzle / 0.05 mm layer height</option>
         <option value="20_10">0.20 mm nozzle / 0.10 mm layer height</option>
@@ -326,6 +326,7 @@ var feedrateReg = /*html*/ `<h4>Feedrate</h4>
 var feedrateTower = /*html*/ `<h4>Feedrate/speed</h4>
 <p>The default printing speed is modified with 100% for perimeters, 166% for travel moves, and 50% of these for the first layer. For segment A, generated gcode will be modified using these proportions (<b>calculated feedrates shown in grey</b>). Please note extruder retraction/unretraction and Z-hop speeds will be unaffected by this.</p>
 <p>In this test the feedrate you enter is for the single, outer perimeter. Select a safe feedrate for segment A to ensure good adhesion with the bed. Increase feedrate for segments B to E to your liking. As this print is completed in vase mode, there are no retractions.</p>
+<p>This website uses an extrusion width of 1.2 x nozzle width. The volumetric flow value is calculated using this width, layer height and feedrate. This value can be used to get a practical idea of hot end volumetric flow at a given temperature.
 <p><span class="sug">Suggested increments for how much to vary the value for each segment are shown in green.</span></p>
 <table>
     <thead>
@@ -333,30 +334,36 @@ var feedrateTower = /*html*/ `<h4>Feedrate/speed</h4>
             <th>Reference diagram</th>
             <th>Segment</th>
             <th>Feedrate (mm/sec) <span class="sug">&#177; 5-20</span></th>
+            <th>Calculated volumetric flow (mm³/sec)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td rowspan="5"><img src="img/speeddiagram.jpg" /></td>
             <td style="text-align: center;">E</td>
-            <td>Perimeter feedrate:  <input type="number" name="feedrateE" value="60" min="5" max="1000" step="1"></td>
+            <td>Perimeter feedrate:  <input type="number" name="feedrateE" onchange="volumeCalc()" value="60" min="5" max="1000" step="1"></td>
+            <td><span id="volE" class="volumetric">5.76</span> mm³/sec</td>
         </tr>
         <tr>
             <td style="text-align: center;">D</td>
-            <td>Perimeter feedrate:  <input type="number" name="feedrateD" value="50" min="5" max="1000" step="1"></td>
+            <td>Perimeter feedrate:  <input type="number" name="feedrateD" onchange="volumeCalc()" value="50" min="5" max="1000" step="1"></td>
+            <td><span id="volD" class="volumetric">4.80</span> mm³/sec</td>
         </tr>
         <tr>
             <td style="text-align: center;">C</td>
-            <td>Perimeter feedrate:  <input type="number" name="feedrateC" value="40" min="5" max="1000" step="1"></td>
+            <td>Perimeter feedrate:  <input type="number" name="feedrateC" onchange="volumeCalc()" value="40" min="5" max="1000" step="1"></td>
+            <td><span id="volC" class="volumetric">3.84</span> mm³/sec</td>
         </tr>
         <tr>
             <td style="text-align: center;">B</td>
-            <td>Perimeter feedrate:  <input type="number" name="feedrateB" value="30" min="5" max="1000" step="1"></td>
+            <td>Perimeter feedrate:  <input type="number" name="feedrateB" onchange="volumeCalc()" value="30" min="5" max="1000" step="1"></td>
+            <td><span id="volB" class="volumetric">2.40</span> mm³/sec</td>
         </tr>
         <tr>
             <td style="text-align: center;">A</td>
-            <td>Perimeter feedrate:  <input type="number" name="baseFeedrate" value="20" min="5" max="1000" step="1" onchange="updateFeedsTower(this.value);">
-            <p><span class="summary">Solid infill: <b><span class="solidFeedTower">48</span> mm/s</b></span><span class="summary">Travel moves: <b><span class="travelFeedTower">100</span> mm/s</b></span><span class="summary">First layer: <b><span class="firstFeedTower">30</span> mm/s</b></span></p><p>The above feedrate modifiers only apply to the first layer.</p></td>            
+            <td>Perimeter feedrate:  <input type="number" name="baseFeedrate" value="20" min="5" max="1000" step="1" onchange="updateFeedsTower(this.value); volumeCalc()">
+            <p><span class="summary">Solid infill: <b><span class="solidFeedTower">48</span> mm/s</b></span><span class="summary">Travel moves: <b><span class="travelFeedTower">100</span> mm/s</b></span><span class="summary">First layer: <b><span class="firstFeedTower">30</span> mm/s</b></span></p><p>The above feedrate modifiers only apply to the first layer.</p></td>
+            <td style="vertical-align:top"><span id="volA" class="volumetric">1.92</span> mm³/sec</td>            
         </tr>
     </tbody>
 </table>
