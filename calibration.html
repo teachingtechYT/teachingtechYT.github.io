@@ -947,29 +947,56 @@ M84 ; disable motors
         <p>The ideal segment will have the best compromise between low acceleration corner bulging and high acceleration ringing.</p>
         <p>My previous value was 500, but a small increase in quality may be achieved from lowering the value to 400.</p>
         <a href="#" data-featherlight="img/accelerationresults.jpg"><img loading="lazy" class="thumb" src="img/accelerationresults.jpg" /></a>
-        <p></p>
-        <p>Once you have a value you are happy with, you can update with:</p>
-        <pre>M204 P400</pre>
-        <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print.</p>
-        <p>It's also worth noting that the <b>M201 value acts as a per axis limit for acceleration</b>. For example, if you set the <b>M204</b> print acceleration to 1000 but the X and Y <b>M201</b> acceleration limits are only 800, then the <b>M204 P</b> value will be capped at 800. Use <b>M503</b> to see the current <b>M201</b> values, and if necessary, use <b>M201</b> to set higher X and Y acceleration limit values to suit.</p>
-        <p>We can store the new value(s) to EEPROM by sending:</p>
-        <pre>M500</pre>
-        <p>You would then repeat the test with all of the acceleration values locked at your preferred value for each segment, but this time varying jerk/junction deviation.</p>
-        <p>To save for a printer with jerk (with a determined best compromise of <b>8</b> for this example), we would enter:</p>
-        <pre>M205 X8 Y8</pre>
-        <p>To save for a printer with junction deviation (with a determined best compromise of <b>0.05</b> for this example), we would enter:</p>
-        <pre>M205 J0.05</pre>
-        <p>Either way, we save to EEPROM afterwards with:</p>
-        <pre>M500</pre>
-        <p>Each of these parameters can also be entered and stored from the <b>configuration</b> menu of the Marlin LCD.</p>
+        <script>document.write(firmwareSelector);</script>
+        <div class="marlinContent">
+            <p>Once you have an acceleration value you are happy with, you can update with:</p>
+            <pre>M204 P400</pre>
+            <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print.</p>
+            <p>It's also worth noting that the <b>M201 value acts as a per axis limit for acceleration</b>. For example, if you set the <b>M204</b> print acceleration to 1000 but the X and Y <b>M201</b> acceleration limits are only 800, then the <b>M204 P</b> value will be capped at 800. Use <b>M503</b> to see the current <b>M201</b> values, and if necessary, use <b>M201</b> to set higher X and Y acceleration limit values to suit.</p>
+            <p>We can store the new value(s) to EEPROM by sending:</p>
+            <pre>M500</pre>
+            <p>You would then repeat the test with all of the acceleration values locked at your preferred value for each segment, but this time varying jerk/junction deviation.</p>
+            <p>To save for a printer with jerk (with a determined best compromise of <b>8</b> for this example), we would enter:</p>
+            <pre>M205 X8 Y8</pre>
+            <p>To save for a printer with junction deviation (with a determined best compromise of <b>0.05</b> for this example), we would enter:</p>
+            <pre>M205 J0.05</pre>
+            <p>Either way, we save to EEPROM afterwards with:</p>
+            <pre>M500</pre>
+            <p>Each of these parameters can also be entered and stored from the <b>configuration</b> menu of the Marlin LCD.</p>
+        </div>
+        <div class="klipperContent">
+            <p>Once you have an acceleration value you are happy with, you can edit the <a href="https://www.klipper3d.org/Config_Reference.html#printer" target="_blank">[printer]</a> section of <b>printer.cfg</b></p>
+            <pre>[printer]
+max_accel: 400
+max_accel_to_decel: 400</pre>
+            <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print.</p>
+            <p>Obviously you can enter a unique value for <b>MAX_ACCEL_TO_DECEL</b> compared to <b>MAX_ACCEL</b>.</p>
+            <p>You would then repeat the test with all of the acceleration values locked at your preferred value for each segment, but this time varying square corner velocity.</p>
+            <p>To save an example value of <b>8</b> you can edit the <a href="https://www.klipper3d.org/Config_Reference.html#printer" target="_blank">[printer]</a> section of <b>printer.cfg</b></p>
+            <pre>[printer]
+square_corner_velocity: 8.0</pre>
+            <p>Save config to restart Klipper with the changes in effect.</p>
+        </div>
+        <div class="rrfContent">
+            <p>Once you have an acceleration value you are happy with, you can edit <b>config.g</b> with:</p>
+            <pre>M204 P400 T[value]</pre>
+            <p>where <b>400</b> is the value of the acceleration with the best compromise based on the tower test print. The T value represents travel acceleration, when no filament is being extruded. It can likely be a higher valu without any loss in quality.</p>
+            <p>It's also worth noting that the <b>M201 value acts as a per axis limit for acceleration</b>. For example, if you set the <b>M204</b> print acceleration to 1000 but the X and Y <b>M201</b> acceleration limits are only 800, then the <b>M204 P</b> value will be capped at 800. Look the current <b>M201</b> values, and if necessary, use <b>M201</b> to set higher X and Y acceleration limit values to suit.</p>
+            <p>You would then repeat the test with all of the acceleration values locked at your preferred value for each segment, but this time varying max instananeous speed change.</p>
+            <p><b>config.g</b>> can then be updated to reflect the best results, for instance a value of <b>8</b>:</p>
+            <pre>M205 X8 Y8 Z[value] E[value]</pre>
+            <p>Note you would likely leave <b>Z</b> and <b>E</b> unchanged from their original values.</p>
+            <p>Save <b>config.g</b> to restart the firmware with the changes in effect.</p>>
+        </div>
         <div class="exp">
             <h5>Special note for Cura, PrusaSlicer and SuperSlicer:</h5>
             <p>Cura, PrusaSlicer and SuperSlicer all have the capability to control these parameters from the slicer by inserting appropriate gcode. If you are finding that your new acceleration values are not taking effect, you may need to also set them in the slicer. This is actually a desirable feature, as it allows more aggressive settings for infill and features that can't be seen in the final print, yet be more conservative for outer walls where aesthetics are paramount.</p>
             <a href="#" data-featherlight="img/acceloverride.jpg"><img loading="lazy" class="thumb" src="img/acceloverride.jpg" /></a>
         </div>
         <h2>Higher acceleration without ringing: Input Shaping</h2>
-        <p>An amazing development in 3D printing is input shaping, which compensates for the machine's resonant frequency by altering stepper motor inputs to drastically reduce ringing. Available in Klipper and soon to be introduced to RepRapFirmware, input shaping allows much higher feedrates without a loss in print quality. To see it in action, see the video below:</p>
+        <p>An amazing development in 3D printing is input shaping, which compensates for the machine's resonant frequency by altering stepper motor inputs to drastically reduce ringing. Available in Klipper and RepRapFirmware, input shaping allows much higher feedrates without a loss in print quality. To see it in action, see the videos below:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/er7q-CJL1lc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/EJapxNsntsQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
     <div id="linadv">
