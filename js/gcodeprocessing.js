@@ -123,6 +123,26 @@ function toggleJ() {
     }
 }
 
+function toggleAF() {
+    var value = document.accelerationForm.accFirmware.value;
+    if(value == "accMarlin"){
+        $(".accMarlinContent").show();
+        $(".accKlipperContent").hide();
+        $(".accRrfContent").hide();
+        toggleJ();
+    }
+    if(value == "accKlipper"){
+        $(".accMarlinContent").hide();
+        $(".accKlipperContent").show();
+        $(".accRrfContent").hide();
+    }
+    if(value == "accRRF"){
+        $(".accMarlinContent").hide();
+        $(".accKlipperContent").hide();
+        $(".accRrfContent").show();
+    }
+}
+
 function updateFeeds(feedrate) {
     $('.perimFeed').html(Math.round(feedrate*0.6));
     $('.solidFeed').html(Math.round(feedrate*0.8));
@@ -257,6 +277,7 @@ function processGcode(formName) {
     }
     // collect acceleration inputs
     if(name == "accelerationForm"){
+        var accFirmware = formName.accFirmware.value;
         var inner = formName.innerFeedrate.value*60;
         var outer = formName.outerFeedrate.value*60;
         var jerk_or_jd = formName.jerk_or_jd.value;
@@ -265,31 +286,55 @@ function processGcode(formName) {
         var a3 = formName.accel_a3.value;
         var a4 = formName.accel_a4.value;
         var a5 = formName.accel_a5.value;
+        var a6 = formName.accel_a6.value;
+        var a7 = formName.accel_a7.value;
+        var a8 = formName.accel_a8.value;
+        var a9 = formName.accel_a9.value;
         var b1 = formName.accel_b1.value;
         var b2 = formName.accel_b2.value;
         var b3 = formName.accel_b3.value;
         var b4 = formName.accel_b4.value;
         var b5 = formName.accel_b5.value;
+        var b6 = formName.accel_b6.value;
+        var b7 = formName.accel_b7.value;
+        var b8 = formName.accel_b8.value;
+        var b9 = formName.accel_b9.value;
         var c1 = formName.accel_c1.value;
         var c2 = formName.accel_c2.value;
         var c3 = formName.accel_c3.value;
         var c4 = formName.accel_c4.value;
         var c5 = formName.accel_c5.value;
+        var c6 = formName.accel_c6.value;
+        var c7 = formName.accel_c7.value;
+        var c8 = formName.accel_c8.value;
+        var c9 = formName.accel_c9.value;
         var d1 = formName.accel_d1.value;
         var d2 = formName.accel_d2.value;
         var d3 = formName.accel_d3.value;
         var d4 = formName.accel_d4.value;
         var d5 = formName.accel_d5.value;
+        var d6 = formName.accel_d6.value;
+        var d7 = formName.accel_d7.value;
+        var d8 = formName.accel_d8.value;
+        var d9 = formName.accel_d9.value;
         var e1 = formName.accel_e1.value;
         var e2 = formName.accel_e2.value;
         var e3 = formName.accel_e3.value;
         var e4 = formName.accel_e4.value;
         var e5 = formName.accel_e5.value;
+        var e6 = formName.accel_e6.value;
+        var e7 = formName.accel_e7.value;
+        var e8 = formName.accel_e8.value;
+        var e9 = formName.accel_e9.value;
         var f1 = formName.accel_f1.value;
         var f2 = formName.accel_f2.value;
         var f3 = formName.accel_f3.value;
         var f4 = formName.accel_f4.value;
         var f5 = formName.accel_f5.value;
+        var f6 = formName.accel_f6.value;
+        var f7 = formName.accel_f7.value;
+        var f8 = formName.accel_f8.value;
+        var f9 = formName.accel_f9.value;
     } else {
         var feed = formName.baseFeedrate.value*60;
         var feedMod = feed/3600;
@@ -505,41 +550,80 @@ function processGcode(formName) {
             gcode = gcode.replace(/F3600/g, "F"+inner+" ; custom outer perimeter feedrate");
             gcode = gcode.replace(/F2880/g, "F"+inner+" ; custom outer perimeter feedrate");
             gcode = gcode.replace(/F2160/g, "F"+outer+" ; custom inner perimeter feedrate");
-            // add acceleration segments
-            if(formName.deltaAcc.checked == true){
-                gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits delta\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+            // raise delta limits
+            if(accFirmware == "accKlipper"){
+                gcode = gcode.replace(/;process Process-1/, "SET_VELOCITY_LIMIT ACCEL="+a1+" ACCEL_TO_DECEL="+a1+"; custom acceleration - A\n;j1");
             } else {
-                gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000; custom raise acceleration limits\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
-            }
-            gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" T"+b1+" ; custom acceleration - B\n;j2");
-            gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" T"+c1+" ; custom acceleration - C\n;j3");
-            gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" T"+d1+" ; custom acceleration - D\n;j4");
-            gcode = gcode.replace(/;process Process-5/, "M204 P"+e1+" T"+e1+" ; custom acceleration - E\n;j5");
-            gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" T"+f1+" ; custom acceleration - F\n;j6");
-            // add jerk/junction deviation segments
-            if(jerk_or_jd == "jerk"){
                 if(formName.deltaAcc.checked == true){
-                    gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk delta - A");
-                    gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk delta - B");
-                    gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk delta - C");
-                    gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk delta - D");
-                    gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk delta - E");
-                    gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk delta - F");
+                    gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000 Z50000; custom raise acceleration limits delta\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
                 } else {
-                    gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
-                    gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
-                    gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
-                    gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
-                    gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
-                    gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
+                    gcode = gcode.replace(/;process Process-1/, "M201 X50000 Y50000; custom raise acceleration limits\nM204 P"+a1+" T"+a1+" ; custom acceleration - A\n;j1");
+                }
+            }
+            // add acceleration segments
+            if(accFirmware == "accKlipper"){
+                gcode = gcode.replace(/;process Process-2/, "SET_VELOCITY_LIMIT ACCEL="+b1+" ACCEL_TO_DECEL="+b1+"; custom acceleration - B\n;j2");
+                gcode = gcode.replace(/;process Process-3/, "SET_VELOCITY_LIMIT ACCEL="+c1+" ACCEL_TO_DECEL="+c1+"; custom acceleration - C\n;j3");
+                gcode = gcode.replace(/;process Process-4/, "SET_VELOCITY_LIMIT ACCEL="+d1+" ACCEL_TO_DECEL="+d1+"; custom acceleration - D\n;j4");
+                gcode = gcode.replace(/;process Process-5/, "SET_VELOCITY_LIMIT ACCEL="+e1+" ACCEL_TO_DECEL="+e1+"; custom acceleration - E\n;j5");
+                gcode = gcode.replace(/;process Process-6/, "SET_VELOCITY_LIMIT ACCEL="+f1+" ACCEL_TO_DECEL="+f1+"; custom acceleration - F\n;j6");
+            } else {
+                gcode = gcode.replace(/;process Process-2/, "M204 P"+b1+" T"+b1+" ; custom acceleration - B\n;j2");
+                gcode = gcode.replace(/;process Process-3/, "M204 P"+c1+" T"+c1+" ; custom acceleration - C\n;j3");
+                gcode = gcode.replace(/;process Process-4/, "M204 P"+d1+" T"+d1+" ; custom acceleration - D\n;j4");
+                gcode = gcode.replace(/;process Process-5/, "M204 P"+e1+" T"+e1+" ; custom acceleration - E\n;j5");
+                gcode = gcode.replace(/;process Process-6/, "M204 P"+f1+" T"+f1+" ; custom acceleration - F\n;j6");
+            }
+
+            // add jerk/junction deviation segments
+            if(accFirmware == "accMarlin"){
+                if(jerk_or_jd == "jerk"){
+                    if(formName.deltaAcc.checked == true){
+                        gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" Z"+a5+" ; custom jerk delta - A");
+                        gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" Z"+b5+" ; custom jerk delta - B");
+                        gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" Z"+c5+" ; custom jerk delta - C");
+                        gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" Z"+d5+" ; custom jerk delta - D");
+                        gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" Z"+e5+" ; custom jerk delta - E");
+                        gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" Z"+f5+" ; custom jerk delta - F");
+                    } else {
+                        gcode = gcode.replace(/;j1/, "M205 X"+a2+" Y"+a3+" ; custom jerk - A");
+                        gcode = gcode.replace(/;j2/, "M205 X"+b2+" Y"+b3+" ; custom jerk - B");
+                        gcode = gcode.replace(/;j3/, "M205 X"+c2+" Y"+c3+" ; custom jerk - C");
+                        gcode = gcode.replace(/;j4/, "M205 X"+d2+" Y"+d3+" ; custom jerk - D");
+                        gcode = gcode.replace(/;j5/, "M205 X"+e2+" Y"+e3+" ; custom jerk - E");
+                        gcode = gcode.replace(/;j6/, "M205 X"+f2+" Y"+f3+" ; custom jerk - F");
+                    }
+                } else {
+                    gcode = gcode.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
+                    gcode = gcode.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
+                    gcode = gcode.replace(/;j3/, "M205 J"+c4+" ; custom junction deviation - C");
+                    gcode = gcode.replace(/;j4/, "M205 J"+d4+" ; custom junction deviation - D");
+                    gcode = gcode.replace(/;j5/, "M205 J"+e4+" ; custom junction deviation - E");
+                    gcode = gcode.replace(/;j6/, "M205 J"+f4+" ; custom junction deviation - F");
+                }
+            } else if(accFirmware == "accRRF") {
+                if(formName.deltaAcc.checked == true){
+                    gcode = gcode.replace(/;j1/, "M205 X"+a7+" Y"+a8+" Z"+a9+" ; custom MISC delta - A");
+                    gcode = gcode.replace(/;j2/, "M205 X"+b7+" Y"+b8+" Z"+b9+" ; custom MISC delta - B");
+                    gcode = gcode.replace(/;j3/, "M205 X"+c7+" Y"+c8+" Z"+c9+" ; custom MISC delta - C");
+                    gcode = gcode.replace(/;j4/, "M205 X"+d7+" Y"+d8+" Z"+d9+" ; custom MISC delta - D");
+                    gcode = gcode.replace(/;j5/, "M205 X"+e7+" Y"+e8+" Z"+e9+" ; custom MISC delta - E");
+                    gcode = gcode.replace(/;j6/, "M205 X"+f7+" Y"+f8+" Z"+f9+" ; custom MISC delta - F");
+                } else {
+                    gcode = gcode.replace(/;j1/, "M205 X"+a7+" Y"+a8+" ; custom MISC - A");
+                    gcode = gcode.replace(/;j2/, "M205 X"+b7+" Y"+b8+" ; custom MISC - B");
+                    gcode = gcode.replace(/;j3/, "M205 X"+c7+" Y"+c8+" ; custom MISC - C");
+                    gcode = gcode.replace(/;j4/, "M205 X"+d7+" Y"+d8+" ; custom MISC - D");
+                    gcode = gcode.replace(/;j5/, "M205 X"+e7+" Y"+e8+" ; custom MISC - E");
+                    gcode = gcode.replace(/;j6/, "M205 X"+f7+" Y"+f8+" ; custom MISC - F");
                 }
             } else {
-                gcode = gcode.replace(/;j1/, "M205 J"+a4+" ; custom junction deviation - A");
-                gcode = gcode.replace(/;j2/, "M205 J"+b4+" ; custom junction deviation - B");
-                gcode = gcode.replace(/;j3/, "M205 J"+c4+" ; custom junction deviation - C");
-                gcode = gcode.replace(/;j4/, "M205 J"+d4+" ; custom junction deviation - D");
-                gcode = gcode.replace(/;j5/, "M205 J"+e4+" ; custom junction deviation - E");
-                gcode = gcode.replace(/;j6/, "M205 J"+f4+" ; custom junction deviation - F");
+                gcode = gcode.replace(/;j1/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+a6+" ; custom SCV - A");
+                gcode = gcode.replace(/;j2/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+b6+" ; custom SCV - B");
+                gcode = gcode.replace(/;j3/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+c6+" ; custom SCV - C");
+                gcode = gcode.replace(/;j4/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+d6+" ; custom SCV - D");
+                gcode = gcode.replace(/;j5/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+e6+" ; custom SCV - E");
+                gcode = gcode.replace(/;j6/, "SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY="+f6+" ; custom SCV - F");
             }
         }
         // process user retraction

@@ -852,8 +852,7 @@ M84 ; disable motors
         <div id="oldFlowTest" style="display:none;">
             <p>One strategy is to calculate the fastest your 3D printer can move while extruding cleanly, set this feedrate in the slicer, and then tune acceleration to meet this speed. If you are not interested in printing as fast as possible, skip to the next section.</p>
             <p><i>This part of the guide and calculator is adapted from <a href="https://grabcad.com/tutorials/dialing-in-a-filament-and-specifying-the-max-volumetric-e-xtrusion-value" target="_blank">Martin Pirringer's tutorial</a>. Please consider supporting him and his robotics team through <a href="paypal.me/DudeWithaPulse" target="_blank">paypal</a> or you can also donate to team 1989 through their <a href="https://www.vernonrobotics.com" target="_blank">Team 1989 Web Site</a></i></p>
-            <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>
-            
+            <p>The following calculator will assist you in determining the maximum feedrate your printer/extruder/hot end is capable of.</p>         
             <ol>
                 <li>Clear debris from hobbed gear, bring nozzle up to normal printing temp and load filament.</li>
                 <li>Enter the following into pronterface. This will set movement to relative and then extrude 50mm of filament at a feedrate of 2mm/sec:</li>
@@ -910,14 +909,24 @@ M84 ; disable motors
         </div>        
         <h2>Acceleration Tuning</h2>
         <p>We will now produce an acceleration tower to conveniently test back to back settings in a single print. If you would like to slice the model yourself, here is the STL: <a href="files/accelerationtower.stl">accelerationtower.stl</a>. It should be sliced with a normal base, but hollow, no top layers and only 2 perimeters.</p>
-        <p>The only thing you need to know before this test is whether your firmware is set up for jerk (older) or junction deviation (newer). Entering <b>M503</b> via terminal will give a list of printer variables:</p>
-        <ul>
-            <li>If the <b>M205</b> line contains the letters <b>X, Y & Z</b>, your printer is running jerk. The numbers after the X,Y & Z are your current jerk values for each axis.</li>
-            <li>If the <b>M205</b> contains the letter <b>J</b>, your printer is running junction deviation. The number after the J is your current junction deviation value.</li>
-        </ul>
-        <p>The image below shows an example of each of these scenarios:</p>
-        <a href="#" data-featherlight="img/m205.jpg"><img loading="lazy" class="thumb" src="img/m205.jpg" /></a>
-        <p>Use the following form to customise the gcode to your liking:</p>
+        <script>document.write(firmwareSelector);</script>
+        <div class="marlinContent">
+            <p>With Marlin firmware, the only thing you need to know before this test is whether your firmware is set up for jerk (older) or junction deviation (newer). Entering <b>M503</b> via terminal will give a list of printer variables:</p>
+            <ul>
+                <li>If the <b>M205</b> line contains the letters <b>X, Y & Z</b>, your printer is running jerk. The numbers after the X,Y & Z are your current jerk values for each axis.</li>
+                <li>If the <b>M205</b> contains the letter <b>J</b>, your printer is running junction deviation. The number after the J is your current junction deviation value.</li>
+            </ul>
+            <p>The image below shows an example of each of these scenarios:</p>
+            <a href="#" data-featherlight="img/m205.jpg"><img loading="lazy" class="thumb" src="img/m205.jpg" /></a>
+            <p>Use the following form to customise the gcode to your liking:</p>
+        </div>
+        <div class="klipperContent">
+            <p>Klipper uses both <b>ACCEL</b> and <b>ACCEL_TO_DECEL</b>. The difference between the is explained <a href="https://www.klipper3d.org/Config_Reference.html#printer" target="_blank">here</a>.</p>
+            <p>Klipper uses a value known as Square Corner Velocity (SCV) instead of junction deviation or jerk, but the idea behind it is the same. A value of 5 mm/sec will allow the toolhead to slow to and maintain a 5 mm/sec speed for a 90 degree corner. This speed will be higher for a shallower turn and lower for a sharper turn.</p>
+        </div>
+        <div class="rrfContent">
+            <p>RepRapFirmware uses <a href="https://duet3d.dozuki.com/Wiki/M205" target="_blank">M205</a> to set Max Instantaneous Speed Change instead of jerk or junction deviation, but the idea behind it is the same.</p>
+        </div>
         <h6 id="acc">Acceleration & jerk/junction deviation tuning tower generator</h6>
         <p>The STL for this test is available here: <a href="files/accelerationtower.stl">accelerationtower.stl</a></p>
         <!-- accelerationForm -->
