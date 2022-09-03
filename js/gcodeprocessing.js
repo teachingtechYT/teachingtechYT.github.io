@@ -693,7 +693,7 @@ function processGcode(formName) {
         gcode = gcode.replace(/;M80/, "M80");
     }
     if(formName.removet0.checked == true) {
-        gcode = gcode.replace(/T0\n/, ";T0\n");
+        gcode = gcode.replace(/T0\n/g, ";T0\n");
     }
     if(formName.start.checked == true) {
         gcode = gcode.replace(/;customstart/, "; custom start gcode\n"+customStart);
