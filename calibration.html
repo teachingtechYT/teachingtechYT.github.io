@@ -404,6 +404,7 @@ M84 ; disable motors
             <p>By default, Marlin expects the e-steps for each of your extruders to be the same. To work around this, you must compile with <b>DISTINCT_E_FACTORS</b> uncommented/enabled in <b>configuration.h</b>:</p>
             <img style="margin-left:50px;" src="img/distinct-e-factors.jpg" />
             <p>You will then be able to enter a unique <b>M92</b> value for each extruder.</p>
+            <p>If recompiling the firmware is not an option. The <i>M92</i> command for each extruder can be inserted into the slicer 'tool change' section. This way the correct e-steps will be set just before extrusion for that tool takes place.</p>
         </div>
     </div>
 
