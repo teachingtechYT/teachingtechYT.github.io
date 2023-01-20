@@ -709,6 +709,117 @@ function processGcode(formName) {
     downloadFile(description+'.gcode', gcode);
 }
 
+function convertGcode() {
+    var file = document.getElementById("uploadedFile").files[0];
+    console.log("1");
+    if(file) { // A file has been atached with the file input
+        if(file.name.search(".gcode") == -1){
+            console.log("2a: Non .gcode file.");
+            alert("Please select a gcode file only");
+            return;
+        }
+        var reader = new FileReader();
+        reader.readAsText(file, "UTF-8");
+        reader.onload = function (evt) {
+            console.log("2b: Converting uploaded file.");
+            document.diagZhop.tradGcode.value = evt.target.result; // set gcode variables to file contents
+            console.log("3");
+        }
+        reader.onerror = function (evt) {
+            alert("Error reading file"); // warn user if file not suitable
+            console.log("2c: Error reading file.");
+        }
+    } else {
+        console.log("2d: Nothing to convert");
+        alert("No file attached.");
+    }
+}
+
+function copyToClipboard(div) {
+    var copyText = document.getElementById(div);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(copyText.value);
+}
+
+function diagonalZhop() {
+    document.diagZhop.diagZhopGcode.value = "";
+    var hop = parseFloat(document.diagZhop.diagZheight.value); // Collect user specific vertical height
+    var minLength = parseFloat(document.diagZhop.minLength.value) // Collect user specified minimum travel length
+    var version = document.diagZhop.version.value; // Collect user specified version input
+    var oldX, oldY, nextX, nextY, halfX, halfY, oldZ, halfZ, oldF, travelLength, startedExtrusion, gType;
+    var regexpX = /X-?[0-9\.]+/; // Regex to search for X coordinates
+    var regexpY = /Y-?[0-9\.]+/; // Regex to search for Y coordinates
+    var regexpZ = /Z-?[0-9\.]+/; // Regex to search for Z coordinates
+    var regexpF = /F[0-9\.]+/;// Regex to search for F feedrate
+    var gcode = document.diagZhop.tradGcode.value; // Collect user input gcode
+    if(gcode == ""){ // No file attached or input into text field
+        alert("Please enter gcode into the text box.");
+        return;
+    }
+    var gcodeArray = gcode.split(/\n/g); // Split gcode line by line into an array
+    gcodeArray.forEach(function(index, item){ // For each line..
+        if((gcodeArray[item].search("G0") == 0) || (gcodeArray[item].search("G1") == 0)){ // Check if G0/G1 present
+            if(gcodeArray[item].search(/Z/) > -1){ // Search for change of Z height / layer change
+                oldZ = parseFloat(gcodeArray[item].match(regexpZ)[0].substring(1)); // Store current Z height
+            } else if((gcodeArray[item].search("X") > -1) && (gcodeArray[item].search("Y") > -1)){ // Both X and Y positions present - travel or print move
+                if(gcodeArray[item].search("E") > -1){ // Search for E = extrusion move
+                    startedExtrusion = true; // Mark that actual printing has started
+                    oldX = parseFloat(gcodeArray[item].match(regexpX)[0].substring(1)); // Store current X position
+                    oldY = parseFloat(gcodeArray[item].match(regexpY)[0].substring(1)); // Store current Y position
+                } else { // No extrusion - travel move
+                    if(startedExtrusion){ // Only progress if printing has actually started
+                        gType = gcodeArray[item].substring(0,2); // Capture either 'G0' or 'G1' to reuse
+                        nextX = parseFloat(gcodeArray[item].match(regexpX)[0].substring(1)); // Store X coordinate for end of travel move
+                        nextY = parseFloat(gcodeArray[item].match(regexpY)[0].substring(1)); // Store Y coordinate for end of travel move
+                        travelLength = parseFloat(Math.sqrt(Math.pow(nextX-oldX, 2) + Math.pow(nextY-oldY, 2))); // Calculate length of travel move using Pythagoras' theorem
+                        if(travelLength > minLength){ // Check if travel meets length requirement, create diagonal Z hop if it does
+                            if(gcodeArray[item].search("F") > -1){ // Store feedrate for travel move if it is present
+                                oldF = parseFloat(gcodeArray[item].match(regexpF)[0].substring(1)).toFixed(4);
+                            } else {
+                                oldF = -1; // If no F parameter, mark as -1
+                            }
+                            if(version == "trad"){
+                                halfX = (oldX + nextX) / 2; // Calculate half way point for X travel
+                                halfY = (oldY + nextY) / 2; // Calculate half way point for Y travel
+                            }                            
+                            oldX = parseFloat(gcodeArray[item].match(regexpX)[0].substring(1)); // Store X position in case of multiple travel moves in a row
+                            oldY = parseFloat(gcodeArray[item].match(regexpY)[0].substring(1));  // Store Y position in case of multiple travel moves in a row
+                            halfZ = parseFloat(oldZ + hop).toFixed(4); // Calculate temporary z height for peak of diagonal travel
+                            if(version == "trad"){ // Create movements for a diagonal Z hop halfway between points
+                                var newLine = gType+" X"+parseFloat(halfX).toFixed(4)+" Y"+parseFloat(halfY).toFixed(4)+" Z"+halfZ; // Create new G0/G1 travel move to the halfway point
+                                if(oldF != -1){ // Check if a feedrate was stored or bogus -1 value
+                                    newLine += " F"+oldF; // Add F feedrate to the line if possible
+                                }                        
+                                newLine += " ; Diagonal Z hop part 1\n"; // Add comment
+                                gcodeArray[item] = newLine+gcodeArray[item]+" Z"+oldZ+" ; Diagonal Z hop part 2"; // Add new travel move plus old travel together, adding Z height to the end of the old travel move.
+                            } else { // Create movements for a diagonal Z hop above the destination, then lower down
+                                gcodeArray[item] += " Z"+halfZ+" ; Diagonal Z hop part 1\n";
+                                gcodeArray[item] += gType+" Z"+oldZ+" ; Diagonal Z hop part 2";
+                            }
+                        } else { // If the travel length was too short, add comment only
+                            gcodeArray[item] += " ; Travel move of "+travelLength+" below user threshold of "+minLength+" mm";
+                        }
+                        
+                    }
+                } 
+            }
+        }
+    });
+    gcode = gcodeArray.join("\n"); // Join all of the individuallines back together
+    var header = "; Experimental diagonal Z hop post processor from: https://teachingtechyt.github.io/diagonalZhop.html\n"; // Add URL
+    header += "; Diagonal Z hop height: "+hop+" mm\n"; // Add user input
+    header += "; Miniumum travel length: "+minLength+" mm\n" // Add user input
+    header += "; Version: "; // Add user input
+    if(version == "trad"){
+        header += "Traditional (diagonal move up to half way point)\n";
+    } else {
+        header += "Alternate (diagonal move to above finishing point)\n";
+    }
+    gcode = header+gcode; // Append string to the start of the start of the gcode
+    document.diagZhop.diagZhopGcode.value = gcode; // Insert post processed gcode into the output box
+}
+
 function outputSettings(formName) {
     var fileName;
     var string = "Settings for ";

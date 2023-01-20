@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="js/loadscripts.js"></script>
+    </head>
+<body onload="loadAllFormData()">
+    <div id="menu"></div>
+    <div id="header"></div>
+    <div>
+        <div class="exp">
+            <h5>Aim:</h5>
+            <p>To provide a compromise between no Z hop, which reduces stringing but has a higher chance of the nozzle knocking the model loose, and Z hop, which does the opposite.</p>
+            <h5>When required:</h5>
+            <p>This is currently experimental, and may not be needed in many cases. If you have a print that keeps disloging from nozzle contact, this may be worth a try.</p>
+            <h5>Tools:</h5>
+            <p>Your own sliced gcode and the post processor on on this page.</p>
+            <button class="zoom" onclick="$('html, body').animate({scrollTop: ($('#zh').offset().top-200)},500);">Scroll to post processor</button>
+        </div>
+        <p>This page allows you to paste in your existing sliced gcode and have it convert it to diagonal Z hop. It is a simple conversion and has been tested thoroughly, but still use it with caution.</p>
+        <p>This concept is covered in detail in the following video:</p>
+        <iframe width="480" height="360" src="https://www.youtube.com/embed/OAXi_apvgl4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>Diagonal Z hop is an experiment</h2>
+        <p>This is the result of a 'what if' thought when printing a tricky model. It may turn out to be useful, useless, or perhaps need alteration to be more effective. The post processing script on this page has limitations that actual slicing software does not. Proper implementation in a slicer might be more effective. Please try it out and post your feedback in the comments of the video above.</p>
+        <p>If this concept does have merit, I am very happy for it to be implemented into any and every slicer that wants it. If the process helps people, I gladly release it to the public domain.</p>
+        <h2>Traditional retraction, travel and Z hop</h2>
+        <p>Retraction is when filament is pulled away from the hot end to reduce pressure. This will usually be done before a travel move. A travel move is a movement made by the printer where no filament is extruded. At the end of the travel move, the extruder will usually unretract to get nozzle pressure back to normal, and then continue printing. Without retraction, prints tend to suffer from stringing, where filament leaks during travel moves and creates fine strings of filament connecting surfaces that should be isolated:</p>
+        <a href="#" data-featherlight="img/stringing.jpg"><img loading="lazy" class="thumb" src="img/stringing.jpg"></a>
+        <p></p>
+        <p>Z hop is an option your slicer can employ either side of a travel move. After retraction, the nozzle will lift up vertically, followed by the travel move, then move vertically downwards to return to the correct height, before unretracting and resuming printing.</p>
+        <p>Z hop gives the nozzle additional clearance over the model, which can prevent the nozzle from crashing into the model and knocking it loose. This can ensure success on a tricky model where parts with steep overhangs may curl up on the tip into the path of the nozzle. However, Z hop is compromised because it generally introduces fine stringing. It improves reliability at the expense of print quality.</p>
+         <h2>Aim of diagonal Z hop</h2>
+        <p>Rather than have Z hop be a three part movement (up, travel horizontally then down), diagonal Z hop breaks a travel move into two sections.</p>
+        <ul>
+            <li>In the traditional version, the first move is half way horizontally while also travelling vertically up, and the second completes the horizontal travel move whilst coming vertically back down to printing height.</li>
+            <li>In the alternate version, the first move travels diagonally up to above the next extrusion point, before dropping vertically downwards.</li>
+        </ul>
+        <p>It is hoped that the sequence is faster than standard Z hop, reduces stringing, whilst still offering additional clearance over delicate models to prevent collisions.</p>
+        <p>The following diagrams best illustrate the movment path for each of these options:</p>
+        <a href="#" data-featherlight="img/dhz-comparison-banner.jpg"><img loading="lazy" class="thumb" src="img/dhz-comparison-banner.jpg"></a>
+        <div id="zh">
+            <h6>Diagonal Z hop Post Processor</h6>
+            <form name="diagZhop" id="diagZhop" onsubmit="return false;">
+                <p>The following form will convert your existing gcode to have diagonal Z hop. Slice a model of your choice in your own slicer with the following considerations:</p>
+                <ul>
+                    <li>Traditional retraction as opposed to firmware retraction.</li>
+                    <li>Z hop should be turned OFF. Slice with a normal travel move only.</li>
+                    <li>Absolute movements <i>G90</i> vs relative movements <i>G91</i>. This is the default for most slicers.</li>
+                </ul>
+                <p>Firmware and slicer flavour should not matter. As long as the slicer outputs <i>G0</i>/<i>G1</i> commands for movements, this post processor should work.</p>
+                <p>Please consider that like using standard Z hop, your Z axis will be a lot more active during printing. If you already experience any problems with binding, any form of Z hop will make it worse.</p>
+                <h4>Existing gcode</h4>
+                <p>You may attach a file and have this page automatically extract its contents to the input box, or paste the gcode into the input box yourself.</p>
+                <p><input type="file" id="uploadedFile" name="uploadedFile"><input type="button" name="convertFile" onclick="convertGcode()" value="Convert attached file"></p>
+                <p>Or paste your existing gcode into the box below:</p>
+                <textarea name="tradGcode"></textarea>
+                <h4>Parameters</h4>
+                <p>
+                    <label>Diagonal Z hop height (mm):</label>
+                    <input type="number" name="diagZheight" value="0.2" min="0" max="10" step="0.1">
+                    <label>Minimum travel length to convert to diagonal Z hop (mm):</label>
+                    <input type="number" name="minLength" value="2.0" min="0" max="100" step="0.1">
+                </p>
+                <a href="#" data-featherlight="img/dzh-selection-banner.jpg"><img loading="lazy" class="thumb" src="img/dzh-selection-banner.jpg"></a>
+                <p style="margin-left:20px;" class="firmwareSelector">Version:
+                    <input name="version" id="trad" value="trad" checked="" type="radio">
+                    <label for="trad">Traditional</label>
+                    <input name="version" id="alt" value="alt" type="radio">
+                    <label for="alt">Alternate</label>
+                </p>
+                
+                <p><input type="button" onclick="diagonalZhop();" value="Process Gcode"></p>
+                <h4>Output gcode</h4>
+                <textarea id="diagZHopOutput" name="diagZhopGcode"></textarea>
+                <p><input type="button" value="Copy to Clipboard" onclick="copyToClipboard('diagZHopOutput')"></p>
+                <p><label for="diagZFilename">Filename:</label><input type="text" name="diagZFilename" value="diagZhop"> .gcode</p>
+                <p><input type="button" onclick="downloadFile(document.diagZhop.diagZFilename.value+'.gcode', document.diagZhop.diagZhopGcode.value);" value="Download Gcode"></p>
+                <div class="warning">
+                    <h2>Warning - Read carefully!</h2>
+                    <p>Every attempt has been made to ensure this is safe but ultimately there always is risk in running modified gcode from the internet. Preview the gcode in your slicer or <a href="http://zupfe.velor.ca" target="_blank">Zupfe GCode Viewer</a> and <span style="color:red; font-weight: bolder;">print at your own risk.</span></p>
+                    <p>Only print this gcode when you are present, alert and capable of stopping the printer in case of emergency.</p>
+                    <p>Validation has been built into the forms to only allow sensible min and max values, however this is not foolproof.</p>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    <div id="up"></div>
+    <div id="footer"></div>
+</body>
+<script>
+  var pageName = "Diagonal Z Hop";
+  var pageTitle = "Diagonal Z Hop Post Processor";
+</script>
+<script src="js/dynamic.js"></script>
+<html>

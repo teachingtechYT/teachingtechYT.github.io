@@ -1,5 +1,5 @@
-var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Review Policy", "Sponsors", "Contact"]
-var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
+var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Diagonal Z Hop", "Review Policy", "Sponsors", "Contact"]
+var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "diagonalZhop.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
 var menu = '<img src="img/ttwhite.png" />';
 var tab;
 for(var i = 0; i < pages.length; i++){
@@ -25,7 +25,6 @@ $('#up').html(up);
 $( "#up" ).bind( "click", function() {
     $('html, body').animate({scrollTop: '0px'}, 500);
 });
-
 
 var footer = `
 <p style="text-align: center;">This page is fully <a href="https://github.com/teachingtechYT/teachingtechYT.github.io" target="_blank">open source</a>. If you find a bug or have a feature request, please post in the <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues" target="_blank">issues</a> section. Make sure to read the <a href="https://github.com/teachingtechYT/teachingtechYT.github.io/issues/323" target="_blank">pinned readme</a>.</p>
