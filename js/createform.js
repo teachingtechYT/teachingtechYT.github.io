@@ -234,6 +234,7 @@ var abl = /*html*/ `<h4>Auto Bed Levelling</h4>
 <select name="abl">
     <option value="0">No ABL</option>
     <option value="1">Probe new mesh at the start of print - G29 (BLtouch,EZABL,etc)</option>
+    <option value="8">Probe new mesh at the start of print (Klipper) - BED_MESH_CALIBRATE</option>
     <option value="2">Restore saved ABL/manual mesh - M420 S1</option>
     <option value="3">Prusa MK3 - G28 W followed by G80</option>
     <option value="4">Prusa Mini - Only heat nozzle to 170, then G29</option>

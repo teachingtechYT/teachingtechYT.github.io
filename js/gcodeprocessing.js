@@ -387,6 +387,9 @@ function processGcode(formName) {
     if(abl == 7){
         gcode = gcode.replace(/;G29 ; probe ABL/, "G29 L2 ; Load the mesh stored in slot 1\nG29 J ; Probe 3 points to tilt mesh");
     }
+    if(abl == 8){
+        gcode = gcode.replace(/;G29 ; probe ABL/, "BED_MESH_CALIBRATE ; Klipper equivalent of G29");
+    }
     // firstlayer test square array
     if(name == "firstlayerForm"){
         var squares = "";
