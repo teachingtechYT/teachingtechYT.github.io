@@ -12,6 +12,9 @@ G28 ; home all axes
 ;M420 S1 ; restore ABL mesh
 ;temp0b 
 ;customstart
+G92 E0.0 ; set current extruder position as 0
+G90 ; set all axes back to absolute mode
+M82 ; set extruder back to absolute mode ; required for newer RepRapFirmware revisions
 G0 Z3; fix for delta printers that home at max`;
 
 var commonEnd = `
