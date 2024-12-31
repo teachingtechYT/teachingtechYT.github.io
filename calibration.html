@@ -221,7 +221,7 @@ M84 ; disable motors
         <p>PID autotuning is quick and easy, and relates to the most potentially dangerous components of your 3D printer: the heaters. It makes sense to do it as a first step. This procedure is covered in this video: <a href="https://youtu.be/qCtL0Yd_w0I" target="_blank">Two easy fixes for 3D printer temperature swings</a></p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/qCtL0Yd_w0I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p>In Marlin, this is a very straightforward process using <a href="https://marlinfw.org/docs/gcode/M303.html" target="_blank">M303</a>.</p>
-        <p>It is recommended to run the tuning with conditions as close to printing as possible. This means filament loaded and the part cooling fan set to your normal speed. This can be done from the printer's interface or in a terminal, by entering the following (this example is 100% fan speed):</p>
+        <p>It is recommended to run the tuning with conditions as close to printing as possible. This means having filament loaded and the part cooling fan set to your normal speed. This can be done from the printer's interface or in a terminal, by entering the following (this example is 100% fan speed):</p>
         <pre>M106 S255</pre>
         <p>It is not essential, but you may prefer to start this process with the hot end at room temperature. To tune the hot end, enter in a terminal:</p>
         <pre>M303 E0 S200 U1</pre>
@@ -231,7 +231,6 @@ M84 ; disable motors
         <pre>M303 E-1 S60 U1</pre>
         <p>The bed is selected with <b>E-1</b>, and the temp set to 60 degrees. Substitute as necessary for your normal printing bed temperature. Once again save to EEPROM afterwards with:</p>
         <pre>M500</pre>
-        <p>It may be preferable to have the printer as close to printing conditions as possible during these tuning procedures. That means having filament loaded and the part cooling fan on for PLA temperatures. If there is no UI button available to turn on the part cooling fan, you can do it manually via gcode with <b>M106 S255</b>.</p>
         <div class="exp">
             <h5>Special note: If your printer doesn't support saving settings in EEPROM</h5>
             <p>In this case, you need to insert <b>M301</b> (hot end) or <b>M304</b> (bed) into your slicer start gcode so the correct settings are loaded before each print.</p>
