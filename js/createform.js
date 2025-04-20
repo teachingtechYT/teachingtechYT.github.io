@@ -44,6 +44,7 @@ function displayCustom(){
         $('.prusaslicerContent').hide();
         $('.superslicerContent').hide();
         $('.ideamakerContent').hide();
+        $('.orcaslicerContent').hide();
     }
     if($("#s3dSelector").prop("checked") == true){
         $('.curaContent').hide();
@@ -51,6 +52,7 @@ function displayCustom(){
         $('.prusaslicerContent').hide();
         $('.superslicerContent').hide();
         $('.ideamakerContent').hide();
+        $('.orcaslicerContent').hide();
     }
     if($("#prusaslicerSelector").prop("checked") == true){
         $('.curaContent').hide();
@@ -58,6 +60,7 @@ function displayCustom(){
         $('.prusaslicerContent').show();
         $('.superslicerContent').hide();
         $('.ideamakerContent').hide();
+        $('.orcaslicerContent').hide();
     }
     if($("#superslicerSelector").prop("checked") == true){
         $('.curaContent').hide();
@@ -65,6 +68,7 @@ function displayCustom(){
         $('.prusaslicerContent').hide();
         $('.superslicerContent').show();
         $('.ideamakerContent').hide();
+        $('.orcaslicerContent').hide();
     }
     if($("#ideamakerSelector").prop("checked") == true){
         $('.curaContent').hide();
@@ -72,6 +76,15 @@ function displayCustom(){
         $('.prusaslicerContent').hide();
         $('.superslicerContent').hide();
         $('.ideamakerContent').show();
+        $('.orcaslicerContent').hide();
+    }
+    if($("#orcaslicerSelector").prop("checked") == true){
+        $('.curaContent').hide();
+        $('.s3dContent').hide();
+        $('.prusaslicerContent').hide();
+        $('.superslicerContent').hide();
+        $('.ideamakerContent').hide();
+        $('.orcaslicerContent').show();
     }
 }
 
@@ -99,6 +112,8 @@ var slicerSelector = /*html*/ `<form name="slicerSelect" class="slicerSelector">
 <label for="superslicerSelector">SuperSlicer</label>
 <input name="slicer" id="ideamakerSelector" value="ideamaker" checked type="radio" onchange="displayCustom()"/>
 <label for="ideamakerSelector">ideaMaker</label>
+<input name="slicer" id="orcaslicerSelector" value="orcaslicer" checked type="radio" onchange="displayCustom()"/>
+<label for="orcaslicerSelector">OrcaSlicer</label>
 </p>
 </form>
 `;
