@@ -442,6 +442,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Infill > Fill density: 0%<br />Also set infill to 0% on main panel</td>
                     <td class="superslicerContent">Print settings > Infill > Sparse: 0%<br />Also set infill to 0% on main panel</td>
                     <td class="ideamakerContent">Template > Infill > Infill density: 0%</td>
+                    <td class="orcaslicerContent">Process settings > Strength > Infill > Sparse infill density: 0%</td>
                 </tr>
                 <tr>
                     <td>3. Turn off top layers</td>
@@ -450,6 +451,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Horizontal shells > Top: 0</td>
                     <td class="superslicerContent">Print settings > Perimeters and Shell > Horizontal shells > Top: 0</td>
                     <td class="ideamakerContent">Template > Solid Fill > Top solid fill layers: 0</td>
+                    <td class="orcaslicerContent">Process settings > Strength > Top/bottom shells > Top shell layers: 0</td>
                 </tr>
                 <tr>
                     <td>4. Ensure wall thickness is a known value.<br />Substitute whatever values you like here.<br />This example uses <b>0.4</b>, which is common for a 0.4mm nozzle and 0.2mm layer height.</td>
@@ -467,6 +469,14 @@ M84 ; disable motors
                         <i>and</i><br />
                         Print settings > Width and flow > Extrusion width > external perimeter: <b>0.4</b></td>
                     <td class="ideamakerContent">Template > Extruder > Extrusion width: <b>0.4</b></td>
+                    <td class="orcaslicerContent">
+                        Process settings > Quality > Line Width > Default: <b>0.4</b><br />
+                        <i>and</i><br />
+                        Process settings > Quality > Line Width > First layer: <b>0.4</b><br />
+                        <i>and</i><br />
+                        Process settings > Quality > Line Width > Outer wall: <b>0.4</b><br />
+                        <i>and</i><br />
+                        Process settings > Quality > Line Width > Inner wall: <b>0.4</b></td>
                 </tr>
                 <tr>
                     <td>5. Set outer wall thickness to single extrusion</td>
@@ -475,6 +485,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Vertical shells > Perimeters: 1</td>
                     <td class="superslicerContent">Print settings > Perimeters and shell > Vertical shells > Perimeters: 1</td>
                     <td class="ideamakerContent">Template > Layer > Shells: 1</td>
+                    <td class="orcaslicerContent">Process settings > Strength > Walls > Wall loops: 1</td>
                 </tr>
 
                 <tr>
@@ -484,6 +495,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Filament settings > Filament > Extrusion multiplier: 1</td>
                     <td class="superslicerContent">Filament settings > Filament > Extrusion multiplier: 1</td>
                     <td class="ideamakerContent">Primary extruder > General > Flowrate: 100%</td>
+                    <td class="orcaslicerContent">Filament Settings > Filament > Flow ratio and Pressure Advance > Flow ratio: 1</td>
                 </tr>
                 <tr>
                     <td>7. Enable vase/spiral mode (optional)</td>
@@ -492,6 +504,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Vertical shells > Spiral vase</td>
                     <td class="superslicerContent">Print settings > Perimeters and shells > Vertical shells > Spiral vase</td>
                     <td class="ideamakerContent">Template > Layer > Spiral vase mode</td>
+                    <td class="orcaslicerContent">Process settings > Others > Special mode > Spiral vase</td>
                 </tr>
                 <tr>
                     <td>8. Expected result:</td>
@@ -500,6 +513,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent"><img src="img/prusaslicercube.jpg" /></td>
                     <td class="superslicerContent"><img src="img/superslicercube.jpg" /></td>
                     <td class="ideamakerContent"><img src="img/ideamakercube.jpg" /></td>
+                    <td class="orcaslicerContent"><img src=img/orcaslicercube.jpg /></td>
                 </tr>
             </tbody>
         </table>
@@ -711,6 +725,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Printer settings > Extruder 1 > Retraction > Length</td>
                     <td class="superslicerContent">Printer settings > Extruder 1 > Retraction > Length</td>
                     <td class="ideamakerContent">Template > Extruder > Retraction > Retraction Material Amount</td>
+                    <td class="orcaslicerContent">Printer settings > Extruder 1 > Retraction > Length</td>
                 </tr>
                 <tr>
                     <td><b>Retraction speed</b>: The speed at which this filament is withdrawn in mm/sec.</td>
@@ -719,6 +734,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Printer settings > Extruder 1 > Retraction > Retraction Speed</td>
                     <td class="superslicerContent">Printer settings > Extruder 1 > Retraction > Retraction Speed</td>
                     <td class="ideamakerContent">Template > Extruder > Retraction > Retraction Speed</td>
+                    <td class="orcaslicerContent">Printer settings > Extruder 1 > Retraction > Retraction Speed</td>
                 </tr>
                 <tr>
                     <td><b>Extra restart distance</b>: The retraction distance will be reversed when the travel (non-extruding) movement is over. This is typically zero, but you can opt for extra filament to be extruded (a positive value) or less than what was retracted (a negative value). Also measured in mm.</td>
@@ -727,6 +743,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Printer settings > Extruder 1 > Retraction > Extra length on restart</td>
                     <td class="superslicerContent">Printer settings > Extruder 1 > Retraction > Extra length on restart</td>
                     <td class="ideamakerContent">Template > Extruder > Retraction > Extra Restart Amount</td>
+                    <td class="orcaslicerContent">Printer settings > Extruder 1 > Retraction > Extra length on restart</td>
                 </tr>
                 <tr>
                     <td><b>Prime (unretract) speed</b>: The speed at which this filament is reintroduced to the nozzle in mm/sec.</td>
@@ -735,6 +752,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Printer settings > Extruder 1 > Retraction > Deretraction speed</td>
                     <td class="superslicerContent">Printer settings > Extruder 1 > Retraction > Deretraction speed</td>
                     <td class="ideamakerContent">Template > Extruder > Retraction > Restart Speed</td>
+                    <td class="orcaslicerContent">Printer settings > Extruder 1 > Retraction > Deretraction speed</td>
                 </tr>
                 <tr>
                     <td><b>Z hop</b>: The amount the nozzle lifts vertically in mm during a travel (non-extruding) movement. After this movement, the correct Z value is then restored before the filament is unretracted/primed again ready for printing.</td>
@@ -743,6 +761,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Printer settings > Extruder 1 > Retraction > Lift z</td>
                     <td class="superslicerContent">Printer settings > Extruder 1 > Retraction > Lift z</td>
                     <td class="ideamakerContent">Template > Extruder > Retraction > Z Hop at Retraction</td>
+                    <td class="orcaslicerContent">Printer settings > Extruder 1 > Z-Hop > Z-hop height</td>
                 </tr>
             </tbody>
         </table>
@@ -893,6 +912,7 @@ M84 ; disable motors
                             <td class="prusaslicerContent">Print settings > Layers and perimeters > Layer height > Layer height</td>
                             <td class="superslicerContent">Print settings > Slicing > Layer height > Base Layer height</td>
                             <td class="ideamakerContent">Template > Layer > General > Layer height</td>
+                            <td class="orcaslicerContent">Process settings > Quality > Layer height > Layer height</td>
                         </tr>
                         <tr>
                             <td><label>Extrusion width (mm): <input type="number" name="layerW" min="0.1" max="1" value="0.4" step="0.01" onchange="maxFee();"></label></td>
@@ -901,6 +921,7 @@ M84 ; disable motors
                             <td class="prusaslicerContent">Print settings > Advanced > Extrusion width > Default extrusion width</td>
                             <td class="superslicerContent">Print settings > Width & Flow > Extrusion width > default</td>
                             <td class="ideamakerContent">Template > Extruder > General > Extrusion width</td>
+                            <td class="orcaslicerContent">Process settings > Quality > Line width > Default</td>
                         </form>
                         </tr>
                     </tbody>
@@ -1263,6 +1284,7 @@ square_corner_velocity: 8.0</pre>
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Layer height > Layer height</td>
                     <td class="superslicerContent">Print settings > Slicing > Layer height > Base Layer height</td>
                     <td class="ideamakerContent">Template > Layer > General > Layer height</td>
+                    <td class="orcaslicerContent">Process settings > Quality > Layer height > Layer height</td>
                 </tr>
                 <tr>
                     <td><label>Extrusion width (mm): <input type="number" name="layerW" min="0.1" max="2" value="0.4" step="0.01" onchange="reverseVol();"></label></td>
@@ -1271,6 +1293,7 @@ square_corner_velocity: 8.0</pre>
                     <td class="prusaslicerContent">Print settings > Advanced > Extrusion width > Default extrusion width</td>
                     <td class="superslicerContent">Print settings > Width & Flow > Extrusion width > default</td>
                     <td class="ideamakerContent">Template > Extruder > General > Extrusion width</td>
+                    <td class="orcaslicerContent">Process settings > Quality > Line width > Default</td>
                 </tr>
                 <tr>
                     <td><label>Volumetric flow (mm³/sec): <input type="number" name="maxVol" min="0.1" max="100" value="5" step="0.1" onchange="reverseVol();"></label></td>
