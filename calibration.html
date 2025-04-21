@@ -442,7 +442,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Infill > Fill density: 0%<br />Also set infill to 0% on main panel</td>
                     <td class="superslicerContent">Print settings > Infill > Sparse: 0%<br />Also set infill to 0% on main panel</td>
                     <td class="ideamakerContent">Template > Infill > Infill density: 0%</td>
-		            <td class="orcaslicerContent">Process > Strength > Infill > Sparse infill density: 0%</td>
+		            <td class="orcaslicerContent">Process settings > Strength > Infill > Sparse infill density: 0%</td>
                 </tr>
                 <tr>
                     <td>3. Turn off top layers</td>
@@ -451,7 +451,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Horizontal shells > Top: 0</td>
                     <td class="superslicerContent">Print settings > Perimeters and Shell > Horizontal shells > Top: 0</td>
                     <td class="ideamakerContent">Template > Solid Fill > Top solid fill layers: 0</td>
-		            <td class="orcaslicerContent">Process > Strength > Top/bottom shells > Top shell layers: 0</td>
+		            <td class="orcaslicerContent">Process settings > Strength > Top/bottom shells > Top shell layers: 0</td>
                 </tr>
                 <tr>
                     <td>4. Ensure wall thickness is a known value.<br />Substitute whatever values you like here.<br />This example uses <b>0.4</b>, which is common for a 0.4mm nozzle and 0.2mm layer height.</td>
@@ -470,13 +470,13 @@ M84 ; disable motors
                         Print settings > Width and flow > Extrusion width > external perimeter: <b>0.4</b></td>
                     <td class="ideamakerContent">Template > Extruder > Extrusion width: <b>0.4</b></td>
 		            <td class="orcaslicerContent">
-                        Process > Quality > Line Width > Default: <b>0.4</b><br />
+                        Process settings > Quality > Line Width > Default: <b>0.4</b><br />
                         <i>and</i><br />
-                        Process > Quality > Line Width > First layer: <b>0.4</b><br />
+                        Process settings > Quality > Line Width > First layer: <b>0.4</b><br />
                         <i>and</i><br />
-                        Process > Quality > Line Width > Outer wall: <b>0.4</b><br />
+                        Process settings > Quality > Line Width > Outer wall: <b>0.4</b><br />
                         <i>and</i><br />
-                        Process > Quality > Line Width > Inner wall: <b>0.4</b></td>
+                        Process settings > Quality > Line Width > Inner wall: <b>0.4</b></td>
                 </tr>
                 <tr>
                     <td>5. Set outer wall thickness to single extrusion</td>
@@ -485,7 +485,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Vertical shells > Perimeters: 1</td>
                     <td class="superslicerContent">Print settings > Perimeters and shell > Vertical shells > Perimeters: 1</td>
                     <td class="ideamakerContent">Template > Layer > Shells: 1</td>
-		            <td class="orcaslicerContent">Process > Strength > Walls > Wall loops: 1</td>
+		            <td class="orcaslicerContent">Process settings > Strength > Walls > Wall loops: 1</td>
                 </tr>
 
                 <tr>
@@ -495,10 +495,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Filament settings > Filament > Extrusion multiplier: 1</td>
                     <td class="superslicerContent">Filament settings > Filament > Extrusion multiplier: 1</td>
                     <td class="ideamakerContent">Primary extruder > General > Flowrate: 100%</td>
-		            <td class="orcaslicerContent">
-                        To edit filament settings, click the pencil icon next to the filament selection drop-down.<br />
-                        <br />
-			            Filament > Flow ratio and Pressure Advance > Flow ratio: 1</td>
+		            <td class="orcaslicerContent">Filament Settings > Filament > Flow ratio and Pressure Advance > Flow ratio: 1</td>
                 </tr>
                 <tr>
                     <td>7. Enable vase/spiral mode (optional)</td>
@@ -507,7 +504,7 @@ M84 ; disable motors
                     <td class="prusaslicerContent">Print settings > Layers and perimeters > Vertical shells > Spiral vase</td>
                     <td class="superslicerContent">Print settings > Perimeters and shells > Vertical shells > Spiral vase</td>
                     <td class="ideamakerContent">Template > Layer > Spiral vase mode</td>
-		            <td class="orcaslicerContent">Process > Others > Special mode > Spiral vase</td>
+		            <td class="orcaslicerContent">Process settings > Others > Special mode > Spiral vase</td>
                 </tr>
                 <tr>
                     <td>8. Expected result:</td>
