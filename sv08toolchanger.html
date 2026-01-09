@@ -834,7 +834,7 @@
         <p>The SV08 has a single spool holder to suit the single tool. Our toolchanger conversion requires a solution that holds up to six spools for up to six tools.</p>
         <p>Unlike the modular dock, where i recommend building a six dock system in every case, this part of the build can be scaled to suit the number of tools. The underlying frame spans the printer and additional spool holders can be added conveniently at a later time. The frame has enough rigidity regardless of how many spool holders are fitted.</p>
         <h4>BOM</h4>
-        <p>The following hardware is required. BOM is devided into common, front mount and rear mount sections.</p>
+        <p>The following hardware is required. BOM is divided into common, front mount and rear mount sections.</p>
         <table width="100%">
             <thead>
                 <tr>
@@ -875,11 +875,18 @@
                     <td>1 per spool holder</td>
                     <td><a href="https://amzn.to/3ClfhHz" target="_blank">Amazon</a></td>
                     <td>TT</td>
-                    <td></td>               
+                    <td>M3 hardware included with SMS will be used to attach sensor to sensor mount.</td>               
                 </tr>
                 <tr>
-                    <td>M5 x 10mm BHCS bolts</td>
-                    <td>4 (+4 if you are able to thread the 2020 bores).</td>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>2 per spool holder</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td>One per span bracket, melted into the flat side of the larger hole.</td>               
+                </tr>
+                <tr>
+                    <td>M5 x 8mm BHCS bolts</td>
+                    <td>4 (+4 if you are able to add M5 thread the 2020 bores).</td>
                     <td></td>
                     <td></td>
                     <td>Front/rear mount bracket to 2020 extrusion.</td>               
@@ -892,20 +899,51 @@
                     <td>Front/rear mount bracket to 2020 extrusion.</td>               
                 </tr>
                 <tr>
-                    <td>M5 x 10mm BHCS bolts (again)</td>
+                    <td>M5 x 8mm BHCS bolts (again)</td>
                     <td>2 per spool holder</td>
                     <td></td>
                     <td></td>
-                    <td>Sensor mount to 2020 extrusion. </td>               
+                    <td>Sensor mount to 2020 extrusion.</td>            
+                </tr>
+                <tr>
+                    <td>M3 x 8mm BHCS bolts</td>
+                    <td>2 per spool holder</td>
+                    <td></td>
+                    <td></td>
+                    <td>Joins span brackets back to back.</td>            
+                </tr>
+                <tr>
+                    <td>M5 x 8mm BHCS bolts (again again)</td>
+                    <td>4 per spool holder</td>
+                    <td></td>
+                    <td></td>
+                    <td>Span bracket to 2020 extrusion. Can use less to save parts. I used 14 in total for six spool holders.</td>            
                 </tr>
                 <tr>
                     <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Front mounted spool holder</td>
                 </tr>
-
+                <tr>
+                    <td>M3 x 10mm BHCS bolts</td>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td>Front mount bracket to SV08 frame, three per side.</td>            
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Front mounted spool holder</td>
+                </tr>
+                <tr>
+                    <td>M3 x 10mm BHCS bolts</td>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                    <td>Rear mount bracket to SV08 frame, five per side.</td>            
+                </tr>
             </tbody>
         </table>
         <h4>Printed Parts</h4>
         <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/640364bb9d1fd376651df2f3?renderMode=0&uiState=696070e8256aa5f89fd49275" target="_blank"></a>Onshape</p>
+        <p>Printed parts are divided into common, front mount and rear mount sections.</p>
         <table width="100%">
             <thead>
                 <tr>
@@ -916,19 +954,88 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="files/sv08/psu/PSU - adaptor.stl" target="_blank">PSU - adaptor</a></td>
-                    <td>1</td>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Common</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - roller.stl" target="_blank">spools - roller.stl</a></td>
+                    <td>2 per spool holder</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td><a href="files/sv08/psu/PSU - terminal cover.stl" target="_blank">PSU - terminal cover</a></td>
+                    <td><a href="files/sv08/spools/spools - span bracket.stl" target="_blank">spools - span bracket.stl</a></td>
+                    <td>2 per spool holder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - sensor mount.stl" target="_blank">spools - sensor mount.stl</a></td>
+                    <td>1 per spool holder</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Front mounted spool holder</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - front mount bracket left.stl" target="_blank">spools - front mount bracket left</a></td>
                     <td>1</td>
-                    <td>Brim may be required depending on bed adhesion.</td>           
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - front mount bracket right.stl" target="_blank">spools - front mount bracket right</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Rear mounted spool holder</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - rear mount bracket left.stl" target="_blank">spools - rear mount bracket left</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/spools/spools - rear mount bracket right.stl" target="_blank">spools - rear mount bracket right</a></td>
+                    <td>1</td>
+                    <td></td>           
                 </tr>
             </tbody>
         </table>
         <h4>Old spool holder removal</h4>
-        <p>Simply unbolt the old holder and unplug the old filament runout sensor too.</p>
+        <p>Simply unbolt the old holder and unplug the old filament runout sensor too. these are no longer needed.</p>
+        <a href="#" data-featherlight="img/sv08/spools/oldspool.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/oldspool.jpg" /></a>
+        <h4>Prepearing 2020 extrusion</h4>
+        <p>Prepare two lengths of 500mm 2020 extrusion. I recycled extrusion from an old 3D printer, cutting it down to length.</p>
+        <p>If possible, tap an M5 thread about 10mm into the centre bores of each piece. This will add strength to the assembly but if you don't have the tools, this step can be skipped.</p>
+        <a href="#" data-featherlight="img/sv08/spools/20201.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/20201.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/20202.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/20202.jpg" /></a>
+        <h4>Printed parts preparation</h4>
+        <p>Each span divider receives a single M3 heat set. Of the two holes, the larger of the two has the heat set melted in.</p>
+        <a href="#" data-featherlight="img/sv08/spools/heatset1.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/heatset1.jpg" /></a>
+        <p>Each spool needs two rollers, and each roller needs a 608RS bearing hammered in to each end.</p>
+        <a href="#" data-featherlight="img/sv08/spools/roller.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/roller.jpg" /></a>
+        <p>A BTT SFS can be mounted to each sensor mount using the M3 bolts that came in the box.</p>
+        <a href="#" data-featherlight="img/sv08/spools/sensor1.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/sensor1.jpg" /></a>
+        <h4>Assembling the System</h4>
+        <p>Temporarily attach your front/rear brackets to the 2020 extrusion, so that is spans horizontally between them. This will hold the extrusion parallel and still during further assembly.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly1.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly1.jpg" /></a>
+        <p>Starting on one side, push a span bracket to the end of the extrusion, with the bosses for the rollers facing the middle. Now assemble pairs of span brackets with the flats facing each other, and two M3 x 8mm bolts holding the pair together. Place the span brackets in the middle, then slide them to the side, trapping a set of rollers. Repeat this process until you have all span brackets and rollers in place for your desired number of spool holders.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly2.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/assembly3.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/assembly4.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly4.jpg" /></a>
+        <p>Turn the assembly upside so you can add M5 x 8mm bolts and T nuts to hold the span brackets to the extrusion. A maximum of four per spool can be used, but also much less to save on parts.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly5.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly5.jpg" /></a>
+        <p>Also add M5 x 8mm bolts and T nuts to the front/rear brackets and 2020 extrusion, but only do them up loosely. It is important at this stage that the two end brackets can swivel freely.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly6.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly6.jpg" /></a>
+        <p>Move the assembly into position at either the front or rear of the machine. Lower from above, and then pivot inwards until the two brackets snap into place. Tighten all of the loose M5 bolts and T nuts. Secure the brackets to the frame with M3 x 10mm bolts.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly7.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/assembly8.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly8.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/assembly9.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly9.jpg" /></a>
+        <p>Fit the sensor mounts to the front of the extrusion in line with each roller using two M5 x 8mm bolts and T nuts. The sensors will face the front of the machine regardless of whether the system is front or rear mounted.</p>
+        <a href="#" data-featherlight="img/sv08/spools/assembly10.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly10.jpg" /></a>
+        <h4>PTFE Tube</h4>
+
+        <h4>SFS Wiring</h4>
+
+
     </div>
 
     <div id="umbilicals">
