@@ -8,10 +8,10 @@
 <div id="header"></div>
 <div id="tabs">
     <ul>
-        <li><a href="#intro">Introduction</a></li>
-        <li><a href="#prep">Preperation</a></li>
+        <li><a href="#intro">Introduction - <span style="color:red;font-weight: bolder;">Read me!</span></a></li>
+        <li><a href="#prep">Preparation</a></li>
         <li><a href="#psu">PSU replacement</a></li>
-        <li><a href="#birdsnest">Birdsnest USB Hub</a></li>
+        <li><a href="#birdsnest">Birds' Nest USB Hub</a></li>
         <li><a href="#docks">Modular Docks</a></li>
         <li><a href="#spools">Spool Holder</a></li>
         <li><a href="#umbilicals">Umbilicals</a></li>
@@ -24,49 +24,914 @@
 
     <div id="intro">
         <h2>Introduction</h2>
-        <p>This project is a collaboration between myself and the <a href="https://github.com/DraftShift/" target="_blank">DraftShift</a> team, creators of the <a href="https://github.com/DraftShift/StealthChanger" target="_blank">Stealthchanger</a> modification for the Voron 2. This is built on the previous work of Viesturz in creating the <a href="https://github.com/viesturz/tapchanger" target="_blank" >Tapchanger</a>, another toolchanger modification for the Voron 2. DraftShift contacted me and asked if I was interested in adapting their work to the Sovol SV08, a budget clone of the Voron 2. This has been a difficult journey, as I have never built a Voron 2 and therefore didn't understand the inner workings and processes, and the DraftShift team did not have access to an SV08. This was a true collaboration, and not possible with only one side. I am eternally grateful to the DraftShift crew for their patient support and assistance. Many times I was stuck and had silly questions which they always answered patiently. Thank you Chris, Justin, Thomas and all other contributors for their work.</p>
-        <h2>Philosophy/Concept</h2>
-        <p>The philosophy for this poroject was to provide a poath to convert the SV08 to a toolchanger in the simplest and cheapest way possible. Where possible, any modifications are reversible and systems have been designed to be modular. Therefore the steps are more or less the same if you are adding a second toolhead or enough to have six tools in total.</p>
+        <p>This project is a collaboration between myself and the <a href="https://github.com/DraftShift/" target="_blank">DraftShift</a> team, creators of the <a href="https://github.com/DraftShift/StealthChanger" target="_blank">Stealthchanger</a> modification for the <a href="https://vorondesign.com/voron2.4" target="_blank">Voron 2</a>. This is built on the previous work of Viesturz in creating the <a href="https://github.com/viesturz/tapchanger" target="_blank">Tapchanger</a>, another toolchanger modification for the Voron 2. DraftShift contacted me and asked if I was interested in adapting their work to the Sovol SV08, a budget clone of the Voron 2. This has been a difficult journey, as I have never built a Voron 2 and therefore didn't understand the inner workings and processes, and the DraftShift team did not have access to an SV08. This was a true collaboration, and not possible with only one side. I am eternally grateful to the DraftShift crew for their patient support and assistance. Many times I was stuck and had silly questions which they always answered patiently. Thank you Chris, Justin, Thomas and all other contributors for their work.</p>
+        <h4>Philosophy/Concept</h4>
+        <p>The philosophy for this project was to provide a path to convert the SV08 to a toolchanger in the simplest and cheapest way possible. Where possible, any modifications are reversible and systems have been designed to be modular. Therefore the steps are more or less the same if you are adding a second toolhead or enough to have six tools in total.</p>
         <p>There are numerous other options available for other variations of the modifications. There is nothing to stop you mixing and matching components. For example, use the modular spool holder from this project and print an alternate tool shroud from another project to better suit your needs. The simple approach and reliance on factory parts means there will be limitations. If these are an issue for you, feel free to upgrade as you see fit.</p>
-        <h2>SV08 Max compatibility</h2>
+        <h4>SV08 Max compatibility</h4>
         <p>I do not have acees to an SV08 Max, but presumably the design is scaled up using very similar parts. It seems likely that the parts from this project could be adapted to the SV08 Max or other Voron 2 variants without too much effort. Source CAD is available for all parts to faciliate this.</p>
-        <h2>Discussion and Remixes</h2>
-        <p>These instructions are hosted on this site to give the most control over the formating and presentation. However this platform is not well suited to discussion and sharing. Therefore, I have established a companion page on Printables found <a href="" target="_blank">here</a>. Please use it to add remixed parts or discuss problems and solutions with each other. Realistically, I will not be able to provide support for questions and queries. I aim to release my contribution with as much detail and flexibility as possible for others to understand it and modify it as needed.</p>
-        <h2>BOM</h2>
-        <p>Each tab has a breakdown of hardware, other components and printed parts. The CAD source is available for all parts and is linked accordingly. All printed parts have been oriented correctly and notes for materials/settings/supports are provided as needed.</p>
+        <h4>Discussion and Remixes</h4>
+        <p>These instructions are hosted on this site to give the most control over the formating and presentation. However this platform is not well suited to discussion and sharing. Therefore, I have established a <a href="" target="_blank">companion page on Printables</a>. Please use it to add remixed parts or discuss problems and solutions with each other. Realistically, I am now retired from YouTube so will not be able to provide support for questions and queries. I aim to release my contribution with as much detail and flexibility as possible for others to understand it and modify it as needed.</p>
+        <p>All required source CAD has been designed in or imported to Onshape. The permissions of the documents are set so you can export any part without having an Onshape account. Just right click on the part itself or on the part name in the lower left of screen then select a format of your choice. All project sections are organised into folders and the relevant documents are linked for each tab.</p>
+        <h4>BOM</h4>
+        <p>Each tab has a breakdown of hardware, other components and printed parts. The CAD source is available for all parts and is linked accordingly. All printed parts have been oriented correctly and required notes for materials/settings/supports are provided as needed. Since my printer is not enclosed, I used PETG for all parts. Those seeking to enclosure might choose a filament with higher thermal resistance like ASA.</p>
+        <p>Many of the steps require a small volume of parts, like crimping connectors. If you are like myself, you already have a crimping tool and spare connectors. If not, links have been provided to sets to suit the purpose. Hopefully you can avoid this expense by using existing tools and parts.</p>
         <p>Please understand that prices and availability for components will change over time. Throughout this project I have kept track of the expected cost for those building the Toolchanger at home. The accuracy of this will diminish over time but hopefully the concept will remain, ensuring these parts are a good combination between usable and affordable.</p>
-        <p>The cost of someone building this project will be a lot less than the expenditure outlayed by myself and the DraftShift team. Development requires experimentation and iteration that is hopefully not be present for the end user. To assist in covering costs, affiliate links may be used (and clearly marked) throughout each tab's BOM. Some of these are my own affiliate links and where possible I will maintain existing affiliate links from the DraftShift GitHub.</p>
-        <h2>Companion Video</h2>          
-        <p>This page serves as a companion for this video: <a href="https://www.youtube.com/watch?v=rp3r921DBGI" target="_blank">SV08 Toolchanger guide supercut</a>.</p>
+        <p>The BOM on some tabs will specify a certain type of head or cap for some bolts. Adhering to this is important because button heads bolts are more slimline. Using socket head instead may prevent some parts from assemblng correctly. Where SHCS or BHCS is not specified, either can be used for that step.</p>
+        <p>Occasionally a FHCS bolt will be specified, and it is important to adhere to that type in these components.</p>
+        <table>
+            <tr>
+                <td>Socket Head Cap Screw (SHCS)</td>
+                <td>Button Head Cap Screw (BHCS)</td>
+                <td>Flat Head Cap Screw (FHCS) (Countersunk)</td>
+            </tr>
+            <tr>
+                <td><a href="https://shop.flexmation.com/products/socket-head-cap-screw" target="_blank"><img src="https://shop.flexmation.com/cdn/shop/products/M5x16-SHCS_medium.jpg?v=1495470994" /></a></td>
+                <td><a href="https://shop.flexmation.com/products/button-head-cap-screw" target="_blank"><img src="https://shop.flexmation.com/cdn/shop/products/M5x16-BHCS_medium.jpg?v=1495468802" /></a></td>
+                <td><a href="https://shop.flexmation.com/products/flat-head-cap-screw" target="_blank"><img src="https://shop.flexmation.com/cdn/shop/products/M5x16-FHCS_medium.jpg?v=1495468937" /></a></td>
+            </tr>
+        </table>
+        <h4>Costs and Affiliate links</h4>
+        <p>The initial SV08 and spare tools were provided free of charge by Sovol in support of this project. Since then, I have purchased all components with my own money, at significant cost. To assist in covering these costs, affiliate links may be used throughout each tab's BOM. They will be marked TT or DS to signify whether the income will go to Teaching tech or DraftShift. Some of these are my own affiliate links and where possible I will maintain existing affiliate links from the DraftShift GitHub.</p>
+        <p>The cost of someone building this project will be a lot less than the expenditure outlayed by myself and the DraftShift team. Development requires experimentation and iteration that is hopefully not be present for the end user.</p>
+        <h4>Tool Numbering</h4>
+        <p>In software, counting starts from the number 0, not 1. Klippe adopts the same approach. Throughout this guide, you will see examples of this system. the 1st tool will be called tool 0, the 2nd tool 1, the 3rd tool 2 and so on. When preparing the firmware config and later running macros from Mainsail, this approach is used.</p>
+        <p>In the slicer however, the 1st tool is labelled tool 1 and so on. this can be a little confusing but most people will be able to adapt.</p>
+        <h4>Enclosure</h4>
+        <p>My own SV08 does not have an enclosure fitted. Sovol offers a factory enclosure option and community enclosures are also available. As initially released, these parts may not be compatible with an enclosure, but it is worth checking remixes on Printables to see if any variations exist that can cater for enclosures.</p>
+        <h4>Warranty and Safety Warning</h4>
+        <p>This modification process undounbtedly comes with a degree of risk. Your warranty will undoubtedly be void from the changes undertaken.</p>
+        <p class="warning">Every effort has been made in these instructions to ensure the parts and modifications made are safe and reliable, however when a large group of people with varying levels of skill and knowledge attempt such modifications, there is every chance that for some users things will go wrong. By following this guide, you do so at your own risk. Teaching Tech and DraftShift take no responsibility for any damage or harm that occurs from attempting this modification.</p>
+        <h4>Companion Video</h4>          
+        <p>This page serves as a companion for this video: <a href="" target="_blank">SV08 Toolchanger guide supercut</a>.</p>
         <p>The video above covers the entire process, and subsequent tabs have trimmed sections to match.</p>
     </div>
 
     <div id="prep">
         <h2>Preparation</h2>
-        <p>This page serves as a companion for this video:</p>
+        <p>This tab covers some essential work that must be undertaken before continuing.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Ordering an SV08</h4>
+        <p>Before starting, you need an Sovol SV08 3D printer. This modification is built upon the touch screen variant. This is highly recommended because this adds the KlipperScreen interface to the printer, which is highly customisable and allows easy access to macros.</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sovol SV08</td>
+                    <td>1</td>
+                    <td><a href="https://www.sovol3d.com/products/sovol-sv08-3d-printer?variant=48937346498869&sca_ref=1796798.FxKBtOXx1J" target="_blank">Sovol Store</a></td>
+                    <td>TT</td>
+                    <td>Select version with 'Upgraded HMDI5 touch screen'.</td>
+                </tr>
+                <tr>
+                    <td>SV08 extra toolheads</td>
+                    <td>1 - 5</td>
+                    <td><a href="https://www.sovol3d.com/products/sv08-original-all-metal-planetary-direct-drive-extruder?sca_ref=1796798.FxKBtOXx1J" target="_blank">Sovol Store</a></td>
+                    <td>TT</td>
+                    <td>One tool comes with the printer. Up to five more can be fitted for a total of six. If you want three tools in total, order two extra toolheads.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Collecting tool serial IDs for Klipper</h4>
+        <p>Before doing anything else, it is imperitive that you collect the serial IDs of each MCU that Klipper will use to connect and communicate. These are the addresses Klipper will use to connect to each of the tools you add. Sovol used an unusual system to name the factory MCUs that does not scale with new tools. We need to retrieve the serial IDs of the mainboard, default tool and any additional tools. I recommend storing them in a text file for later reference. This means disconnecting and connecting the tools frequently.</p>
+        <p>When done, your text file with serial IDs should look something like this:</p>
+        <a href="#" data-featherlight="img/sv08/prep/serialids.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/serialids.jpg" /></a>
+        <p class="warning">It is essential to power down the printer before connecting or disconnecting any of the tools. Failure to do so may damage a tool's electronics, requiring replacement. This includes the JST connectors on the toolhead PCB, the JST connectors on the mainboard and the Birds' Nest USB hub (which will be fitted later) connectors.</p>
+        <p>There are multiple methods, but I prefer to retrieve the IDs via SSH in your terminal software of choice. I have a tutorial for how to use Pronterface on the <a href="troubleshooting.html#terminal" target="_blank">troubleshooting</a> page.</p>
+        <p>The credentials to login via SSH are as follows. At this stage you should be using the 'As shipped by Sovol' option. Later in the process, the credentials will change, and I include them here for completeness.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Situation</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>As shipped by Sovol (now)</td>
+                    <td>sovol</td>
+                    <td>sovol</td>
+                </tr>
+                <tr>
+                    <td>After installing mainline Klipper (later)</td>
+                    <td>biqu</td>
+                    <td>biqu</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>We will start by getting the serial ID for the mainboard. With the printer powered down, disconnect the two JST plugs going into the mainboard that lead to the default toolhead.</p>
+        <a href="#" data-featherlight="img/sv08/prep/mcujsts.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/mcujsts.jpg" /></a>
+        <p>Turn the printer on. In the web interface, Klipper will give an error about the tool MCU not being found. This is expected and can be ignored.</p>
+        <p>Now connect via SSH and send the following command:</p>
+        <pre>ls /dev/serial/by-id*</pre>
+        <p>The serial ID for the mainboard will be returned. For example, mine is <i>/dev/serial/by-id/usb-Klipper_stm32f103xe_30FFD4053347543034871651-if00</i></p>
+        <a href="#" data-featherlight="img/sv08/prep/ssh1.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/ssh1.jpg" /></a>
+        <p>Copy and paste this into your text file under the heading mainboard.</p>
+        <p>Power down the printer, re-connect the JST connectors to the mainboard and power up once more. Connect via SSH and run the same command. This time, two serial IDs will be returned: the mainboard and the default tool. Determine which of these is new/distinct, then copy and paste it to your text file under the heading tool 0. Label tool 0 with a sharpie or tape accordingly.</p>
+        <a href="#" data-featherlight="img/sv08/prep/ssh2.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/ssh2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/prep/label.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/label.jpg" /></a>
+        <p>Power down the printer, and this time disconnect the JST plugs from tool 0, before connecting them to the first of your additional tools.</p>
+        <a href="#" data-featherlight="img/sv08/prep/tooljsts.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/tooljsts.jpg" /></a>
+        <p>Connect via SSH and retrieve the serial ID again. The mainboard will again be listed with a new tool serial ID. Copy this to your text file under the heading tool 1. Label tool 1 accordingly.</p>
+        <p>Power down the printer, disconnect the current tool, connect the next and repeat the process until you have the serial IDs of all of your tools. Label the physical tools to match.</p>
+        <a href="#" data-featherlight="img/sv08/prep/serialids.jpg"><img loading="lazy" class="thumb" src="img/sv08/prep/serialids.jpg" /></a>
+        <p>If you power down the printer and connect back the original tool and power up, any Klipper errors should be gone and the printer should be back to working order.</p>
     </div>
 
     <div id="psu">
-        <h2>Power Supply</h2>
-        <p>This page serves as a companion for this video:</p>
+        <h2>Power Supply Replacement</h2>
+        <p>This tab covers upgrading the PSU to handle up to six tools instead of just one.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p class="warning">This step requires dealing with mains voltage wiring, which has the potential to kill. This is not for beginners. Please consult a professional before attempting these procedures. Ensure the printer is powered off and the power isolated before touching any items concerning the PSU.</p>
+        <h4>Rationale</h4>
+        <p>The SV08 has a mains AC powered heated bed, therefore the factory power supply only needs to supply current to the mainboard, one tool and some extras like sensors and LEDs. Consequenmtly it is small and low powered. In order to accommodate up to five additional tools, the PSU needs upgrading to potentially power up to six tools at once.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required:</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Meanwell LRS-350-24V</td>
+                    <td>1</td>
+                    <td><a href="https://amzn.to/3yY7xJX" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>M4 x 8mm SHCS bolts</td>
+                    <td>8</td>
+                    <td></td>
+                    <td></td>
+                    <td>Four to mount the PSU in the adaptor. Four with T nuts to attch the adaptor and safety cover to the 2020 extrusion.</td>               
+                </tr>
+                <tr>
+                    <td>M4 T nuts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>Blue spade crimp connector</td>
+                    <td>6</td>
+                    <td><a href="https://amzn.to/45EklT4" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Much larger multi-pack. Use a smaller, cheaper option if desired.</td>               
+                </tr>
+                <tr>
+                    <td>10 awg wire</td>
+                    <td>3 x ~450mm</td>
+                    <td><a href="https://amzn.to/4qJSKrX" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Minimum 10 gauge thickness for safety. Three lengths required for active, neutral and ground in differet colours. Alternatively, tape or heat shrink can be used to add colour.<br/>You can also retrieve mains gauge wire from an unwanted mains power cord.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/73411baaa50588975463c1fe?renderMode=0&uiState=695b5211a704f077fa29de0c" target="_blank"></a>Onshape</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="files/sv08/psu/PSU - adaptor.stl" target="_blank">PSU - adaptor</a></td>
+                    <td>1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/psu/PSU - terminal cover.stl" target="_blank">PSU - terminal cover</a></td>
+                    <td>1</td>
+                    <td>Brim may be required depending on bed adhesion.</td>           
+                </tr>
+            </tbody>
+        </table>
+        <h4>Old PSU removal</h4>
+        <p>With the machine powered off and the power cable isolated (removed), take off the bottom cover of the printer. A series of self tapping screws are used here.</p>
+        <a href="#" data-featherlight="img/sv08/psu/bottomcover.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/bottomcover.jpg" /></a>
+        <p>Remove the screws holding the clear cover over the old PSU. Now undo the terminals of the PSU to release the wires going in and out. Finally undo the screws holding the PSU itself.</p>
+        <a href="#" data-featherlight="img/sv08/psu/psuscrews.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/psuscrews.jpg" /></a>
+        <p>Trim the two circled plastic protrusions below the height of the mounting bosses near them.</p>
+        <a href="#" data-featherlight="img/sv08/psu/boss1.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/boss1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/psu/boss2.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/boss2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/psu/boss3.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/boss3.jpg" /></a>
+        <h4>Mounting the larger PSU</h4>
+        <p>Prepare the PSU adaptor by placing two M4x8mm bolts and T nuts in the left hand holes.</p>
+        <a href="#" data-featherlight="img/sv08/psu/adaptor1.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/adaptor1.jpg" /></a>
+        <p>Slide the adaptor into position so that the T nuts go into the 2020 extrusion on the left. Position the adaptor so that the mounting holes line up with those in the underside of the printer. Use the self tapping screws that previously held the old PSU and cover to secure the daptor. Tighten the M4 bolts/T nuts to secure the adaptor to the 2020 extrusion on the left.</p>
+        <a href="#" data-featherlight="img/sv08/psu/adaptor2.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/adaptor2.jpg" /></a>
+        <p>Slide the new PSU into the adaptor and use four M4x8mm bolts to secure it in place.</p>
+        <p class="warning">Bolts longer than 8mm must not be used here as they may extend into the inside of the PSU and create a safety hazard.</p>
+        <a href="#" data-featherlight="img/sv08/psu/adaptor3.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/adaptor3.jpg" /></a>
+        <h4>Rewiring</h4>
+        <p>Install the existing 24V wires from the mainboard into the 24V output terminals of the new PSU.</p>
+        <a href="#" data-featherlight="img/sv08/psu/wiring1.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring1.jpg" /></a>
+        <p>Disconnect the mains wires from the bed heater board (red, black and yellow/green). Feed the ends of these wires back to the left near where the mains power input is.</p>
+        <a href="#" data-featherlight="img/sv08/psu/wiring2.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/psu/wiring3.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring3.jpg" /></a>
+        <p>Position the cable near the PSU mains input terminal, and cut off the old spade connectors and strip back the insulation.</p>
+        <a href="#" data-featherlight="img/sv08/psu/wiring4.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring4.jpg" /></a>
+        <p>For each of the three mains wires, crimp on new spade connectors to suit the new PSU terminals, but with an approximately 450mm length of new cable daisy chaining off. This new segment will travel up to the bed heater board. Trim the daisy chained wire to suit and crimp on a spade connector. Attach the spade connectors to the terminals of the PSU and bed heater board.</p>
+        <a href="#" data-featherlight="img/sv08/psu/wiring5.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring5.jpg" /></a>
+        <p>Repeat this same process for the two other mains wires. Protect the three mains wires between the PSU and bed heater board with some sheathing and/or tape.</p>
+        <a href="#" data-featherlight="img/sv08/psu/wiring6.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/wiring6.jpg" /></a>
+        <h4>Safety Cover</h4>
+        <p>Prepare the terminal cover with two M4x8mm bolts and T nuts.</p>
+        <a href="#" data-featherlight="img/sv08/psu/cover1.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/cover1.jpg" /></a>
+        <p>Mount the cover on the 2020 extrusion so that it blocks the PSU terminals. Install the bottom cover back on the machine.</p>
+        <a href="#" data-featherlight="img/sv08/psu/cover2.jpg"><img loading="lazy" class="thumb" src="img/sv08/psu/cover2.jpg" /></a>
     </div>
 
     <div id="birdsnest">
-        <h2>Birdsnest USB Hub</h2>
-        <p>This page serves as a companion for this video: </p>
+        <h2>Birds' Nest USB Hub</h2>
+        <p>This tab covers adding a Bird's Nest USB hub by Isik's Tech. This is a Klipper compatible, easy to use expansion part that allows us to have up to six tools with only power and USB connections back to the mainboard.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>The SV08 uses USB connections (instead of CANbus) for its tools. The mainboard has two USB ports plus a JST set of connectors (used by default for tool 0). The webcam uses one USB port, meaning without expansion we would be limited to a two tool build. the Birds' Nest allows up to six tools, whilst only requiring a single USB port. It also have its own Klipper compatible MCU and IO pins, meaning we can add filament runout sensors and other hardware if desired.</p>
+        <p>In part 2 of the original video series, I initially tried a cheap USB hub. This was limited to four tools max and offered none of the other benefits of the Birds' Nest. It is still possible to use something like this but the Birds' Nest is vastly superior.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required:</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Birds' Nest USB hub</td>
+                    <td>1</td>
+                    <td><a href="https://github.com/xbst/Birds-Nest" target="_blank">GitHub</a></td>
+                    <td></td>
+                    <td>Purchase links for various regions found on GitHub. Purchase of bundled USB-C cable recommended.</td>
+                </tr>
+                <tr>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>6</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>M3 x 8mm bolts</td>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td>Two to mount the board to the fannypack base. Four to join the fanny pack base to the extrusion adaptor.</td>               
+                </tr>
+                <tr>
+                    <td>6 x 3mm N52 magnets</td>
+                    <td>8</td>
+                    <td><a href="https://kb-3d.com/store/magnets-bearings/995-disccylinder-magnet-high-temp-n52h-6x3mm-1696789934996.html" target="_blank">US KB-3D</a><br/><a href="https://www.printyplease.uk/N52H" target="_blank">UK Printy Please</a></td>
+                    <td>DS<br/>DS</td>
+                    <td>Four each for fannypack base and cover.</td>               
+                </tr>
+                <tr>
+                    <td>Ferrule/bootlace crimp connector</td>
+                    <td>2</td>
+                    <td><a href="https://amzn.to/3Ltl3f8" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Pack plus crimper. Pack only neccessary if you have none of these or a tool.</td>               
+                </tr>
+                <tr>
+                    <td>Blue spade crimp connector</td>
+                    <td>2</td>
+                    <td><a href="https://amzn.to/45EklT4" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Much larger multi-pack. Use a smaller, cheaper option if desired.</td>               
+                </tr>
+                <tr>
+                    <td>12 AWG twin core cable</td>
+                    <td>Approximately 1m</td>
+                    <td><a href="https://amzn.to/3YUQ3Yy" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Can use thicker cable if that's all you have. Too thick and routing will be difficult.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/6362f50a4e4f6a2ea64a42b3?renderMode=0&uiState=695c6eb66d81cf1f0949a589" target="_blank">Onshape</a></p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="files/sv08/birdsnest/birdsnest - extrusion adaptor.stl" target="_blank">birdsnest - extrusion adaptor</a></td>
+                    <td>1</td>
+                    <td>Must be printed on its end as positioned to avoid support material.</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/birdsnest/birdsnest - fannypack base.stl" target="_blank">birdsnest - fannypack base</a></td>
+                    <td>1</td>
+                    <td>Remixed from ManCheetah's files</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/birdsnest/birdsnest - fannypack cover.stl" target="_blank">birdsnest - fannypack cover</a></td>
+                    <td>1</td>
+                    <td>Remixed from ManCheetah's files</td>           
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts Preparation</h4>
+        <p>Six M3 heat sets need to be melted into place. There are four in the extrusion adaptor and two in the fannypack base.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/heatsets1.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/heatsets1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/heatsets2.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/heatsets2.jpg" /></a>
+        <p>Eight magnets need to be inserted into the fannypack parts. Four go in each side and the magnets need to be matched so that they attract each other. Depending on how tight the fit is, you may need a small bit of super glue to retain them.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/magnets.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/magnets.jpg" /></a>
+        <h4>Mounting</h4>
+        <p>Secure the Birds' nest board to the fannypack base using two M3 x 8mm bolts. Secure the fannypack base to the extrusion adaptor using four M3 x 8mm bolts.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/mounting1.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/mounting1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/mounting2.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/mounting2.jpg" /></a>
+        <p>At the upper rear left of the frame, remove the two M3 bolts holding the horizontal bar to the corner. Flex the horizontal bar backwards and slide the extrusion adaptor/fannypack base assembly onto the extrusion and into the centre.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/mounting3.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/mounting3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/mounting4.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/mounting4.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/mounting5.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/mounting5.jpg" /></a>
+        <h4>Wiring</h4>
+        <p>Wiring for the Birds' Nest is very simple. We need to supply 24V and grond, plus a USB cable.</p>
+        <p>Cut a length of two core 12awg cable to approximately 1m in length. This may be shortened later on but 1m is a good starting value. On one end, crimp a set of blue spade connectors and secure into the 24V output terminals on the PSU.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring3.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring3.jpg" /></a>
+        <p>The other end recives two ferrule/boot lace connectors suitable for the screw terminals on the Birds' nest board.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring4.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring4.jpg" /></a>
+        <p>If you ordered the USB-A to USB-C cable with the Birds' Nest, the other half on the wiring is already done. This cable goes between the spar USB-A port on the mainboard to the USB-C port on the Birds' Nest.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring1.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring2.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring2.jpg" /></a>
+        <h4>Cable Routing</h4>
+        <p>Protect the cables with sheathing or a similar product.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring5.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring5.jpg" /></a>
+        <p>There is a opening behind the bed where some cables already pass through. A plastic cap that seals this can be removed to faciliate feeding the two Birds' nest cables through. I would recommend Unplugging the cable for tool 0 that already passes through here and separating it from the rest. It can be temporarily routed elsewhere if you are unwilling to take the printer offline. Feed the Birds' Nest cables from below, through this opening, and press the plastic cap back on.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring6.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring7.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/birdsnest/wiring8.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/wiring8.jpg" /></a>
+        <h4>Birds' Nest Firmware</h4>
+        <p>For this section, it's best to refer to the <a href="https://github.com/xbst/Birds-Nest/blob/master/Docs/Birds-Nest-Manual.pdf" target="_blank">Birds' Nest Manual</a> for the most up to date information.</p>
+        <p>If you have purchased your board from Isik's Tech, the section on <b>nBOOT_sel</b> can be skipped.</p>
+        <p>Klipper firmware must be compiled and installed on the board in any case, however. Follow the steps in the manual to SSH into the pi, compile Klipper using the correct settings for the board, and then flash the firmware. The image below is for reference only, please follow the exact instructions from the manual.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/firmware1.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/firmware1.jpg" /></a>
+        <p>As we did in the preparation step, we need to collect the serial ID of the Birds' Nest board to add to our text file. SSH in to the pi and run the same command as previously:</p>
+        <pre>ls /dev/serial/by-id*</pre>
+        <p>Look for an entry that starts with <i>STM32G0B1</i> (all of the previous results started with <i>STM32F103</i>). Copy and paste this to complete your text file.</p>
+        <a href="#" data-featherlight="img/sv08/birdsnest/firmware2.jpg"><img loading="lazy" class="thumb" src="img/sv08/birdsnest/firmware2.jpg" /></a>
+        <h4>Klipper Configuration</h4>
+        <p>The Birds' Nest manual outlines steps to download a configuration file as part of your Klipper config. We will skip this step, because the pre-prepared SD card image already has all of the config files in place. Later in the process, we will simply enter our own serial IDs into the config files.</p>
     </div>
 
     <div id="docks">
         <h2>Modular Docks</h2>
-        <p>This page serves as a companion for this video: </p>
+        <p>This tab covers adding a modular dock to the front of the SV08, where the tools not in use are parked. The printed parts were designed by DraftShift as a variation on their <a href="https://github.com/DraftShift/ModularDock" target="_blank">Stealthchanger Modular Dock</a>. This means that if you decide to use a different ttol design, there will hopefully be a dock to suit.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>The SV08 is released as a single tool printer. When converted to a toolchanger, additional tools are fitted and need a place to be stored when not in use. This dock connects to an added piece of 2020 extrusion, as well as the existing extrusions at the top of the SV08 frame.</p>
+        <p class="warning">Unless you are extremely tight for filament or parts, I would recommend printing and assembling this dock in a six tool configuration, even if you are using five or less tools. This is because the six tools dock fills the entire width of the printer. Not using it will require spacers and other solutions to fill the width. A six tool dock also allows much easier addition of more tools at a later date.</p>
+        <p>The SV08 dock is split into three sections. Firstly, the dock bar, which is the common frame that interfaces with the printer. Secondly, the individual docks, of which I recommend you produce six sets. Finally, the links, which are added after the docks and help keep the docks correctly spaced and positioned.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required:</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Dock bar</td>
+                </tr>
+                <tr>
+                    <td>2020 extrusion</td>
+                    <td>1 x 420mm</td>
+                    <td><a href="https://amzn.to/4jsF1mN" target="_blank">Amazon</a></td>
+                    <td></td>
+                    <td>Extrusion needs to be cut down to length. A electric drop saw meant for timber will cut alumnium nicely in small doses. Otherwise, some local suppliers will supply pieces cut to length for a fee. If you don't have spare extrusion on hand, shop around locally to save money.</td>
+                </tr>
+                <tr>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>4</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>M3 x 10mm SHCS bolts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Replace factory M3 x 8mm bolts where 2020 brackets and main brackets are installed.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 12mm BHCS bolts</td>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td>One per 2020 bracket through heat sets. Two per side through main brackets and round spacers into outer dock pieces.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 35mm SHCS bolts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Through main bracket, isolator, rectangular spacer and into side bracket on each side.</td>               
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Docks - Quantities are per dock</td>
+                </tr>
+                <tr>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>24 per dock + 4 additional</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>M3 x 16mm SHCS bolts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Top and bottom to front frame.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 50mm SHCS bolts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Base to bottom frame.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 20mm SHCS bolts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Base to bottom frame.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 10mm SHCS bolts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Back plate to base.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 16mm BHCS bolts</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td>Blocker body to blocker cup.</td>               
+                </tr>
+                <tr>
+                    <td>M4 spring</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td>Between blocker body to blocker cup. Can use trimmed down ball point pen spring or similar.</td>               
+                </tr>
+                <tr>
+                    <td>High temperature RTV silicone</td>
+                    <td>1 tube</td>
+                    <td><a href="https://amzn.to/49HLJC9" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>To fill each blocker cup. Use simple method demonstrated in my video or seek further guidance from <a href="https://www.youtube.com/watch?v=IefOMR0WlsY" target="_blank">DraftShift</a>.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 30mm SHCS bolts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Base to blocker body.</td>               
+                </tr>
+                <tr>
+                    <td>4mm OD PTFE tube</td>
+                    <td>8mm length</td>
+                    <td></td>
+                    <td></td>
+                    <td>PTFE wiper. This is the regular size of tube used commonly in 3D printers.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 6mm FHCS bolt</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td>Holds PTFE tube to wiper.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 6mm BHCS bolt</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td>Wiper to blocker body.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 8mm BHCS bolt</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>L bracket to frame top.</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 8mm SHCS bolt</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Face spacers to front frames.</td>               
+                </tr>
+                <tr>
+                    <td>M5 x 10mm BHCS bolt</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dock to 2020 extrusion.</td>               
+                </tr>
+                <tr>
+                    <td>M5 T nutst</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dock to 2020 extrusion.</td>               
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Links - Quantities are per dock</td>
+                </tr>
+                <tr>
+                    <td>M5 x 10mm BHCS bolts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dock to guide links (centre, left and right).</td>               
+                </tr>
+                <tr>
+                    <td>M5 lock nuts</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dock to guide links (centre, left and right).</td>               
+                </tr>
+                <tr>
+                    <td>M3 x 6mm BHCS bolt</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Dock to rear link.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/b1fe38fd7a8ed3229c744880?renderMode=0&uiState=695da1d1391b6b63c8695f79" target="_blank">Onshape</a></p>
+        <p>Please note that some right hand parts were missing in the source CAD. I simply mirrored the left side part in CAD to export for the list below.</p>
+        <p>All left and right labels apply when looking from the front of the printer towards the back.</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Dock bar</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - 2020 bracket left.stl" target="_blank">dockbar - 2020 bracket left</a></td>
+                    <td>1</td>
+                    <td>Includes built in removable support structures. No support needed.</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - 2020 bracket right.stl" target="_blank">dockbar - 2020 bracket right</a></td>
+                    <td>1</td>
+                    <td>Includes built in removable support structures. No support needed.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - side bracket left.stl" target="_blank">dockbar - side bracket left</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - side bracket right.stl" target="_blank">dockbar - side bracket right</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - main bracket left.stl" target="_blank">dockbar - main bracket left</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - main bracket right.stl" target="_blank">dockbar - main bracket right</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - round spacer.stl" target="_blank">dockbar - round spacer</a></td>
+                    <td>4</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - rectangular spacer.stl" target="_blank">dockbar - rectangular spacer</a></td>
+                    <td>2</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - left isolator.stl" target="_blank">dockbar - left isolator</a></td>
+                    <td>2</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - right isolator.stl" target="_blank">dockbar - right isolator</a></td>
+                    <td>2</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/dockbar - stabilizer.stl" target="_blank">dockbar - stabilizer</a></td>
+                    <td>4</td>
+                    <td>Use a brim if bed adhesion is poor.</td>           
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Docks - Quantities are per dock</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - front frame left.stl" target="_blank">docks - front frame left</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - front frame right.stl" target="_blank">docks - front frame right</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - top frame.stl" target="_blank">docks - top frame</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - bottom frame.stl" target="_blank">docks - bottom frame</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - L bracket.stl" target="_blank">docks - L bracket</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - face spacer left.stl" target="_blank">docks - face spacer left</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - face spacer right.stl" target="_blank">docks - face spacer right</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - base.stl" target="_blank">docks - base</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - back plate.stl" target="_blank">docks - back plate</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - blocker body.stl" target="_blank">docks - blocker body</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - blocker cup.stl" target="_blank">docks - blocker cup</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/docks - ptfe wiper.stl" target="_blank">docks - ptfe wiper</a></td>
+                    <td>1</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Links</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/links - rear link.stl" target="_blank">links - rear link</a></td>
+                    <td>5</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/links - guide link centre.stl" target="_blank">links - guide link centre</a></td>
+                    <td>5</td>
+                    <td>Variation on DraftShift link to suit the SV08. Heads hold the tools square in the dock.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/links - guide link left.stl" target="_blank">links - guide link left</a></td>
+                    <td>1</td>
+                    <td>Variation on DraftShift link to suit the SV08. Heads hold the tools square in the dock.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/links - guide link right.stl" target="_blank">links - guide link right</a></td>
+                    <td>1</td>
+                    <td>Variation on DraftShift link to suit the SV08. Heads hold the tools square in the dock.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/docks/links - 7mm dock spacer.stl" target="_blank">linkss - 7mm dock spacer</a></td>
+                    <td>2</td>
+                    <td>An optional part to assist in spacing the docks squarely 7mm apart.</td>           
+                </tr>
+            </tbody>
+        </table>
+        <h4>Assembly Manual</h4>
+        <p>An excellent resource is available for this step of the build in the <a href="https://github.com/DraftShift/ModularDock/blob/main/Manual/ModularDock_Assembly_Guide.pdf" target="_blank">StealthChanger ModularDock Assembly Guide</a>. Although there are some variations in parts to suit the SV08, most of the manual applies and is easy to follow.</p>
+        <h4>Printed Parts Preparation</h4>
+        <p>The 2020 brackets have two pieces of support structure to remove.</p>
+        <p>There are many heat insets to be installed. Four are required for dockbar parts (one in each 2020 bracket and one in each side bracket). There are twenty four heat sets per dock. Most of these are in the assembly manual, but some are less obvious.</p>
+        <p>In each dock, there are two in the underside of the base piece:</p>
+        <a href="#" data-featherlight="img/sv08/docks/heatset1.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/heatset1.jpg" /></a>
+        <p>Four more heat sets are uses in the face spacer pieces:</p>
+        <a href="#" data-featherlight="img/sv08/docks/heatset2.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/heatset2.jpg" /></a>
+        <p>The outer two docks geta pair of heat sets that will later attach to the large brackets of the dock bar.</p>
+        <a href="#" data-featherlight="img/sv08/docks/heatset3.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/heatset3.jpg" /></a>
+        <h4>Dockbar Installation</h4>
+        <p>We will start by installing the majority of the dock bar with the 2020 extrusion piece.</p>
+        <p>Remove the factory M3 x 8mm bolts holding the SOVOL branded top frame piece to the printer. Remove this frame piece and then remove the LED bar from it.</p>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar1.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar2.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar2.jpg" /></a>
+        <p>Slide four stabilizer pieces along the front edge of the 2020. These will reduce wobble later. Install the 2020 brackets on the outer edges of the 2020 extrusion. M3 x 12mm bolts can be used in the 2020 brackets to lock them against the extrusion.</p>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar3.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar4.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar4.jpg" /></a>
+        <p>Insert the 2020 assembly behind the upper SOVOL frame piece of the printer. Use two M3 x 10mm bolts on each side to secure the assembly to the frame. The 2020 which forms the structure for the dock bar is now finished.</p>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar5.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar5.jpg" /></a>        
+        <a href="#" data-featherlight="img/sv08/docks/dockbar6.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar6.jpg" /></a>
+        <p>The side brackets attach in the same way. Remove the two factory M3 bolts holding the frame extrusion, place the side bracket over the top and use two M3 x 10mm bolts to hold everything together.</p>
+        <a href="#" data-featherlight="img/sv08/docks/dockbar7.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar7.jpg" /></a>        
+        <a href="#" data-featherlight="img/sv08/docks/dockbar8.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/dockbar8.jpg" /></a>
+        <h4>Docks Assembly</h4>
+        <p>From here, the DratShift manual is the best resource. The BOM above also details where each nut and bolt is used. Simply follow the steps to assemble six docks. This sequence also includes moulding RTV silicone into the blocker cup. Remember to select the two docks which will sit on the far left and far right. These should have previously had heat sets melted into the outer edges.</p>
+        <a href="#" data-featherlight="img/sv08/docks/docks1.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks3.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks2.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks4.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks4.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks5.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks6.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks6.jpg" /></a>
+        <h4>Adding Docks to the Dock Bar</h4>
+        <p>Install the corner docks first. The large bracket attached to them should line up with the side bracket, with the isolator and rectangular spacer inbetween. An M3 x 25mm bolt in each side secures the parts together.</p>
+        <a href="#" data-featherlight="img/sv08/docks/docks7.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks8.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks8.jpg" /></a>
+        <p>I recommend temporarily removing the L bracket from the top of each dock, then securing the top of the dock to the underside of the 2020 extrusion with M5 x 10mm bolts and T nuts. Then reattach the L brackets with M5 bolts and T nuts in place. Once everything is tightened each dock should be secure.</p>
+        <a href="#" data-featherlight="img/sv08/docks/docks9.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks9.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks10.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks10.jpg" /></a>
+        <p>Use the 7mm spacer to assist in installing the centre four docks in the right position. Using two spacers at the same time will help align the top and bottom of each dock.</p>
+        <a href="#" data-featherlight="img/sv08/docks/docks11.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks11.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/docks12.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/docks12.jpg" /></a>
+        <h4>Adding Links</h4>
+        <p>The final components are the links. These hold the docks in place with the correct spacing and add rigidity. The SV08 specific guide links also help hold the tools squarely when docked. Four centre links are needed and a bespoke left and right version on the sides. M5 x 10mm bolts go through the bottom frame piece of the dock and go into trappen M5 locknuts in the guide links.</p>
+        <a href="#" data-featherlight="img/sv08/docks/links1.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/links1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/links2.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/links2.jpg" /></a>
+        <p>The rear links install on the underside, with a pair of M3 x 6mm bolts holding each.</p>
+        <a href="#" data-featherlight="img/sv08/docks/links3.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/links3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/docks/links4.jpg"><img loading="lazy" class="thumb" src="img/sv08/docks/links4.jpg" /></a>
     </div>
 
     <div id="spools">
         <h2>Spool Holder</h2>
-        <p>This page serves as a companion for this video: </p>
+        <p>This tab covers upgrading adding a modular spool holder to either the front or back of the printer.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>The SV08 has a single spool holder to suit the single tool. Our toolchanger conversion requires a solution that holds up to six spools for up to six tools.</p>
+        <p>Unlike the modular dock, where i recommend building a six dock system in every case, this part of the build can be scaled to suit the number of tools. The underlying frame spans the printer and additional spool holders can be added conveniently at a later time. The frame has enough rigidity regardless of how many spool holders are fitted.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required. BOM is devided into common, front mount and rear mount sections.</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Common</td>
+                </tr>
+                <tr>
+                    <td>2020 extrusion</td>
+                    <td>2 x 500mm</td>
+                    <td><a href="https://amzn.to/4jsF1mN" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>This Amazon listing contains enough 2020 pieces to suit the spool holder and previous dock bar. However, they would need to be cut down to the 500mm length. If this is difficult for you, shop around for a listing with 2020 already 500mm in length.<br/>If possible, the bores of the extrusions should be tapped to make an M5 thread. The system will work without this but not be quite as strong.</td>
+                </tr>
+                <tr>
+                    <td>608RS bearings</td>
+                    <td>4 per spool holder</td>
+                    <td><a href="https://amzn.to/4fpiWTm" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>Reverse bowden PTFE tube</td>
+                    <td>1 x 900mm length per spool holder</td>
+                    <td><a href="https://amzn.to/4frK44d" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>900mm is the base length, but the tools in the middle can have the tube trimmed down slightly to reduce clutter. This tube has a larger internal diameter than regular PTFE tube to reduce friction. If you want to save money because you have enough regular PTFE tube in stock, please do so.</td>               
+                </tr>
+                <tr>
+                    <td>BTT Smart Filament Sensor V2.0</td>
+                    <td>1 per spool holder</td>
+                    <td><a href="https://amzn.to/3ClfhHz" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>M5 x 10mm BHCS bolts</td>
+                    <td>4 (+4 if you are able to thread the 2020 bores).</td>
+                    <td></td>
+                    <td></td>
+                    <td>Front/rear mount bracket to 2020 extrusion.</td>               
+                </tr>
+                <tr>
+                    <td>M5 T nuts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Front/rear mount bracket to 2020 extrusion.</td>               
+                </tr>
+                <tr>
+                    <td>M5 x 10mm BHCS bolts (again)</td>
+                    <td>2 per spool holder</td>
+                    <td></td>
+                    <td></td>
+                    <td>Sensor mount to 2020 extrusion. </td>               
+                </tr>
+                <tr>
+                    <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Front mounted spool holder</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/640364bb9d1fd376651df2f3?renderMode=0&uiState=696070e8256aa5f89fd49275" target="_blank"></a>Onshape</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="files/sv08/psu/PSU - adaptor.stl" target="_blank">PSU - adaptor</a></td>
+                    <td>1</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/psu/PSU - terminal cover.stl" target="_blank">PSU - terminal cover</a></td>
+                    <td>1</td>
+                    <td>Brim may be required depending on bed adhesion.</td>           
+                </tr>
+            </tbody>
+        </table>
+        <h4>Old spool holder removal</h4>
+        <p>Simply unbolt the old holder and unplug the old filament runout sensor too.</p>
     </div>
 
-    <div id="Umbilicals">
+    <div id="umbilicals">
         <h2>Umbilicals</h2>
         <p>This page serves as a dsfsd companion for this video: </p>
     </div>
