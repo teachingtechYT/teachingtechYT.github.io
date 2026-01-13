@@ -272,6 +272,7 @@
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>The SV08 uses USB connections (instead of CANbus) for its tools. The mainboard has two USB ports plus a JST set of connectors (used by default for tool 0). The webcam uses one USB port, meaning without expansion we would be limited to a two tool build. the Birds' Nest allows up to six tools, whilst only requiring a single USB port. It also have its own Klipper compatible MCU and IO pins, meaning we can add filament runout sensors and other hardware if desired.</p>
+        <p><a href="https://github.com/xbst/Birds-Nest/" target="_blank">Birds' Nest GitHub</a></p>
         <p>In part 2 of the original video series, I initially tried a cheap USB hub. This was limited to four tools max and offered none of the other benefits of the Birds' Nest. It is still possible to use something like this but the Birds' Nest is vastly superior.</p>
         <h4>BOM</h4>
         <p>The following hardware is required:</p>
@@ -920,6 +921,13 @@
                     <td>Span bracket to 2020 extrusion. Can use less to save parts. I used 14 in total for six spool holders.</td>            
                 </tr>
                 <tr>
+                    <td>JST XH connector kit</td>
+                    <td>6 - 10 </td>
+                    <td><a href="https://amzn.to/4pBGpoM" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Optional but recommended to shorten filament sensor wires.</td>            
+                </tr>
+                <tr>
                     <td colspan="5" style="background-color:black;color:white;font-weight:bolder;">Front mounted spool holder</td>
                 </tr>
                 <tr>
@@ -938,6 +946,13 @@
                     <td></td>
                     <td></td>
                     <td>Rear mount bracket to SV08 frame, five per side.</td>            
+                </tr>
+                <tr>
+                    <td>Cable ties</td>
+                    <td>2 per spool holder + a few more for general tidying</td>
+                    <td><a href="https://amzn.to/4qTMKNj" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td></td>            
                 </tr>
             </tbody>
         </table>
@@ -1000,7 +1015,7 @@
             </tbody>
         </table>
         <h4>Old spool holder removal</h4>
-        <p>Simply unbolt the old holder and unplug the old filament runout sensor too. these are no longer needed.</p>
+        <p>Simply unbolt the old holder and unplug the old filament runout sensor too. These are no longer needed. The cable for the runout sensor runs down one the vertical corner extrusions behind a plastic piece. You may wish to remove these to tidy up the appearance of the printer.</p>
         <a href="#" data-featherlight="img/sv08/spools/oldspool.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/oldspool.jpg" /></a>
         <h4>Prepearing 2020 extrusion</h4>
         <p>Prepare two lengths of 500mm 2020 extrusion. I recycled extrusion from an old 3D printer, cutting it down to length.</p>
@@ -1032,15 +1047,146 @@
         <p>Fit the sensor mounts to the front of the extrusion in line with each roller using two M5 x 8mm bolts and T nuts. The sensors will face the front of the machine regardless of whether the system is front or rear mounted.</p>
         <a href="#" data-featherlight="img/sv08/spools/assembly10.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/assembly10.jpg" /></a>
         <h4>PTFE Tube</h4>
-
+        <p>Prepare a 900mm length of PTFE tube for each spool holder. One end plugs into the output of the filament sensor. The other end will be loose for now.</p>
+        <p>At a later stage, you may wish to shorten the reverse bowden tubes to tidy things up, but don't attempt this yet.</p>
+        <a href="#" data-featherlight="img/sv08/spools/tube.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/tube.jpg" /></a>
         <h4>SFS Wiring</h4>
-
-
+        <p>The BigtreeTech SFS V2.0 is unique in that it offers two filament monitoring modes in one. It has microswitch that detects the presence of filament. The printer will know if filament is loaded before the print starts, and then if it runs out during the print.</p>
+        <p>This sensor also has an encoder, a electronic components that measures rotation. During printing, a pulse is sent to the firmware for every ~3mm of filament that passes through. In the event of a runout, tangle or jam, the pulse will not be sent and the firmware can pause the print. The downside of this encoder is that it cannot be polled by the firmware to know if filament is present or not. The filament must be moving which means pre-print detection is unavailable.</p>
+        <p><a href="https://github.com/bigtreetech/smart-filament-detection-module" target="_blank">BTT SFS V2 GitHub</a></p>
+        <p><a href="https://github.com/xbst/Birds-Nest/" target="_blank">Birds' Nest GitHub</a></p>
+        <p class="warning">There is a small limitation in the Birds' Nest PCB for this sensor. Each SFS requires positive, ground, and a signal pin for the switch and encoder. This means for six tools, to use the switch and encoder functions, twelve signal inputs are required. Twelve ports exist on the Birds' Nest, but the Neopixel ports are configured so that they are output only, not input. That leaves ten input pins available, meaning a five tool or less build can use both SFS functions at once, but a six tool build cannot.</p>
+        <p>For this reason I chose to connect only the switch wires, and not the encoder wires. In your build, you may select a different option for SFS configuration. I depinned the connector and separated the green wire (default for encoder). If you wanted to keep only the encoder and not the witch, you would instead remove the blue wire (default for switch). If you want to run both features, do not remove any wires.</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring1.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/wiring2.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring2.jpg" /></a>
+        <p>The following diagram depicts the green encoder wire removed:</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring3.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring3.jpg" /></a>
+        <p>The following diagram depicts the blue switch wire removed:</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring4.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring4.jpg" /></a>
+        <p>The following diagram shows suggested connections to the Birds' Nest PCB if a five tool build is using both the switch and encoder inputs.</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring5.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring5.jpg" /></a>
+        <p>Use cable ties to secure the SFS cables to the slots on the sensor mount.</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring6.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring6.jpg" /></a>
+        <p>If your have chosen the rear mount option, your wires from the SFS will be quite long and untidy. You may optionally cut and recrimp JST connectors to tidy the wiring up.</p>
+        <a href="#" data-featherlight="img/sv08/spools/wiring7.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/spools/wiring8.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring8.jpg" /></a>
     </div>
 
     <div id="umbilicals">
         <h2>Umbilicals</h2>
-        <p>This page serves as a dsfsd companion for this video: </p>
+        <p>This tab covers crating umbilicals: the cable and PTFE bundle between the Birds' Nest and individual tools.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>The standard SV08 has one tool and one umbilical cable with a dedicated clamping system. The PTFE tube feed to the tool is mostly separate from the cable too. To add tools until we have up to six, we need a more robust system to attach each tool and PTFE tube, where they maintain a gentle arc and don't tangle with each other. This design also aims for easy disconnection, where individual tools and unmbilicals can be removed with minimal disassembly (provided the printer is powered down). Due to the addition of the Birds' Nest hub, out cables must have special connectors crimped on to suit compared to the smaller JST connectors used from factory at both ends.</p>
+        <h4>Variation</h4>
+        <p>There exists multiple options for the cable used here. I selected something that is overengineered for the job. Only the positive and negative wires need to be thick for high current, yet all five cores in my cable are thick, making the cable fairly heavy overall. If you find a five core cable with two thick cores and three thinner cores, there is a variable in the CAD decribed below you can reduce to alter the TPU parts to suit.</p>
+        <p>The cable I am using is approximately 8mm in external diameter, which becomes 10mm when protective sheathing is added.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required:</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sheathed Cable Shielded Wire</td>
+                    <td>104cm per tool</td>
+                    <td><a href="https://s.click.aliexpress.com/e/_Dl54CXv" target="_blank">Aliexpress</a></td>
+                    <td>TT</td>
+                    <td>Parameters: 5 core, 18awg, enough length to have one tool spare. ie. I ordered 10m to suit six tools (104cm each).</td>
+                </tr>
+                <tr>
+                    <td>JST XH (2.54mm pitch) and JST PH (2.0mm pitch) connector kit </td>
+                    <td>1</td>
+                    <td><a href="https://amzn.to/4pAylo0" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>For tool end of umbilical cable.</td>            
+                </tr>
+                <tr>
+                    <td>Molex Micro-fit MX3.0 connector kit</td>
+                    <td>1 (optional)</td>
+                    <td><a href="https://amzn.to/4sEkjo4" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>For Birds' Nest end of umbilical cable. Birds' Nest comes with six connectors. This kit is only necessary if you damage/lose the parts, or need to redo a cable.</td>            
+                </tr>
+                <tr>
+                    <td>Flat spring</td>
+                    <td>One roll/spring required per two tools</td>
+                    <td><a href="https://s.click.aliexpress.com/e/_c41z2OwB" target="_blank">Aliexpress</a></td>
+                    <td>TT</td>
+                    <td>Parameter: 0.3x3x2160mm</td>   
+                </tr>
+                <tr>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>2 per tool</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>Split cable sheathing</td>
+                    <td>~1m per tool</td>
+                    <td><a href="https://amzn.to/4qWDhVD" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Optional to add protection to the umbilical cable. Recommended for durability. If not used, reduce the TPU bore diameter as detailed below.</td>               
+                </tr>
+                <tr>
+                    <td>Liquid electrical tape</td>
+                    <td>1 tube/tin</td>
+                    <td><a href="https://amzn.to/49h2GDm" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Optional to add protection after crimping on connectors. Keeps out moisture and debris.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD (tool end): <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/ca85eb3e8ea374c248350c6e?renderMode=0&uiState=6965b411ff607190836ddd95" target="_blank">Onshape</a></p>
+        <p>Source CAD (Birds' Nest end): <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/6362f50a4e4f6a2ea64a42b3?renderMode=0&uiState=6965b4d7ff607190836de612" target="_blank">Onshape</a></p>
+        <p>TPU parts inspired by <a href="https://github.com/DraftShift/CableManagement/tree/main/UserMods/N3MI-DG/Umbilical_plates_V2" target="_blank">N3MI-DG umbilical mod</a>.</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="files/sv08/umbilicals/umbilicals - flat spring tool clamp.stl" target="_blank">umbilicals - flat spring tool clamp</a></td>
+                    <td>1 per tool</td>
+                    <td>Brim may be required depending on bed adhesion.</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/umbilicals/umbilicals - flat spring birdsnest clamp front.stl" target="_blank">umbilicals - flat spring birdsnest clamp front</a></td>
+                    <td>1 per tool</td>
+                    <td>Brim may be required depending on bed adhesion.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/umbilicals/umbilicals - flat spring birdsnest clamp rear.stl" target="_blank">umbilicals - flat spring birdsnest clamp rear</a></td>
+                    <td>1 per tool</td>
+                    <td>Brim may be required depending on bed adhesion.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/umbilicals/umbilicals - TPU clamp double.stl" target="_blank">umbilicals - TPU clamp double</a></td>
+                    <td>5 per tool</td>
+                    <td>TPU filament. Change the <b>#cableDiameter</b> variable in the Onshape doc to resize the openings smaller for different cable. Default diameter is 10mm to suit the cable linked above plus sheathing.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/umbilicals/umbilicals - TPU clamp single.stl" target="_blank">umbilicals - TPU clamp single</a></td>
+                    <td>3 per tool</td>
+                    <td>TPU filament. Change the <b>#cableDiameter</b> variable in the Onshape doc to resize the openings smaller for different cable. Default diameter is 10mm to suit the cable linked above plus sheathing.</td>           
+                </tr>
+            </tbody>
+        </table>
+        <h4>Old PSU removal</h4>
     </div>
 
     <div id="tools">
