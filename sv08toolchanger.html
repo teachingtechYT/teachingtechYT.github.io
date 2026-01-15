@@ -16,8 +16,7 @@
         <li><a href="#spools">Spool Holder</a></li>
         <li><a href="#umbilicals">Umbilicals</a></li>
         <li><a href="#tools">Tool Coupling Mechanisms</a></li>
-        <li><a href="#klipper">Mainline Klipper</a></li>
-        <li><a href="#plugin">Toolchanger Plugin</a></li>
+        <li><a href="#klipper">Mainline Klipper and Toolchanger Plugin</a></li>
         <li><a href="#slicer">Slicer Profile</a></li>
         <li><a href="#calibration">Calibration</a></li>
     </ul>
@@ -43,7 +42,7 @@
             <tr>
                 <td>Socket Head Cap Screw (SHCS)</td>
                 <td>Button Head Cap Screw (BHCS)</td>
-                <td>Flat Head Cap Screw (FHCS) (Countersunk)</td>
+                <td>Flat Head Cap Screw (FHCS) (countersunk)</td>
             </tr>
             <tr>
                 <td><a href="https://shop.flexmation.com/products/socket-head-cap-screw" target="_blank"><img src="https://shop.flexmation.com/cdn/shop/products/M5x16-SHCS_medium.jpg?v=1495470994" /></a></td>
@@ -52,7 +51,7 @@
             </tr>
         </table>
         <h4>Costs and Affiliate links</h4>
-        <p>The initial SV08 and spare tools were provided free of charge by Sovol in support of this project. Since then, I have purchased all components with my own money, at significant cost. To assist in covering these costs, affiliate links may be used throughout each tab's BOM. They will be marked TT or DS to signify whether the income will go to Teaching tech or DraftShift. Some of these are my own affiliate links and where possible I will maintain existing affiliate links from the DraftShift GitHub.</p>
+        <p>The initial SV08 and spare tools were provided free of charge by Sovol in support of this project. Since then, I have purchased all components with my own money, at significant cost. To assist in covering these costs, affiliate links may be used throughout each tab's BOM. They will be marked TT or DS to signify whether the income will go to Teaching Tech or DraftShift. Some of these are my own affiliate links and where possible I will maintain existing affiliate links from the DraftShift GitHub.</p>
         <p>The cost of someone building this project will be a lot less than the expenditure outlayed by myself and the DraftShift team. Development requires experimentation and iteration that is hopefully not be present for the end user.</p>
         <h4>Tool Numbering</h4>
         <p>In software, counting starts from the number 0, not 1. Klippe adopts the same approach. Throughout this guide, you will see examples of this system. the 1st tool will be called tool 0, the 2nd tool 1, the 3rd tool 2 and so on. When preparing the firmware config and later running macros from Mainsail, this approach is used.</p>
@@ -1131,11 +1130,32 @@
                     <td></td>               
                 </tr>
                 <tr>
+                    <td>M3 x 8mm BHCS bolts</td>
+                    <td>2 per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>Flat spring birdsnest clamp front to rear to clamp the flat spring inbtween the two pieces.</td>               
+                </tr>
+                <tr>
                     <td>Split cable sheathing</td>
                     <td>~1m per tool</td>
                     <td><a href="https://amzn.to/4qWDhVD" target="_blank">Amazon</a></td>
                     <td>TT</td>
                     <td>Optional to add protection to the umbilical cable. Recommended for durability. If not used, reduce the TPU bore diameter as detailed below.</td>               
+                </tr>
+                <tr>
+                    <td>18 awg wire</td>
+                    <td>~50mm per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>Required to ground the metal shielding at the Birds' nest. Hopefully you have some generic black wire spare, or some left over from the power cable to the Birds' Nest from earlier. Can be thinner than 18 gauge.</td>               
+                </tr>
+                <tr>
+                    <td>Cable ties</td>
+                    <td>2 per tool</td>
+                    <td><a href="https://amzn.to/4qTMKNj" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td></td>            
                 </tr>
                 <tr>
                     <td>Liquid electrical tape</td>
@@ -1181,26 +1201,350 @@
                 </tr>
                 <tr>
                     <td><a href="files/sv08/umbilicals/umbilicals - TPU clamp single.stl" target="_blank">umbilicals - TPU clamp single</a></td>
-                    <td>3 per tool</td>
+                    <td>4 per tool</td>
                     <td>TPU filament. Change the <b>#cableDiameter</b> variable in the Onshape doc to resize the openings smaller for different cable. Default diameter is 10mm to suit the cable linked above plus sheathing.</td>           
                 </tr>
             </tbody>
         </table>
-        <h4>Old PSU removal</h4>
+        <h4>Printed Parts Preparation</h4>
+        <p>Two M3 heat sets are required per tool in the flat spring birdsnest clamp rear part.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/heatsets.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/heatsets.jpg" /></a>
+        <h4>Cable</h4>
+        <p>Cut the five core cable to approximately 104cm in length. It can be slightly longer as the flat spring will be trimmed to length later on. The following image shows the connectors crimped in place, which will be the next step.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable1.jpg" /></a>
+        <p>Remove 75mm of insulation from one end of the cable. You can also cut off the metal shielding from this end. The side will connect to the tool PCB.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable2.jpg" /></a>
+        <p>Crimp JST XH (2.54mm pitch) connectors to the red and black wires. Crimp JST PH (2.00 pitch) to the white, blue and yellow wires.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable3.jpg" /></a>
+        <p>If you are using the same cable as me, the JST PH connectors will be quite small in comparison. They can still be crimped on if you are careful. The plastic housing is easier to install if you squish the wires from the side first.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable4.jpg" /></a>
+        <p>The other end of the cable will connect to the Birds' Nest board. Strip back 40mm of insulation. Do not cut off the metal shielding that wraps around the wires. We will use this for improving the reliability of the USB signal. Gather it in a bunch, and solder approximately 50mm of black wire to it. Cover this in heat shrink to keep it tidy.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable7.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable8.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable8.jpg" /></a>
+        <p>The Birds' Nest board came with the Molex MX3.0 connectors and housing required for the six wires. Crimp these on and install into the housing as per the diagram.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable3.jpg" /></a>
+        <p>Repeat until you have a cable per tool. there are two optional but highly recommended steps.</p>
+        <p>Apply liquid electrical tape to the backs of the JST connectors. This will keep out dust and debris and provide a tiny amount of strain relief.</p>
+        <p>Wrap the cables in protective sheathing to prevent abrasion wear and tear over time. This will also bring the thickness up to 10m to suit the default TPU printed parts. Stop the sheathing just short on the tool end. The clamp at the top of the tool only just fits the thicker cable. Sheathing will make it too thick.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable9.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable9.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/cable10.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable10.jpg" /></a>
+        <h4>Optional: Inverse tool PCB plug placement</h4>
+        <p>The thicker wires don't bend as tightly and therefore touch the back of the part cooling fan on the tool shroud. This makes putting the shroud back on difficult and will strain the JST connectors over time.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse1.jpg" /></a>
+        <p>It is possible to move the JST ports on the tool PCB to the rear side to fix this problem.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse2.jpg" /></a>
+        <p>Remove the factory JST housings with a set of pliers and/o a flat prying tool. Use a soldering iron to heat the factory JST pins from the PCB. Use a solder sucker to remove an remaining solder from he PCB.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse4.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse5.jpg" /></a>
+        <p>Solder the new JST connectors onto the rear side of the PCB. The cutout in the housing previously faced downwards towards the nozzle, but when positioned on the rear of the PCB needs to be flipped so that the cut outs face upwards. Doing this will preserve the correct pinouts for the cable and can be seen in the diagram below.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/inverse7.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse7.jpg" /></a>
+        <h4>Tool End Preparation</h4>
+        <p>Undo the two M3 bolts holding the clamp around the umbilical cable. Slip in the flat spring tool clamp printed piece behind the clamp and use the same M3 bolts to hold the clamp in place.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/toolend1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/toolend1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/toolend2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/toolend2.jpg" /></a>
+        <h4>Birds' Nest end preparation</h4>
+        <p>Take one of the flat spring coils, unwind it and find the approximate middle. This does not need to be eact as we will be cutting each to length later on. Cut the flat spring in half at this mid point.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend2.jpg" /></a>
+        <p>Bend around 5mm of the flat spring at one end and push it through the opening in the spring clamp front piece. Attach the two spring clamp pieces together with two M3 x 8mm bolts. The flat spring should be clamped inbetween them. Bend or cut the exposed flat spring end so that it can't later cut the umbilical cable. You may wish to cover it with tape as an extra precaution.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend4.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend5.jpg" /></a>
+        <p>The cable will rest inside the groove in these printed pieces, but do not apply the cable ties yet to lock them together.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend6.jpg" /></a>
+        <h4>TPU clamps</h4>
+        <p>Cut the tool end of the flat spring to trim the corners off. Also use a thin tool like a flathead screwdriver to clear any strings inside the TPU clamp parts.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/clamps1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/clamps2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps2.jpg" /></a>
+        <p>Feed the TPU clamps to the flat spring from the tool end towards the Birds' Nest end. Each clamp should point upwards from the curve of the spring. Feed on four single clamps first followed by five double clamps.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/clamps3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps3.jpg" /></a>
+        <p>You may choose to alternate the orientation of the single clamps so that they better secure the cable.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/clamps4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps4.jpg" /></a>
+        <p>The double clamps must all face the direction shown to match the position of the cable and PTFE tube on the tool.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/clamps5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps5.jpg" /></a>
+        <h4>Final assembly</h4>
+        <p>Feed the cable and sheathing into the TPU clamps one at a time until you reach the tool end. Also feed in the PTFE tube into the double clamps and connect it to the coupler at the top of the tool. Plug the MX3.0 connector into the Birds' Nest and plug the flat spring clamp printed pieces into the orifices in the Birds' Nest mount. Pull the cable tight and add and tighten cable ties to hold it in place.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly2.jpg" /></a>
+        <p>There will be excess flat spring at the tool end by design. We will now trim it to the correct length to match our cable. Line up the flat spring with the printed part at the top of the tool and mark a spot that extends about 15mm further than the very tip of this printed piece. Cut the flat spring here. Note it is better to be conservative and have to cut more flat spring later than to cut too much initially and have it be too short.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly4.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly5.jpg" /></a>
+        <p>Push the end of the flat spring into the printed part. It should point up vertically without any bends. Trm it slightly if it is too long.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly6.jpg" /></a>
+        <p>Rest the tool in the dock and space out the clamps evenly if you need to. Trim the PTFE tube shorter if desired, but only after checking the tool's nozzle will reach all four corners of the bed without strain. Repeat until all of your umbilical cables are complete.</p>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly7.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/umbilicals/assembly8.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly8.jpg" /></a>
     </div>
 
     <div id="tools">
         <h2>Tool Coupling Mechanisms</h2>
-        <p>This page serves as a companion for this video: </p>
+        <p>This tab covers adding the coupling mechanism to each of the tools and the shuttle. This is the final physical piece of the puzzle in adding toolchanging capability.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>We now have everything in place to facilitate changing the active tool, apart from the actual coupling mechanism. This step will add this, as well as a TAP sensor which replaces the factory ABL probe. The TAP sensor will be used for homing, auto bed levelling and also lets the firmwre know which tool is attached. The parts have been adapted to suit the SV08 from those designed for the Voron 2 by DraftShift.</p>
+        <h4>BOM</h4>
+        <p>The following hardware is required:</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4x6x6mm brass bushing</td>
+                    <td>3</td>
+                    <td><a href="https://s.click.aliexpress.com/e/_Dmsh3LJ" target="_blank">Aliexpress</a><br/>
+                        <a href="https://s.click.aliexpress.com/e/_DFJQgtN" target="_blank">Aliexpress 2</a><br/>
+                        <a href="https://amzn.to/3RAjKtY" target="_blank">US Amazon</a><br/>
+                        <a href="https://amzn.to/48jnoPO" target="_blank">UK Amazon</a></td>
+                    <td>DS</td>
+                    <td>Parameters: 4mm ID x 6mm OD x 6mm tall. A set of ten is ideal so you can select the bushings with the smoothest engagement. Four are also needed later for the sexball probe mount.</td>
+                </tr>
+                <tr>
+                    <td>Ø4x12mm rounded end dowel pin</td>
+                    <td>3 per tool</td>
+                    <td><a href="https://s.click.aliexpress.com/e/_DCQkrFP" target="_blank">Aliexpress</a><br/>
+                        <a href="https://amzn.to/3GZBSZn" target="_blank">US Amazon</a><br/>
+                        <a href="https://amzn.to/488gP2v" target="_blank">UK Amazon</a>
+                    <td>DS</td>
+                    <td>If it has female threads on the back it will be listed as an M3, but make sure the pin is 4mm OD. Order several spare so you can select the pins wit the smoothest engagement. Four are also required later for the sexball probe mount.</td>            
+                </tr>
+                <tr>
+                    <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
+                    <td>4 per tool</td>
+                    <td><a href="https://cnckitchen.store/products/made-for-voron-gewindeeinsatz-threaded-insert-m3x5x4-100-stk-pcs" target="_blank">CNC Kitchen</a></td>
+                    <td></td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>6 x 3mm N52 magnets</td>
+                    <td>1 per tool plus 3 for the shuttle</td>
+                    <td><a href="https://kb-3d.com/store/magnets-bearings/995-disccylinder-magnet-high-temp-n52h-6x3mm-1696789934996.html" target="_blank">US KB-3D</a><br/>
+                        <a href="https://www.printyplease.uk/N52H" target="_blank">UK Printy Please</a></td>
+                    <td>DS<br/>DS</td>
+                    <td></td>               
+                </tr>
+                <tr>
+                    <td>Mellow TAP sensor</td>
+                    <td>1 per tool</td>
+                    <td><a href="https://s.click.aliexpress.com/e/_oCE9KmM" target="_blank">Aliexpress</a></td>
+                    <td>TT</td>
+                    <td>The Mellow version has specifically been chosen because it is 24V tolerant, simplifying the wiring. If you choose another brand, ensure it can be powered by 24V, not just 5V.</td>            
+                </tr>
+                <tr>
+                    <td>M3 x 6mm FHCS bolts (countersunk)</td>
+                    <td>2 per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>Into backplate.</td>
+                </tr>
+                <tr>
+                    <td>M3 x 12mm BHCS bolts</td>
+                    <td>3 per tool + 4 for shuttle</td>
+                    <td></td>
+                    <td></td>
+                    <td>Retain dowel pins in each backplate. Shuttle to bearing block.</td>
+                </tr>
+                <tr>
+                    <td>M3 x 40mm SHCS bolts (fully threaded, no shoulder)</td>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td>Inside shuttle for strength.</td>   
+                </tr>
+                <tr>
+                    <td>M3 square nuts</td>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td>Into nut traps in shuttle.</td>   
+                </tr>
+                <tr>
+                    <td>M3 x 12mm SHCS bolts</td>
+                    <td>4 per tool + 4 for belt grabbers</td>
+                    <td></td>
+                    <td></td>
+                    <td>Each SV08 tool to backplate. Belt grabbers to shuttle.</td>   
+                </tr>
+                <tr>
+                    <td>M3 washer</td>
+                    <td>3 per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>SV08 tools to backplate, one used with M3 x 12mm and the backplate leverage block. Two used as spacers underneath the TAP sensor.</td>   
+                </tr>
+                <tr>
+                    <td>M3 x 6mm BHCS bolts</td>
+                    <td>2 per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>TAP sensor to backplate.</td>   
+                </tr>
+                <tr>
+                    <td>#4 x 6mm self tapping screws</td>
+                    <td>4 per tool</td>
+                    <td><a href="https://amzn.to/4pF77Ni" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Only required if using optional cowl locks.</td>   
+                </tr>
+                <tr>
+                    <td>M3 x 10mm BHCS bolts</td>
+                    <td>2 per tool</td>
+                    <td></td>
+                    <td></td>
+                    <td>Only required if using optional cowl locks. Through backplate to cowl locks.</td>   
+                </tr>
+                <tr>
+                    <td>JST ZH crimping kit</td>
+                    <td>1</td>
+                    <td><a href="https://amzn.to/3ZaLl99" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>Optional and not recommended. I reused the existing spare ABL and fan wiring to connect the TAP sensor. This would only be necessary if you wanted to make a completely new cable with freshly crimped connectors on each end.</td>   
+                </tr>
+            </tbody>
+        </table>
+        <h4>Printed Parts</h4>
+        <p>Source CAD: <a href="https://cad.onshape.com/documents/2a3b736b6141a6d0208f2138/w/9accea832d254921bc7788e3/e/71c7905a1e86a5b64f5acbae?renderMode=0&uiState=69672998d27ed83933327cd4" target="_blank">Onshape</a></p>
+        <p>All parts original designed by DraftShift and modified as needed to suit the SV08.</p>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="files/sv08/tools/tools - shuttle.stl" target="_blank">tools - tools - shuttle</a></td>
+                    <td>1</td>
+                    <td>Keep imported orientation and use support on the underside of the flat surfaces.</td>
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/tools/tools - backplate.stl" target="_blank">tools - backplate</a></td>
+                    <td>1 per tool</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/tools/tools - backplate leverage block.stl" target="_blank">tools - backplate leverage block</a></td>
+                    <td>1 per tool</td>
+                    <td></td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/tools/tools - cowl lock left.stl" target="_blank">tools - cowl lock left</a></td>
+                    <td>1 per tool</td>
+                    <td>Optional but highly recommended to secure the cowl reliably. This aids repeatability for tool changes which is essential.</td>           
+                </tr>
+                <tr>
+                    <td><a href="files/sv08/tools/tools - cowl lock right.stl" target="_blank">tools - cowl lock right</a></td>
+                    <td>1 per tool</td>
+                    <td>Optional but highly recommended to secure the cowl reliably. This aids repeatability for tool changes which is essential.</td>           
+                </tr>
+            </tbody>
+        </table>
+        <p class="warning">It is possible to complete the steps on this tab with the umbilicals still attached to the tool. The images and video show them disconnected for clarity, and because these segments were filmed at various stages of the projects development.</p>
+        <h4>Factory tools disassembly</h4>
+        <p>The SV08 tools have some parts we need to remove in preparation.</p>
+        <p>Pull the plastic extruder wheel off the back of the stepper motor.</p>
+        <a href="#" data-featherlight="img/sv08/tools/removal1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/removal1.jpg" /></a>
+        <p>Unbolt and remove the rear part cooling fan. You will need to cut a cable tie to release the cable so it can be unplugged. Set this fan aside as we will reuse some of the wiring.</p>
+        <a href="#" data-featherlight="img/sv08/tools/removal2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/removal2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/removal3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/removal3.jpg" /></a>
+        <p>Unbolt and unplug the factory ABL sensor.</p>
+        <a href="#" data-featherlight="img/sv08/tools/removal4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/removal4.jpg" /></a>
+        <h4>Printed Parts Preparation</h4>
+        <p>Remove the support material from the shuttle.</p>
+        <p>Four heat sets are required per backplate, melted into the flat side. If using the cowl locks, each receives a heat set too.</p>
+        <a href="#" data-featherlight="img/sv08/tools/heatsets2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/heatsets2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/heatsets1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/heatsets1.jpg" /></a>
+        <h4>Backplate assembly</h4>
+        <p>Insert two M3 x 6mm coutersunk bolts into the angled surfaces of each backplate. Test that the magnets are attracted to your chosen bolts.</p>
+        <a href="#" data-featherlight="img/sv08/tools/backplate1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate1.jpg" /></a>
+        <p>Insert M3 x 12mm bolts from above to meet the dowel pins from below. Tighten the bolts to pull the dowel pins the whole way in. The low, centre pin is harder to access. I recommend inserting the bolt the whole way in, screwing on the dowel pin by hand, then using an allen key to torque the bolt up and pull the pin the rest of the way in. The centre dowel pin will protrude further than the outer dowel pins when all are in place.</p>
+        <a href="#" data-featherlight="img/sv08/tools/backplate2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/backplate3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/backplate4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate4.jpg" /></a>
+        <p>Glue in a magnet in the underside bore of the backplate. Take not of whether you have the north or south pole facing outwards. Repeat for all of the backplates.</p>
+        <a href="#" data-featherlight="img/sv08/tools/backplate5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/backplate6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate6.jpg" /></a>
+        <h4>Shuttle assembly</h4>
+        <p>Insert two M3 x 40mm bolts into the bores of the shuttle. These are simply to strength and are optional but recommended.</p>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle1.jpg" /></a>
+        <p>Test a spare dowel pin with some bushings to find three bushings that are burr free and smooth. This is essential for reliable toolchanging. Once you have three good bushings, press them flush into the hexagonal cut outs in the shuttle.</p>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle3.jpg" /></a>
+        <p>Glue three magnets into the bores on the shuttle. It is imperitive that they orientation be correct to attract (not repel) the magnet already in the backplates. Test this to avoid disappointment.</p>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle4.jpg" /></a>
+        <p>Test the engagement of the shuttle with each of the backplates. The pins and bushings should be aligned and interact smoothly. If there are any sticky points, try and adjust the bushings until they are gone.</p>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle5.jpg" /></a>
+        <p>Insert the M3 square nuts into the openings in the back of the shuttle.</p>
+        <a href="#" data-featherlight="img/sv08/tools/shuttle6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle6.jpg" /></a>
+        <h4>Backplate installation</h4>
+        <p>Position the backplate on the rear of the SV08 tool. The heat sets should line up with the holes in the SV08 injection molding. three of the holes are ready ti immediately receive an M3 x 12mm bolt. The fourth has the backplate leverage block added with the raised section locating downwards into the backplate cutout. An M3 x 12mm bolt with washer then secures this piece. You may need to temporarily unplug the umbilical cable for easier access to this bolt.</p>
+        <a href="#" data-featherlight="img/sv08/tools/assembly1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/assembly2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/assembly3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/assembly4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly4.jpg" /></a>
+        <p>Prepare the TAP sensor by using flush cutters to trim the soldered pins shorter. Mount the TAP sensor to the backplate with M3 x 6mm bolts and using washers as spacers. Ensure there is a visible gap between the underside of the TAP sensor and the extruder stepper motor.</p>
+        <a href="#" data-featherlight="img/sv08/tools/assembly5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/assembly6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/assembly7.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly7.jpg" /></a>
+        <h4>TAP sensor wiring</h4>
+        <p>Two useful resources exist that informed this step:</p>
+        <p><a href="https://mellow.klipper.cn/en/docs/ProductDoc/ExtensionBoard/fly-tap/" target="_blank">Fly TAP docs</a></p>
+        <p><a href="https://github.com/Sovol3d/SV08/blob/main/Motherboard/Extra_PIN_definition.pdf" target="_blank">Sovol GitHub pin definition</a></p>
+        <p>There are two options here:</p>
+        <p>1. Make a new cable, 16cm long with a three pin JST ZH connector on one side and a three pin JST XH connector on the other. This would be the neatest solution, but I did not have a JST ZH connector kit (nor needed one before this project).</p>
+        <p>2. Use a combination of the wires and connectors that came with the TAP sensor and the cable from the rear part cooling fans we previously removed. By soldering the two together we can make a cable fir for purpose without any additional expense.</p>
+        <p>The following diagram shows the final configuration of the cable when made using option 2. If using option 1, the total length and pin order can still be referenced.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring1.jpg" /></a>
+        <p>The following sequence describes how to prepare the cable using option 2.</p>
+        <p>Take the red, black and white pre-crimped wires that came with the TAP sensor and insert them into a 3 pin JST XH housing. Cut the other end of the wires approximately 100mm from the plug.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring2.jpg" /></a>
+        <p>Cut the rear part cooling fan approximately 70mm from the plug.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring3.jpg" /></a>
+        <p>Strip back around 10mm of insulation fron the ends of both sets of wires. Overlap the exposed wires, then solder the together and insulated with heat shrink. Red to red, black to black, and white to yellow. The cable should end up approximately 160mm in length.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring4.jpg" /></a>
+        <p>Use a thin pick to depin the red and black wires from the JST ZH housing and reinsert them in reverse.</p>
+        <p class="warning">This step is extremely important to avoid damaging the S08 tool PCB and/or TAP sensor. Double check the finished plug with the diagram above.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/wiring6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring6.jpg" /></a>
+        <p>Remove the four wire cable for the stepper motor from the gap in the injection moluded SV08 plate, then push the new TAP sensor cable into its place. The stepper motor cable should then fit back over the top.</p>
+        <a href="#" data-featherlight="img/sv08/tools/wiring7.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/wiring8.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring8.jpg" /></a>
+        <h4>Cowl locks</h4>
+        <p>Now is the time to install the optional cowl locks. A left and right pair is held to the blue injection moulded cowl with two #4 self tapping screws per side as shown.</p>
+        <a href="#" data-featherlight="img/sv08/tools/cowls1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/cowls1.jpg" /></a>
+        <p>Plug back in the part cooling fan and reinstall the cowl over the tool. Use two M3 x 10mm bolts to pull the cowl tight against the tool.</p>
+        <a href="#" data-featherlight="img/sv08/tools/cowls2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/cowls2.jpg" /></a>
+        <h4>Shuttle installation</h4>
+        <p>Unbolt the factory black metal bracket from the linear bearing block. Unbolt the two belt grabbers and leave them on the bed without letting the belts move within them. You may choose to untension the belts before this step, but it is very possible to avoid this and therefore not need to retune the tension later.</p>
+        <a href="#" data-featherlight="img/sv08/tools/install1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/install2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/install3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install3.jpg" /></a>
+        <p>Install the printed shuttle over the bearing block (check the M3 square nuts have not fallen out) and secure it with four M3 x 12mm bolts.</p>
+        <a href="#" data-featherlight="img/sv08/tools/install4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install4.jpg" /></a>
+        <p>Apply thread locker to the ends of four M13 x 12mm bolts. these will be used to install the belt grabbers onto the shuttle. Add the bolts to one side as loosely as possible, just a few threads engaged. Then install bolts on the other side, and tighten both sides until the grabbers are pulled the whole way towards the centre.</p>
+        <a href="#" data-featherlight="img/sv08/tools/install5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/install6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/tools/install7.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install7.jpg" /></a>
+        <p>If needed, retension the belts. Move the shuttle through its full range of motion and ensure the tabs on each side touch the injection moulded components. This is how the sensorless homing is triggered.</p>
+        <a href="#" data-featherlight="img/sv08/tools/install8.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install8.jpg" /></a>
     </div>
 
     <div id="klipper">
-        <h2>Mainline Klipper</h2>
-        <p>This page serves as a companion for this video:</p>
-    </div>
-
-    <div id="plugin">
-        <h2>Toolchanger Plugin</h2>
+        <h2>Mainline Klipper and Toolchanger Plugin</h2>
         <p>This page serves as a companion for this video:</p>
     </div>
 
