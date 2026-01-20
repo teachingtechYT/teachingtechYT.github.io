@@ -1545,7 +1545,164 @@
 
     <div id="klipper">
         <h2>Mainline Klipper and Toolchanger Plugin</h2>
-        <p>This page serves as a companion for this video:</p>
+        <p>This tab covers setting up the software and firmware side of the printer. During the build, these two components represented a lot of time, effort and troubleshooting. To allow those following this guide to avoid this duress, a pre-configured SD card image is available with the vast majority of the work done.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>These steps are essential. Sovol configured their hardware so that Klipper could not be updated, let alone upgraded to accommodate toolchanging functionality. Therefore we need to wipe the factory file system and install a 'vanilla'/mainline version of Klipper. Furthermore, we need the StealthChanger Klipper plugin to add toolchanger functionality, since Klipper does not have this by default.</p>
+        <h4>BOM and components</h4>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ST-Link V2 programmer</td>
+                    <td>1</td>
+                    <td><a href="https://amzn.to/45FLYv6" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>This is a cheaper clone programmer. Unless you will be regularly programming these MCUs, it is probably best to buy a clone and save some money. This may introduce additional steps, however, so keep this in mind when you make your choice.</td>
+                </tr>
+                <tr>
+                    <td>32GB micro SD card</td>
+                    <td>1</td>
+                    <td><a href="https://amzn.to/3YFVrPk" target="_blank">Amazon</a></td>
+                    <td>TT</td>
+                    <td>The SD card I am running is 32GB, therefore the OS image I save from it is also this size. Use a 32Gb card yourself for a smooth experience.</td>
+                </tr>
+                <tr>
+                    <td>WinSCP</td>
+                    <td></td>
+                    <td><a href="https://winscp.net/eng/download.php" target="_blank">Download</a></td>
+                    <td></td>
+                    <td>Free software to help transfer files between the Linux OS and a Windows computer.</td>               
+                </tr>
+                <tr>
+                    <td>Balena Etcher</td>
+                    <td></td>
+                    <td><a href="https://etcher.balena.io/" target="_blank">Download</a></td>
+                    <td></td>
+                    <td>Free software 'burn' OS images to an SD card.</td>               
+                </tr>
+                <tr>
+                    <td>Notepad++</td>
+                    <td></td>
+                    <td><a href="https://notepad-plus-plus.org/downloads/" target="_blank">Download</a></td>
+                    <td></td>
+                    <td>Free software to edit configuration files without corruption.</td>               
+                </tr>
+            </tbody>
+        </table>
+        <h4>Preparation</h4>
+        <p class="warning">Before going any further, you must have completed the steps in the Preparation tab. If you have not collected the serial IDs of you various components, the following steps are going to be much harder.</p>
+        <h4>Pre-prepared OS SD card image</h4>
+        <p>These steps should be a lot easier than when I completed them because of the following resource. I have cloned my whole CB1 operating system to an SD card image you can burn to have almost everything set up and only equiring minor changes. Unless there is a hardware revision in future that breaks compability, this should be the most foolproof method of ensuring success for others.</p>
+        <p><b>V1.0 - Initial release</b>: <a href="files/sv08/tools/klipper/sdcardv1.0.zip" target="_blank">SD card image</a></p>
+        <p>Download and unzip the img file, ready for the relevant step.</p>
+        <h4>Rappetor mainline Klipper for SV08</h4>
+        <p>In part 3 of my build series, I followed the excellent instructions from the Rappetor team to convert the SV08 to 'vanilla'/mainline Klipper running from an SD card. Although many of the steps have already been completed on the SD card image, we do still need to loosely follow the guide.</p>
+        <p><a href="https://github.com/Rappetor/Sovol-SV08-Mainline" target="_blank">Rappetor mainline Klipper for SV08 GitHub</a></p>
+        <p>Please note that the written instructions on this site will always be more up to date than any video guide.</p>
+        <h4>Step 0: Backing up Klipper configs (optional)</h4>
+        <p>Step 0 sees us download a copy of the factory Sovol SV08 Klipper configs. Feel free to do this, but realistically you will never need this again.</p>
+        <p>On the Mainsail 'Machine' tab, click the box to select all files and then click Download. A zip file will be downloaded containing all of the Klipper config files.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/backup.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/backup.jpg" /></a>
+        <h4>Step 1: Removing the eMMC storage module</h4>
+        <p>The factory eMMC module holds the Sovol prepared OS. We can now remove it. I recommend keeping this as a backup.</p>
+        <p>Power down the printer and access the underside. There are two bolts holding the module in place. Unscrew them and simply unplug the eMMC module.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/emmc1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/emmc1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/emmc2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/emmc2.jpg" /></a>
+        <h4>Step 2a: Flashing Media</h4>
+        <p>Instead of downloading and flashing the img file linked from the Rappetor GitHub, we will now flash the img file from this page.</p>
+        <p>Open Balena etcher and select the img file.</p>
+        <p>Insert a 32GB micro SD card into your computer and select this as the target.</p>
+        <p class="warning">If you select the wrong target drive you risk overwriting whatever was on that drive/device. This includes external hard drives, USB flash drives or SD cards. Please triple check you have the right target selected. As a safety precaution, you may wish to unplug all devices besides the target to make it fool proof.</p>
+        <p>When ready, click Flash!</p>
+        <a href="#" data-featherlight="img/sv08/klipper/flash1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash1.jpg" /></a>
+        <p>When the flashing is complete, Balena etcher will confirm success. If you are using a Windows computer, the Linux partition of the SD card will not be readable and Windows will give prompts to format the drive. DO NOT do this, just ignore the messages.</p>
+        <p>The only thing you need to do is setup your wifi details. In the Boot partition, open the <b>system.cfg</b> file in Notepad++. Edit the wifi name and password. You may wish to uncomment and set the timezone too. Save the file and eject the SD card.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/flash2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/flash3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash3.jpg" /></a>
+        <h4>New SSH login credentials</h4>
+        <p>From this point onwards the login details for an SSH connection have changed. They are shown below along with the old details for completeness.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Situation</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>As shipped by Sovol (previously)</td>
+                    <td>sovol</td>
+                    <td>sovol</td>
+                </tr>
+                <tr>
+                    <td>After installing mainline Klipper (now)</td>
+                    <td>biqu</td>
+                    <td>biqu</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>Rappetor steps 3, 4, 5 & 6</h4>
+        <p>The Rappetor guide requires additional configuration work to take place, but this has already been completed for you. Therefore, you can skip steps 3, 4 5 and 6 on the Rappetor GitHub page.</p>
+        <p>Step 6 asks you to backup the standard MCU firmware from the mainboard and tools. You may wish to do this but at this point it is unlikely you will ever return the printer back to its factory configuration. Rappetor also has backups saved on their website for you to access.</p>
+        <h4>Step 2b: Booting and finishing Klipper configuration</h4>
+        <p>We can now install the SD card into the mainboard and boot the printer. The touch screen's output will be upside down while it boots, this is normal. Once booted KlipperScreen should be displayed correctly. When the system is up and running, you will receive an expected error.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/config1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config1.jpg" /></a>
+        <p>This is because the SD card image has my serial IDs, not yours. The address to connect to the MCUs in Klipper in incorrect hence the above error.</p>
+        <p>Revisit your document with your Klipper serial IDs and copy the address for <b>MCU</b> (mainboard). Open the file <b>printer.cfg</b> and paste in the address in place of the what is there.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/config2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/config3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config3.jpg" /></a>
+        <p>Just above this is a series of <b>[include]</b> lines starting with <b>tool-AVR0.cfg</b>. By default only tool 0 has no <b>#</b> in front, meaning it is uncommented and active. Remove the hash to uncomment and make active as many tools as needed to match your build. For example, if you had four tools, uncomment <b>tool-AVR0.cfg</b> through to <b>tool-AVR3.cfg</b>. Once this is done, DO NOT click <i>Save and Restart</i>, instead click the save icon, then close.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/config4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config4.jpg" /></a>
+        <p>Now we will copy the serial address for tool 0 from our text file, and paste it into the file <b>tool-AVR0.cfg</b> in place of the one already there. Again, save and then close without restarting.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/config5.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/config6.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config6.jpg" /></a>
+        <p>Repeat copying and pasting serial IDs for tool1, tool2.. into tool-AVR1.cfg, tool-AVR2.cfg and so on until you have covered all of the tools in your build.</p>
+        <p>Finally, copy the address for the Birds' Nest, and paste this into place in <b>nest.cfg</b>. This time you can Save and Restart.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/config7.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/config8.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config8.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/config9.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config9.jpg" /></a>
+        <p>When the printer restarts, the Klipper OS should now recognise the Klipper MCUs, removing the previous error. However, since the date of the Klipper components is so different, you will likely have a new error: <a href="https://docs.mainsail.xyz/faq/klipper_errors/command-format-mismatch" target="_blank">Klipper MCU Protocol error</a>. We will fix this by the end of this tab.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/mcuerror.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/mcuerror.jpg" /></a>
+        <h4>Updating firmware components</h4>
+        <p>On the Machine tab of Mainsail, scrolling down will likely reveal that the Update Manager shows some components out of date. Now is the time to fix this.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/update1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update1.jpg" /></a>
+        <p>Click Update, then click through to the two links that explain what has updated and if any significant structural changes have ocurred. If satisfied, tick the confirmation box and run the update.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/update2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update2.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/update3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update3.jpg" /></a>
+        <p>Repeat for all components.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/update4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update4.jpg" /></a>
+        <h4>'Dirty' Toolchanger component</h4>
+        <p>During the original build, a small bug was found that prevented the printer from homing in some situations. With the help of DraftShift, I altered the offending file to restore functionality. At the time of publishing this file has not been updated in the Stealthchanger GitHub repo, so Mainsail will display the dirty label.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/dirty1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/dirty1.jpg" /></a>
+        <p class="warning">DO NOT use the soft or hard recovery feature for this component. Doing so will revert the file back to stock and prevent the printer from homing. Just ignore the dirty label.</p>
+        <p>In case you accidentally alter the file, the following are instructions for how to modify it again.</p>
+        <p>SSH into the printer using the credentials higher up the page.</p>
+        <p>Run the following command to move to the correct directory:</p>
+        <pre>cd printer_data/config</pre>
+        <p>Run the following command to open the file. You maybe prompted to enter the password again.</p>
+        <pre>sudo nano toolchanger-homing.cfg</pre>
+        <p>The Nano text editor will now open.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/dirty2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/dirty2.jpg" /></a>
+        <p>Use the keyboard arrows to find the line 11: <b>_TOOLCHANGER_HOMING_START {rawparams}</b>. Delete the <b> {rawparams}</b> text. It should look like this:</p>
+        <a href="#" data-featherlight="img/sv08/klipper/dirty3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/dirty3.jpg" /></a>
+        <p>Use the keyboard arrows to find the line 97: <b>_TOOLCHANGER_HOMING_END {rawparams}</b>. Delete the <b> {rawparams}</b> text. It should look like this:</p>
+        <a href="#" data-featherlight="img/sv08/klipper/dirty4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/dirty4.jpg" /></a>
+        <p>Press <b>Control + X</b> to exit, followed by <b>Y</b> to save changes. Finally, press <b>Enter</b> to save with the same file name.</p>
+        <h4>Step 7: Flash Katapult bootloader</h4>
+        <p>This step is technically optional but you woud be silly to not complete it. Not flashing a bootloader would mean that every time you wanted to update Klipper on the MCUs, you would need to connect the STM32 programmer to them one at a time. The Katapult bootloader being present means we simply run a script and all tools plus the mainboard are taken care of.</p>
+        
+
     </div>
 
     <div id="slicer">
