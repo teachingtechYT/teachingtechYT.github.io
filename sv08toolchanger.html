@@ -1701,13 +1701,145 @@
         <p>Press <b>Control + X</b> to exit, followed by <b>Y</b> to save changes. Finally, press <b>Enter</b> to save with the same file name.</p>
         <h4>Step 7: Flash Katapult bootloader</h4>
         <p>This step is technically optional but you woud be silly to not complete it. Not flashing a bootloader would mean that every time you wanted to update Klipper on the MCUs, you would need to connect the STM32 programmer to them one at a time. The Katapult bootloader being present means we simply run a script and all tools plus the mainboard are taken care of.</p>
-        
-
+        <p class="warning">From Rappetor: When connecting the ST-Link to the printer, make sure the printer is powered OFF. The MCU will be powered by the ST-Link.</p>
+        <p>You will follow the Rappetor GitHub instructions for this stage, as they will be the most up to date. This will involve connecting via SSH (new login credentials further up the page) and copying and pasting commands to install Katapult, configure for our MCUs and then compiling the binary file.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult1.jpg" /></a>
+        <p>After this, we will use WinSCP to retreieve the <b>katapult.bin</b> file from the printer's OS file system. Open WinSCP, and enter the ip address of the printer then click Login.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult2.jpg" /></a>
+        <p>Enter the same login credentials as when you connected via SSH.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult3.jpg" /></a>
+        <p>The right half of the screen shows the file system for the 3D printer. Naviagte to <b>/home/biqu/katapult/out</b>, then click and drag the file <b>katapult.bin</b> to the left hand half of the screen to copy iy to your computer's file system. You can now move this file in Windows to a preferred location for the next step.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult4.jpg" /></a>
+        <p>Power down the printer in preparation of connecting the programmer. We need to flash the katapult binary to the MCU in the mainboard and each one of our tools. The same katapult.bin file is used for each. Diagrams for the programmer connection are found on the Rappetor instructions under step 6. Use jumper cables to match the pin labels from the diagrams to those on your programmer.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult5.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult5.jpg" /></a>
+        <p>The STM32 programming software is also linked on the Rappetor GitHub under step 6. Since I was using a clone programmer, I had to use older STM32 ST-LINK Utility software option. Specific steps were required to get the programmer to work. These steps may or may not be necessary depending on your programmer, but this is what worked for me:</p>
+        <p>Go to Target > Settings...</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult6.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult6.jpg" /></a>
+        <p>Click Refesh repeatedly until a serial number is shown at the top. Set the Mode to Connect Under Reset and Reset Mode to Hardware Reset. Click OK.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult7.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult7.jpg" /></a>
+        <p>Click the plug icon to connect to the target MCU. Once connected, the flash memory will be read and the data displayed on screen.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult8.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult8.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult9.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult9.jpg" /></a>
+        <p>Click on the Binary File tab and then select the <b>Katapult.bin</b> file we previously retrieved from the printer.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult10.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult10.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult11.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult11.jpg" /></a>
+        <p>Click the icon for Full Chip Erase to wipe the firmware on the MCU. After confirming, the data readout will be all Fs (blank).</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult12.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult12.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult13.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult13.jpg" /></a>
+        <p>Click the icon for Program Verify. A dialogue box will appear, the default options should be correct. Click Start. When finished, the text 'CanBoot!' should be visible in the data display.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult14.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult14.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult15.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult15.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/katapult16.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult16.jpg" /></a>
+        <p>Repeat until the mainboard and tool MCUs have been flashed with the Katapult binary.</p>
+        <h4>Step 8: Flash Klipper firmware on MCUs</h4>
+        <p>We will once gain follow the instructions from the Rappetor GitHub.</p>
+        <p>Turn on the printer and wait for it to boot.</p>
+        <p>Follow the link to see instructions and the download for the <b>Automatic Script MCU update</b> file.</p>
+        <p>Use WinSCP to transfer this file from your computer to <b>/home/biqu/klipper/</b> on the printer. If a version of the file is already in place, delete it and replace it with the freshly downloaded version. This will ensure you have the latest version.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper1.jpg" /></a>
+        <p>The following steps can also be done via SSH. Right click and edit the new file.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper2.jpg" /></a>
+        <p>Copy your mainboard serial ID, but only the portion after the underscore. Paste this in place of XXXXXXXX. The address should be surrounded by single inverted commas.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper4.jpg" /></a>
+        <p>Copy the serial ID for tool0, but only the portion after the underscore. Paste this in place of YYYYYYY. The address should be surrounded by single inverted commas.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper5.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper5.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper6.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper6.jpg" /></a>
+        <p>Repeat for the remaining tools, with each in single inverted commas and separated by a space. It should look something like this:</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper7.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper7.jpg" /></a>
+        <p>Save the file and close the WinSCP editor. Right click on the file and go to properties. Set Exectable permissions for the owner and click ok. The file is now ready to run.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper8.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper8.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper9.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper9.jpg" /></a>
+        <p class="warning">When completing regular Klipper updates in future, only the following step is required. Everything up until now has been prep work.</p>
+        <p>SSH into the printer and copy and paste the single line from the instructions. It is currently:</p>
+        <pre>cd "$HOME/klipper" && ./update_klipper_mcus_sv08.sh</pre>
+        <p>The script will launch a simle interface. We will select option one to begin. The interface will open for compiling Klipper to suit the mainboard MCU. All of the correct options will be preset. You may read further and double check by looking at the instructions on the Rappetor page.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper10.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper10.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper11.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper11.jpg" /></a>
+        <p>Press Q to quit, followed by Y to save. The firmware will compile. After pressing Enter a few times to confirm, the latest Klipper will flash to the MCU using the Katapult bootloader we previously installed.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper12.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper12.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper13.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper13.jpg" /></a>
+        <p>Back at the main menu, now select option 2. The interface will again open for compiling Klipper to suit the tool MCUs. All of the correct options will be preset. You may again read further and double check by looking at the instructions on the Rappetor page.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper14.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper14.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper15.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper15.jpg" /></a>
+        <p>Press Q to quit, followed by Y to save. The firmware for the tools will compile. After pressing Enter a few times to confirm, the latest Klipper will flash to the MCU using the Katapult bootloader we previously installed. This will occur consecutively for each tool you added the serial ID for.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper16.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper16.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper17.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper17.jpg" /></a>
+        <p>Enter option 4 at the main menu to exit. The Klipper service will restart and Mainsail should now report that all of your tools are connected and communicating properly. There should be no errors.</p>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper18.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper18.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/klipper/klipper19.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper19.jpg" /></a>
+        <h4>Stealthchanger Klipper Toolchanger plugin</h4>
+        <p>Installing and preparing this <a href="https://github.com/DraftShift/klipper-toolchanger" target="_blank">plugin</a> took quite a lot of effort and troubleshooting during my build. the pre-prepared SD card image already has this installed and configured. We will perform some calibration soon, but at this stage there is nothing else to be done.</p>
     </div>
 
     <div id="slicer">
         <h2>Slicer setup</h2>
-        <p>This page serves as a companion for this video: </p>
+        <p>This tab covers importing a profile for OrcaSlicer that is setup for toolchanger functionality.</p>
+        <p class="warning">This slicer profile has the technical aspects in place but has not been tuned for print quality. It is based on the inbuilt OrcaSlicer SV08 profile with minimal changes made to suit the toolchanging capability. Please use OrcaSlicer's inbuilt calibration tools to tune the profile for your filament and conditions.</p>
+        <p>The relevant section of the video is here:</p>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h4>Rationale</h4>
+        <p>Some of the changes made to the stock SV08 profile may seem obvious, like the addition of extra tools. However others may not be so obvious, like tweaking the start gcode to suit the macros on the printer, or adding a wireframe STL to the print preview so objects can be positioned away from the modular dock.</p>
+        <h4>BOM and components</h4>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Link</th>
+                    <th>Affiliate?</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>OrcaSlicer</td>
+                    <td></td>
+                    <td><a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank">GitHub</a></td>
+                    <td></td>
+                    <td>A powerful free open source slicer. A video guide canbe found here: <a href="https://youtu.be/cquTCpz1V74" target="_blank">Orca Slicer getting started guide: A slicer for all of your 3D printers</a>.</td>
+                </tr>
+                <tr>
+                    <td>OrcaSlicer preset bundle</td>
+                    <td></td>
+                    <td><a href="files/sv08/slicer/Sovol SV08 0.4 nozzle - TT.orca_printer" target="_blank">Sovol SV08 0.4 nozzle - TT.orca_printer</a></td>
+                    <td></td>
+                    <td>Ready to import into OrcaSlicer to suit the SV08.</td>
+                </tr>
+                <tr>
+                    <td>SV08 wireframe guide model</td>
+                    <td></td>
+                    <td><a href="files/sv08/slicer/SV08STL.stl" target="_blank">SV08STL.stl</a></td>
+                    <td></td>
+                    <td>To import into the SV08 profile.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h4>OrcaSlicer setup</h4>
+        <p>Install OrcaSlicer if you need to. A beginner guide is linked above.</p>
+        <p>Open the Printer Selection dialogue. Search for SV08 and tick the SV08 0.4mm nozzle version, then click Confirm.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca1.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca1.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca2.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca2.jpg" /></a>
+        <p>Go to File > Import > Import Configs and then select the orca_printer file downloaded from this page. A dialogue box will confirm the new profiles. the exact number may be different to the screen shot below after future revisions.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca3.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca3.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca4.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca4.jpg" /></a>
+        <p>Select the SV08 toolchanger printer profile from the drop down list. Click the Connection icon and then enter your printer's IP address in the dialogue box. This is the same address you use to access the Mainsail web interface and when connecting via SSH. After confirming, switching to the Device tab should show the Mainsail web interface.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca6.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca6.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca7.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca7.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca5.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca5.jpg" /></a>
+        <p>Click the icon to edit the printer preset. On the Multimaterial tab, increase the number of ezxtruders to match your build.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca8.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca8.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca9.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca9.jpg" /></a>
+        <p>Download the STL file from above and place it in a folder where it can remain without being accidentally moved or deleted. Switch to the Basic Information tab and click the Set button next to Printable Area. Click Load under Model and select the STL. Click OK.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca10.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca10.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca11.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca11.jpg" /></a>
+        <p>Click the Save icon. Enter a profile name that suits you. Click OK and close the dialogue box. </p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca12.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca12.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca13.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca13.jpg" /></a>
+        <p>The printer profile is ready, complete with wireframe guide for placing models. When printing a tall model, make sure it is placed in a way that avoids crossing into the cutout at the front/top of the bed. This area represents the dock location and the clearance needed to avoid collisions.</p>
+        <p class="warning">OrcaSlicer will not give any warnings or errors if a model is placed in a position that will produce a collision between the active tool and the dock. Double check for sufficient clearance before each print to avoid disaster.</p>
+        <a href="#" data-featherlight="img/sv08/slicer/orca14.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca14.jpg" /></a>
+        <a href="#" data-featherlight="img/sv08/slicer/orca15.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca15.jpg" /></a>
     </div>
 
     <div id="calibration">
