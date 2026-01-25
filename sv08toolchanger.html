@@ -30,7 +30,7 @@
         <h4>SV08 Max compatibility</h4>
         <p>I do not have acees to an SV08 Max, but presumably the design is scaled up using very similar parts. It seems likely that the parts from this project could be adapted to the SV08 Max or other Voron 2 variants without too much effort. Source CAD is available for all parts to faciliate this.</p>
         <h4>Discussion and Remixes</h4>
-        <p>These instructions are hosted on this site to give the most control over the formating and presentation. However this platform is not well suited to discussion and sharing. Therefore, I have established a <a href="" target="_blank">companion page on Printables</a>. Please use it to add remixed parts or discuss problems and solutions with each other. Realistically, I am now retired from YouTube so will not be able to provide support for questions and queries. I aim to release my contribution with as much detail and flexibility as possible for others to understand it and modify it as needed.</p>
+        <p>These instructions are hosted on this site to give the most control over the formating and presentation. However this platform is not well suited to discussion and sharing. Therefore, I have established a <a href="https://www.printables.com/model/1569932-sovol-sv08-toolchanger-project" target="_blank">companion page on Printables</a>. Please use it to add remixed parts or discuss problems and solutions with each other. Realistically, I am now retired from YouTube so will not be able to provide support for questions and queries. I aim to release my contribution with as much detail and flexibility as possible for others to understand it and modify it as needed.</p>
         <p>All required source CAD has been designed in or imported to Onshape. The permissions of the documents are set so you can export any part without having an Onshape account. Just right click on the part itself or on the part name in the lower left of screen then select a format of your choice. All project sections are organised into folders and the relevant documents are linked for each tab.</p>
         <h4>BOM</h4>
         <p>Each tab has a breakdown of hardware, other components and printed parts. The CAD source is available for all parts and is linked accordingly. All printed parts have been oriented correctly and required notes for materials/settings/supports are provided as needed. Since my printer is not enclosed, I used PETG for all parts. Those seeking to enclosure might choose a filament with higher thermal resistance like ASA.</p>
@@ -70,7 +70,7 @@
         <h2>Preparation</h2>
         <p>This tab covers some essential work that must be undertaken before continuing.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=74&end=267" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Ordering an SV08</h4>
         <p>Before starting, you need an Sovol SV08 3D printer. This modification is built upon the touch screen variant. This is highly recommended because this adds the KlipperScreen interface to the printer, which is highly customisable and allows easy access to macros.</p>
         <table>
@@ -151,7 +151,7 @@
         <h2>Power Supply Replacement</h2>
         <p>This tab covers upgrading the PSU to handle up to six tools instead of just one.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=267&end=442" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p class="warning">This step requires dealing with mains voltage wiring, which has the potential to kill. This is not for beginners. Please consult a professional before attempting these procedures. Ensure the printer is powered off and the power isolated before touching any items concerning the PSU.</p>
         <h4>Rationale</h4>
         <p>The SV08 has a mains AC powered heated bed, therefore the factory power supply only needs to supply current to the mainboard, one tool and some extras like sensors and LEDs. Consequenmtly it is small and low powered. In order to accommodate up to five additional tools, the PSU needs upgrading to potentially power up to six tools at once.</p>
@@ -268,7 +268,7 @@
         <h2>Birds' Nest USB Hub</h2>
         <p>This tab covers adding a Bird's Nest USB hub by Isik's Tech. This is a Klipper compatible, easy to use expansion part that allows us to have up to six tools with only power and USB connections back to the mainboard.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=442&end=617" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>The SV08 uses USB connections (instead of CANbus) for its tools. The mainboard has two USB ports plus a JST set of connectors (used by default for tool 0). The webcam uses one USB port, meaning without expansion we would be limited to a two tool build. the Birds' Nest allows up to six tools, whilst only requiring a single USB port. It also have its own Klipper compatible MCU and IO pins, meaning we can add filament runout sensors and other hardware if desired.</p>
         <p><a href="https://github.com/xbst/Birds-Nest/" target="_blank">Birds' Nest GitHub</a></p>
@@ -412,7 +412,7 @@
         <h2>Modular Docks</h2>
         <p>This tab covers adding a modular dock to the front of the SV08, where the tools not in use are parked. The printed parts were designed by DraftShift as a variation on their <a href="https://github.com/DraftShift/ModularDock" target="_blank">Stealthchanger Modular Dock</a>. This means that if you decide to use a different ttol design, there will hopefully be a dock to suit.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=617&end=969" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>The SV08 is released as a single tool printer. When converted to a toolchanger, additional tools are fitted and need a place to be stored when not in use. This dock connects to an added piece of 2020 extrusion, as well as the existing extrusions at the top of the SV08 frame.</p>
         <p class="warning">Unless you are extremely tight for filament or parts, I would recommend printing and assembling this dock in a six tool configuration, even if you are using five or less tools. This is because the six tools dock fills the entire width of the printer. Not using it will require spacers and other solutions to fill the width. A six tool dock also allows much easier addition of more tools at a later date.</p>
@@ -829,7 +829,7 @@
         <h2>Spool Holder</h2>
         <p>This tab covers upgrading adding a modular spool holder to either the front or back of the printer.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=969&end=1369" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>The SV08 has a single spool holder to suit the single tool. Our toolchanger conversion requires a solution that holds up to six spools for up to six tools.</p>
         <p>Unlike the modular dock, where i recommend building a six dock system in every case, this part of the build can be scaled to suit the number of tools. The underlying frame spans the printer and additional spool holders can be added conveniently at a later time. The frame has enough rigidity regardless of how many spool holders are fitted.</p>
@@ -1075,7 +1075,7 @@
         <h2>Umbilicals</h2>
         <p>This tab covers crating umbilicals: the cable and PTFE bundle between the Birds' Nest and individual tools.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=1369&end=1782" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>The standard SV08 has one tool and one umbilical cable with a dedicated clamping system. The PTFE tube feed to the tool is mostly separate from the cable too. To add tools until we have up to six, we need a more robust system to attach each tool and PTFE tube, where they maintain a gentle arc and don't tangle with each other. This design also aims for easy disconnection, where individual tools and unmbilicals can be removed with minimal disassembly (provided the printer is powered down). Due to the addition of the Birds' Nest hub, out cables must have special connectors crimped on to suit compared to the smaller JST connectors used from factory at both ends.</p>
         <h4>Variation</h4>
@@ -1285,7 +1285,7 @@
         <h2>Tool Coupling Mechanisms</h2>
         <p>This tab covers adding the coupling mechanism to each of the tools and the shuttle. This is the final physical piece of the puzzle in adding toolchanging capability.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=1782&end=2423" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>We now have everything in place to facilitate changing the active tool, apart from the actual coupling mechanism. This step will add this, as well as a TAP sensor which replaces the factory ABL probe. The TAP sensor will be used for homing, auto bed levelling and also lets the firmwre know which tool is attached. The parts have been adapted to suit the SV08 from those designed for the Voron 2 by DraftShift.</p>
         <p>After fitting the toolchanger mechanisms, the bed will be too low to reach. A set of spacers is needed to lift it up, with the front right spacer doubling as a mount to reposition the nozzle scrubber.</p>
@@ -1582,7 +1582,7 @@
         <h2>Mainline Klipper and Toolchanger Plugin</h2>
         <p>This tab covers setting up the software and firmware side of the printer. During the build, these two components represented a lot of time, effort and troubleshooting. To allow those following this guide to avoid this duress, a pre-configured SD card image is available with the vast majority of the work done.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=2423&end=3294" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>These steps are essential. Sovol configured their hardware so that Klipper could not be updated, let alone upgraded to accommodate toolchanging functionality. Therefore we need to wipe the factory file system and install a 'vanilla'/mainline version of Klipper. Furthermore, we need the StealthChanger Klipper plugin to add toolchanger functionality, since Klipper does not have this by default.</p>
         <h4>BOM and components</h4>
@@ -1812,7 +1812,7 @@
         <p>This tab covers importing a profile for OrcaSlicer that is setup for toolchanger functionality.</p>
         <p class="warning">This slicer profile has the technical aspects in place but has not been tuned for print quality. It is based on the inbuilt OrcaSlicer SV08 profile with minimal changes made to suit the toolchanging capability. Please use OrcaSlicer's inbuilt calibration tools to tune the profile for your filament and conditions.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=3294&end=3417" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>Some of the changes made to the stock SV08 profile may seem obvious, like the addition of extra tools. However others may not be so obvious, like tweaking the start gcode to suit the macros on the printer, or adding a wireframe STL to the print preview so objects can be positioned away from the modular dock.</p>
         <h4>BOM and components</h4>
@@ -1881,7 +1881,7 @@
         <h2>Calibration</h2>
         <p>This tab covers tuning and calibration of the printer now that all components are installed.</p>
         <p>The relevant section of the video is here:</p>
-        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/H41hIXdB6js?start=307&end=359" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=3417" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
         <p>We now have everything in place to print, but every machine will have subtle differences, requiring some tuning and calibration. For example, the Z offset between my tools had variation, so there is no way your machine will be able to print properly with the Z offsets from my pre-prepared SD card image. Some aspects should already be close, such as the docking positions, and others may be close or way off. It is best to check and tune everything to be safe and thorough.</p>
         <h4>DraftShift StealthChanger wiki</h4>
@@ -2107,6 +2107,7 @@
         <a href="#" data-featherlight="img/sv08/calibration/sexball21.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball21.jpg" /></a>
         <p>Save and restart the firmware. Repeat the process for the other tools. You can use <b>CALIBRATE ONE OFFSET</b> and enter a different tool, or use the <b>CALIBRATE ALL OFFSETS</b> macro instead.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball22.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball22.jpg" /></a>
+        <p class="warning">Please note the the offsets for tool 0 alwats remain as 0, 0, 0. This the reference tool that all other tools are measured against.</p>
         <h4>Customisation</h4>
         <p>You may wish to customise the printer, name, Mainsail UI, etc, a well as the KlipperScreen features too.</p>
         <h4>First print</h4>
