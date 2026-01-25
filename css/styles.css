@@ -229,7 +229,8 @@ ol li {
 
 table {
     /*width: 100%;*/
-    margin-bottom: 20px;
+    margin: 20px;
+    margin-top: 0px;
 }
 table input {
     margin:0;
