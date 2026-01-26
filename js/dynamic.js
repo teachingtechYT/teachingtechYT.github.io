@@ -1,5 +1,5 @@
-var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Diagonal Z Hop", "Review Policy", "Sponsors", "Contact"]
-var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "diagonalZhop.html", "reviewpolicy.html", "sponsors.html", "contact.html"]
+var pages = ["Home", "Calibration", "Troubleshooting", "Upgrade Guides", "Diagonal Z Hop", "Review Policy", "Sponsors", "SV08 Toolchanger", "Contact"]
+var urls = ["index.html", "calibration.html", "troubleshooting.html", "upgrades.html", "diagonalZhop.html", "reviewpolicy.html", "sponsors.html", "sv08toolchanger.html", "contact.html"]
 var menu = '<img src="img/ttwhite.png" />';
 var tab;
 for(var i = 0; i < pages.length; i++){
