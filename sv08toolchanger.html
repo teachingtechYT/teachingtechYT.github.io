@@ -31,7 +31,10 @@
         <p>I do not have access to an SV08 Max, but presumably the design is scaled up using very similar components to the base SV08. It seems likely that the parts from this project could be adapted to the SV08 Max or other Voron 2 variants without too much effort. Source CAD is available for all parts to faciliate this.</p>
         <h4>Discussion and Remixes</h4>
         <p>These instructions are hosted on this site to give the most control over the formating and presentation. However, this platform is not well suited to discussion and sharing. Therefore, I have established a <a href="https://www.printables.com/model/1569932-sovol-sv08-toolchanger-project" target="_blank">companion page on Printables</a>. Please use it to add remixed parts or discuss problems and solutions with each other. Realistically, I am now retired from YouTube so will not be able to provide support for questions and queries. I aim to release my contribution with as much detail and flexibility as possible for others to understand it and modify it as needed.</p>
-        <p>All required source CAD has been designed in or imported to Onshape. The permissions of the documents are set so you can view and/or export any part without having an Onshape account. Just right click on the part itself or on the part name in the lower left of screen, then select a format of your choice. All project sections are organised into folders and the relevant documents are linked for each tab.</p>
+        <p>All required source CAD has been designed in or imported to Onshape. The permissions of the documents are set so you can view and/or export any part without having an Onshape account. Just right click on the part itself or on the part name in the lower left of screen, then select a format of your choice.</p>
+        <p>All project sections are organised into folders and the relevant documents are linked for each tab on this site. Click the icon in the bottom left of the screen to expand/collapse the interface for viewing these folder and documents.</p>
+        <a href="#" data-featherlight="img/sv08/intro/onshape.jpg"><img loading="lazy" class="thumb" src="img/sv08/intro/onshape.jpg" /></a>
+
         <h4>BOM</h4>
         <p>Each tab has a breakdown of hardware, other components and printed parts. The CAD source is available for all parts and is linked accordingly. All printed parts have been oriented correctly and required notes for materials/settings/supports are provided as needed. Since my printer is not enclosed, I used PETG for all parts. Those seeking to add an enclosure might choose a filament with higher thermal resistance like ASA.</p>
         <p>Many of the steps require a small volume of parts, like crimping connectors. If you are like myself, you already have a crimping tool and spare connectors. If not, links have been provided to sets to suit the purpose. Hopefully you can avoid this expense by using existing tools and parts.</p>
@@ -1078,9 +1081,9 @@
         <p>The relevant section of the video is here:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=1369&end=1782" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
-        <p>The standard SV08 has one tool and one umbilical cable with a dedicated clamping system. The PTFE tube feed to the tool is mostly separate from the cable too. To add tools until we have up to six, we need a more robust system to attach each tool and PTFE tube, where they maintain a gentle arc and don't tangle with each other. This design also aims for easy disconnection, where individual tools and unmbilicals can be removed with minimal disassembly (provided the printer is powered down). Due to the addition of the Birds' Nest hub, out cables must have special connectors crimped on to suit compared to the smaller JST connectors used from factory at both ends.</p>
+        <p>The standard SV08 has one tool and one umbilical cable with a dedicated clamping system. The PTFE tube feed to the tool is mostly separate from the cable. To add tools until we have up to six, we need a more robust system to attach each tool and PTFE tube, where they maintain a gentle arc and don't tangle with each other. This design also aims for easy disconnection, where individual tools and unmbilicals can be removed with minimal disassembly (provided the printer is powered down). Due to the addition of the Birds' Nest hub, our cables must have special connectors crimped on to suit compared to the smaller JST connectors used from factory at both ends.</p>
         <h4>Variation</h4>
-        <p>There exists multiple options for the cable used here. I selected something that is overengineered for the job. Only the positive and negative wires need to be thick for high current, yet all five cores in my cable are thick, making the cable fairly heavy overall. If you find a five core cable with two thick cores and three thinner cores, there is a variable in the CAD decribed below you can reduce to alter the TPU parts to suit.</p>
+        <p>There exists multiple options for the cable used here. I selected something that is overengineered for the job. Only the 24V positive and negative wires need to be thick for high current, yet all five cores in my cable are thick, making the cable fairly heavy overall. If you find a five core cable with two thick cores and three thinner cores, there is a variable in the CAD decribed below you can reduce to alter the TPU parts to suit.</p>
         <p>The cable I am using is approximately 8mm in external diameter, which becomes 10mm when protective sheathing is added.</p>
         <h4>BOM</h4>
         <p>The following hardware is required:</p>
@@ -1135,7 +1138,7 @@
                     <td>2 per tool</td>
                     <td></td>
                     <td></td>
-                    <td>Flat spring birdsnest clamp front to rear to clamp the flat spring inbtween the two pieces.</td>               
+                    <td>Flat spring birdsnest clamp front to rear. Clamps the flat spring inbtween the two pieces.</td>               
                 </tr>
                 <tr>
                     <td>Split cable sheathing</td>
@@ -1211,32 +1214,32 @@
         <p>Two M3 heat sets are required per tool in the flat spring birdsnest clamp rear part.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/heatsets.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/heatsets.jpg" /></a>
         <h4>Cable</h4>
-        <p>Cut the five core cable to approximately 104cm in length. It can be slightly longer as the flat spring will be trimmed to length later on. The following image shows the connectors crimped in place, which will be the next step.</p>
+        <p>Cut the five core cable to approximately 104cm in length. It can be slightly longer as the flat spring will be trimmed to length later on.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable1.jpg" /></a>
-        <p>Remove 75mm of insulation from one end of the cable. You can also cut off the metal shielding from this end. The side will connect to the tool PCB.</p>
+        <p>Remove 75mm of insulation from one end of the cable. You can also cut off the metal shielding from this end. The side will connect to the tool PCB. The following image shows the connectors crimped in place, which will be the next step.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable2.jpg" /></a>
-        <p>Crimp JST XH (2.54mm pitch) connectors to the red and black wires. Crimp JST PH (2.00 pitch) to the white, blue and yellow wires.</p>
+        <p>Crimp JST XH (2.54mm pitch) connectors to the red and black wires. Crimp JST PH (2.00mm pitch) to the white, blue and yellow wires.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable3.jpg" /></a>
         <p>If you are using the same cable as me, the JST PH connectors will be quite small in comparison. They can still be crimped on if you are careful. The plastic housing is easier to install if you squish the wires from the side first.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable4.jpg" /></a>
-        <p>The other end of the cable will connect to the Birds' Nest board. Strip back 40mm of insulation. Do not cut off the metal shielding that wraps around the wires. We will use this for improving the reliability of the USB signal. Gather it in a bunch, and solder approximately 50mm of black wire to it. Cover this in heat shrink to keep it tidy.</p>
+        <p>The other end of the cable will connect to the Birds' Nest board. Strip back 40mm of insulation. Do not cut off the metal shielding that wraps around the wires. We will use this as grounding for improving the reliability of the USB signal. Gather it in a bunch, and solder approximately 50mm of black wire to it. Cover this in heat shrink to keep it tidy.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable5.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable6.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable7.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable7.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable8.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable8.jpg" /></a>
-        <p>The Birds' Nest board came with the Molex MX3.0 connectors and housing required for the six wires. Crimp these on and install into the housing as per the diagram.</p>
+        <p>The Birds' Nest board came with the Molex MX3.0 connectors and housings required for six umbilical cables. Crimp these on and install into the housing as per the diagram.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable3.jpg" /></a>
-        <p>Repeat until you have a cable per tool. there are two optional but highly recommended steps.</p>
+        <p>Repeat until you have a cable per tool. There are two optional but highly recommended steps:</p>
         <p>Apply liquid electrical tape to the backs of the JST connectors. This will keep out dust and debris and provide a tiny amount of strain relief.</p>
-        <p>Wrap the cables in protective sheathing to prevent abrasion wear and tear over time. This will also bring the thickness up to 10m to suit the default TPU printed parts. Stop the sheathing just short on the tool end. The clamp at the top of the tool only just fits the thicker cable. Sheathing will make it too thick.</p>
+        <p>Wrap the cables in protective sheathing to prevent abrasion wear and tear over time. This will also bring the thickness up to 10m to suit the default TPU printed parts. Stop the sheathing just short of the cable clamp on the tool end. The clamp at the top of the tool only just fits the thicker cable. Sheathing will make it too thick to fit in the clamp.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable9.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable9.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/cable10.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/cable10.jpg" /></a>
         <h4>Optional: Inverse tool PCB plug placement</h4>
         <p>The thicker wires don't bend as tightly and therefore touch the back of the part cooling fan on the tool shroud. This makes putting the shroud back on difficult and will strain the JST connectors over time.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/inverse1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse1.jpg" /></a>
-        <p>It is possible to move the JST ports on the tool PCB to the rear side to fix this problem.</p>
+        <p>It is possible to move the JST ports on the tool PCB to the rear side to fix this problem. The umbilical cables do not not need to be altered to suit this modification.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/inverse2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse2.jpg" /></a>
-        <p>Remove the factory JST housings with a set of pliers and/o a flat prying tool. Use a soldering iron to heat the factory JST pins from the PCB. Use a solder sucker to remove an remaining solder from he PCB.</p>
+        <p>Remove the factory JST housings with a set of pliers and/or a flat prying tool. Use a soldering iron to heat the factory JST pins from the PCB. Use a solder sucker to remove any remaining solder from he PCB.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/inverse3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/inverse4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse4.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/inverse5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/inverse5.jpg" /></a>
@@ -1248,20 +1251,20 @@
         <a href="#" data-featherlight="img/sv08/umbilicals/toolend1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/toolend1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/toolend2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/toolend2.jpg" /></a>
         <h4>Birds' Nest end preparation</h4>
-        <p>Take one of the flat spring coils, unwind it and find the approximate middle. This does not need to be eact as we will be cutting each to length later on. Cut the flat spring in half at this mid point.</p>
+        <p>Take one of the flat spring coils, unwind it and find the approximate middle. This does not need to be exact as we will be cutting each to length later on. Cut the flat spring in half at this mid point.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend2.jpg" /></a>
-        <p>Bend around 5mm of the flat spring at one end and push it through the opening in the spring clamp front piece. Attach the two spring clamp pieces together with two M3 x 8mm bolts. The flat spring should be clamped inbetween them. Bend or cut the exposed flat spring end so that it can't later cut the umbilical cable. You may wish to cover it with tape as an extra precaution.</p>
+        <p>Bend around 5mm of the flat spring at one end and push it through the opening in the spring clamp front piece. Attach the two spring clamp pieces together with two M3 x 8mm bolts. The flat spring should be clamped inbetween them. Bend or cut the exposed flat spring end so that it can't later cut or damage the umbilical cable. You may wish to cover it with tape as an extra precaution.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend4.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend5.jpg" /></a>
         <p>The cable will rest inside the groove in these printed pieces, but do not apply the cable ties yet to lock them together.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/birdsnestend6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/birdsnestend6.jpg" /></a>
         <h4>TPU clamps</h4>
-        <p>Cut the tool end of the flat spring to trim the corners off. Also use a thin tool like a flathead screwdriver to clear any strings inside the TPU clamp parts.</p>
+        <p>Cut the tool end of the flat spring to trim the corners off. Also use a thin tool like a flat head screwdriver to clear any strings inside the TPU clamp parts.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/clamps1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/clamps2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps2.jpg" /></a>
-        <p>Feed the TPU clamps to the flat spring from the tool end towards the Birds' Nest end. Each clamp should point upwards from the curve of the spring. Feed on four single clamps first followed by five double clamps.</p>
+        <p>Feed the TPU clamps onto the flat spring from the tool end towards the Birds' Nest end. Each clamp should point upwards from the curve of the spring. Feed on four single clamps first followed by five double clamps.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/clamps3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps3.jpg" /></a>
         <p>You may choose to alternate the orientation of the single clamps so that they better secure the cable.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/clamps4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/clamps4.jpg" /></a>
@@ -1272,10 +1275,10 @@
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly1.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly3.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly2.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly2.jpg" /></a>
-        <p>There will be excess flat spring at the tool end by design. We will now trim it to the correct length to match our cable. Line up the flat spring with the printed part at the top of the tool and mark a spot that extends about 15mm further than the very tip of this printed piece. Cut the flat spring here. Note it is better to be conservative and have to cut more flat spring later than to cut too much initially and have it be too short.</p>
+        <p>There will be excess flat spring at the tool end by design. We will now trim it to the correct length to match our cable. Line up the flat spring with the printed part at the top of the tool and mark a spot that extends about 15mm further than the very tip of this printed piece. Cut the flat spring here. Note it is better to be conservative and have to trim the spring down multiple times, than to cut too much initially and have it be too short to reach.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly4.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly4.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly5.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly5.jpg" /></a>
-        <p>Push the end of the flat spring into the printed part. It should point up vertically without any bends. Trm it slightly if it is too long.</p>
+        <p>Push the end of the flat spring into the printed part. It should point up vertically without any bends. Trim it slightly if it is too long.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly6.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly6.jpg" /></a>
         <p>Rest the tool in the dock and space out the clamps evenly if you need to. Trim the PTFE tube shorter if desired, but only after checking the tool's nozzle will reach all four corners of the bed without strain. Repeat until all of your umbilical cables are complete.</p>
         <a href="#" data-featherlight="img/sv08/umbilicals/assembly7.jpg"><img loading="lazy" class="thumb" src="img/sv08/umbilicals/assembly7.jpg" /></a>
@@ -1288,8 +1291,8 @@
         <p>The relevant section of the video is here:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=1782&end=2423" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
-        <p>We now have everything in place to facilitate changing the active tool, apart from the actual coupling mechanism. This step will add this, as well as a TAP sensor which replaces the factory ABL probe. The TAP sensor will be used for homing, auto bed levelling and also lets the firmwre know which tool is attached. The parts have been adapted to suit the SV08 from those designed for the Voron 2 by DraftShift.</p>
-        <p>After fitting the toolchanger mechanisms, the bed will be too low to reach. A set of spacers is needed to lift it up, with the front right spacer doubling as a mount to reposition the nozzle scrubber.</p>
+        <p>We now have everything in place to facilitate changing the active tool, apart from the actual coupling mechanism. This step will add this, as well as a TAP sensor which replaces the factory ABL probe. The TAP sensor will be used for homing, auto bed levelling and also lets the firmware know which tool is attached. The parts have been adapted to suit the SV08 from those designed for the Voron 2 by DraftShift.</p>
+        <p>After fitting the toolchanger mechanisms, the bed will be too low for the nozzle to reach. A set of bed spacers is needed to lift it up, with the front right spacer doubling as a mount to reposition the nozzle scrubber.</p>
         <h4>BOM</h4>
         <p>The following hardware is required:</p>
         <table>
@@ -1320,7 +1323,7 @@
                         <a href="https://amzn.to/3GZBSZn" target="_blank">US Amazon</a><br/>
                         <a href="https://amzn.to/488gP2v" target="_blank">UK Amazon</a>
                     <td>DS</td>
-                    <td>If it has female threads on the back it will be listed as an M3, but make sure the pin is 4mm OD. Order several spare so you can select the pins wit the smoothest engagement. Four are also required later for the sexball probe mount.</td>            
+                    <td>If it has female threads on the back it will be listed as an M3, but make sure the pin is 4mm OD. Order several spare so you can select the pins with the smoothest engagement. Four are also required later for the sexball probe mount.</td>            
                 </tr>
                 <tr>
                     <td>M3 x 5 x 4 threaded inserts (Voron spec)</td>
@@ -1412,7 +1415,7 @@
                     <td>6</td>
                     <td></td>
                     <td></td>
-                    <td>Bed through bed spacers to printer.</td>   
+                    <td>Through bed and bed spacers to printer.</td>   
                 </tr>
                 <tr>
                     <td>JST ZH crimping kit</td>
@@ -1500,23 +1503,23 @@
         <a href="#" data-featherlight="img/sv08/tools/backplate2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/backplate3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/backplate4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate4.jpg" /></a>
-        <p>Glue in a magnet in the underside bore of the backplate. Take not of whether you have the north or south pole facing outwards. Repeat for all of the backplates.</p>
+        <p>Glue in a magnet in the underside bore of the backplate. Take note of whether you have the north or south pole facing outwards. Repeat for all of the backplates.</p>
         <a href="#" data-featherlight="img/sv08/tools/backplate5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate5.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/backplate6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/backplate6.jpg" /></a>
         <h4>Shuttle assembly</h4>
-        <p>Insert two M3 x 40mm bolts into the bores of the shuttle. These are simply to strength and are optional but recommended.</p>
+        <p>Insert two M3 x 40mm bolts into the bores of the shuttle. These are simply to add strength and are optional but recommended.</p>
         <a href="#" data-featherlight="img/sv08/tools/shuttle1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle1.jpg" /></a>
         <p>Test a spare dowel pin with some bushings to find three bushings that are burr free and smooth. This is essential for reliable toolchanging. Once you have three good bushings, press them flush into the hexagonal cut outs in the shuttle.</p>
         <a href="#" data-featherlight="img/sv08/tools/shuttle2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/shuttle3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle3.jpg" /></a>
-        <p>Glue three magnets into the bores on the shuttle. It is imperitive that they orientation be correct to attract (not repel) the magnet already in the backplates. Test this to avoid disappointment.</p>
+        <p>Glue three magnets into the bores on the shuttle. It is imperative that their orientation be correct to attract (not repel) the magnet already in the backplates. Test this to avoid disappointment.</p>
         <a href="#" data-featherlight="img/sv08/tools/shuttle4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle4.jpg" /></a>
         <p>Test the engagement of the shuttle with each of the backplates. The pins and bushings should be aligned and interact smoothly. If there are any sticky points, try and adjust the bushings until they are gone.</p>
         <a href="#" data-featherlight="img/sv08/tools/shuttle5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle5.jpg" /></a>
         <p>Insert the M3 square nuts into the openings in the back of the shuttle.</p>
         <a href="#" data-featherlight="img/sv08/tools/shuttle6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/shuttle6.jpg" /></a>
         <h4>Backplate installation</h4>
-        <p>Position the backplate on the rear of the SV08 tool. The heat sets should line up with the holes in the SV08 injection molding. three of the holes are ready ti immediately receive an M3 x 12mm bolt. The fourth has the backplate leverage block added with the raised section locating downwards into the backplate cutout. An M3 x 12mm bolt with washer then secures this piece. You may need to temporarily unplug the umbilical cable for easier access to this bolt.</p>
+        <p>Position the backplate on the rear of the SV08 tool. The heat sets should line up with the holes in the SV08 injection molding. Three of the holes are ready to immediately receive an M3 x 12mm bolt. The fourth has the backplate leverage block added with the raised section locating downwards into the backplate cutout. An M3 x 12mm bolt with washer then secures this piece. You may need to temporarily unplug the umbilical cable for easier access to this bolt.</p>
         <a href="#" data-featherlight="img/sv08/tools/assembly1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/assembly2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/assembly3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/assembly3.jpg" /></a>
@@ -1530,8 +1533,8 @@
         <p><a href="https://mellow.klipper.cn/en/docs/ProductDoc/ExtensionBoard/fly-tap/" target="_blank">Fly TAP docs</a></p>
         <p><a href="https://github.com/Sovol3d/SV08/blob/main/Motherboard/Extra_PIN_definition.pdf" target="_blank">Sovol GitHub pin definition</a></p>
         <p>There are two options here:</p>
-        <p>1. Make a new cable, 16cm long with a three pin JST ZH connector on one side and a three pin JST XH connector on the other. This would be the neatest solution, but I did not have a JST ZH connector kit (nor needed one before this project).</p>
-        <p>2. Use a combination of the wires and connectors that came with the TAP sensor and the cable from the rear part cooling fans we previously removed. By soldering the two together we can make a cable fir for purpose without any additional expense.</p>
+        <p>1. Make a new cable, 16cm long with a three pin JST ZH connector on one side and a three pin JST XH connector on the other. This would be the neatest solution, but I did not have a JST ZH connector kit (nor ever needed one before or after this project).</p>
+        <p>2. Use a combination of the wires and connectors that came with the TAP sensor and the cables from the rear part cooling fans we previously removed. By soldering the two together we can make a cable fit for purpose without any additional expense.</p>
         <p>The following diagram shows the final configuration of the cable when made using option 2. If using option 1, the total length and pin order can still be referenced.</p>
         <a href="#" data-featherlight="img/sv08/tools/wiring1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/wiring1.jpg" /></a>
         <p>The following sequence describes how to prepare the cable using option 2.</p>
@@ -1554,13 +1557,13 @@
         <p>Plug back in the part cooling fan and reinstall the cowl over the tool. Use two M3 x 10mm bolts to pull the cowl tight against the tool.</p>
         <a href="#" data-featherlight="img/sv08/tools/cowls2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/cowls2.jpg" /></a>
         <h4>Shuttle installation</h4>
-        <p>Unbolt the factory black metal bracket from the linear bearing block. Unbolt the two belt grabbers and leave them on the bed without letting the belts move within them. You may choose to untension the belts before this step, but it is very possible to avoid this and therefore not need to retune the tension later.</p>
+        <p>Unbolt the factory black metal bracket from the linear bearing block. Unbolt the two belt grabbers and leave them on the bed without letting the belts move within them. The belts should not change position inside the grabbers. You may choose to untension the belts before this step, but it is very possible to avoid this and therefore not need to retune the belt tension later.</p>
         <a href="#" data-featherlight="img/sv08/tools/install1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/install2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/install3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install3.jpg" /></a>
         <p>Install the printed shuttle over the bearing block (check the M3 square nuts have not fallen out) and secure it with four M3 x 12mm bolts.</p>
         <a href="#" data-featherlight="img/sv08/tools/install4.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install4.jpg" /></a>
-        <p>Apply thread locker to the ends of four M13 x 12mm bolts. these will be used to install the belt grabbers onto the shuttle. Add the bolts to one side as loosely as possible, just a few threads engaged. Then install bolts on the other side, and tighten both sides until the grabbers are pulled the whole way towards the centre.</p>
+        <p>Apply thread locker to the ends of four M13 x 12mm bolts. These will be used to install the belt grabbers onto the shuttle. Add the bolts to one side as loosely as possible, just a few threads engaged. Then install bolts on the other side, and tighten both sides until the grabbers are pulled the whole way towards the centre.</p>
         <a href="#" data-featherlight="img/sv08/tools/install5.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install5.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/install6.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install6.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/install7.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/install7.jpg" /></a>
@@ -1570,7 +1573,7 @@
         <p>The nozzle will no longer reach the bed when homing as the coupling mechanism moves it upwards. To combat this we have bed spacers that lift the bed 12mm but still don't cost any Z print volume.</p>
         <p>Take the magnetic sheet off the bed and undo the six M4 bolts holding the bed down. the heated bed wires will still be attached, take care not to tug on them.</p>
         <a href="#" data-featherlight="img/sv08/tools/bed1.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/bed1.jpg" /></a>
-        <p>Prepare the front right spacer with M3 three heat sets and then use three M3 x 6mm bolts to attach the nozzle scrubber piece. The old silicone nozzle scrubber is peeled off the factory mount and installed into the printed part.</p>
+        <p>Prepare the front right spacer with three M3 heat sets and then use three M3 x 6mm bolts to attach the nozzle scrubber piece. The old silicone nozzle scrubber is peeled off the factory mount and installed into the printed part.</p>
         <a href="#" data-featherlight="img/sv08/tools/bed2.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/bed2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/tools/bed3.jpg"><img loading="lazy" class="thumb" src="img/sv08/tools/bed3.jpg" /></a>
         <p>Position the nozzle scrubber spacer at the front right and the five regular spacers in the remaining grooves under the bed. Lower the bed down carefully and secure it with six M4 x 50mm bolts. Reinstall the magnetic sheet.</p>
@@ -1581,7 +1584,7 @@
 
     <div id="klipper">
         <h2>Mainline Klipper and Toolchanger Plugin</h2>
-        <p>This tab covers setting up the software and firmware side of the printer. During the build, these two components represented a lot of time, effort and troubleshooting. To allow those following this guide to avoid this duress, a pre-configured SD card image is available with the vast majority of the work done.</p>
+        <p>This tab covers setting up the software and firmware side of the printer. During the build, these two components represented a lot of time, effort and troubleshooting. To allow those following this guide to avoid this duress, a pre-configured SD card image is available with the vast majority of the work already done.</p>
         <p>The relevant section of the video is here:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=2423&end=3294" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
@@ -1603,7 +1606,7 @@
                     <td>1</td>
                     <td><a href="https://amzn.to/45FLYv6" target="_blank">Amazon</a></td>
                     <td>TT</td>
-                    <td>This is a cheaper clone programmer. Unless you will be regularly programming these MCUs, it is probably best to buy a clone and save some money. This may introduce additional steps, however, so keep this in mind when you make your choice.</td>
+                    <td>This is a link to a cheaper clone programmer. Unless you will be regularly programming these MCUs, it is probably best to buy a clone and save some money. This may introduce additional steps, however, so keep this in mind when you make your choice. The extra steps I needed are detailed below. Your experience may vary.</td>
                 </tr>
                 <tr>
                     <td>32GB micro SD card</td>
@@ -1636,13 +1639,13 @@
             </tbody>
         </table>
         <h4>Preparation</h4>
-        <p class="warning">Before going any further, you must have completed the steps in the Preparation tab. If you have not collected the serial IDs of you various components, the following steps are going to be much harder.</p>
+        <p class="warning">Before going any further, you must have completed the steps in the Preparation tab. If you have not collected the serial IDs of your various components, the following steps are going to be much harder.</p>
         <h4>Pre-prepared OS SD card image</h4>
-        <p>These steps should be a lot easier than when I completed them because of the following resource. I have cloned my whole CB1 operating system to an SD card image you can burn to have almost everything set up and only equiring minor changes. Unless there is a hardware revision in future that breaks compability, this should be the most foolproof method of ensuring success for others.</p>
-        <p><b>V1.0 - Initial release</b>: <a href="files/sv08/tools/klipper/sv08-toolchanger-v1.rar" target="_blank">SD card image</a></p>
-        <p>Download and unzip the img file, ready for the relevant step.</p>
+        <p>These steps should be a lot easier than when I completed them because of the following resource. I have cloned my whole CB1 operating system to an SD card image you can burn to have almost everything set up. Unless there is a hardware revision in future that breaks compability, this should be the most foolproof method of ensuring success for others.</p>
+        <p><b>V1.0 - Initial release</b>: <a href="files/sv08/klipper/sv08-toolchanger-v1.rar" target="_blank">SD card image</a></p>
+        <p>Download and unzip the img file, ready for the upcoming relevant step.</p>
         <h4>Rappetor mainline Klipper for SV08</h4>
-        <p>In part 3 of my build series, I followed the excellent instructions from the Rappetor team to convert the SV08 to 'vanilla'/mainline Klipper running from an SD card. Although many of the steps have already been completed on the SD card image, we do still need to loosely follow the guide.</p>
+        <p>In part 3 of my build series, I followed the excellent instructions from the Rappetor team to convert the SV08 to 'vanilla'/mainline Klipper running from an SD card. Although many of the steps have already been completed for you on the above SD card image, we do still need to loosely follow the guide and complete other steps.</p>
         <p><a href="https://github.com/Rappetor/Sovol-SV08-Mainline" target="_blank">Rappetor mainline Klipper for SV08 GitHub</a></p>
         <p>Please note that the written instructions on this site will always be more up to date than any video guide.</p>
         <h4>Step 0: Backing up Klipper configs (optional)</h4>
@@ -1655,14 +1658,14 @@
         <a href="#" data-featherlight="img/sv08/klipper/emmc1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/emmc1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/emmc2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/emmc2.jpg" /></a>
         <h4>Step 2a: Flashing Media</h4>
-        <p>Instead of downloading and flashing the img file linked from the Rappetor GitHub, we will now flash the img file from this page.</p>
+        <p>Instead of downloading and flashing the img file linked from the Rappetor GitHub, we will now flash the img file linked above on this page.</p>
         <p>Open Balena etcher and select the img file.</p>
         <p>Insert a 32GB micro SD card into your computer and select this as the target.</p>
         <p class="warning">If you select the wrong target drive you risk overwriting whatever was on that drive/device. This includes external hard drives, USB flash drives or SD cards. Please triple check you have the right target selected. As a safety precaution, you may wish to unplug all devices besides the target to make it fool proof.</p>
         <p>When ready, click Flash!</p>
         <a href="#" data-featherlight="img/sv08/klipper/flash1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash1.jpg" /></a>
-        <p>When the flashing is complete, Balena etcher will confirm success. If you are using a Windows computer, the Linux partition of the SD card will not be readable and Windows will give prompts to format the drive. DO NOT do this, just ignore the messages.</p>
-        <p>The only thing you need to do is setup your wifi details. In the Boot partition, open the <b>system.cfg</b> file in Notepad++. Edit the wifi name and password. You may wish to uncomment and set the timezone too. Save the file and eject the SD card.</p>
+        <p>When the flashing is complete, Balena etcher will confirm success. If you are using a Windows computer, the Linux partition of the SD card will not be readable and Windows will give prompts to format the drive. DO NOT do this, just ignore the messages. This is simply Windows not being able to read the Linux partition of the SD card, so we can ignore the warnings.</p>
+        <p>The only thing you need to do is setup your wifi details. In the (Windows accessible) Boot partition, open the <b>system.cfg</b> file in Notepad++. Edit the wifi name and password. You may wish to uncomment and set the timezone too. Save the file and eject the SD card.</p>
         <a href="#" data-featherlight="img/sv08/klipper/flash2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/flash3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/flash3.jpg" /></a>
         <h4>New SSH login credentials</h4>
@@ -1690,7 +1693,7 @@
         </table>
         <h4>Rappetor steps 3, 4, 5 & 6</h4>
         <p>The Rappetor guide requires additional configuration work to take place, but this has already been completed for you. Therefore, you can skip steps 3, 4 5 and 6 on the Rappetor GitHub page.</p>
-        <p>Step 6 asks you to backup the standard MCU firmware from the mainboard and tools. You may wish to do this but at this point it is unlikely you will ever return the printer back to its factory configuration. Rappetor also has backups saved on their website for you to access.</p>
+        <p>Step 6 asks you to backup the standard MCU firmware from the mainboard and tools. You may wish to do this but at this point it is unlikely you will ever return the printer back to its factory configuration. Rappetor also has backups saved on their website for you to access, further educing the need to make backups yourself.</p>
         <h4>Step 2b: Booting and finishing Klipper configuration</h4>
         <p>We can now install the SD card into the mainboard and boot the printer. The touch screen's output will be upside down while it boots, this is normal. Once booted KlipperScreen should be displayed correctly. When the system is up and running, you will receive an expected error.</p>
         <a href="#" data-featherlight="img/sv08/klipper/config1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/config1.jpg" /></a>
@@ -1716,7 +1719,7 @@
         <p>Click Update, then click through to the two links that explain what has updated and if any significant structural changes have ocurred. If satisfied, tick the confirmation box and run the update.</p>
         <a href="#" data-featherlight="img/sv08/klipper/update2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/update3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update3.jpg" /></a>
-        <p>Repeat for all components.</p>
+        <p>Repeat for all components until no more updates are available.</p>
         <a href="#" data-featherlight="img/sv08/klipper/update4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/update4.jpg" /></a>
         <h4>'Dirty' Toolchanger component</h4>
         <p>During the original build, a small bug was found that prevented the printer from homing in some situations. With the help of DraftShift, I altered the offending file to restore functionality. At the time of publishing this file has not been updated in the Stealthchanger GitHub repo, so Mainsail will display the dirty label.</p>
@@ -1736,7 +1739,7 @@
         <a href="#" data-featherlight="img/sv08/klipper/dirty4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/dirty4.jpg" /></a>
         <p>Press <b>Control + X</b> to exit, followed by <b>Y</b> to save changes. Finally, press <b>Enter</b> to save with the same file name.</p>
         <h4>Step 7: Flash Katapult bootloader</h4>
-        <p>This step is technically optional but you woud be silly to not complete it. Not flashing a bootloader would mean that every time you wanted to update Klipper on the MCUs, you would need to connect the STM32 programmer to them one at a time. The Katapult bootloader being present means we simply run a script and all tools plus the mainboard are taken care of.</p>
+        <p>This step is technically optional but you would be silly to not complete it. Not flashing a bootloader would mean that every time you wanted to update Klipper on the MCUs, you would need to connect the STM32 programmer to them one at a time. The Katapult bootloader being present means we simply run a script and all tools plus the mainboard Klipper updates are taken care of.</p>
         <p class="warning">From Rappetor: When connecting the ST-Link to the printer, make sure the printer is powered OFF. The MCU will be powered by the ST-Link.</p>
         <p>You will follow the Rappetor GitHub instructions for this stage, as they will be the most up to date. This will involve connecting via SSH (new login credentials further up the page) and copying and pasting commands to install Katapult, configure for our MCUs and then compiling the binary file.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult1.jpg" /></a>
@@ -1744,7 +1747,7 @@
         <a href="#" data-featherlight="img/sv08/klipper/katapult2.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult2.jpg" /></a>
         <p>Enter the same login credentials as when you connected via SSH.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult3.jpg" /></a>
-        <p>The right half of the screen shows the file system for the 3D printer. Naviagte to <b>/home/biqu/katapult/out</b>, then click and drag the file <b>katapult.bin</b> to the left hand half of the screen to copy iy to your computer's file system. You can now move this file in Windows to a preferred location for the next step.</p>
+        <p>The right half of the screen shows the file system for the 3D printer. Navigate to <b>/home/biqu/katapult/out</b>, then click and drag the file <b>katapult.bin</b> to the left hand half of the screen to copy it to your computer's file system. You can now move this file in Windows to a preferred location for the next step.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult4.jpg" /></a>
         <p>Power down the printer in preparation of connecting the programmer. We need to flash the katapult binary to the MCU in the mainboard and each one of our tools. The same katapult.bin file is used for each. Diagrams for the programmer connection are found on the Rappetor instructions under step 6. Use jumper cables to match the pin labels from the diagrams to those on your programmer.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult5.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult5.jpg" /></a>
@@ -1759,18 +1762,18 @@
         <p>Click on the Binary File tab and then select the <b>Katapult.bin</b> file we previously retrieved from the printer.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult10.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult10.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/katapult11.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult11.jpg" /></a>
-        <p>Click the icon for Full Chip Erase to wipe the firmware on the MCU. After confirming, the data readout will be all Fs (blank).</p>
+        <p>Click the icon for Full Chip Erase to wipe the old Klipper firmware on the MCU. After confirming, the data readout will be all Fs.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult12.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult12.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/katapult13.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult13.jpg" /></a>
         <p>Click the icon for Program Verify. A dialogue box will appear, the default options should be correct. Click Start. When finished, the text 'CanBoot!' should be visible in the data display.</p>
         <a href="#" data-featherlight="img/sv08/klipper/katapult14.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult14.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/katapult15.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult15.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/katapult16.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/katapult16.jpg" /></a>
-        <p>Repeat until the mainboard and tool MCUs have been flashed with the Katapult binary.</p>
+        <p>Repeat until the mainboard and tool MCUs have all been flashed with the Katapult binary.</p>
         <h4>Step 8: Flash Klipper firmware on MCUs</h4>
         <p>We will once gain follow the instructions from the Rappetor GitHub.</p>
         <p>Turn on the printer and wait for it to boot.</p>
-        <p>Follow the link to see instructions and the download for the <b>Automatic Script MCU update</b> file.</p>
+        <p>Follow the Rappetor GitHub link to see instructions for and the download link for the <b>Automatic Script MCU update</b> file.</p>
         <p>Use WinSCP to transfer this file from your computer to <b>/home/biqu/klipper/</b> on the printer. If a version of the file is already in place, delete it and replace it with the freshly downloaded version. This will ensure you have the latest version.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper1.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper1.jpg" /></a>
         <p>The following steps can also be done via SSH. Right click and edit the new file.</p>
@@ -1778,18 +1781,18 @@
         <p>Copy your mainboard serial ID, but only the portion after the underscore. Paste this in place of XXXXXXXX. The address should be surrounded by single inverted commas.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper3.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper4.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper4.jpg" /></a>
-        <p>Copy the serial ID for tool0, but only the portion after the underscore. Paste this in place of YYYYYYY. The address should be surrounded by single inverted commas.</p>
+        <p>Copy the serial ID for tool 0, but only the portion after the underscore. Paste this in place of YYYYYYY. The address should be surrounded by single inverted commas.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper5.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper5.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper6.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper6.jpg" /></a>
         <p>Repeat for the remaining tools, with each in single inverted commas and separated by a space. It should look something like this:</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper7.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper7.jpg" /></a>
-        <p>Save the file and close the WinSCP editor. Right click on the file and go to properties. Set Exectable permissions for the owner and click ok. The file is now ready to run.</p>
+        <p>Save the file and close the WinSCP editor. Right click on the file and go to properties. Tick to add Exectable permissions for the Owner and click ok. The file is now ready to run.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper8.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper8.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper9.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper9.jpg" /></a>
-        <p class="warning">When completing regular Klipper updates in future, only the following step is required. Everything up until now has been prep work.</p>
+        <p class="warning">When completing regular Klipper updates in future, only the following step is required. Everything up until now has been prep work to make future updates easy.</p>
         <p>SSH into the printer and copy and paste the single line from the instructions. It is currently:</p>
         <pre>cd "$HOME/klipper" && ./update_klipper_mcus_sv08.sh</pre>
-        <p>The script will launch a simle interface. We will select option one to begin. The interface will open for compiling Klipper to suit the mainboard MCU. All of the correct options will be preset. You may read further and double check by looking at the instructions on the Rappetor page.</p>
+        <p>The script will launch a simple interface. We will select option one to begin. The interface will open for compiling Klipper to suit the mainboard MCU. All of the correct options will be preset. You may read further and double check by looking at the instructions on the Rappetor page.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper10.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper10.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper11.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper11.jpg" /></a>
         <p>Press Q to quit, followed by Y to save. The firmware will compile. After pressing Enter a few times to confirm, the latest Klipper will flash to the MCU using the Katapult bootloader we previously installed.</p>
@@ -1798,14 +1801,14 @@
         <p>Back at the main menu, now select option 2. The interface will again open for compiling Klipper to suit the tool MCUs. All of the correct options will be preset. You may again read further and double check by looking at the instructions on the Rappetor page.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper14.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper14.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper15.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper15.jpg" /></a>
-        <p>Press Q to quit, followed by Y to save. The firmware for the tools will compile. After pressing Enter a few times to confirm, the latest Klipper will flash to the MCU using the Katapult bootloader we previously installed. This will occur consecutively for each tool you added the serial ID for.</p>
+        <p>Press Q to quit, followed by Y to save. The firmware for the tools will compile. After pressing Enter a few times to confirm, the latest Klipper will flash to the tool 0 MCU using the Katapult bootloader we previously installed. This will occur consecutively for each tool you added the serial ID for.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper16.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper16.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper17.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper17.jpg" /></a>
         <p>Enter option 4 at the main menu to exit. The Klipper service will restart and Mainsail should now report that all of your tools are connected and communicating properly. There should be no errors.</p>
         <a href="#" data-featherlight="img/sv08/klipper/klipper18.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper18.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/klipper/klipper19.jpg"><img loading="lazy" class="thumb" src="img/sv08/klipper/klipper19.jpg" /></a>
         <h4>Stealthchanger Klipper Toolchanger plugin</h4>
-        <p>Installing and preparing this <a href="https://github.com/DraftShift/klipper-toolchanger" target="_blank">plugin</a> took quite a lot of effort and troubleshooting during my build. the pre-prepared SD card image already has this installed and configured. We will perform some calibration soon, but at this stage there is nothing else to be done.</p>
+        <p>Installing and preparing this <a href="https://github.com/DraftShift/klipper-toolchanger" target="_blank">plugin</a> took quite a lot of effort and troubleshooting during my build. The pre-prepared SD card image already has this installed and configured. We will perform some calibration soon, but at this stage there is nothing else to be done.</p>
     </div>
 
     <div id="slicer">
@@ -1833,7 +1836,7 @@
                     <td></td>
                     <td><a href="https://github.com/OrcaSlicer/OrcaSlicer" target="_blank">GitHub</a></td>
                     <td></td>
-                    <td>A powerful free open source slicer. A video guide canbe found here: <a href="https://youtu.be/cquTCpz1V74" target="_blank">Orca Slicer getting started guide: A slicer for all of your 3D printers</a>.</td>
+                    <td>A powerful free open source slicer. A video guide can be found here: <a href="https://youtu.be/cquTCpz1V74" target="_blank">Orca Slicer getting started guide: A slicer for all of your 3D printers</a>.</td>
                 </tr>
                 <tr>
                     <td>OrcaSlicer preset bundle</td>
@@ -1856,14 +1859,14 @@
         <p>Open the Printer Selection dialogue. Search for SV08 and tick the SV08 0.4mm nozzle version, then click Confirm.</p>
         <a href="#" data-featherlight="img/sv08/slicer/orca1.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca2.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca2.jpg" /></a>
-        <p>Go to File > Import > Import Configs and then select the orca_printer file downloaded from this page. A dialogue box will confirm the new profiles. the exact number may be different to the screen shot below after future revisions.</p>
+        <p>Go to File > Import > Import Configs and then select the orca_printer file downloaded from this page. A dialogue box will confirm the new profiles. The exact number may be different to the screen shot below after future revisions.</p>
         <a href="#" data-featherlight="img/sv08/slicer/orca3.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca4.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca4.jpg" /></a>
         <p>Select the SV08 toolchanger printer profile from the drop down list. Click the Connection icon and then enter your printer's IP address in the dialogue box. This is the same address you use to access the Mainsail web interface and when connecting via SSH. After confirming, switching to the Device tab should show the Mainsail web interface.</p>
         <a href="#" data-featherlight="img/sv08/slicer/orca6.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca6.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca7.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca7.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca5.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca5.jpg" /></a>
-        <p>Click the icon to edit the printer preset. On the Multimaterial tab, increase the number of ezxtruders to match your build.</p>
+        <p>Click the icon to edit the printer preset. On the Multimaterial tab, increase the number of extruders to match your build.</p>
         <a href="#" data-featherlight="img/sv08/slicer/orca8.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca8.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca9.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca9.jpg" /></a>
         <p>Download the STL file from above and place it in a folder where it can remain without being accidentally moved or deleted. Switch to the Basic Information tab and click the Set button next to Printable Area. Click Load under Model and select the STL. Click OK.</p>
@@ -1872,7 +1875,7 @@
         <p>Click the Save icon. Enter a profile name that suits you. Click OK and close the dialogue box. </p>
         <a href="#" data-featherlight="img/sv08/slicer/orca12.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca12.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca13.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca13.jpg" /></a>
-        <p>The printer profile is ready, complete with wireframe guide for placing models. When printing a tall model, make sure it is placed in a way that avoids crossing into the cutout at the front/top of the bed. This area represents the dock location and the clearance needed to avoid collisions.</p>
+        <p>The printer profile is ready, complete with wireframe guide for placing models. When printing a tall model, make sure it is placed in a way that avoids crossing into the cutout at the front/top of the bed. This area represents the dock location and the clearance needed to avoid collisions. Low, wide prints that sit below the cutout do not need any extra consideration.</p>
         <p class="warning">OrcaSlicer will not give any warnings or errors if a model is placed in a position that will produce a collision between the active tool and the dock. Double check for sufficient clearance before each print to avoid disaster.</p>
         <a href="#" data-featherlight="img/sv08/slicer/orca14.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca14.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/slicer/orca15.jpg"><img loading="lazy" class="thumb" src="img/sv08/slicer/orca15.jpg" /></a>
@@ -1880,7 +1883,7 @@
 
     <div id="calibration">
         <h2>Calibration</h2>
-        <p>This tab covers tuning and calibration of the printer now that all components are installed.</p>
+        <p>This tab covers the tuning and calibration of the printer now that all components are installed.</p>
         <p>The relevant section of the video is here:</p>
         <iframe loading="lazy" width="480" height="360" src="https://www.youtube.com/embed/9_FhIQgqC2A?start=3417" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <h4>Rationale</h4>
@@ -1888,8 +1891,8 @@
         <h4>DraftShift StealthChanger wiki</h4>
         <p>We will be following the steps in the <a href="https://github.com/DraftShift/StealthChanger/wiki/Calibration" target="_blank">DraftShift StealthChanger calibration wiki</a>. The video will cover my steps, but always check with the wiki for anything that has been added or improved.</p>
         <h4>Nozzle alignment choices</h4>
-        <p>The firmware works by assuming an gcode offset of 0, 0 for tool 0, and then applying an offset relative to that tool for any other tools. There will always be small variations in the build of each tool, so measuring and saving the offets is vital. Multiple methods exist to achieve this as outlined on the wiki under<a href="https://github.com/DraftShift/StealthChanger/wiki/Calibration#xy-offset" target="_blank">XY offset</a>.</p>
-        <p>I used the sexball probe as it is very easy and cheap to build, but also automates the process greatly. the instructions, BOM and printed parts to follow will assume you have taken the same path.</p>
+        <p>The firmware works by assuming an gcode offset of 0, 0 for tool 0, and then applying an offset relative to that tool for any other tools. There will always be small variations in the build of each tool, so measuring and saving the offets is vital. Multiple methods exist to achieve this as outlined on the wiki under <a href="https://github.com/DraftShift/StealthChanger/wiki/Calibration#xy-offset" target="_blank">XY offset</a>.</p>
+        <p>I used the sexball probe as it is very easy and cheap to build, but also automates the process greatly. The instructions, BOM and printed parts to follow will assume you have taken the same path.</p>
         <h4>BOM</h4>
         <p>The following hardware is required:</p>
         <table>
@@ -1922,7 +1925,7 @@
                     <td>1</td>
                     <td><a href="https://s.click.aliexpress.com/e/_omw2qxX" target="_blank">Aliexpress</a>
                     <td>DS</td>
-                    <td>Parameters: M5 thread x 30mm length. Comes in a pack on five, despite only one being needed. This is good as you can select the shaft with the smoothest operation.</td>            
+                    <td>Parameters: M5 thread x 30mm length. Comes in a pack of five, despite only one being needed. This is good as you can select the shaft with the smoothest operation.</td>            
                 </tr>
                 <tr>
                     <td>4x6x6mm brass bushing</td>
@@ -1949,7 +1952,7 @@
                     <td><a href="https://kb-3d.com/store/magnets-bearings/995-disccylinder-magnet-high-temp-n52h-6x3mm-1696789934996.html" target="_blank">US KB-3D</a><br/>
                         <a href="https://www.printyplease.uk/N52H" target="_blank">UK Printy Please</a></td>
                     <td>DS<br/>DS</td>
-                    <td>To hold sexball mount top and bottom together. Optionally reduce to four magnets if the attraction is too strong.</td>               
+                    <td>To hold sexball mount top and bottom together (four per half). Optionally reduce to four magnets (two per half) if the attraction is too strong.</td>               
                 </tr>
                 <tr>
                     <td>M3 x 12mm BHCS bolts</td>
@@ -1991,7 +1994,7 @@
                 <tr>
                     <td><a href="files/sv08/calibration/calibration - shim top.stl" target="_blank">calibration - shim top</a></td>
                     <td>1</td>
-                    <td>Optional part only required to eliminate any space between the bottom of the sexball switch and the bed. Place invetween the switch and the mount top. Print multiples or scale thickness to suit.</td>
+                    <td>Optional part only required to eliminate any space between the bottom of the sexball switch and the bed. Place inbetween the switch and the mount top. Print multiples or scale thickness to suit.</td>
                 </tr>
                 <tr>
                     <td><a href="files/sv08/calibration/calibration - shim bottom.stl" target="_blank">calibration - shim bottom</a></td>
@@ -2001,7 +2004,7 @@
             </tbody>
         </table>
         <h4>Selecting filament runout configuration</h4>
-        <p>The SD card image config in each of the <b>too-AVRx.cfg</b> files has provision for the switch and/or encode functionality of the BTT SFS V2. By default, only the switch function is uncommented and enabled:</p>
+        <p>The SD card image config in each of the <b>tool-AVRx.cfg</b> files has provision for the switch and/or encode functionality of the BTT SFS V2. By default, only the switch function is uncommented and enabled:</p>
         <a href="#" data-featherlight="img/sv08/calibration/sfs1.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sfs1.jpg" /></a>
         <p>If you only wanted to run the encoder function, you would edit to look something like this:</p>
         <a href="#" data-featherlight="img/sv08/calibration/sfs2.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sfs2.jpg" /></a>
@@ -2011,7 +2014,7 @@
         <a href="#" data-featherlight="img/sv08/spools/wiring5.jpg"><img loading="lazy" class="thumb" src="img/sv08/spools/wiring5.jpg" /></a>
         <p class="warning">I have only tested the printer with the sensors in switch mode. If you are using the motion/encoder function, you may need to refine the config after testing. The config in place is adapted from the <a href="https://github.com/bigtreetech/smart-filament-detection-module/tree/master/V2.0/Manual" target="_blank">SFS manual</a>.</p>
         <h4>Physical adjustments</h4>
-        <p>If any of the tools are not quite sitting right, you can turn the countersunk bolts in the backplate in or out to adjust the mated position. I didn't find this necessary.</p>
+        <p>If any of the tools are not quite sitting right, you can turn the countersunk bolts in the backplate in or out to adjust the mated position. I didn't find this necessary on my build.</p>
         <a href="#" data-featherlight="img/sv08/calibration/physical1.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/physical1.jpg" /></a>
         <p>The silicone cup that blocks the hot nozzle needs to be checked to see if it is sitting too high or low. If too high, the nozzle will collide into the side as the tool is parked. Tighten the bolt on the underside to lower it down. Loosen the bolt to lift the cup upwards.</p>
         <a href="#" data-featherlight="img/sv08/calibration/physical2.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/physical2.jpg" /></a>
@@ -2026,11 +2029,11 @@
         <p>Once homed, press the button for QGL and make sure the sequence completes without error. There is a delay at the start as the bed heats.</p>
         <a href="#" data-featherlight="img/sv08/calibration/checks3.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/checks3.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/checks4.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/checks4.jpg" /></a>
-        <p>After this, manually place tool 1 (the 2nd tool) in the shuttle and home gain. Look for the AVR1 message confirmation. There is no need to run QGL again, but you should to confirm homing for every tool.</p>
+        <p>After this, manually place tool 1 (the 2nd tool) in the shuttle and home again. Look for the AVR1 message confirmation. There is no need to run QGL again, but you should repeat this step to confirm homing for every tool.</p>
         <a href="#" data-featherlight="img/sv08/calibration/checks5.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/checks5.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/checks6.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/checks6.jpg" /></a>
         <h4>Tool Z offset calibration</h4>
-        <p>Each tool needs to have its own calibration for Z offset. This can be time consuming but necessary. I primarily used the simple 'paper' method from the <a href="" target="_blank">Klipper docs</a>. Manually insert a tool, then home all. QGL if this has not been done in a while. The inbuilt <b>PROBE_CALIBRATE</b> command is excellent when paired with KlipperScreen for moving the nozzle until it touches the paper.</p>
+        <p>Each tool needs to have its own calibration for Z offset. This can be time consuming but necessary. I primarily used the simple 'paper' method from the <a href="https://www.klipper3d.org/Bed_Level.html#the-paper-test" target="_blank">Klipper docs</a>. Manually insert a tool, then home all. Run QGL if this has not been done in a while. The inbuilt <b>PROBE_CALIBRATE</b> command is excellent when paired with KlipperScreen for moving the nozzle until it touches the paper.</p>
         <a href="#" data-featherlight="img/sv08/calibration/zoffset1.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/zoffset1.jpg" /></a>
         <p>When you are happy, save the value and retrieve it from the bottom of <b>printer.cfg</b>. Paste it into the <b>tool_probe z_offset</b> section in the relevant <b>tool-AVRx.cfg</b> file.</p>
         <a href="#" data-featherlight="img/sv08/calibration/zoffset2.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/zoffset2.jpg" /></a>
@@ -2040,20 +2043,20 @@
         <a href="#" data-featherlight="img/sv08/calibration/zoffset4.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/zoffset4.jpg" /></a>
         <p class="warning">A reminder that Klipper numbers the tools from zero, but OrcaSlicer starts at one. Tool 0 in Klipper is the 1st tool in OrcaSlicer, and so on.</p>
         <h4>Other tuning</h4>
-        <p>Although I already did this before cloning the SD card image, it is a good idea to tune PID for the bed heater and each tool heater, as well as input shaping for each tools. Manufacturing differences as well as differentces in print settings and hardware used for your build make this necessary.</p>
+        <p>Although I already did this before cloning the SD card image, it is a good idea to tune PID for the bed heater and each tool heater, as well as input shaping for each tool. Manufacturing differences as well as differentces in print settings and hardware used for your build make this necessary.</p>
         <p><a href="https://www.klipper3d.org/Config_checks.html?h=pid#calibrate-pid-settings" target="_blank">Klipper PID tuning reference</a></p>
         <p>For PID tuning, manually fit the tool you want to calinrate, then home the machine to confirm it. Then run the <b>PID_CALIBRATE</b> to run the test. Paste the results into the relevant <b>tool-AVRx.cfg</b> file in the <b>[tool AVRx]</b> section.</p>
         <p><a href="https://www.klipper3d.org/Measuring_Resonances.html" target="_blank">Klipper measuring resonance reference</a></p>
         <p>For input shaping, each SV08 tool has an accelerometer built in and configured in the firmware. Manually fit the tool you want to test, home the printer, and then run <b>SHAPER_CALIBRATE</b>. This will autotune for the current tool. Copy and paste the recommended input shaping parameters into the relevant <b>tool-AVRx.cfg</b> file in the <b>[extruderx]</b> section.</p>
         <h4>Dock Parking</h4>
-        <p>Now we will test the positions for the dock in your build. the positions and sequence have painstakingly been tuned by myself with a lot of assistance and guidance from the DraftShift team, so hopefully they will require little to no tweaking.</p>
+        <p>Now we will test the positions for the dock in your build. The positions and docking sequence have been painstakingly tuned by myself with a lot of assistance and guidance from the DraftShift team, so hopefully they will require little to no tweaking for you.</p>
         <p>Manually fit tool 0, home the printer and run QGL.</p>
         <p>Run <b>T1</b> from the macros or type it into the Mainsail console. Hopefully, the printer will lift up and stow tool 0, followed by collecting tool 1 and returning to its original position just above the bed.</p>
         <a href="#" data-featherlight="img/sv08/calibration/tools1.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools1.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/tools2.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/tools3.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools3.jpg" /></a>
         <p>Repeat with <b>T2</b>, <b>T3</b>, etc until all of your tools have been tested.</p>
-        <p>If there is a misalignment, the firmware will use the TAP sensor to detect the desired tool is missing and throw an error.</p>
+        <p>If there is a misalignment, the firmware will use the TAP sensor to detect the desired tool is missing and shutdown with an error.</p>
         <a href="#" data-featherlight="img/sv08/calibration/tools4.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools4.jpg" /></a>
         <h4>Dock parking troubleshooting</h4>
         <p>The first thing to check is that all of the tools are sitting properly on the dock. The rear of each backplate should be aligned, and the vertical height should be the same. Also check that the umbilicals are aligned and sitting nicely. If an umbilical is crooked or leaning, the tool will not sit straight in the dock and increase the chances of a pickup failure.</p>
@@ -2069,13 +2072,14 @@
         <a href="#" data-featherlight="img/sv08/calibration/tools8.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools8.jpg" /></a>
         <p>The most complicated parameters to tune are the docking paths. Many sequences are listed but the two that concern our SV08 build are <b>params_changer_sc_path</b> and <b>params_dock_modular_path</b>.</p>
         <a href="#" data-featherlight="img/sv08/calibration/tools9.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools9.jpg" /></a>
-        <p>As the comment in the doc explains, these are complicated and shouldn't be tuned unless you know what you are doing. Some insight is available in the <a href="https://github.com/DraftShift/StealthChanger/wiki/Configuration#docking-path" target="_blank">StealthChanger wiki</a>. Unless you are confident, I would suggest seeking assistance in the <a href="https://discord.gg/draftshift" target="_blank">DraftShift Discord server</a>.</p>
-        <p>If your toolchanging is working reliably and you would like to increase travel speed to reduce changing time, the <b>params_fast_speed</b> and <b>params_path_speed</b> parameters can be increased. Take care not to increase these to the point that the stepper motors skip steps as this will lead to some dramatic collisions with the dock.</p>
+        <p>As the comment in the config file explains, these are complicated and shouldn't be tuned unless you know what you are doing. Some insight is available in the <a href="https://github.com/DraftShift/StealthChanger/wiki/Configuration#docking-path" target="_blank">StealthChanger wiki</a>. Unless you are confident, I would suggest seeking assistance in the <a href="https://discord.gg/draftshift" target="_blank">DraftShift Discord server</a>.</p>
+        <p>If your toolchanging is working reliably and you would like to increase travel speed to reduce changing time, the <b>params_fast_speed</b> and <b>params_path_speed</b> parameters can be increased. Take care not to increase these to the point that the stepper motors skip steps as this will lead to some dramatic collisions with the dock. The speeds are in mm/min.</p>
+        <a href="#" data-featherlight="img/sv08/calibration/tools10.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/tools10.jpg" /></a>
         <h4>Tool X/Y offset - Sexball probe</h4>
         <p>As discussed earlier on this tab, there are multiple options for performing X/Y tool alignment. These are listed on the <a href="https://github.com/DraftShift/StealthChanger/wiki/Calibration#xy-offset" target="_blank">StealthChanger wiki</a>. I chose the sexball probe and the instructions that follow pertain to that option. Follow the instructions from the wiki for any other options.</p>
-        <p>After unboxing the probe components, test some of the shafts to find the one wit hthe least resistance. Some of mine had tiny burrs which caused the switch motion to be stiff. EIf necessary, remove any burrs until you have a smooth and reliable action.</p>
+        <p>After unboxing the probe components, test some of the shafts to find the one with the least resistance. Some of mine had tiny burrs which caused the switch motion to be stiff. If necessary, remove any burrs until you have a smooth and reliable action.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball1.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball1.jpg" /></a>
-        <p>The mount top and bottom each receive four magnets, although you can reduce this to two per side if the attraction is too strong. The bottom mount has four bushing pressed into the hex holes, and the top mount has for dowel pins secured with M3 x 12mm bolts. A pair of M3 x 8mm bolts holds the sexball switch to the top mount, with the wiring port facing towards the opening of the 'Y'.</p>
+        <p>The mount top and bottom each receive four magnets, although you can reduce this to two per side if the attraction is too strong. The bottom mount has four bushings pressed into the hex holes, and the top mount has four dowel pins secured with M3 x 12mm bolts. A pair of M3 x 8mm bolts hold the sexball switch to the top mount, with the wiring port facing towards the opening of the 'Y'.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball2.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball2.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball3.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball3.jpg" /></a>
         <p>Remove the factory block which holds the nozzle scrubber and pressure probe. Retain the M3 bolts. Unplug the three pin connector going to the pressure probe.</p>
@@ -2088,7 +2092,7 @@
         <p> We will need the remaining two wires which are signal and ground. A use a pick to depin them from the factory JST connector housing and insert them into the two pin JST housig that came with the sexball switch. It does not matter which order they are used.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball9.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball9.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball10.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball10.jpg" /></a>
-        <p>Attach the bottom mount to the floor of the printer using the two factory M3 bolts. Magnetically attach the top mount with probe and test for an air gap under the base of the switch. If necessary, print and insert shim(s) between the switch and top mount to space it down. In the event that the bottom is the switch is pressed too hard into the bed, print a bottom shim to move it up.</p>
+        <p>Attach the bottom mount to the floor of the printer reusing the two factory M3 bolts. Magnetically attach the top mount with probe and test for an air gap under the base of the switch. If necessary, print and insert shim(s) between the switch and top mount to space it down. In the event that the bottom is the switch is pressed too hard into the bed, print a bottom shim to move it up.</p>
         <p>When the gap is gone, plug in the sexball to the cable we modified from the old pressure probe.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball11.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball11.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball12.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball12.jpg" /></a>
@@ -2096,10 +2100,10 @@
         <p>In <b>printer.cfg</b>, there is a commented out section for testing the sexball. Delete the # symbols to uncomment it and restart the firmware.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball14.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball14.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball15.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball15.jpg" /></a>
-        <p>When pressing and then releasing the probe, a confirmation message will be seen on the screen and in the console. If the message matches the physical action, you can comment the test section back out and restart the firmware. You can leave it uncommented and active, but it will clog the console output when the probe is actually in use.</p>
+        <p>When pressing and then releasing the probe, a confirmation message will be seen on the screen and in the console. If the message matches the physical action, you can comment the test section back out and restart the firmware. You can leave it uncommented and active, but it will clog the console output wit these messages when the probe is actually in use.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball16.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball16.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball14.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball14.jpg" /></a>
-        <p>We are ready to use the probe. temporarily remove it, home the printer with tool 0 and then run QGL. refit and plug in the sexball probe. Run the <b>CALIBRATE ONE OFFSET</b> macro and enter 1 for the tool.</p>
+        <p>We are ready to use the probe. temporarily remove it, home the printer with tool 0 and then run QGL. Refit and plug in the sexball probe. Run the <b>CALIBRATE ONE OFFSET</b> macro and enter 1 for the tool.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball17.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball17.jpg" /></a>
         <a href="#" data-featherlight="img/sv08/calibration/sexball18.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball18.jpg" /></a>
         <p>Tool 0 will head over to the probe and press on it from many different angles. Tool 1 will then be picked up and repeat the same probing. The firmware is calculating the fine differences in position between the reference tool 0, and the test tool 1. When the sequence is complete, the console will reveal the offset data for that tool. Copy the values into the relevant <b>tool-AVRx.cfg</b> file in the <b>[tool AVRx]</b> section.</p>
@@ -2108,9 +2112,9 @@
         <a href="#" data-featherlight="img/sv08/calibration/sexball21.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball21.jpg" /></a>
         <p>Save and restart the firmware. Repeat the process for the other tools. You can use <b>CALIBRATE ONE OFFSET</b> and enter a different tool, or use the <b>CALIBRATE ALL OFFSETS</b> macro instead.</p>
         <a href="#" data-featherlight="img/sv08/calibration/sexball22.jpg"><img loading="lazy" class="thumb" src="img/sv08/calibration/sexball22.jpg" /></a>
-        <p class="warning">Please note the the offsets for tool 0 alwats remain as 0, 0, 0. This the reference tool that all other tools are measured against.</p>
+        <p class="warning">Please note the the offsets for tool 0 always remain as 0, 0, 0. This the reference tool that all other tools are measured against.</p>
         <h4>Customisation</h4>
-        <p>You may wish to customise the printer, name, Mainsail UI, etc, a well as the KlipperScreen features too.</p>
+        <p>You may wish to customise the printer, name, Mainsail UI, etc, as well as the KlipperScreen features too.</p>
         <h4>First print</h4>
         <p>I recommend a simple two tool/colour print to get started. The <a href="https://makertech-3d.dozuki.com/Guide/DSE+Only+-+Stage+12:+X-Y+Calibration+and+First+Print/44" target="_blank">DSE calibration model</a> is free and ideal for seeing if the tool offsets are correct.</p>
         <p>Import the two STLs into OrcaSlicer simultaneously, click Yes to confirm a multi part object, and assign the two segments to different tools.</p>
