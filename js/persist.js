@@ -17,6 +17,7 @@ function loadFormData(form) {
       element.tagName == "INPUT" && element.type == "checkbox" ||
       element.tagName == "INPUT" && element.type == "radio" ||
       element.tagName == "INPUT" && element.type == "text" ||
+      element.tagName == "INPUT" && element.type == "password" ||
       element.tagName == "TEXTAREA" ||
       element.tagName == "SELECT"
     ) {

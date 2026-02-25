@@ -502,6 +502,27 @@ var endGcode = /*html*/ `<h4>Additional end gcode</h4>
 
 var preview = /*html*/ `<p>It is advised to preview the generated gcode through your slicer or <a href="http://zupfe.velor.ca" target="_blank">Zupfe GCode Viewer</a> before printing.`;
 
+var downloadGcodeHtml = /*html*/ `<h4>Download</h4>
+<p><label>Filename: <input type="text" name="{formName}_filename" value="{formName}"></label></p>
+<p><input type="button" onclick="downloadGcode(form, form['{formName}_filename'].value)" value="Download Gcode">
+   <input type="button" onclick="uploadGcode(form, form['{formName}_filename'].value)" value="Upload&Print Gcode"></p>
+<p><input type="button" onclick="resetFormToDefaults(form)" value="Reset parameters">
+   <input type="button" onclick="downloadSettings(form, form['{formName}_filename'].value)" value="Output Settings Summary"></p>
+
+<h4>Octoprint / Moonraker</h4>
+<p>You can directly print from this website if you specify <b>Octoprint</b> or <b>Moonraker</b> server.</p>
+<p><label>URL: <input type="text" name="octoprint_url"></label>
+   <label>API Key: <input type="password" name="octoprint_key"></label></p>
+<div class="octoprintExp">
+    <label>Configure Octoprint:</label>
+    <ul>
+        <li>Login to your Octoprint from this browser</li>
+        <li>Or get API Key from <b>User Settings > Application Keys</b></li>
+    </ul>
+</div>
+
+`;
+
 function createForm(n){
     document.write('<input type="hidden" name="description" value="'+n+'">')
     document.write(nozzleLayer);
@@ -538,4 +559,5 @@ function createForm(n){
     }
     document.write(endGcode);
     document.write(preview);
-}      
+    document.write(downloadGcodeHtml.replaceAll('{formName}', n));
+}
