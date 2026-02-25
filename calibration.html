@@ -1185,7 +1185,7 @@ square_corner_velocity: 8.0</pre>
         <p>This feedrate test tower is sliced in vase mode. This is for several reasons:</p>
         <ul>
             <li>After the first layer, a vase mode print only has a single type of feature: external perimeter. This makes it clear what the actual feedrate is for each segment of the tower.</li>
-            <li>Vase mode prints have continuous extrusion after the sold base infill is completed and therefore don't require retraction. This means we will not be confused by artefacts introduced from retractions and layer changes.</li>
+            <li>Vase mode prints have continuous extrusion after the solid base infill is completed and therefore don't require retraction. This means we will not be confused by artefacts introduced from retractions and layer changes.</li>
             <li>Vase mode prints don't have any travel moves after the solid bottom layers are complete. This means we can increase the print feedrate without worrying about the travel feedrate being proportionally increased to a dangerous value.</li>
             <li>Because of the above reasons, vase mode makes it ideal to use the <b>M220</b> feedrate modifier gcode to alter the feedrate for each segment of the test. This is supported in <a href="https://marlinfw.org/docs/gcode/M220.html" target="_blank">Marlin</a>, <a href="https://www.klipper3d.org/G-Codes.html" target="_blank">Klipper</a> and <a href="https://duet3d.dozuki.com/Wiki/M220" target="_blank">RepRapFirmware</a>. Changing your feedrate mid print from the printer's LCD controls or web inteface uses this feature of the firmware. This test will insert <b>M220</b> commands into the gcode for speed changes on the fly.</li>
         </ul>
