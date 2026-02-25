@@ -475,7 +475,7 @@ function processGcode(formName) {
                 break;
         }
         // insert user fan speed for resumption after 100% bridging
-        gcode = gcode.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanSpeed+"%");
+        gcode = gcode.replace(/M106 S3/g, "M106 S"+fanSpeed+"; custom fan "+fanPercentage+"%");
         // process gcode to suit bed size and type
         if(centre == true){
             var gcodeArray = gcode.split(/\n/g);
